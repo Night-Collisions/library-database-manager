@@ -1,0 +1,9 @@
+*
+!.gitignore
+!/Server
+/Server/*
+!/Client
+/Client/*
+!/PostgreSQL
+/PostgreSQL/* 
+ 
