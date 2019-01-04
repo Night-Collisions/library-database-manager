@@ -2,8 +2,11 @@
 !.gitignore
 !/Server
 /Server/*
+!/Server/Server.iml
+!/Server/src
+/Server/src/*
+!/Server/src/*.java
 !/Client
 /Client/*
 !/PostgreSQL
 /PostgreSQL/* 
- 
