@@ -22,13 +22,32 @@ class SocketHandler extends Thread {
             while (true) {
                 cmd = in.readLine();
                 String data[] = cmd.split(", ");
-                if (data[1].equals("authUser")) {
-                    String res = Server.db.authUser(data[2], data[3]);
-                    send(res);
+                if (data.length < 2) {
+                    send("unknown command");
+                    continue;
+                }
+                switch (data[1]) {
+                    case "authUser":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.authUser(data[2], data[3]));
+                        break;
+                    case "getPublications":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getPublications());
+                        break;
+                    default:
+                        send("unknown command");
+                        break;
                 }
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

@@ -1,10 +1,12 @@
+import com.google.gson.Gson;
+
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Database {
 
-    public Connection con = null;
+    public Connection con;
 
     public Database() throws Exception {
         Class.forName("org.postgresql.Driver");
@@ -33,6 +35,33 @@ public class Database {
         catch (SQLException e) {
             return "error";
         }
+    }
+
+    public String getPublications() {
+        try {
+            Statement statement = con.createStatement();
+            String query = "SELECT * FROM publications";
+            ResultSet rs = null;
+            rs = statement.executeQuery(query);
+            return RSToString(rs);
+        }
+        catch (SQLException e) {
+            return "error";
+        }
+    }
+
+    private String RSToString(ResultSet rs) throws SQLException {
+        int columnCount = rs.getMetaData().getColumnCount();
+        ArrayList<ArrayList<String>> rows = new ArrayList<>();
+        while (rs.next()) {
+            ArrayList<String> row = new ArrayList<>();
+            int i = 1;
+            while (i <= columnCount) {
+                row.add(rs.getString(i++));
+            }
+            rows.add(row);
+        }
+        return new Gson().toJson(rows);
     }
 
 
