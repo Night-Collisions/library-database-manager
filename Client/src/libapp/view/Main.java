@@ -16,6 +16,8 @@ import libapp.ClientSocket;
 import libapp.model.Editor;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Main extends Application {
@@ -70,7 +72,14 @@ public class Main extends Application {
     @FXML
     MenuItem about;
 
-    public void initRootLayout() {
+    @FXML
+    private void initialize() {
+
+    }
+
+
+
+    private void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("MainLayout.fxml"));
@@ -221,6 +230,8 @@ public class Main extends Application {
         dialogStage.setResizable(false);
 
         ConnectController controller = loader.getController();
+        controller.setSocket(socket);
+        controller.setMain(this);
         controller.setDialogStage(dialogStage);
 
         dialogStage.showAndWait();

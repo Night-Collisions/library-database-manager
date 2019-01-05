@@ -5,14 +5,14 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class ClientSocket {
-    private int port; // здесь обязательно нужно указать порт к которому привязывается сервер.
-    private String address;
-    InetAddress ipAddress;
-    Socket socket;
-    DataInputStream in;
-    DataOutputStream out;
+    static private int port; // здесь обязательно нужно указать порт к которому привязывается сервер.
+    static private String address;
+    static InetAddress ipAddress;
+    static Socket socket;
+    static BufferedReader in;
+    static BufferedWriter out;
 
-    public ClientSocket(String address, int port) {
+    public ClientSocket(String address, int port) throws IOException {
         this.address = address;
         this.port = port;
 
@@ -20,8 +20,8 @@ public class ClientSocket {
             this.ipAddress = InetAddress.getByName(this.address); // создаем объект который отображает вышеописанный IP-адрес.
             this.socket = new Socket(ipAddress, this.port); // создаем сокет используя IP-адрес и порт сервера.
 
-            this.in = new DataInputStream(socket.getInputStream());
-            this.out = new DataOutputStream(socket.getOutputStream());
+            this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
 /*            // Создаем поток для чтения с клавиатуры.
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
@@ -30,23 +30,30 @@ public class ClientSocket {
             System.out.println();*/
 
 
-        } catch (Exception x) {
-            x.printStackTrace();
+        } catch (Exception e){
+            assert socket != null;
+            socket.close();
+            assert in != null;
+            in.close();
+            assert out != null;
+            out.close();
         }
     }
 
     public String makeRequest(String request) throws IOException {
         String result;
-        out.writeUTF(request);
+        out.write(request + '\n');
         out.flush();
 
-        result = in.readUTF(); // ждем пока сервер отошлет строку текста.
+        result = in.readLine(); // ждем пока сервер отошлет строку текста.
 
 /*            if (*//*нормальный*//*) {
             // То возвращаем
         } else  {
             // Говорим, что все плохо
         }*/
+
+        System.out.println(result);
 
         return result;
     }

@@ -1,38 +1,40 @@
 package libapp.view;
 
+import com.sun.security.ntlm.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import libapp.ClientSocket;
+
+import java.io.IOException;
 
 public class ConnectController {
-    Stage dialogStage;
-    Main main;
+    private Stage dialogStage;
+    private Main main;
+    private ClientSocket socket;
 
     @FXML
-    TextField username;
+    private TextField username;
     @FXML
-    TextField password;
+    private TextField password;
     @FXML
-    Button connect;
+    private Button connect;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
     @FXML
-    private int connectToServer() {
+    private int connectToServer() throws IOException {
         System.out.println(username.getText() + ' ' + password.getText());
-
-        /*Можно проверить корректность введеных данных,
-        * типа чтоб уж не совсем жесть "№;%:?*()(*?:%;№"*/
-
         int res = 0;
-        /*Здесь происходит подключение
-        * к серверу через сокеты, сервер делает запрос к БД ...
-        * Приходит ответ от сервера...*/
 
-        // Если все по красоте, то клоуз
+        socket = new ClientSocket("localhost", 9012);
+        socket.makeRequest("123, authUser, pizda228, password");
+
+        //TODO: если что, сообщить, что пароль неправильый
+
         dialogStage.close();
 
         return res;
@@ -44,5 +46,9 @@ public class ConnectController {
 
     public void setMain(Main main) {
         this.main = main;
+    }
+
+    public void setSocket(ClientSocket socket) {
+        this.socket = socket;
     }
 }
