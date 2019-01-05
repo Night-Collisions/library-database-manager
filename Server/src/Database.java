@@ -91,10 +91,10 @@ public class Database {
     public String getDocs() {
         return execSelectQuery(
                 "SELECT p.publications_id, p.title, o.title " +
-                        "FROM publications p " +
-                        "JOIN organizations_publications op on p.publications_id = op.publications_id " +
-                        "JOIN organizations o on op.organizations_id = o.organizations_id " +
-                        "WHERE p.type = 4"
+                "FROM publications p " +
+                "JOIN organizations_publications op on p.publications_id = op.publications_id " +
+                "JOIN organizations o on op.organizations_id = o.organizations_id " +
+                "WHERE p.type = 4"
         );
     }
 
@@ -216,43 +216,4 @@ public class Database {
         }
         return new Gson().toJson(rows);
     }
-
-
-//    public static void main(String[] args) throws Exception {
-//        Class.forName("org.postgresql.Driver");
-//        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/hospital_db","ivan", "password");
-//        Statement statement = connection.createStatement();
-//
-//        String query = "SELECT * FROM patients";
-//        ResultSet rs = null;
-//        try {
-//            rs = statement.executeQuery(query);
-//        }
-//        catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//            return;
-//        }
-//        ResultSetMetaData rsmd = rs.getMetaData();
-//        int columnCount = rsmd.getColumnCount();
-//
-//        ArrayList<ArrayList<String>> patients = new ArrayList<>();
-//        while (rs.next()) {
-//            ArrayList<String> patient = new ArrayList<>();
-//            int i = 1;
-//            while (i <= columnCount) {
-//                patient.add(rs.getString(i++));
-//            }
-//            patients.add(patient);
-//        }
-//
-//
-//        String to = new Gson().toJson(patients);
-//        System.out.println(to);
-//
-//        Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
-//        ArrayList<ArrayList<String>> from = new Gson().fromJson(to, type);
-//        System.out.println(from);
-//
-//        connection.close();
-//    }
 }
