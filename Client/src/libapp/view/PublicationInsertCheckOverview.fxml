@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="253.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <RadioButton layoutX="14.0" layoutY="8.0" mnemonicParsing="false" text="Книга" />
+            <RadioButton layoutX="14.0" layoutY="37.0" mnemonicParsing="false" text="Сборник трудов" />
+            <RadioButton layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="Статья" />
+            <RadioButton layoutX="14.0" layoutY="94.0" mnemonicParsing="false" text="Тезисы" />
+            <RadioButton layoutX="14.0" layoutY="122.0" mnemonicParsing="false" text="Техническая документация" />
+            <Button layoutX="149.0" layoutY="160.0" mnemonicParsing="false" text="Создать" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

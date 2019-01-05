@@ -1,0 +1,9 @@
+*.class
+*.xml
+*.iml
+*.html
+out/
+.idea/
+!*.fxml
+!*.java
+.directory

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="7.0" layoutY="7.0" text="Теги:" />
+            <Label layoutX="7.0" layoutY="41.0" text="УДК:" />
+            <Label layoutX="7.0" layoutY="76.0" text="Назание:" />
+            <Label layoutX="7.0" layoutY="119.0" text="Авторы:" />
+            <Label layoutX="3.0" layoutY="165.0" text="Редакторы:" />
+            <Label layoutX="3.0" layoutY="208.0" text="Издательство:" />
+            <Label layoutX="3.0" layoutY="250.0" text="Год издания:" />
+            <TextField layoutX="139.0" layoutY="2.0" prefHeight="25.0" prefWidth="275.0" />
+            <TextField layoutX="139.0" layoutY="36.0" prefHeight="25.0" prefWidth="275.0" />
+            <TextField layoutX="139.0" layoutY="71.0" prefHeight="25.0" prefWidth="275.0" />
+            <TextField layoutX="139.0" layoutY="114.0" prefHeight="25.0" prefWidth="275.0" />
+            <TextField layoutX="139.0" layoutY="157.0" prefHeight="25.0" prefWidth="275.0" />
+            <ComboBox layoutX="138.0" layoutY="203.0" prefHeight="25.0" prefWidth="274.0" />
+            <DatePicker layoutX="138.0" layoutY="238.0" prefHeight="25.0" prefWidth="272.0" />
+            <Button layoutX="323.0" layoutY="292.0" mnemonicParsing="false" text="Применить" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

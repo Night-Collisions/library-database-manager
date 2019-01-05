@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.Main">
+    <top>
+        <MenuBar fx:id="mainMenu" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu fx:id="library" mnemonicParsing="false" text="Библиотека">
+                    <items>
+                        <MenuItem fx:id="connect" mnemonicParsing="false" onAction="#showConnectDialog" text="Подключиться" />
+                        <MenuItem fx:id="disconnect" mnemonicParsing="false" text="Отключиться" />
+                    </items>
+                </Menu>
+                <Menu fx:id="tables" mnemonicParsing="false" text="Таблицы">
+                    <items>
+                  <Menu fx:id="publications" mnemonicParsing="false" text="Публикации">
+                    <items>
+                      <MenuItem fx:id="allPublications" mnemonicParsing="false" onAction="#showAllPublications" text="Все публикации" />
+                        <MenuItem fx:id="books" mnemonicParsing="false" onAction="#showBooks" text="Книги" />
+                        <MenuItem fx:id="works" mnemonicParsing="false" onAction="#showWorks" text="Сборник трудов" />
+                        <MenuItem fx:id="articles" mnemonicParsing="false" onAction="#showArticles" text="Статьи" />
+                        <MenuItem fx:id="theses" mnemonicParsing="false" onAction="#showTheses" text="Тезисы" />
+                        <MenuItem fx:id="techdocs" mnemonicParsing="false" onAction="#showTechnicalDocs" text="Техническая документация" />
+                    </items>
+                  </Menu>
+                        <MenuItem fx:id="magazines" mnemonicParsing="false" onAction="#showMagazines" text="Журналы" />
+                        <MenuItem fx:id="authors" mnemonicParsing="false" text="Авторы" />
+                        <MenuItem fx:id="organizations" mnemonicParsing="false" text="Организации" />
+                  <MenuItem fx:id="editors" mnemonicParsing="false" onAction="#showEditors" text="Редакторы" />
+                  <MenuItem fx:id="publishHouses" mnemonicParsing="false" text="Издательства" />
+                    </items>
+                </Menu>
+            <Menu fx:id="functions" mnemonicParsing="false" text="Функции">
+              <items>
+                <MenuItem fx:id="myProfile" mnemonicParsing="false" text="Моя анкета" />
+                  <MenuItem fx:id="notifications" mnemonicParsing="false" text="Уведомления" />
+                  <MenuItem fx:id="sendRequest" mnemonicParsing="false" text="Послать запрос" />
+              </items>
+            </Menu>
+                <Menu fx:id="info" mnemonicParsing="false" text="Инфо">
+                    <items>
+                        <MenuItem fx:id="about" mnemonicParsing="false" text="О программе" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>

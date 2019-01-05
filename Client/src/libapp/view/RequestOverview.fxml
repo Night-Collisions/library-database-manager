@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Запрос">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Принять" />
+                  <MenuItem mnemonicParsing="false" text="Отклонить" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane prefHeight="391.0" prefWidth="424.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="371.0" prefWidth="424.0">
+              <columns>
+                <TableColumn prefWidth="50.0" text="ID" />
+                <TableColumn prefWidth="140.0" text="Пользователь" />
+                  <TableColumn prefWidth="233.0" text="Цель запроса" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

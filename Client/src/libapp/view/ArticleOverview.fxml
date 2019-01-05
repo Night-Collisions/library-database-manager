@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.ArticleController">
+   <children>
+      <TableView fx:id="table" prefHeight="400.0" prefWidth="755.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="name" prefWidth="266.0" text="Название" />
+            <TableColumn fx:id="magazineOrWork" prefWidth="215.0" text="Журнал/Сборник" />
+            <TableColumn fx:id="volume" prefWidth="131.0" text="Выпуск/Том" />
+            <TableColumn fx:id="number" prefWidth="67.0" text="Номер" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
