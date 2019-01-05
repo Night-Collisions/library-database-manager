@@ -12,12 +12,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import libapp.ClientSocket;
 import libapp.model.Editor;
 
 import java.io.IOException;
 
 
 public class Main extends Application {
+    private ClientSocket socket;
     private Stage primaryStage;
     @FXML
     private BorderPane rootLayout;
