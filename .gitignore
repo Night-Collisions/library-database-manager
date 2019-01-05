@@ -6,4 +6,5 @@
 /Client/*
 !/PostgreSQL
 /PostgreSQL/* 
-!/PostgreSQL/*.sql 
+!/PostgreSQL/*.sql
+!*.docx 
