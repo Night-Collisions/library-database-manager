@@ -6,4 +6,4 @@
 /Client/*
 !/PostgreSQL
 /PostgreSQL/* 
- 
+!/PostgreSQL/*.sql 
