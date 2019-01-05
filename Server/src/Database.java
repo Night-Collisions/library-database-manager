@@ -91,14 +91,108 @@ public class Database {
     public String getDocs() {
         return execSelectQuery(
                 "SELECT p.publications_id, p.title, o.title " +
-                "FROM publications p " +
-                "JOIN organizations_publications op on p.publications_id = op.publications_id " +
-                "JOIN organizations o on op.organizations_id = o.organizations_id " +
-                "WHERE p.type = 4"
+                        "FROM publications p " +
+                        "JOIN organizations_publications op on p.publications_id = op.publications_id " +
+                        "JOIN organizations o on op.organizations_id = o.organizations_id " +
+                        "WHERE p.type = 4"
         );
     }
 
-    public String execSelectQuery(String query) {
+    public String getMagazines() {
+        return execSelectQuery(
+                "SELECT m.magazines_id, m.title, s.title " +
+                "FROM magazines m " +
+                "JOIN subjects s on m.subjects_id = s.subjects_id"
+        );
+    }
+
+    public String getAuthors() {
+        return execSelectQuery(
+                "SELECT * FROM authors"
+        );
+    }
+
+    public String getEditors() {
+        return execSelectQuery(
+                "SELECT * FROM editors"
+        );
+    }
+
+    public String getOrganizations() {
+        return execSelectQuery(
+                "SELECT * FROM organizations"
+        );
+    }
+
+    public String getPublHouses() {
+        return execSelectQuery(
+                "SELECT * FROM publishing_houses"
+        );
+    }
+
+    public String getKeywords(String id) {
+        String s =
+                "SELECT k.keywords_id, k.keyword " +
+                "FROM keywords k " +
+                "JOIN publications_keywords pk on k.keywords_id = pk.keywords_id " +
+                "JOIN publications p on pk.publications_id = p.publications_id " +
+                "WHERE p.publications_id = ?";
+        return execPSWithId(id, s);
+    }
+
+    public String getUdc(String id) {
+        String s =
+                "SELECT uc.udc_codes_id, uc.udc_code " +
+                "FROM udc_codes uc " +
+                "JOIN publications_udc_codes puc ON uc.udc_codes_id = puc.udc_codes_id " +
+                "JOIN publications p on puc.publications_id = p.publications_id " +
+                "WHERE p.publications_id = ?";
+        return execPSWithId(id, s);
+
+    }
+
+    public String getVerfs(String id) {
+        int user_type;
+        try {
+            user_type = getUserType(id);
+        }
+        catch (Exception e) {
+            return "error";
+        }
+        if (user_type != 1) {
+            return "error: access";
+        }
+        return execSelectQuery(
+                "SELECT v.verifications_id, v.users_id, u.login, u.phone_number, u.email, v.to_type " +
+                "FROM verifications v " +
+                "JOIN users u on v.users_id = u.users_id"
+        );
+    }
+
+    private int getUserType(String id) throws Exception {
+        PreparedStatement ps = con.prepareStatement("SELECT u.type FROM users u WHERE u.users_id = ?");
+        ps.setInt(1, Integer.parseInt(id));
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1);
+        } else {
+            throw new Exception("No such user");
+        }
+    }
+
+    private String execPSWithId(String id, String query) {
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, Integer.parseInt(id));
+            ResultSet rs = ps.executeQuery();
+            return RSToString(rs);
+        }
+        catch (SQLException e) {
+            return "error";
+        }
+    }
+
+    private String execSelectQuery(String query) {
         try {
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(query);

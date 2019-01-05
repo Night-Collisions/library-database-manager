@@ -76,6 +76,62 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.getDocs());
                         break;
+                    case "getMagazines":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getMagazines());
+                        break;
+                    case "getAuthors":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getAuthors());
+                        break;
+                    case "getEditors":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getEditors());
+                        break;
+                    case "getOrganizations":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getOrganizations());
+                        break;
+                    case "getPublHouses":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getPublHouses());
+                        break;
+                    case "getKeywords":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getKeywords(data[2]));
+                        break;
+                    case "getUdc":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getUdc(data[2]));
+                        break;
+                    case "getVerfs":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getVerfs(data[0]));
+                        break;
                     default:
                         send("unknown command");
                         break;
