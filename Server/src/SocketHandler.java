@@ -41,6 +41,41 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.getPublications());
                         break;
+                    case "getBooks":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getBooks());
+                        break;
+                    case "getDigests":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getDigests());
+                        break;
+                    case "getArticles":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getArticles());
+                        break;
+                    case "getTheses":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getTheses());
+                        break;
+                    case "getDocs":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getDocs());
+                        break;
                     default:
                         send("unknown command");
                         break;
