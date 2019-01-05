@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 class SocketHandler extends Thread {
 
@@ -16,11 +17,15 @@ class SocketHandler extends Thread {
 
     @Override
     public void run() {
-        String word;
+        String cmd;
         try {
             while (true) {
-                word = in.readLine();
-                // TODO
+                cmd = in.readLine();
+                String data[] = cmd.split(", ");
+                if (data[1].equals("authUser")) {
+                    String res = Server.db.authUser(data[2], data[3]);
+                    send(res);
+                }
             }
 
         } catch (IOException e) {

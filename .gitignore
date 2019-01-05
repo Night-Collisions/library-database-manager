@@ -6,6 +6,7 @@
 !/Server/src
 /Server/src/*
 !/Server/src/*.java
+!/Server/src/*.jar
 !/Client
 /Client/*
 !/PostgreSQL

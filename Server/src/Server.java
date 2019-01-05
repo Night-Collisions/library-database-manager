@@ -7,8 +7,17 @@ public class Server {
 
     public static final int PORT = 9012;
     public static LinkedList<SocketHandler> serverList = new LinkedList<>();
+    public static Database db = null;
 
     public static void main(String[] args) throws IOException {
+        try {
+            db = new Database();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
         ServerSocket server = new ServerSocket(PORT);
         try {
             while (true) {
