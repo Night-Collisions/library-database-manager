@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="1151.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.UserController">
+   <children>
+      <TableView fx:id="table" prefHeight="400.0" prefWidth="742.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="56.0" text="ID" />
+          <TableColumn fx:id="surname" prefWidth="132.0" text="Фамилия" />
+            <TableColumn fx:id="name" prefWidth="125.0" text="Имя" />
+            <TableColumn fx:id="patronymic" prefWidth="131.0" text="Отчество" />
+            <TableColumn fx:id="sex" prefWidth="88.0" text="Пол" />
+            <TableColumn fx:id="login" prefWidth="120.0" text="Логин" />
+            <TableColumn fx:id="birthday" prefWidth="119.0" text="День рождения" />
+            <TableColumn fx:id="type" prefWidth="132.0" text="Группа" />
+            <TableColumn fx:id="phonenumber" prefWidth="111.0" text="Телефон" />
+            <TableColumn fx:id="email" prefWidth="136.0" text="Email" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

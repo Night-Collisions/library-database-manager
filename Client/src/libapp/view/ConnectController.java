@@ -1,13 +1,23 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.sun.security.ntlm.Client;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import libapp.ClientSocket;
+import libapp.Dictionary;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ConnectController {
     private Stage dialogStage;
@@ -49,8 +59,6 @@ public class ConnectController {
                 break;
             } catch (Exception e) {
                 //TODO: можно зациклить попытки уставновить соединение
-                new MessageController(MessageController.titleErrorServerConnect,
-                        "Проверьте подключение к серверу, попробуйте ещё раз или обратитесь к администратору.", e);
             }
         }
 
