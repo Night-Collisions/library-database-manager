@@ -1,32 +1,30 @@
 package libapp.model;
 
 public class Notification {
-    String userId;
-    String surname;
-    String name;
-    String login;
-    String potentialType;
+    private String id;
+    private String userId;
+    private String login;
+    private String potentialType;
+    private String phonenumber;
+    private String email;
 
-    public Notification(String userId, String surname, String name,
-                        String login, String potentialType)
+    public Notification(String id, String userId, String login,
+                        String potentialType, String phonenumber, String email)
     {
+        this.id = id;
         this.userId = userId;
-        this.surname = surname;
-        this.name = name;
         this.login = login;
         this.potentialType = potentialType;
+        this.phonenumber = phonenumber;
+        this.email = email;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getUserId() {
         return userId;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getLogin() {
@@ -37,12 +35,20 @@ public class Notification {
         return potentialType;
     }
 
-    void setSurname(String surname) {
-        this.surname = surname;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    void setName(String name) {
-        this.name = name;
+    public String getEmail() {
+        return email;
+    }
+
+    void setId(String id) {
+        this.id = id;
+    }
+
+    void setUserId(String userId) {
+        this.userId = userId;
     }
 
     void setLogin(String login) {
@@ -51,5 +57,13 @@ public class Notification {
 
     void setPotentialType(String potentialType) {
         this.potentialType = potentialType;
+    }
+
+    void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    void setEmail(String email) {
+        this.email = email;
     }
 }

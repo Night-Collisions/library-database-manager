@@ -22,25 +22,28 @@ public class NotificationController {
     @FXML
     private TableView<Notification> table;
     @FXML
+    private TableColumn<Notification, String> id;
+    @FXML
     private TableColumn<Notification, String> userId;
-    @FXML
-    private TableColumn<Notification, String> surname;
-    @FXML
-    private TableColumn<Notification, String> name;
     @FXML
     private TableColumn<Notification, String> login;
     @FXML
     private TableColumn<Notification, String> potentialType;
+    @FXML
+    private TableColumn<Notification, String> phonenumber;
+    @FXML
+    private TableColumn<Notification, String> email;
 
     @FXML
     private void initialize() {
         setEvents();
 
-        userId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         login.setCellValueFactory(new PropertyValueFactory<>("login"));
         potentialType.setCellValueFactory(new PropertyValueFactory<>("potentialType"));
+        phonenumber.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         table.setItems(notifications);
     }
