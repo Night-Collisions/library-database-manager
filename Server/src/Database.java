@@ -130,7 +130,7 @@ public class Database {
         );
     }
 
-    public String getKeywords(String id) {
+    public String getKeywordsOfPubl(String id) {
         String s =
                 "SELECT k.keywords_id, k.keyword " +
                 "FROM keywords k " +
@@ -140,7 +140,7 @@ public class Database {
         return execPSWithId(id, s);
     }
 
-    public String getUdc(String id) {
+    public String getUdcOfPubl(String id) {
         String s =
                 "SELECT uc.udc_codes_id, uc.udc_code " +
                 "FROM udc_codes uc " +
@@ -148,7 +148,18 @@ public class Database {
                 "JOIN publications p on puc.publications_id = p.publications_id " +
                 "WHERE p.publications_id = ?";
         return execPSWithId(id, s);
+    }
 
+    public String getAllKeywords() {
+        return execSelectQuery(
+                "SELECT * FROM keywords"
+        );
+    }
+
+    public String getAllUdc() {
+        return execSelectQuery(
+                "SELECT * FROM udc_codes"
+        );
     }
 
     public String getVerfs(String id) {

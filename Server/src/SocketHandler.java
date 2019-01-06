@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 
 class SocketHandler extends Thread {
 
@@ -111,19 +110,33 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.getPublHouses());
                         break;
-                    case "getKeywords":
+                    case "getKeywordsOfPubl":
                         if (data.length != 3) {
                             send("wrong args");
                             continue;
                         }
-                        send(Server.db.getKeywords(data[2]));
+                        send(Server.db.getKeywordsOfPubl(data[2]));
                         break;
-                    case "getUdc":
+                    case "getUdcOfPubl":
                         if (data.length != 3) {
                             send("wrong args");
                             continue;
                         }
-                        send(Server.db.getUdc(data[2]));
+                        send(Server.db.getUdcOfPubl(data[2]));
+                        break;
+                    case "getAllKeywords":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getAllKeywords());
+                        break;
+                    case "getAllUdc":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getAllUdc());
                         break;
                     case "getVerfs":
                         if (data.length != 2) {
