@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
 import libapp.model.Keyword;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;

@@ -96,7 +96,7 @@ public class Main extends Application {
     }
 
     @FXML
-    public void showAllPublications() {
+    public void showPublications() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PublicationOverview.fxml"));
@@ -105,6 +105,8 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             PublicationController controller = loader.getController();
+            controller.setMain(this);
+            controller.setSocket(socket);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -340,4 +342,9 @@ public class Main extends Application {
 
         initRootLayout();
     }
+
+    public BorderPane getRootLayout() {
+        return rootLayout;
+    }
+
 }

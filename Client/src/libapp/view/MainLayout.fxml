@@ -20,7 +20,7 @@
                     <items>
                   <Menu fx:id="publications" mnemonicParsing="false" text="Публикации">
                     <items>
-                      <MenuItem fx:id="allPublications" mnemonicParsing="false" onAction="#showAllPublications" text="Все публикации" />
+                      <MenuItem fx:id="allPublications" mnemonicParsing="false" onAction="#showPublications" text="Все публикации" />
                         <MenuItem fx:id="books" mnemonicParsing="false" onAction="#showBooks" text="Книги" />
                         <MenuItem fx:id="works" mnemonicParsing="false" onAction="#showWorks" text="Сборник трудов" />
                         <MenuItem fx:id="articles" mnemonicParsing="false" onAction="#showArticles" text="Статьи" />
