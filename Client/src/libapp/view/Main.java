@@ -13,13 +13,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
-import libapp.model.Editor;
-import libapp.model.PublishingHouse;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-
 
 public class Main extends Application {
     private ClientSocket socket;
@@ -36,6 +31,8 @@ public class Main extends Application {
     Menu publications;
     @FXML
     Menu functions;
+    @FXML
+    Menu other;
     @FXML
     Menu info;
     @FXML
@@ -64,6 +61,10 @@ public class Main extends Application {
     MenuItem editors;
     @FXML
     MenuItem publishHouses;
+    @FXML
+    MenuItem udcs;
+    @FXML
+    MenuItem keywords;
     @FXML
     MenuItem myProfile;
     @FXML
@@ -135,6 +136,37 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             EditorController controller = loader.getController();
+            controller.fillTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showKeywords() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("KeywordOverview.fxml"));
+            AnchorPane table = loader.load();
+            rootLayout.setCenter(table);
+
+            KeywordController controller = loader.getController();
+            controller.fillTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showUDCs() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("UDCOverview.fxml"));
+            AnchorPane table = loader.load();
+            rootLayout.setCenter(table);
+
+            UDCController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -195,6 +227,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             AuthorController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -25,17 +25,26 @@ public class KeywordController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         word.setCellValueFactory(new PropertyValueFactory<>("word"));
+    }
+
+    //Для вывода всех слов
+    public void fillTable() {
+        // TODO: ебашим запрос к серверу и заполняем
+        //...
 
         table.setItems(keywords);
     }
 
-    private void fillTable() {
+    //Для вывода для конкретной записи
+    public void fillTable(String idFilter) {
         // TODO: ебашим запрос к серверу и заполняем
 
+        //...
+
+        table.setItems(keywords);
     }
 
     private void setEvents() {

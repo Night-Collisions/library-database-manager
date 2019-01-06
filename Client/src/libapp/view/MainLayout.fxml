@@ -33,6 +33,12 @@
                         <MenuItem fx:id="organizations" mnemonicParsing="false" onAction="#showOrganizations" text="Организации" />
                   <MenuItem fx:id="editors" mnemonicParsing="false" onAction="#showEditors" text="Редакторы" />
                   <MenuItem fx:id="publishHouses" mnemonicParsing="false" onAction="#showPublishingHouses" text="Издательства" />
+                  <Menu fx:id="other" mnemonicParsing="false" text="Прочее">
+                    <items>
+                        <MenuItem fx:id="udcs" mnemonicParsing="false" onAction="#showUDCs" text="УДК коды" />
+                      <MenuItem fx:id="keywords" mnemonicParsing="false" onAction="#showKeywords" text="Ключевые слова" />
+                    </items>
+                  </Menu>
                     </items>
                 </Menu>
             <Menu fx:id="functions" mnemonicParsing="false" text="Функции">

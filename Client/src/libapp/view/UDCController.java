@@ -25,17 +25,26 @@ public class UDCController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         code.setCellValueFactory(new PropertyValueFactory<>("code"));
+    }
+
+    //Для вывода всех слов
+    public void fillTable() {
+        // TODO: ебашим запрос к серверу и заполняем
+        //...
 
         table.setItems(udcs);
     }
 
-    private void fillTable() {
+    //Для вывода для конкретной записи
+    public void fillTable(String idFilter) {
         // TODO: ебашим запрос к серверу и заполняем
 
+        //...
+
+        table.setItems(udcs);
     }
 
     private void setEvents() {

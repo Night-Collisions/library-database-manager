@@ -39,7 +39,6 @@ public class AuthorController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -54,7 +53,12 @@ public class AuthorController {
         table.setItems(authors);
     }
 
-    private void fillTable() {
+    public void fillTable() {
+        // TODO: ебашим запрос к серверу и заполняем
+
+    }
+
+    public void fillTable(String idFilter) {
         // TODO: ебашим запрос к серверу и заполняем
 
     }
