@@ -59,13 +59,23 @@ public class PublicationController {
         ContextMenu context = new ContextMenu();
         MenuItem keywords = new MenuItem("Ключевые слова");
         MenuItem udc = new MenuItem("УДК");
-        context.getItems().add(keywords);
-        context.getItems().add(udc);
+        Menu more = new Menu("Подробнее");
+        MenuItem insert = new MenuItem("Добавить");
+        MenuItem edit = new MenuItem("Редактировать");
+        MenuItem delete = new MenuItem("Удалить");
+
+        more.getItems().add(keywords);
+        more.getItems().add(udc);
+
+        context.getItems().add(more);
+        context.getItems().add(insert);
+        context.getItems().add(edit);
+        context.getItems().add(delete);
 
         keywords.setOnAction(t -> {
             try {
                 String idFilter =
-                        table.getSelectionModel().getSelectedItem().toString().split(",")[0].substring(1);
+                        table.getSelectionModel().getSelectedItem().getId();
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("KeywordOverview.fxml"));
@@ -73,6 +83,7 @@ public class PublicationController {
 
                 KeywordController controller = loader.getController();
                 controller.fillTable(idFilter);
+                controller.setColumnText("Ключевые слова для id " + idFilter);
 
                 Stage window = new Stage();
                 initWindow(window, keywordsTable);
@@ -85,7 +96,7 @@ public class PublicationController {
         udc.setOnAction(t -> {
             try {
                 String idFilter =
-                        table.getSelectionModel().getSelectedItem().toString().split(",")[0].substring(1);
+                        table.getSelectionModel().getSelectedItem().getId();
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("UDCOverview.fxml"));
@@ -93,12 +104,25 @@ public class PublicationController {
 
                 UDCController controller = loader.getController();
                 controller.fillTable(idFilter);
+                controller.setColumnText("УДК для id " + idFilter);
 
                 Stage window = new Stage();
                 initWindow(window, udcTable);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        });
+
+        insert.setOnAction(t -> {
+
+        });
+
+        edit.setOnAction(t -> {
+
+        });
+
+        delete.setOnAction(t -> {
+
         });
 
         table.addEventHandler(MOUSE_CLICKED, t -> {
