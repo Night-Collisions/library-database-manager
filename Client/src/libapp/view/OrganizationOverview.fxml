@@ -6,9 +6,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="libapp.view.OrganizationController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.OrganizationController">
+   <children>
+      <TableView fx:id="table" prefHeight="400.0" prefWidth="753.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="55.0" text="ID" />
+          <TableColumn fx:id="name" prefWidth="213.0" text="Название" />
+            <TableColumn fx:id="address" prefWidth="238.0" text="Адрес" />
+            <TableColumn fx:id="phonenumber" prefWidth="136.0" text="Номер телефона" />
+            <TableColumn fx:id="email" prefWidth="110.0" text="Email" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>
