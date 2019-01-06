@@ -1,7 +1,5 @@
 package libapp.view;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,76 +10,63 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import libapp.ClientSocket;
-import libapp.model.Keyword;
-import libapp.model.UDC;
-
-import java.lang.reflect.Type;
-import java.net.Socket;
-import java.util.ArrayList;
+import libapp.model.User;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
-public class UDCController {
+public class UserController {
     private ClientSocket socket;
     private Main main;
-    private ObservableList<UDC> udcs =
+    private ObservableList<User> users =
             FXCollections.observableArrayList();
 
     @FXML
-    private TableView<UDC> table;
+    private TableView<User> table;
     @FXML
-    private TableColumn<UDC, String> code;
+    private TableColumn<User, String> id;
+    @FXML
+    private TableColumn<User, String> surname;
+    @FXML
+    private TableColumn<User, String> name;
+    @FXML
+    private TableColumn<User, String> patronymic;
+    @FXML
+    private TableColumn<User, String> birthday;
+    @FXML
+    private TableColumn<User, String> type;
+    @FXML
+    private TableColumn<User, String> sex;
+    @FXML
+    private TableColumn<User, String> login;
+    @FXML
+    private TableColumn<User, String> phonenumber;
+    @FXML
+    private TableColumn<User, String> email;
 
     @FXML
     private void initialize() {
         setEvents();
 
-        code.setCellValueFactory(new PropertyValueFactory<>("code"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        patronymic.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
+        birthday.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+        type.setCellValueFactory(new PropertyValueFactory<>("type"));
+        sex.setCellValueFactory(new PropertyValueFactory<>("sex"));
+        login.setCellValueFactory(new PropertyValueFactory<>("login"));
+        phonenumber.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        table.setItems(users);
     }
 
-    //Для вывода всех слов
     public void fillTable() {
         // TODO: ебашим запрос к серверу и заполняем
-        //...
-
-        table.setItems(udcs);
     }
 
-    //Для вывода для конкретной записи
     public void fillTable(String idFilter) {
-        try {
-            socket = ClientSocket.enableConnection(socket);
-        } catch (Exception e) {
-            // Чет не удалось подключиться
-            e.printStackTrace();
-        }
-
-        String result;
-        try {
-            result = socket.makeRequest("<empty> , getUdcOfPubl, " + idFilter);
-
-            if (result.equals("wrong args")) {
-                throw new Exception();
-            }
-
-            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
-            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
-
-            for (ArrayList i : parsed) {
-                udcs.add(new UDC(i.get(1).toString()));
-            }
-
-            table.setItems(udcs);
-        } catch (Exception e) {
-            //Оп, какая то проблемочка
-            e.printStackTrace();
-        }
-
-        table.setItems(udcs);
-    }
-
-    public void setColumnText(String text) {
-        code.setText(text);
+        // TODO: ебашим запрос к серверу и заполняем
     }
 
     private void setEvents() {

@@ -33,6 +33,7 @@
                         <MenuItem fx:id="organizations" mnemonicParsing="false" onAction="#showOrganizations" text="Организации" />
                   <MenuItem fx:id="editors" mnemonicParsing="false" onAction="#showEditors" text="Редакторы" />
                   <MenuItem fx:id="publishHouses" mnemonicParsing="false" onAction="#showPublishingHouses" text="Издательства" />
+                  <MenuItem fx:id="users" mnemonicParsing="false" onAction="#showUsers" text="Пользователи" />
                   <Menu fx:id="other" mnemonicParsing="false" text="Прочее">
                     <items>
                         <MenuItem fx:id="udcs" mnemonicParsing="false" onAction="#showUDCs" text="УДК коды" />

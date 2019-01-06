@@ -66,6 +66,8 @@ public class Main extends Application {
     @FXML
     MenuItem keywords;
     @FXML
+    MenuItem users;
+    @FXML
     MenuItem myProfile;
     @FXML
     MenuItem notifications;
@@ -76,10 +78,8 @@ public class Main extends Application {
 
     @FXML
     private void initialize() {
-
+        users.setVisible(false);
     }
-
-
 
     private void initRootLayout() {
         try {
@@ -124,6 +124,24 @@ public class Main extends Application {
             sc.setContent(rootLayout);
 
             BookController controller = loader.getController();
+            controller.fillTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showUsers() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("UserOverview.fxml"));
+            AnchorPane table = loader.load();
+
+            rootLayout.setCenter(table);
+            ScrollPane sc = new ScrollPane();
+            sc.setContent(rootLayout);
+
+            UserController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
