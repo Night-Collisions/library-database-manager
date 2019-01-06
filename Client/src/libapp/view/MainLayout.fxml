@@ -29,7 +29,7 @@
                     </items>
                   </Menu>
                         <MenuItem fx:id="magazines" mnemonicParsing="false" onAction="#showMagazines" text="Журналы" />
-                        <MenuItem fx:id="authors" mnemonicParsing="false" text="Авторы" />
+                        <MenuItem fx:id="authors" mnemonicParsing="false" onAction="#showAuthors" text="Авторы" />
                         <MenuItem fx:id="organizations" mnemonicParsing="false" text="Организации" />
                   <MenuItem fx:id="editors" mnemonicParsing="false" onAction="#showEditors" text="Редакторы" />
                   <MenuItem fx:id="publishHouses" mnemonicParsing="false" text="Издательства" />

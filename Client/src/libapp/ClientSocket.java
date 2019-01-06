@@ -57,4 +57,8 @@ public class ClientSocket {
 
         return result;
     }
+
+    public Socket getSocket() {
+        return socket;
+    }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="928.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.AuthorController">
+   <children>
+      <TableView fx:id="table" prefHeight="400.0" prefWidth="747.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="55.0" text="ID" />
+          <TableColumn fx:id="surname" prefWidth="153.0" text="Фамилия" />
+            <TableColumn fx:id="name" prefWidth="129.0" text="Имя" />
+            <TableColumn fx:id="patronymic" prefWidth="155.0" text="Отчество" />
+            <TableColumn fx:id="birthday" prefWidth="120.0" text="Дата рождения" />
+            <TableColumn fx:id="deathday" prefWidth="98.0" text="Дата смерти" />
+            <TableColumn fx:id="phonenumber" prefWidth="125.0" text="Номер телефона" />
+            <TableColumn fx:id="email" prefWidth="92.0" text="Email" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

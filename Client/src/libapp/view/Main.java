@@ -155,6 +155,21 @@ public class Main extends Application {
     }
 
     @FXML
+    public void showAuthors() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("AuthorOverview.fxml"));
+            AnchorPane table = loader.load();
+
+            rootLayout.setCenter(table);
+
+            AuthorController controller = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void showTechnicalDocs() {
         try {
             FXMLLoader loader = new FXMLLoader();
