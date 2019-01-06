@@ -55,27 +55,27 @@ public class PublicationController {
     public void fillTable() {
         try {
             socket = ClientSocket.enableConnection(socket);
+
+            String result = "";
+            try {
+                result = socket.makeRequest("<empty>, getPublications");
+            } catch (Exception e) {
+                //Оп, какая то проблемочка
+                e.printStackTrace();
+            }
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                publications.add(new Publication(
+                        i.get(0).toString(),
+                        Dictionary.publicationType.get(i.get(1).toString()),
+                        i.get(2).toString()));
+            }
         } catch (Exception e) {
             // Чет не удалось подключиться
             e.printStackTrace();
-        }
-
-        String result = "";
-        try {
-            result = socket.makeRequest("<empty>, getPublications");
-        } catch (Exception e) {
-            //Оп, какая то проблемочка
-            e.printStackTrace();
-        }
-
-        Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
-        ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
-
-        for (ArrayList i : parsed) {
-            publications.add(new Publication(
-                    i.get(0).toString(),
-                    Dictionary.publicationType.get(i.get(1).toString()),
-                    i.get(2).toString()));
         }
     }
 
@@ -160,10 +160,7 @@ public class PublicationController {
 
     public void setMain(Main main) {
         this.main = main;
-    }
-
-    public void setSocket(ClientSocket socket) {
-        this.socket = socket;
+        this.socket = main.getSocket();
     }
 
     public void setWindowStage(Stage stage) {

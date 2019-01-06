@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import libapp.ClientSocket;
 import libapp.model.TechnicalDoc;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class TechnicalDocController {
+    private ClientSocket socket;
     private Main main;
     private ObservableList<TechnicalDoc> techdocs =
             FXCollections.observableArrayList();
@@ -91,5 +93,6 @@ public class TechnicalDocController {
 
     public void setMain(Main main) {
         this.main = main;
+        this.socket = main.getSocket();
     }
 }

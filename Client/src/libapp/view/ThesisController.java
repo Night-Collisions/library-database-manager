@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import libapp.ClientSocket;
 import libapp.model.Thesis;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class ThesisController {
+    private ClientSocket socket;
     private Main main;
     private ObservableList<Thesis> articles =
             FXCollections.observableArrayList();
@@ -97,5 +99,6 @@ public class ThesisController {
 
     public void setMain(Main main) {
         this.main = main;
+        this.socket = main.getSocket();
     }
 }

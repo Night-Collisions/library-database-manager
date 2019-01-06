@@ -1,5 +1,7 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,11 +11,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import libapp.ClientSocket;
+import libapp.model.Keyword;
 import libapp.model.UDC;
+
+import java.lang.reflect.Type;
+import java.net.Socket;
+import java.util.ArrayList;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class UDCController {
+    private ClientSocket socket;
     private Main main;
     private ObservableList<UDC> udcs =
             FXCollections.observableArrayList();
@@ -40,9 +49,33 @@ public class UDCController {
 
     //Для вывода для конкретной записи
     public void fillTable(String idFilter) {
-        // TODO: ебашим запрос к серверу и заполняем
+        try {
+            socket = ClientSocket.enableConnection(socket);
+        } catch (Exception e) {
+            // Чет не удалось подключиться
+            e.printStackTrace();
+        }
 
-        //...
+        String result;
+        try {
+            result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
+
+            if (result.equals("wrong args")) {
+                throw new Exception();
+            }
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                udcs.add(new UDC(i.get(1).toString()));
+            }
+
+            table.setItems(udcs);
+        } catch (Exception e) {
+            //Оп, какая то проблемочка
+            e.printStackTrace();
+        }
 
         table.setItems(udcs);
     }
@@ -87,5 +120,6 @@ public class UDCController {
 
     public void setMain(Main main) {
         this.main = main;
+        this.socket = main.getSocket();
     }
 }

@@ -9,11 +9,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import libapp.ClientSocket;
 import libapp.model.Author;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class AuthorController {
+    private ClientSocket socket;
     private Main main;
     private ObservableList<Author> authors =
             FXCollections.observableArrayList();
@@ -99,5 +101,6 @@ public class AuthorController {
 
     public void setMain(Main main) {
         this.main = main;
+        this.socket = main.getSocket();
     }
 }

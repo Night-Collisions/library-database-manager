@@ -74,9 +74,7 @@ public class ConnectController {
 
     public void setMain(Main main) {
         this.main = main;
+        this.socket = main.getSocket();
     }
 
-    public void setSocket(ClientSocket socket) {
-        this.socket = socket;
-    }
 }

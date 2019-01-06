@@ -1,5 +1,7 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,11 +12,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import libapp.ClientSocket;
+import libapp.Dictionary;
 import libapp.model.Keyword;
+import libapp.model.Publication;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class KeywordController {
+    private ClientSocket socket;
     private Main main;
     private ObservableList<Keyword> keywords =
             FXCollections.observableArrayList();
@@ -41,11 +50,33 @@ public class KeywordController {
 
     //Для вывода для конкретной записи
     public void fillTable(String idFilter) {
-        // TODO: ебашим запрос к серверу и заполняем
+        try {
+            socket = ClientSocket.enableConnection(socket);
+        } catch (Exception e) {
+            // Чет не удалось подключиться
+            e.printStackTrace();
+        }
 
-        //...
+        String result;
+        try {
+            result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
 
-        table.setItems(keywords);
+            if (result.equals("wrong args")) {
+                throw new Exception();
+            }
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                keywords.add(new Keyword(i.get(1).toString()));
+            }
+
+            table.setItems(keywords);
+        } catch (Exception e) {
+            //Оп, какая то проблемочка
+            e.printStackTrace();
+        }
     }
 
     public void setColumnText(String text) {
@@ -88,5 +119,6 @@ public class KeywordController {
 
     public void setMain(Main main) {
         this.main = main;
+        this.socket = main.getSocket();
     }
 }

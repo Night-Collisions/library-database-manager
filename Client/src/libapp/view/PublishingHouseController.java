@@ -9,11 +9,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import libapp.ClientSocket;
 import libapp.model.PublishingHouse;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class PublishingHouseController {
+    private ClientSocket socket;
     private Main main;
     private ObservableList<PublishingHouse> publishingHouses =
             FXCollections.observableArrayList();
@@ -85,5 +87,6 @@ public class PublishingHouseController {
 
     public void setMain(Main main) {
         this.main = main;
+        this.socket = main.getSocket();
     }
 }

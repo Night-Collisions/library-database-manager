@@ -356,4 +356,8 @@ public class Main extends Application {
         return rootLayout;
     }
 
+    public ClientSocket getSocket() {
+        return socket;
+    }
+
 }
