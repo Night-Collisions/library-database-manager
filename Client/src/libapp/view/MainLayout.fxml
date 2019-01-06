@@ -32,7 +32,7 @@
                         <MenuItem fx:id="authors" mnemonicParsing="false" onAction="#showAuthors" text="Авторы" />
                         <MenuItem fx:id="organizations" mnemonicParsing="false" onAction="#showOrganizations" text="Организации" />
                   <MenuItem fx:id="editors" mnemonicParsing="false" onAction="#showEditors" text="Редакторы" />
-                  <MenuItem fx:id="publishHouses" mnemonicParsing="false" text="Издательства" />
+                  <MenuItem fx:id="publishHouses" mnemonicParsing="false" onAction="#showPublishingHouses" text="Издательства" />
                     </items>
                 </Menu>
             <Menu fx:id="functions" mnemonicParsing="false" text="Функции">

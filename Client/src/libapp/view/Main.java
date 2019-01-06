@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
 import libapp.model.Editor;
+import libapp.model.PublishingHouse;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -164,6 +165,21 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             OrganizationController controller = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showPublishingHouses() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("PublishingHouseOverview.fxml"));
+            AnchorPane table = loader.load();
+
+            rootLayout.setCenter(table);
+
+            PublishingHouseController controller = loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
