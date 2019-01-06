@@ -14,11 +14,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.Dictionary;
 import libapp.model.Publication;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -71,7 +74,7 @@ public class PublicationController {
         for (ArrayList i : parsed) {
             publications.add(new Publication(
                     i.get(0).toString(),
-                    i.get(1).toString(),
+                    Dictionary.publicationType.get(i.get(1).toString()),
                     i.get(2).toString()));
         }
     }
