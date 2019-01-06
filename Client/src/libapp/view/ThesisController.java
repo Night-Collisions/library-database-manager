@@ -26,7 +26,6 @@ public class ThesisController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -37,7 +36,7 @@ public class ThesisController {
         table.setItems(articles);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         // TODO: ебашим запрос к серверу и заполняем
     }
 

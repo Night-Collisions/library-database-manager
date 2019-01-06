@@ -28,7 +28,6 @@ public class BookController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -40,7 +39,7 @@ public class BookController {
         table.setItems(books);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         // TODO: ебашим запрос к серверу и заполняем
         books.add(new Book(
                 "1",

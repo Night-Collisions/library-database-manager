@@ -125,6 +125,7 @@ public class Main extends Application {
             sc.setContent(rootLayout);
 
             BookController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -185,6 +186,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             ThesisController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -200,6 +202,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             OrganizationController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -215,6 +218,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             PublishingHouseController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -246,6 +250,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             TechnicalDocController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -261,6 +266,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             MagazineController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -276,6 +282,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             WorkController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -291,6 +298,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             ArticleController controller = loader.getController();
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }

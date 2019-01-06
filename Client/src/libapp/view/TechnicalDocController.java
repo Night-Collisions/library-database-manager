@@ -26,7 +26,6 @@ public class TechnicalDocController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -37,7 +36,7 @@ public class TechnicalDocController {
         table.setItems(techdocs);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         // TODO: ебашим запрос к серверу и заполняем
     }
 

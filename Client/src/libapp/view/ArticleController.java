@@ -30,7 +30,6 @@ public class ArticleController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -43,7 +42,7 @@ public class ArticleController {
         table.setItems(articles);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         // TODO: ебашим запрос к серверу и заполняем
     }
 

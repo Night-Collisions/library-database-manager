@@ -28,7 +28,6 @@ public class WorkController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -40,7 +39,7 @@ public class WorkController {
         table.setItems(works);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         // TODO: ебашим запрос к серверу и заполняем
         works.add(new Work(
                 "1",
