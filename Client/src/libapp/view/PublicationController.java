@@ -20,8 +20,6 @@ import libapp.model.Publication;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -54,14 +52,14 @@ public class PublicationController {
 
     public void fillTable() {
         try {
-            socket = ClientSocket.enableConnection(socket);
-
             String result = "";
             try {
+                socket = ClientSocket.enableConnection(socket);
                 result = socket.makeRequest("<empty>, getPublications");
             } catch (Exception e) {
-                //Оп, какая то проблемочка
-                e.printStackTrace();
+                new MessageController(MessageController.titleErrorServerConnect,
+                        MessageController.contentTextErrorServerConnect, e);
+                return;
             }
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
@@ -74,8 +72,8 @@ public class PublicationController {
                         i.get(2).toString()));
             }
         } catch (Exception e) {
-            // Чет не удалось подключиться
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
         }
     }
 
@@ -112,7 +110,8 @@ public class PublicationController {
                 Stage window = new Stage();
                 initWindow(window, keywordsTable);
             } catch (IOException e) {
-                e.printStackTrace();
+                new MessageController("Ошибка вывода данных!",
+                        "Обратитесь к администратору.", e);
             }
         });
 
@@ -133,7 +132,8 @@ public class PublicationController {
                 Stage window = new Stage();
                 initWindow(window, udcTable);
             } catch (IOException e) {
-                e.printStackTrace();
+                new MessageController("Ошибка вывода данных!",
+                        "Обратитесь к администратору.", e);
             }
         });
 

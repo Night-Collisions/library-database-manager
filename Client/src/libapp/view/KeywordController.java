@@ -11,11 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
-import javafx.stage.Stage;
 import libapp.ClientSocket;
-import libapp.Dictionary;
 import libapp.model.Keyword;
-import libapp.model.Publication;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -50,16 +47,16 @@ public class KeywordController {
 
     //Для вывода для конкретной записи
     public void fillTable(String idFilter) {
+        String result = "";
         try {
-            socket = ClientSocket.enableConnection(socket);
-        } catch (Exception e) {
-            // Чет не удалось подключиться
-            e.printStackTrace();
-        }
-
-        String result;
-        try {
-            result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
+            try {
+                socket = ClientSocket.enableConnection(socket);
+                result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
+            } catch (Exception e) {
+                new MessageController(MessageController.titleErrorServerConnect,
+                        MessageController.contentTextErrorServerConnect, e);
+                return;
+            }
 
             if (result.equals("wrong args")) {
                 throw new Exception();
@@ -74,8 +71,8 @@ public class KeywordController {
 
             table.setItems(keywords);
         } catch (Exception e) {
-            //Оп, какая то проблемочка
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
         }
     }
 

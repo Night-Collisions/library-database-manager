@@ -91,7 +91,8 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -108,7 +109,8 @@ public class Main extends Application {
             controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -126,7 +128,8 @@ public class Main extends Application {
             BookController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -141,7 +144,8 @@ public class Main extends Application {
             EditorController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -156,7 +160,8 @@ public class Main extends Application {
             KeywordController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -171,7 +176,8 @@ public class Main extends Application {
             UDCController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -187,7 +193,8 @@ public class Main extends Application {
             ThesisController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -203,7 +210,8 @@ public class Main extends Application {
             OrganizationController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -219,7 +227,8 @@ public class Main extends Application {
             PublishingHouseController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -235,7 +244,8 @@ public class Main extends Application {
             AuthorController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -251,7 +261,8 @@ public class Main extends Application {
             TechnicalDocController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -267,7 +278,8 @@ public class Main extends Application {
             MagazineController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -283,7 +295,8 @@ public class Main extends Application {
             WorkController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 
@@ -299,7 +312,8 @@ public class Main extends Application {
             ArticleController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
     }
 

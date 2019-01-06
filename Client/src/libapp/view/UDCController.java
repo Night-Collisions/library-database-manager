@@ -12,11 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import libapp.ClientSocket;
-import libapp.model.Keyword;
 import libapp.model.UDC;
 
 import java.lang.reflect.Type;
-import java.net.Socket;
 import java.util.ArrayList;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -49,16 +47,17 @@ public class UDCController {
 
     //Для вывода для конкретной записи
     public void fillTable(String idFilter) {
-        try {
-            socket = ClientSocket.enableConnection(socket);
-        } catch (Exception e) {
-            // Чет не удалось подключиться
-            e.printStackTrace();
-        }
 
-        String result;
         try {
-            result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
+            String result = "";
+            try {
+                socket = ClientSocket.enableConnection(socket);
+                result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
+            } catch (Exception e) {
+                new MessageController(MessageController.titleErrorServerConnect,
+                        MessageController.contentTextErrorServerConnect, e);
+                return;
+            }
 
             if (result.equals("wrong args")) {
                 throw new Exception();
@@ -73,8 +72,8 @@ public class UDCController {
 
             table.setItems(udcs);
         } catch (Exception e) {
-            //Оп, какая то проблемочка
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
         }
 
         table.setItems(udcs);
