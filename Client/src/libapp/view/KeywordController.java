@@ -48,6 +48,10 @@ public class KeywordController {
         table.setItems(keywords);
     }
 
+    public void setColumnText(String text) {
+        word.setText(text);
+    }
+
     private void setEvents() {
         ContextMenu context = new ContextMenu();
         MenuItem insert = new MenuItem("Добавить");

@@ -47,6 +47,10 @@ public class UDCController {
         table.setItems(udcs);
     }
 
+    public void setColumnText(String text) {
+        code.setText(text);
+    }
+
     private void setEvents() {
         ContextMenu context = new ContextMenu();
         MenuItem insert = new MenuItem("Добавить");
