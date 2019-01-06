@@ -1,5 +1,7 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sun.security.ntlm.Client;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,8 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import libapp.ClientSocket;
+import libapp.Dictionary;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -59,9 +64,18 @@ public class ConnectController {
             }
         }
 
-        socket.makeRequest("123, authUser, pizda228, password");
+        String result = socket.makeRequest("<empty>, authUser, " +
+                username.getText() + ", " + password.getText());
 
-        //TODO: если что, сообщить, что пароль неправильый
+        Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+        ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+        System.out.println(parsed.get(0).toString());
+        if (parsed.get(0).toString().equals("-1")) {
+            //TODO: неверный логин или пароль
+        } else {
+
+        }
 
         dialogStage.close();
 
@@ -77,4 +91,7 @@ public class ConnectController {
         this.socket = main.getSocket();
     }
 
+    private void setAppearance(String type) {
+        //TODO
+    }
 }

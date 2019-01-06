@@ -45,7 +45,7 @@
             <Menu fx:id="functions" mnemonicParsing="false" text="Функции">
               <items>
                 <MenuItem fx:id="myProfile" mnemonicParsing="false" text="Моя анкета" />
-                  <MenuItem fx:id="notifications" mnemonicParsing="false" text="Уведомления" />
+                  <MenuItem fx:id="notifications" mnemonicParsing="false" onAction="#showNotifications" text="Уведомления" />
                   <MenuItem fx:id="sendRequest" mnemonicParsing="false" text="Послать запрос" />
               </items>
             </Menu>

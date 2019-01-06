@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.model.Notification;
 
 import java.io.IOException;
 
@@ -79,6 +80,8 @@ public class Main extends Application {
     @FXML
     private void initialize() {
         users.setVisible(false);
+        notifications.setVisible(false);
+        sendRequest.setVisible(false);
     }
 
     private void initRootLayout() {
@@ -107,6 +110,33 @@ public class Main extends Application {
             PublicationController controller = loader.getController();
             controller.setMain(this);
             controller.fillTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showNotifications() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("NotificationOverview.fxml"));
+            AnchorPane table = loader.load();
+
+            Stage window = new Stage();
+            window.setTitle("Уведомления");
+            window.initModality(Modality.WINDOW_MODAL);
+            window.initOwner(getPrimaryStage());
+
+            Scene scene = new Scene(table);
+            window.setScene(scene);
+            window.setResizable(false);
+
+            NotificationController controller = loader.getController();
+            controller.setMain(this);
+            controller.fillTable();
+            controller.setWindowStage(window);
+
+            window.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
