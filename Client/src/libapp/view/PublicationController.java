@@ -1,5 +1,7 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +17,8 @@ import libapp.ClientSocket;
 import libapp.model.Publication;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -36,7 +40,6 @@ public class PublicationController {
 
     @FXML
     private void initialize() {
-        fillTable();
         setEvents();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -46,13 +49,31 @@ public class PublicationController {
         table.setItems(publications);
     }
 
-    private void fillTable() {
-        // TODO: ебашим запрос к серверу я заполняем
-        publications.add(new Publication("1", "епта", "ывавыа"));
-        publications.add(new Publication("2", "123", "хуепывата"));
-        publications.add(new Publication("3", "fsdsdf", "хуеывапта"));
-        publications.add(new Publication("4", "еxxптаxxx", "хуеыыыпта"));
+    public void fillTable() {
+        try {
+            socket = ClientSocket.enableConnection(socket);
+        } catch (Exception e) {
+            // Чет не удалось подключиться
+            e.printStackTrace();
+        }
 
+        String result = "";
+        try {
+            result = socket.makeRequest("<empty>, getPublications");
+        } catch (Exception e) {
+            //Оп, какая то проблемочка
+            e.printStackTrace();
+        }
+
+        Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+        ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+        for (ArrayList i : parsed) {
+            publications.add(new Publication(
+                    i.get(0).toString(),
+                    i.get(1).toString(),
+                    i.get(2).toString()));
+        }
     }
 
     private void setEvents() {

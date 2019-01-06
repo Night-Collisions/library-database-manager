@@ -49,13 +49,7 @@ public class ConnectController {
 
         while (true) {
             try {
-                if (socket != null) {
-                    if (socket.getSocket().isClosed() || !socket.getSocket().isConnected()) {
-                        socket = new ClientSocket("localhost", 9012);
-                    }
-                } else {
-                    socket = new ClientSocket("localhost", 9012);
-                }
+                socket = ClientSocket.enableConnection(socket);
 
                 error.setVisible(false);
                 connect.setDisable(false);

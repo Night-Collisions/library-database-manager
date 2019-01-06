@@ -107,6 +107,7 @@ public class Main extends Application {
             PublicationController controller = loader.getController();
             controller.setMain(this);
             controller.setSocket(socket);
+            controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
