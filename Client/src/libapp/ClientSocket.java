@@ -1,5 +1,7 @@
 package libapp;
 
+import libapp.view.MessageController;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -23,25 +25,32 @@ public class ClientSocket {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         } catch (Exception e){
-            assert socket != null;
-            socket.close();
-            assert in != null;
-            in.close();
-            assert out != null;
-            out.close();
+            if (socket != null) {
+                socket.close();
+            }
+            if (in != null) {
+                in.close();
+            }
+            if (out != null) {
+                out.close();
+            }
         }
     }
 
-    public String makeRequest(String request) throws IOException {
-        String result;
-        out.write(request + '\n');
-        out.flush();
+    public String makeRequest(String request) {
+        try {
+            String result;
+            out.write(request + '\n');
+            out.flush();
 
-        result = in.readLine();
+            result = in.readLine();
+            return result;
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
 
-        System.out.println(result);
-
-        return result;
+        return "-1";
     }
 
     public static ClientSocket enableConnection(ClientSocket s) throws IOException {

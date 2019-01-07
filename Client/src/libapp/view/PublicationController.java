@@ -167,7 +167,8 @@ public class PublicationController {
         windowStage = stage;
     }
 
-    private void initWindow(Stage window, AnchorPane table) {
+    private void
+    initWindow(Stage window, AnchorPane table) {
         window.initModality(Modality.WINDOW_MODAL);
         window.initOwner(main.getPrimaryStage());
 
