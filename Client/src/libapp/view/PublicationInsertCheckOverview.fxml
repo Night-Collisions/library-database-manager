@@ -6,18 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="253.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <RadioButton layoutX="14.0" layoutY="8.0" mnemonicParsing="false" text="Книга" />
-            <RadioButton layoutX="14.0" layoutY="37.0" mnemonicParsing="false" text="Сборник трудов" />
-            <RadioButton layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="Статья" />
-            <RadioButton layoutX="14.0" layoutY="94.0" mnemonicParsing="false" text="Тезисы" />
-            <RadioButton layoutX="14.0" layoutY="122.0" mnemonicParsing="false" text="Техническая документация" />
-            <Button layoutX="149.0" layoutY="160.0" mnemonicParsing="false" text="Создать" />
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="286.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.PublicationInsertCheckController">
+   <children>
+      <Button fx:id="button" layoutX="197.0" layoutY="15.0" mnemonicParsing="false" onAction="#showCorrectWindow" text="Создать" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0" />
+      <ComboBox fx:id="combobox" layoutX="14.0" layoutY="15.0" prefWidth="150.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="15.0" />
+   </children>
+</AnchorPane>
