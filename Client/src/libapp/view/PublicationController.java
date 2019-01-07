@@ -126,13 +126,27 @@ public class PublicationController {
                 Stage window = new Stage();
                 initWindow(window, udcTable);
             } catch (IOException e) {
-                new MessageController("Ошибка вывода данных!",
-                        "Обратитесь к администратору.", e);
+                new MessageController(MessageController.titleErrorGetNewData,
+                        MessageController.contentTextErrorGetNewData, e);
             }
         });
 
         insert.setOnAction(t -> {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("PublicationInsertCheckOverview.fxml"));
+                AnchorPane choice = loader.load();
 
+                PublicationInsertCheckController controller =
+                        loader.getController();
+                controller.setMain(main);
+
+                Stage window = new Stage();
+                initWindow(window, choice);
+            } catch (IOException e) {
+                new MessageController(MessageController.titleErrorGetNewData,
+                        MessageController.contentTextErrorGetNewData, e);
+            }
         });
 
         edit.setOnAction(t -> {
@@ -161,8 +175,7 @@ public class PublicationController {
         windowStage = stage;
     }
 
-    private void
-    initWindow(Stage window, AnchorPane table) {
+    private void initWindow(Stage window, AnchorPane table) {
         window.initModality(Modality.WINDOW_MODAL);
         window.initOwner(main.getPrimaryStage());
 

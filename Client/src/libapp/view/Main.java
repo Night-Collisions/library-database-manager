@@ -79,9 +79,9 @@ public class Main extends Application {
 
     @FXML
     private void initialize() {
-        users.setVisible(false);
+       /* users.setVisible(false);
         notifications.setVisible(false);
-        sendRequest.setVisible(false);
+        sendRequest.setVisible(false);*/
     }
 
     private void initRootLayout() {
