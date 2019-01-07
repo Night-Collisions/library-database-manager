@@ -53,14 +53,8 @@ public class PublicationController {
     public void fillTable() {
         try {
             String result = "";
-            try {
-                socket = ClientSocket.enableConnection(socket);
-                result = socket.makeRequest("<empty>, getPublications");
-            } catch (Exception e) {
-                new MessageController(MessageController.titleErrorServerConnect,
-                        MessageController.contentTextErrorServerConnect, e);
-                return;
-            }
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest("<empty>, getPublications");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);

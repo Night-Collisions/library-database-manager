@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class ClientSocket {
-    static private int port; // здесь обязательно нужно указать порт к которому привязывается сервер.
+    static private int port;
     static private String address;
     private static InetAddress ipAddress;
     private static Socket socket;
