@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import jdk.nashorn.internal.ir.IdentNode;
 
 import java.lang.reflect.Type;
 import java.sql.*;
@@ -199,6 +200,60 @@ public class Database {
             return RSToString(rs);
         }
         catch (SQLException e) {
+            return "error";
+        }
+    }
+
+    public String addUser(String id, String name, String surname, String patronymic, String sex, String login,
+                          String password, String birth_date, String type, String phone_number, String email) {
+        int user_type;
+        try {
+            user_type = getUserType(id);
+        }
+        catch (Exception e) {
+            return "error";
+        }
+        if (user_type != 0) {
+            return "error: access";
+        }
+        try {
+            String query = "INSERT INTO users(name, surname, patronymic, sex, login, password, birth_date, type, " +
+                    "phone_number, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, name);
+            if (surname.equals("NULL")) {
+                ps.setNull(2, Types.VARCHAR);
+            } else {
+                ps.setString(2, surname);
+            }
+            if (patronymic.equals("NULL")) {
+                ps.setNull(3, Types.VARCHAR);
+            } else {
+                ps.setString(3, patronymic);
+            }
+            ps.setInt(4, Integer.parseInt(sex));
+            ps.setString(5, login);
+            ps.setString(6, password);
+            if (birth_date.equals("NULL")) {
+                ps.setNull(7, Types.DATE);
+            } else {
+                ps.setDate(7, java.sql.Date.valueOf(birth_date));
+            }
+            ps.setInt(8, Integer.parseInt(type));
+            if (phone_number.equals("NULL")) {
+                ps.setNull(9, Types.BIGINT);
+            } else {
+                ps.setLong(9, Long.parseLong(phone_number));
+            }
+            if (email.equals("NULL")) {
+                ps.setNull(10, Types.VARCHAR);
+            } else {
+                ps.setString(10, email);
+            }
+            ps.execute();
+            return "ok";
+        }
+        catch (Exception e) {
             return "error";
         }
     }
