@@ -10,7 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="libapp.view.UserProfileOverview"
             prefHeight="400.0" prefWidth="600.0">
-    <VBox alignment="CENTER_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <VBox alignment="TOP_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="ID:" />
             <Label fx:id="id" minHeight="-Infinity" maxHeight="Infinity" text="000" />
@@ -45,11 +45,14 @@
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Телефон:" />
-            <Label fx:id="phone" minHeight="-Infinity" maxHeight="Infinity" text="+79990584179"/>
+            <TextField fx:id="phone" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  text="79990584179"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Почта:" />
-            <Label fx:id="email" minHeight="-Infinity" maxHeight="Infinity" text="dndv279@gmail.com"/>
+            <TextField fx:id="email" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="dndv279@gmail.com"/>
+        </HBox>
+        <HBox alignment="BOTTOM_RIGHT">
+            <Button fx:id="apply" onAction="#applyChange" text="Применить" />
         </HBox>
     </VBox>
 </AnchorPane>
