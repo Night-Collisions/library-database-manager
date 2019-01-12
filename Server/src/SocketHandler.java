@@ -33,6 +33,13 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.authUser(data[2], data[3]));
                         break;
+                    case "getUsers":
+                        if (data.length != 2) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getUsers(data[0]));
+                        break;
                     case "getPublications":
                         if (data.length != 2) {
                             send("wrong args");

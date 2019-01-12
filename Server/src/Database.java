@@ -38,6 +38,32 @@ public class Database {
         }
     }
 
+    private boolean checkType(String id, int[] types) {
+        int user_type;
+        try {
+            user_type = getUserType(id);
+        }
+        catch (Exception e) {
+            return false;
+        }
+        for (int x : types) {
+            if (x == user_type) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getUsers(String id) {
+        if (!checkType(id, new int[] {0})) {
+            return "error";
+        }
+        return execSelectQuery(
+                "SELECT u.users_id, u.surname, u.name, u.patronymic, u.sex, u.login, " +
+                       "u.birth_date, u.type, u.phone_number, u.email " +
+                "FROM users u");
+    }
+
     public String getPublications() {
         return execSelectQuery("SELECT * FROM publications");
     }
@@ -164,15 +190,8 @@ public class Database {
     }
 
     public String getVerfs(String id) {
-        int user_type;
-        try {
-            user_type = getUserType(id);
-        }
-        catch (Exception e) {
+        if (!checkType(id, new int[] {1})) {
             return "error";
-        }
-        if (user_type != 1) {
-            return "error: access";
         }
         return execSelectQuery(
                 "SELECT v.verifications_id, v.users_id, u.login, u.phone_number, u.email, v.to_type " +
@@ -206,15 +225,8 @@ public class Database {
 
     public String addUser(String id, String name, String surname, String patronymic, String sex, String login,
                           String password, String birth_date, String type, String phone_number, String email) {
-        int user_type;
-        try {
-            user_type = getUserType(id);
-        }
-        catch (Exception e) {
+        if (!checkType(id, new int[] {0})) {
             return "error";
-        }
-        if (user_type != 0) {
-            return "error: access";
         }
         try {
             String query = "INSERT INTO users(name, surname, patronymic, sex, login, password, birth_date, type, " +
