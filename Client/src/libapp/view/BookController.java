@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import libapp.ClientSocket;
 import libapp.model.Book;
+import tornadofx.SmartResize;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -39,6 +40,7 @@ public class BookController {
         year.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         table.setItems(books);
+        table.setScaleShape(false);
     }
 
     public void fillTable() {

@@ -7,19 +7,22 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.EditorController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.EditorController">
    <children>
-      <TableView fx:id="table" prefHeight="400.0" prefWidth="749.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="table" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="surname" prefWidth="158.0" text="Фамилия" />
-            <TableColumn fx:id="name" prefWidth="139.0" text="Имя" />
-            <TableColumn fx:id="patronymic" prefWidth="177.0" text="Отчество" />
-            <TableColumn fx:id="birthday" prefWidth="121.0" text="Дата рождения" />
-            <TableColumn fx:id="deathday" prefWidth="116.0" text="Дата смерти" />
-            <TableColumn fx:id="phonenumber" prefWidth="137.0" text="Номер телефона" />
-            <TableColumn fx:id="email" prefWidth="127.0" text="E-mail" />
+          <TableColumn fx:id="id" minWidth="30" maxWidth="100"  text="ID" />
+          <TableColumn fx:id="surname" minWidth="40" text="Фамилия" />
+            <TableColumn fx:id="name" minWidth="40" text="Имя" />
+            <TableColumn fx:id="patronymic" minWidth="40" text="Отчество" />
+            <TableColumn fx:id="birthday" minWidth="40" text="Дата рождения" />
+            <TableColumn fx:id="deathday" minWidth="40" text="Дата смерти" />
+            <TableColumn fx:id="phonenumber" minWidth="40" text="Номер телефона" />
+            <TableColumn fx:id="email" minWidth="40" text="E-mail" />
         </columns>
+          <columnResizePolicy>
+              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+          </columnResizePolicy>
       </TableView>
    </children>
 </AnchorPane>

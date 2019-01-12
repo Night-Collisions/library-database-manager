@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import libapp.ClientSocket;
 import libapp.model.Notification;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -92,6 +93,8 @@ public class Main extends Application {
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            primaryStage.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2.5);
+            primaryStage.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2.5);
             primaryStage.show();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -128,10 +131,11 @@ public class Main extends Application {
             window.setTitle("Уведомления");
             window.initModality(Modality.WINDOW_MODAL);
             window.initOwner(getPrimaryStage());
+            window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4);
+            window.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2.5);
 
             Scene scene = new Scene(table);
             window.setScene(scene);
-            window.setResizable(false);
 
             NotificationController controller = loader.getController();
             controller.setMain(this);
@@ -375,10 +379,12 @@ public class Main extends Application {
         dialogStage.setTitle("Авторизация");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(getPrimaryStage());
+        dialogStage.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4);
+        dialogStage.setMinWidth(200);
+        dialogStage.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 5);
 
         Scene scene = new Scene(connectWindow);
         dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
 
         ConnectController controller = loader.getController();
         controller.setMain(this);

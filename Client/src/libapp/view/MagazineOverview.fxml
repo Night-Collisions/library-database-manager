@@ -7,14 +7,17 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.MagazineController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.MagazineController">
    <children>
-      <TableView fx:id="table" prefHeight="400.0" prefWidth="737.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="table" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="name" prefWidth="355.0" text="Название" />
-            <TableColumn fx:id="topic" prefWidth="306.0" text="Тематика" />
+          <TableColumn fx:id="id" minWidth="30" maxWidth="100"  text="ID" />
+          <TableColumn fx:id="name" minWidth="50" text="Название" />
+            <TableColumn fx:id="topic" minWidth="50" text="Тематика" />
         </columns>
+          <columnResizePolicy>
+              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+          </columnResizePolicy>
       </TableView>
    </children>
 </AnchorPane>

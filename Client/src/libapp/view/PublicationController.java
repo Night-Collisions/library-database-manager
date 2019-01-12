@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +19,7 @@ import libapp.ClientSocket;
 import libapp.Dictionary;
 import libapp.model.Publication;
 
+import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -102,6 +105,8 @@ public class PublicationController {
                 controller.setColumnText("Ключевые слова для id " + idFilter);
 
                 Stage window = new Stage();
+                window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
+                window.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2.5);
                 initWindow(window, keywordsTable);
             } catch (IOException e) {
                 new MessageController("Ошибка вывода данных!",
@@ -124,6 +129,8 @@ public class PublicationController {
                 controller.setColumnText("УДК для id " + idFilter);
 
                 Stage window = new Stage();
+                window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
+                window.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2.5);
                 initWindow(window, udcTable);
             } catch (IOException e) {
                 new MessageController(MessageController.titleErrorGetNewData,
@@ -142,6 +149,8 @@ public class PublicationController {
                 controller.setMain(main);
 
                 Stage window = new Stage();
+                window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
+                window.setMinWidth(300);
                 initWindow(window, choice);
             } catch (IOException e) {
                 new MessageController(MessageController.titleErrorGetNewData,
