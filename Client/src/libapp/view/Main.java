@@ -370,6 +370,31 @@ public class Main extends Application {
     }
 
     @FXML
+    public void showUserProfile() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("UserProfileOverview.fxml"));
+            AnchorPane profileWindow = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Профиль");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            dialogStage.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 3);
+            //dialogStage.setMinWidth(300);
+            dialogStage.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2.5);
+
+            Scene scene = new Scene(profileWindow);
+            dialogStage.setScene(scene);
+
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
+        }
+    }
+
+    @FXML
     private void showConnectDialog() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("ConnectOverview.fxml"));

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="libapp.view.UserProfileOverview"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox alignment="CENTER_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="ID:" />
+            <Label fx:id="id" minHeight="-Infinity" maxHeight="Infinity" text="000" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Логин:" />
+            <Label fx:id="login" minHeight="-Infinity" maxHeight="Infinity" text="User Login" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Группа:" />
+            <Label fx:id="type" minHeight="-Infinity" maxHeight="Infinity" text="User type" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Фамилия:" />
+            <Label fx:id="surname" minHeight="-Infinity" maxHeight="Infinity" text="User surname"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Имя:" />
+            <Label fx:id="name" minHeight="-Infinity" maxHeight="Infinity" text="User name"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Отчество:" />
+            <Label fx:id="patronymic" minHeight="-Infinity" maxHeight="Infinity" text="User patronymic"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Пол:" />
+            <Label fx:id="sex" minHeight="-Infinity" maxHeight="Infinity" text="м"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Дата рождения:" />
+            <Label fx:id="bornDate" minHeight="-Infinity" maxHeight="Infinity" text="99.99.9999"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Телефон:" />
+            <Label fx:id="phone" minHeight="-Infinity" maxHeight="Infinity" text="+79990584179"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Почта:" />
+            <Label fx:id="email" minHeight="-Infinity" maxHeight="Infinity" text="dndv279@gmail.com"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
