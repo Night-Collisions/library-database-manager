@@ -342,22 +342,7 @@ public class Database {
         if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "error";
         }
-        try {
-            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_ARTICLE + ", ?) " +
-                    "RETURNING publications_id";
-            long p_id = getPublIdAfterInsert(title, query_p);
-
-            String query_dp = "INSERT INTO digests_publications(publications_id, digests_id) VALUES (?, ?)";
-            PreparedStatement ps_dp = con.prepareStatement(query_dp);
-            ps_dp.setLong(1, p_id);
-            ps_dp.setInt(2, Integer.parseInt(d_id));
-            ps_dp.executeUpdate();
-
-            return "ok";
-        }
-        catch (Exception e) {
-            return "error";
-        }
+        return addPublicationWithDigest(P_ARTICLE, title, d_id);
     }
 
     public String addMTheses(String id, String title, String m_id) {
@@ -376,12 +361,40 @@ public class Database {
         }
     }
 
+    public String addDTheses(String id, String title, String d_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return addPublicationWithDigest(P_THESES, title, d_id);
+    }
+
+    private String addPublicationWithDigest(int type, String title, String d_id) {
+        try {
+            String query_p = "INSERT INTO publications(type, title) VALUES (" + type + ", ?) " +
+                    "RETURNING publications_id";
+            long p_id = getPublIdAfterInsert(title, query_p);
+            addDigestPublication(p_id, d_id);
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
     private void addMagazinePublication(long p_id, String m_id) throws Exception {
         String query_mp = "INSERT INTO magazines_publications(publications_id, magazines_id) VALUES (?, ?)";
         PreparedStatement ps_mp = con.prepareStatement(query_mp);
         ps_mp.setLong(1, p_id);
         ps_mp.setInt(2, Integer.parseInt(m_id));
         ps_mp.executeUpdate();
+    }
+
+    private void addDigestPublication(long p_id, String d_id) throws Exception {
+        String query_dp = "INSERT INTO digests_publications(publications_id, digests_id) VALUES (?, ?)";
+        PreparedStatement ps_dp = con.prepareStatement(query_dp);
+        ps_dp.setLong(1, p_id);
+        ps_dp.setInt(2, Integer.parseInt(d_id));
+        ps_dp.executeUpdate();
     }
 
     private long getPublIdAfterInsert(String title, String query_p) throws Exception {
