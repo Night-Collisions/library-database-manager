@@ -314,6 +314,43 @@ public class Database {
         }
     }
 
+    public String addMArticle(String id, String title, String m_id, String volume, String relase_number) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        try {
+            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_ARTICLE + ", ?) " +
+                    "RETURNING publications_id";
+            long p_id = getPublIdAfterInsert(title, query_p);
+
+            String query_mp = "INSERT INTO magazines_publications(publications_id, magazines_id) VALUES (?, ?)";
+            PreparedStatement ps_mp = con.prepareStatement(query_mp);
+            ps_mp.setLong(1, p_id);
+            ps_mp.setInt(2, Integer.parseInt(m_id));
+            ps_mp.executeUpdate();
+            
+            String query_mai = "INSERT INTO magazine_article_info(publications_id, volume, release_number) VALUES (?, ?, ?)";
+            PreparedStatement ps_mai = con.prepareStatement(query_mai);
+            ps_mai.setLong(1, p_id);
+            ps_mai.setLong(2, Integer.parseInt(volume));
+            ps_mai.setLong(3, Integer.parseInt(relase_number));
+            ps_mai.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
+    private long getPublIdAfterInsert(String title, String query_p) throws SQLException {
+        PreparedStatement ps_p = con.prepareStatement(query_p, PreparedStatement.RETURN_GENERATED_KEYS);
+        ps_p.setString(1, title);
+        ps_p.executeUpdate();
+        ResultSet rs = ps_p.getGeneratedKeys();
+        rs.next();
+        return rs.getLong(1);
+    }
+
     private String execSelectQuery(String query) {
         try {
             Statement statement = con.createStatement();
@@ -326,12 +363,7 @@ public class Database {
     }
 
     private void addPublHouseAndYear(String title, String ph_id, String year, String query_p) throws Exception {
-        PreparedStatement ps_p = con.prepareStatement(query_p, PreparedStatement.RETURN_GENERATED_KEYS);
-        ps_p.setString(1, title);
-        ps_p.executeUpdate();
-        ResultSet rs = ps_p.getGeneratedKeys();
-        rs.next();
-        long p_id = rs.getLong(1);
+        long p_id = getPublIdAfterInsert(title, query_p);
 
         String query_php = "INSERT INTO publishing_houses_publications(publications_id, publishing_houses_id) " +
                 "VALUES (?, ?)";
