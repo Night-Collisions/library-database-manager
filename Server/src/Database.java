@@ -276,28 +276,22 @@ public class Database {
         }
         try {
             String query_p = "INSERT INTO publications(type, title) VALUES (0, ?) RETURNING publications_id";
-            PreparedStatement ps_p = con.prepareStatement(query_p, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps_p.setString(1, title);
-            ps_p.executeUpdate();
-            ResultSet rs = ps_p.getGeneratedKeys();
-            rs.next();
-            long p_id = rs.getLong(1);
-
-            String query_php = "INSERT INTO publishing_houses_publications(publications_id, publishing_houses_id) " +
-                    "VALUES (?, ?)";
-            PreparedStatement ps_php = con.prepareStatement(query_php);
-            ps_php.setLong(1, p_id);
-            ps_php.setInt(2, Integer.parseInt(ph_id));
-            ps_php.executeUpdate();
-
-            String query_pe = "INSERT INTO publishing_years(publications_id, year) VALUES (?, ?)";
-            PreparedStatement ps_pe = con.prepareStatement(query_pe);
-            ps_pe.setLong(1, p_id);
-            ps_pe.setInt(2, Integer.parseInt(year));
-            ps_pe.executeUpdate();
-
+            addPublHouseAndYear(title, ph_id, year, query_p);
             return "ok";
         }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
+    public String addDigest(String id, String title, String ph_id, String year) {
+        if (!checkType(id, new int[] {0, 1})) {
+            return "error";
+        }
+        try {
+            String query_p = "INSERT INTO publications(type, title) VALUES (1, ?) RETURNING publications_id";
+            addPublHouseAndYear(title, ph_id, year, query_p);
+            return "ok";        }
         catch (Exception e) {
             return "error";
         }
@@ -312,6 +306,28 @@ public class Database {
         catch (SQLException e) {
             return "error";
         }
+    }
+
+    private void addPublHouseAndYear(String title, String ph_id, String year, String query_p) throws Exception {
+        PreparedStatement ps_p = con.prepareStatement(query_p, PreparedStatement.RETURN_GENERATED_KEYS);
+        ps_p.setString(1, title);
+        ps_p.executeUpdate();
+        ResultSet rs = ps_p.getGeneratedKeys();
+        rs.next();
+        long p_id = rs.getLong(1);
+
+        String query_php = "INSERT INTO publishing_houses_publications(publications_id, publishing_houses_id) " +
+                "VALUES (?, ?)";
+        PreparedStatement ps_php = con.prepareStatement(query_php);
+        ps_php.setLong(1, p_id);
+        ps_php.setInt(2, Integer.parseInt(ph_id));
+        ps_php.executeUpdate();
+
+        String query_pe = "INSERT INTO publishing_years(publications_id, year) VALUES (?, ?)";
+        PreparedStatement ps_pe = con.prepareStatement(query_pe);
+        ps_pe.setLong(1, p_id);
+        ps_pe.setInt(2, Integer.parseInt(year));
+        ps_pe.executeUpdate();
     }
 
     private String RSToString(ResultSet rs) throws SQLException {
