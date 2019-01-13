@@ -31,7 +31,8 @@ public class Database {
     }
 
     public String authUser(String login, String password) {
-        String s = "SELECT * FROM users WHERE login = ? AND password = ?";
+        String s = "SELECT users_id, name, surname, patronymic, sex, login, birth_date, type, phone_number, email " +
+                   "FROM users WHERE login = ? AND password = ?";
         try {
             PreparedStatement ps = con.prepareStatement(s);
             ps.setString(1, login);
