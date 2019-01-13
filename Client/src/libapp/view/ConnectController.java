@@ -1,23 +1,16 @@
 package libapp.view;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.sun.security.ntlm.Client;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import libapp.ClientSocket;
-import libapp.Dictionary;
+import libapp.Specification;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ConnectController {
     private Stage dialogStage;
@@ -27,9 +20,9 @@ public class ConnectController {
     private String message = "Нет соединения. Новая попытка через ";
 
     @FXML
-    private TextField username;
+    private TextField usernameTextField;
     @FXML
-    private TextField password;
+    private TextField passwordTextField;
     @FXML
     private Button connect;
     @FXML
@@ -41,7 +34,24 @@ public class ConnectController {
 
     @FXML
     private void initialize() throws InterruptedException {
-
+        usernameTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if ((!newValue.matches(Specification.userLoginReg))) {
+                    usernameTextField.setText(oldValue);
+                }
+            }
+        });
+        passwordTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if ((!newValue.matches(Specification.passwordReg))) {
+                    passwordTextField.setText(oldValue);
+                }
+            }
+        });
     }
 
     @FXML
@@ -62,7 +72,7 @@ public class ConnectController {
             }
         }
 
-        socket.makeRequest("123, authUser, pizda228, password");
+        socket.makeRequest("123, authUser, pizda228, passwordTextField");
 
         //TODO: если что, сообщить, что пароль неправильый
 
