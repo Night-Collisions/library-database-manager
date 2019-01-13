@@ -8,4 +8,6 @@
 /PostgreSQL/* 
 !/PostgreSQL/consts.txt
 !/PostgreSQL/pg_dump
-!documentation.docx 
+!/Documentation
+/Documentation/*
+!/Documentation/Documentation.docx
