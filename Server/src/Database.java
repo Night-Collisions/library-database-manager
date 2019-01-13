@@ -369,6 +369,25 @@ public class Database {
         return addPublicationWithDigest(P_THESES, title, d_id);
     }
 
+    public String addDocs(String id, String title, String o_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        try {
+            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_DOCS + ", ?) " +
+                    "RETURNING publications_id";
+            long p_id = getPublIdAfterInsert(title, query_p);
+            String query_op = "INSERT INTO organizations_publications(publications_id, organizations_id) VALUES (?, ?)";
+            PreparedStatement ps_op = con.prepareStatement(query_op);
+            ps_op.setLong(1, p_id);
+            ps_op.setInt(2, Integer.parseInt(o_id));
+            ps_op.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }    }
+
     private String addPublicationWithDigest(int type, String title, String d_id) {
         try {
             String query_p = "INSERT INTO publications(type, title) VALUES (" + type + ", ?) " +
