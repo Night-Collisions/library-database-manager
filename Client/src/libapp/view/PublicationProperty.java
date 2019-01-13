@@ -2,12 +2,15 @@ package libapp.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Optional;
 
 public class PublicationProperty {
     protected static void CreateTable(Object conect, String columnName, String idFilter) {
@@ -81,6 +84,20 @@ public class PublicationProperty {
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
+        }
+    }
+
+    public static void Delete(String id) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Удалить публикацию?");
+        alert.setHeaderText(null);
+        alert.setContentText("Вы действительно хотите удалить публикацию с id: " + id + "?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            //TODO: Витя захуярь запрос на удаление
+        } else {
+            alert.close();
         }
     }
 }

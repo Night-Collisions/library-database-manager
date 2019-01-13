@@ -83,7 +83,7 @@ public class TechnicalDocController {
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         delete.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.Delete(table.getSelectionModel().getSelectedItem().getId());
         });
 
         table.addEventHandler(MOUSE_CLICKED, t -> {

@@ -109,7 +109,7 @@ public class PublicationController {
         });
 
         delete.setOnAction(t -> {
-
+            PublicationProperty.Delete(table.getSelectionModel().getSelectedItem().getId());
         });
 
         table.addEventHandler(MOUSE_CLICKED, t -> {
