@@ -394,6 +394,30 @@ public class Main extends Application {
         }
     }
 
+    public void showGroupChangeRequest() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("GroupChangeRequestOverview.fxml"));
+            AnchorPane requestWindow = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Запрос");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            dialogStage.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
+            dialogStage.setMinWidth(250);
+            dialogStage.setHeight(150);
+
+            Scene scene = new Scene(requestWindow);
+            dialogStage.setScene(scene);
+
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
+        }
+    }
+
     @FXML
     private void showConnectDialog() throws IOException {
         FXMLLoader loader = new FXMLLoader();
