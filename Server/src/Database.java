@@ -342,7 +342,7 @@ public class Database {
         }
     }
 
-    private long getPublIdAfterInsert(String title, String query_p) throws SQLException {
+    private long getPublIdAfterInsert(String title, String query_p) throws Exception {
         PreparedStatement ps_p = con.prepareStatement(query_p, PreparedStatement.RETURN_GENERATED_KEYS);
         ps_p.setString(1, title);
         ps_p.executeUpdate();
