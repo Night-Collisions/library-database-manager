@@ -380,9 +380,6 @@ public class Main extends Application {
             dialogStage.setTitle("Профиль");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
-            dialogStage.setWidth(300);
-            dialogStage.setMinWidth(250);
-            dialogStage.setHeight(370);
 
             Scene scene = new Scene(profileWindow);
             dialogStage.setScene(scene);

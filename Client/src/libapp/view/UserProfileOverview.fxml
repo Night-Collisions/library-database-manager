@@ -6,10 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="libapp.view.UserProfileOverview"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="300.0" minWidth="250">
     <VBox alignment="TOP_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="ID:" />
@@ -20,28 +21,39 @@
             <Label fx:id="login" minHeight="-Infinity" maxHeight="Infinity" text="User Login" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Пароль:" />
+            <Button fx:id="changePassword" onAction="#changePassword" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Изменить" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Группа:" />
             <Label fx:id="type" minHeight="-Infinity" maxHeight="Infinity" text="User type" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Фамилия:" />
-            <Label fx:id="surname" minHeight="-Infinity" maxHeight="Infinity" text="User surname"/>
+            <TextField fx:id="surname" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="User surname"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Имя:" />
-            <Label fx:id="name" minHeight="-Infinity" maxHeight="Infinity" text="User name"/>
+            <TextField fx:id="name" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="User name"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Отчество:" />
-            <Label fx:id="patronymic" minHeight="-Infinity" maxHeight="Infinity" text="User patronymic"/>
+            <TextField fx:id="patronymic" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  text="User patronymic"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Пол:" />
-            <Label fx:id="sex" minHeight="-Infinity" maxHeight="Infinity" text="м"/>
+            <ComboBox fx:id="sex" minHeight="-Infinity" maxHeight="Infinity">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Хуй есть" />
+                        <String fx:value="Отсутствует" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Дата рождения:" />
-            <Label fx:id="bornDate" minHeight="-Infinity" maxHeight="Infinity" text="99.99.9999"/>
+            <DatePicker fx:id="bornDate" minHeight="-Infinity" maxHeight="Infinity"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Телефон:" />
@@ -51,8 +63,9 @@
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Почта:" />
             <TextField fx:id="email" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="dndv279@gmail.com"/>
         </HBox>
-        <HBox alignment="BOTTOM_RIGHT">
-            <Button fx:id="apply" onAction="#applyChange" text="Применить" />
+        <HBox alignment="BOTTOM_RIGHT" spacing="10">
+            <Button fx:id="accept" minWidth="100" text="Применить" />
+            <Button fx:id="reject" minWidth="100"  onAction="#closeWindow" text="Отмена" />
         </HBox>
     </VBox>
 </AnchorPane>
