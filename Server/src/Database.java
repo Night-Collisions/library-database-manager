@@ -9,6 +9,22 @@ public class Database {
 
     public Connection con;
 
+    private static final int U_ADMIN = 0;
+    private static final int U_LIBRARIAN = 1;
+    private static final int U_PUBL_HOUSE = 2;
+    private static final int U_AUTHOR = 3;
+    private static final int U_READER = 4;
+
+    private static final int S_WOMAN = 0;
+    private static final int S_MAN = 1;
+    private static final int S_OTHER = 2;
+
+    private static final int P_BOOK = 0;
+    private static final int P_DIGEST = 1;
+    private static final int P_ARTICLE = 2;
+    private static final int P_THESES = 3;
+    private static final int P_DOCS = 4;
+
     public Database() throws Exception {
         Class.forName("org.postgresql.Driver");
         con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/library_db", "ivan", "password");
@@ -55,7 +71,7 @@ public class Database {
     }
 
     public String getUsers(String id) {
-        if (!checkType(id, new int[] {0})) {
+        if (!checkType(id, new int[] {U_ADMIN})) {
             return "error";
         }
         return execSelectQuery(
@@ -75,7 +91,7 @@ public class Database {
                 "JOIN publishing_houses_publications php on p.publications_id = php.publications_id " +
                 "JOIN publishing_houses ph ON php.publishing_houses_id = ph.publishing_houses_id " +
                 "JOIN publishing_years py on p.publications_id = py.publications_id " +
-                "WHERE p.type = 0"
+                "WHERE p.type = " + P_BOOK
         );
     }
 
@@ -86,7 +102,7 @@ public class Database {
                 "JOIN publishing_houses_publications php on p.publications_id = php.publications_id " +
                 "JOIN publishing_houses ph ON php.publishing_houses_id = ph.publishing_houses_id " +
                 "JOIN publishing_years py on p.publications_id = py.publications_id " +
-                "WHERE p.type = 1"
+                "WHERE p.type = " + P_DIGEST
         );
     }
 
@@ -99,7 +115,7 @@ public class Database {
                 "LEFT JOIN publications p1 ON p1.publications_id = dp.publications_id " +
                 "LEFT JOIN magazines m on mp.magazines_id = m.magazines_id " +
                 "LEFT JOIN magazine_article_info mai on p.publications_id = mai.publications_id " +
-                "WHERE p.type = 2"
+                "WHERE p.type = " + P_ARTICLE
         );
     }
 
@@ -111,7 +127,7 @@ public class Database {
                 "LEFT JOIN magazines_publications mp ON p.publications_id = mp.publications_id " +
                 "LEFT JOIN publications p1 ON p1.publications_id = dp.publications_id " +
                 "LEFT JOIN magazines m on mp.magazines_id = m.magazines_id " +
-                "WHERE p.type = 3"
+                "WHERE p.type = " + P_THESES
         );
     }
 
@@ -121,7 +137,7 @@ public class Database {
                 "FROM publications p " +
                 "JOIN organizations_publications op on p.publications_id = op.publications_id " +
                 "JOIN organizations o on op.organizations_id = o.organizations_id " +
-                "WHERE p.type = 4"
+                "WHERE p.type = " + P_DOCS
         );
     }
 
@@ -190,7 +206,7 @@ public class Database {
     }
 
     public String getVerfs(String id) {
-        if (!checkType(id, new int[] {1})) {
+        if (!checkType(id, new int[] {U_LIBRARIAN})) {
             return "error";
         }
         return execSelectQuery(
@@ -225,7 +241,7 @@ public class Database {
 
     public String addUser(String id, String name, String surname, String patronymic, String sex, String login,
                           String password, String birth_date, String type, String phone_number, String email) {
-        if (!checkType(id, new int[] {0})) {
+        if (!checkType(id, new int[] {U_ADMIN})) {
             return "error";
         }
         try {
@@ -271,11 +287,11 @@ public class Database {
     }
 
     public String addBook(String id, String title, String ph_id, String year) {
-        if (!checkType(id, new int[] {0, 1})) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "error";
         }
         try {
-            String query_p = "INSERT INTO publications(type, title) VALUES (0, ?) RETURNING publications_id";
+            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_BOOK + ", ?) RETURNING publications_id";
             addPublHouseAndYear(title, ph_id, year, query_p);
             return "ok";
         }
@@ -285,11 +301,12 @@ public class Database {
     }
 
     public String addDigest(String id, String title, String ph_id, String year) {
-        if (!checkType(id, new int[] {0, 1})) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "error";
         }
         try {
-            String query_p = "INSERT INTO publications(type, title) VALUES (1, ?) RETURNING publications_id";
+            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_DIGEST + ", ?) " +
+                    "RETURNING publications_id";
             addPublHouseAndYear(title, ph_id, year, query_p);
             return "ok";        }
         catch (Exception e) {
