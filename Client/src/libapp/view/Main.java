@@ -205,7 +205,8 @@ public class Main extends Application {
     public void showKeywords() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("KeywordOverview.fxml"));
+            loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
+            loader.setController(new KeywordController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
@@ -221,7 +222,8 @@ public class Main extends Application {
     public void showUDCs() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("UDCOverview.fxml"));
+            loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
+            loader.setController(new UDCController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 

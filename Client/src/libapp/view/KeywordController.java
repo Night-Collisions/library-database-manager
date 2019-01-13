@@ -28,13 +28,13 @@ public class KeywordController {
     @FXML
     private TableView<Keyword> table;
     @FXML
-    private TableColumn<Keyword, String> word;
+    private TableColumn<Keyword, String> column;
 
     @FXML
     private void initialize() {
         setEvents();
 
-        word.setCellValueFactory(new PropertyValueFactory<>("word"));
+        column.setCellValueFactory(new PropertyValueFactory<>("word"));
     }
 
     //Для вывода всех слов
@@ -77,7 +77,7 @@ public class KeywordController {
     }
 
     public void setColumnText(String text) {
-        word.setText(text);
+        column.setText(text);
     }
 
     private void setEvents() {

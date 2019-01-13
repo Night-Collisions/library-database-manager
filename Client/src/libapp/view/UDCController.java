@@ -30,13 +30,13 @@ public class UDCController {
     @FXML
     private TableView<UDC> table;
     @FXML
-    private TableColumn<UDC, String> code;
+    private TableColumn<UDC, String> column;
 
     @FXML
     private void initialize() {
+        column.setText("УДК:");
         setEvents();
-
-        code.setCellValueFactory(new PropertyValueFactory<>("code"));
+        column.setCellValueFactory(new PropertyValueFactory<>("code"));
     }
 
     //Для вывода всех слов
@@ -81,7 +81,7 @@ public class UDCController {
     }
 
     public void setColumnText(String text) {
-        code.setText(text);
+        column.setText(text);
     }
 
     private void setEvents() {

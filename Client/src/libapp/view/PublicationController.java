@@ -97,7 +97,8 @@ public class PublicationController {
                         table.getSelectionModel().getSelectedItem().getId();
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("KeywordOverview.fxml"));
+                loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
+                loader.setController(new KeywordController());
                 AnchorPane keywordsTable = loader.load();
 
                 KeywordController controller = loader.getController();
@@ -121,7 +122,8 @@ public class PublicationController {
                         table.getSelectionModel().getSelectedItem().getId();
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("UDCOverview.fxml"));
+                loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
+                loader.setController(new UDCController());
                 AnchorPane udcTable = loader.load();
 
                 UDCController controller = loader.getController();
