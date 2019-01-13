@@ -6,6 +6,7 @@ class SocketHandler extends Thread {
     private Socket socket;
     private BufferedReader in;
     private BufferedWriter out;
+    private static final String SEPARATOR = "##@%%";
 
     public SocketHandler(Socket socket) throws IOException {
         this.socket = socket;
@@ -20,7 +21,7 @@ class SocketHandler extends Thread {
         try {
             while (true) {
                 cmd = in.readLine();
-                String data[] = cmd.split(", ");
+                String data[] = cmd.split(SEPARATOR);
                 if (data.length < 2) {
                     send("unknown command");
                     continue;
