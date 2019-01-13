@@ -189,6 +189,14 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.addDArticle(data[0], data[2], data[3]));
                         break;
+                    case "addMTheses":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addMTheses(data[0], data[2], data[3]));
+                        break;
+
                     default:
                         send("unknown command");
                         break;

@@ -323,11 +323,7 @@ public class Database {
                     "RETURNING publications_id";
             long p_id = getPublIdAfterInsert(title, query_p);
 
-            String query_mp = "INSERT INTO magazines_publications(publications_id, magazines_id) VALUES (?, ?)";
-            PreparedStatement ps_mp = con.prepareStatement(query_mp);
-            ps_mp.setLong(1, p_id);
-            ps_mp.setInt(2, Integer.parseInt(m_id));
-            ps_mp.executeUpdate();
+            addMagazinePublication(p_id, m_id);
             
             String query_mai = "INSERT INTO magazine_article_info(publications_id, volume, release_number) VALUES (?, ?, ?)";
             PreparedStatement ps_mai = con.prepareStatement(query_mai);
@@ -362,6 +358,30 @@ public class Database {
         catch (Exception e) {
             return "error";
         }
+    }
+
+    public String addMTheses(String id, String title, String m_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        try {
+            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_THESES + ", ?) " +
+                    "RETURNING publications_id";
+            long p_id = getPublIdAfterInsert(title, query_p);
+            addMagazinePublication(p_id, m_id);
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
+    private void addMagazinePublication(long p_id, String m_id) throws Exception {
+        String query_mp = "INSERT INTO magazines_publications(publications_id, magazines_id) VALUES (?, ?)";
+        PreparedStatement ps_mp = con.prepareStatement(query_mp);
+        ps_mp.setLong(1, p_id);
+        ps_mp.setInt(2, Integer.parseInt(m_id));
+        ps_mp.executeUpdate();
     }
 
     private long getPublIdAfterInsert(String title, String query_p) throws Exception {
