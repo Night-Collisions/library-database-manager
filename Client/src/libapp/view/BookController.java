@@ -97,19 +97,19 @@ public class BookController {
         context.getItems().add(delete);
 
         keywords.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.KeyWordsProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         udc.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.UDCProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         authors.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.AuthorsProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         editors.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.EditorsProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое

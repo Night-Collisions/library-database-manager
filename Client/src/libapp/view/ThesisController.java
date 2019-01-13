@@ -39,6 +39,10 @@ public class ThesisController {
     }
 
     public void fillTable() {
+        articles.add(new Thesis(
+                "1",
+                "Витек и Пяточки против волка",
+                "БлэкСтар"));
         // TODO: ебашим запрос к серверу и заполняем
     }
 
@@ -62,15 +66,15 @@ public class ThesisController {
         context.getItems().add(delete);
 
         keywords.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.KeyWordsProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         udc.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.UDCProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         authors.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.AuthorsProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое

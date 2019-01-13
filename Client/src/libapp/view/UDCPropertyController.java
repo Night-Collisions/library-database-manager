@@ -13,28 +13,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import libapp.ClientSocket;
 import libapp.model.Keyword;
+import libapp.model.UDC;
 
 import java.lang.reflect.Type;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
-public class KeywordController {
+public class UDCPropertyController {
     private ClientSocket socket;
     private Main main;
-    private ObservableList<Keyword> keywords =
+    private ObservableList<UDC> udcs =
             FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Keyword> table;
+    private TableView<UDC> table;
     @FXML
-    private TableColumn<Keyword, String> column;
+    private TableColumn<UDC, String> column;
 
     @FXML
     private void initialize() {
+        column.setText("УДК:");
         setEvents();
-
-        column.setCellValueFactory(new PropertyValueFactory<>("word"));
+        column.setCellValueFactory(new PropertyValueFactory<>("code"));
     }
 
     //Для вывода всех слов
@@ -42,16 +44,16 @@ public class KeywordController {
         // TODO: ебашим запрос к серверу и заполняем
         //...
 
-        table.setItems(keywords);
+        table.setItems(udcs);
     }
 
     //Для вывода для конкретной записи
     public void fillTable(String idFilter) {
-        String result = "";
         try {
+            String result = "";
             try {
                 socket = ClientSocket.enableConnection(socket);
-                result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
+                result = socket.makeRequest("<empty> , getUdcOfPubl, " + idFilter);
             } catch (Exception e) {
                 new MessageController(MessageController.titleErrorServerConnect,
                         MessageController.contentTextErrorServerConnect, e);
@@ -66,14 +68,16 @@ public class KeywordController {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                keywords.add(new Keyword(i.get(1).toString()));
+                udcs.add(new UDC(i.get(1).toString()));
             }
 
-            table.setItems(keywords);
+            table.setItems(udcs);
         } catch (Exception e) {
-            new MessageController(MessageController.titleErrorGetNewData,
-                    MessageController.contentTextErrorGetNewData, e);
+            //Оп, какая то проблемочка
+            e.printStackTrace();
         }
+
+        table.setItems(udcs);
     }
 
     public void setColumnText(String text) {

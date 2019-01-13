@@ -13,7 +13,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
-import libapp.model.Notification;
 
 import java.awt.*;
 import java.io.IOException;
@@ -206,11 +205,11 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
-            loader.setController(new KeywordController());
+            loader.setController(new KeywordPropertyController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
-            KeywordController controller = loader.getController();
+            KeywordPropertyController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -223,11 +222,11 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
-            loader.setController(new UDCController());
+            loader.setController(new UDCPropertyController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
-            UDCController controller = loader.getController();
+            UDCPropertyController controller = loader.getController();
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,

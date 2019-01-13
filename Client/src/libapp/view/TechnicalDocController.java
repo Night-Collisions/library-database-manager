@@ -39,6 +39,10 @@ public class TechnicalDocController {
     }
 
     public void fillTable() {
+        techdocs.add(new TechnicalDoc(
+                "1",
+                "Do you speak English?",
+                "Yes, of coarse it is"));
         // TODO: ебашим запрос к серверу и заполняем
     }
 
@@ -60,11 +64,11 @@ public class TechnicalDocController {
         context.getItems().add(delete);
 
         keywords.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.KeyWordsProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         udc.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.UDCProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое

@@ -92,52 +92,13 @@ public class PublicationController {
         context.getItems().add(delete);
 
         keywords.setOnAction(t -> {
-            try {
-                String idFilter =
-                        table.getSelectionModel().getSelectedItem().getId();
+            PublicationProperty.KeyWordsProperty(table.getSelectionModel().getSelectedItem().getId());
 
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
-                loader.setController(new KeywordController());
-                AnchorPane keywordsTable = loader.load();
-
-                KeywordController controller = loader.getController();
-                controller.fillTable(idFilter);
-                controller.setColumnText("Ключевые слова для id " + idFilter);
-
-                Stage window = new Stage();
-                window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
-                window.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2.5);
-                initWindow(window, keywordsTable);
-            } catch (IOException e) {
-                new MessageController("Ошибка вывода данных!",
-                        "Обратитесь к администратору.", e);
-            }
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         udc.setOnAction(t -> {
-            try {
-                String idFilter =
-                        table.getSelectionModel().getSelectedItem().getId();
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
-                loader.setController(new UDCController());
-                AnchorPane udcTable = loader.load();
-
-                UDCController controller = loader.getController();
-                controller.fillTable(idFilter);
-                controller.setColumnText("УДК для id " + idFilter);
-
-                Stage window = new Stage();
-                window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
-                window.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2.5);
-                initWindow(window, udcTable);
-            } catch (IOException e) {
-                new MessageController(MessageController.titleErrorGetNewData,
-                        MessageController.contentTextErrorGetNewData, e);
-            }
+            PublicationProperty.UDCProperty(table.getSelectionModel().getSelectedItem().getId());
         });
 
         insert.setOnAction(t -> {
