@@ -6,5 +6,6 @@
 /Client/*
 !/PostgreSQL
 /PostgreSQL/* 
-!/PostgreSQL/*.sql
+!/PostgreSQL/consts.txt
+!/PostgreSQL/pg_dump
 !documentation.docx 
