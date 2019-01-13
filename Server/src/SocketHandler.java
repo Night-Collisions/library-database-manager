@@ -97,12 +97,26 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.getAuthors());
                         break;
+                    case "getAuthorsOfPubl":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getAuthorsOfPubl(data[2]));
+                        break;
                     case "getEditors":
                         if (data.length != 2) {
                             send("wrong args");
                             continue;
                         }
                         send(Server.db.getEditors());
+                        break;
+                    case "getEditorsOfPubl":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getEditorsOfPubl(data[2]));
                         break;
                     case "getOrganizations":
                         if (data.length != 2) {

@@ -156,10 +156,30 @@ public class Database {
         );
     }
 
+    public String getAuthorsOfPubl(String p_id) {
+        String query =
+                "SELECT a.authors_id, a.name, a.surname, a.patronymic, a.sex, a.birth_date, " +
+                       "a.death_date, a.phone_number, a.email " +
+                "FROM authors a " +
+                "JOIN authors_publications ap ON a.authors_id = ap.authors_id" +
+                                            "AND ap.publications_id = ?";
+        return execPSWithId(p_id, query);
+    }
+
     public String getEditors() {
         return execSelectQuery(
                 "SELECT * FROM editors"
         );
+    }
+
+    public String getEditorsOfPubl(String p_id) {
+        String query =
+                "SELECT e.editors_id, e.name, e.surname, e.patronymic, e.sex, e.birth_date, " +
+                       "e.death_date, e.phone_number, e.email " +
+                "FROM editors e " +
+                "JOIN editors_publications ep ON e.editors_id = ep.editors_id " +
+                                            "AND ep.publications_id = 9;";
+        return execPSWithId(p_id, query);
     }
 
     public String getOrganizations() {
@@ -231,7 +251,7 @@ public class Database {
     private String execPSWithId(String id, String query) {
         try {
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1, Integer.parseInt(id));
+            ps.setLong(1, Long.parseLong(id));
             ResultSet rs = ps.executeQuery();
             return RSToString(rs);
         }
@@ -386,7 +406,8 @@ public class Database {
         }
         catch (Exception e) {
             return "error";
-        }    }
+        }
+    }
 
     private String addPublicationWithDigest(int type, String title, String d_id) {
         try {
