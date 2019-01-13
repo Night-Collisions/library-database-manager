@@ -3,12 +3,20 @@ package libapp.view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import libapp.ClientSocket;
 import libapp.model.Book;
-import tornadofx.SmartResize;
+
+import java.io.IOException;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -106,12 +114,40 @@ public class BookController {
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         insert.setOnAction(t -> {
-            //TODO: нахуячить
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("BookWinOverview.fxml"));
+                loader.setController(new BookAddController());
+                AnchorPane ap = loader.load();
+
+                Stage window = new Stage();
+                window.initModality(Modality.WINDOW_MODAL);
+                Scene scene = new Scene(ap);
+                window.setScene(scene);
+                window.showAndWait();
+            } catch (IOException e) {
+                new MessageController(MessageController.titleErrorGetNewData,
+                        MessageController.contentTextErrorGetNewData, e);
+            }
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         edit.setOnAction(t -> {
-            //TODO: нахуячить
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("BookWinOverview.fxml"));
+                loader.setController(new BookChangeController());
+                AnchorPane ap = loader.load();
+
+                Stage window = new Stage();
+                window.initModality(Modality.WINDOW_MODAL);
+                Scene scene = new Scene(ap);
+                window.setScene(scene);
+                window.showAndWait();
+            } catch (IOException e) {
+                new MessageController(MessageController.titleErrorGetNewData,
+                        MessageController.contentTextErrorGetNewData, e);
+            }
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое
