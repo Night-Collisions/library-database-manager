@@ -10,7 +10,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public class PublicationProperty {
-    protected static void create(Object conect, String columnName, String idFilter) {
+    protected static void CreateTable(Object conect, String columnName, String idFilter) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
@@ -50,18 +50,37 @@ public class PublicationProperty {
     }
 
     public static void UDCProperty(String idFilter) {
-        create(new UDCPropertyController(), "УДК для id ", idFilter);
+        CreateTable(new UDCPropertyController(), "УДК для id ", idFilter);
     }
 
     public static void KeyWordsProperty(String idFilter) {
-        create(new KeywordPropertyController(), "Ключевые слова для id ", idFilter);
+        CreateTable(new KeywordPropertyController(), "Ключевые слова для id ", idFilter);
     }
 
     public static void AuthorsProperty(String idFilter) {
-        create(new AuthorsPropertyController(), "Авторы для id ", idFilter);
+        CreateTable(new AuthorsPropertyController(), "Авторы для id ", idFilter);
     }
 
     public static void EditorsProperty(String idFilter) {
-        create(new EditorsPropertyController(), "Редакторы для id ", idFilter);
+        CreateTable(new EditorsPropertyController(), "Редакторы для id ", idFilter);
+    }
+
+    public static void CreateWindow(String name, Object controller) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource(name));
+            loader.setController(controller);
+            AnchorPane ap = loader.load();
+
+            Scene scene = new Scene(ap);
+
+            Stage window = new Stage();
+            window.initModality(Modality.WINDOW_MODAL);
+            window.setScene(scene);
+            window.showAndWait();
+        } catch (IOException e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
     }
 }

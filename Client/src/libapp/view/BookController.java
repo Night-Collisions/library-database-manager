@@ -114,40 +114,12 @@ public class BookController {
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         insert.setOnAction(t -> {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("BookWinOverview.fxml"));
-                loader.setController(new BookAddController());
-                AnchorPane ap = loader.load();
-
-                Stage window = new Stage();
-                window.initModality(Modality.WINDOW_MODAL);
-                Scene scene = new Scene(ap);
-                window.setScene(scene);
-                window.showAndWait();
-            } catch (IOException e) {
-                new MessageController(MessageController.titleErrorGetNewData,
-                        MessageController.contentTextErrorGetNewData, e);
-            }
+            PublicationProperty.CreateWindow("BookWinOverview.fxml", new BookAddController());
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         edit.setOnAction(t -> {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("BookWinOverview.fxml"));
-                loader.setController(new BookChangeController());
-                AnchorPane ap = loader.load();
-
-                Stage window = new Stage();
-                window.initModality(Modality.WINDOW_MODAL);
-                Scene scene = new Scene(ap);
-                window.setScene(scene);
-                window.showAndWait();
-            } catch (IOException e) {
-                new MessageController(MessageController.titleErrorGetNewData,
-                        MessageController.contentTextErrorGetNewData, e);
-            }
+            PublicationProperty.CreateWindow("BookWinOverview.fxml", new BookChangeController());
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое

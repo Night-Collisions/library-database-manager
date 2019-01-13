@@ -99,12 +99,12 @@ public class WorkController {
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         insert.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.CreateWindow("BookWinOverview.fxml", new WorkAddController());
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         edit.setOnAction(t -> {
-            //TODO: нахуячить
+            PublicationProperty.CreateWindow("BookWinOverview.fxml", new WorkChangeController());
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое

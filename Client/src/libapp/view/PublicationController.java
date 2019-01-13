@@ -93,7 +93,6 @@ public class PublicationController {
 
         keywords.setOnAction(t -> {
             PublicationProperty.KeyWordsProperty(table.getSelectionModel().getSelectedItem().getId());
-
         });
 
         //TODO: нахуячить, если это библиотекарь или че то такое
@@ -102,23 +101,7 @@ public class PublicationController {
         });
 
         insert.setOnAction(t -> {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("PublicationInsertCheckOverview.fxml"));
-                AnchorPane choice = loader.load();
-
-                PublicationInsertCheckController controller =
-                        loader.getController();
-                controller.setMain(main);
-
-                Stage window = new Stage();
-                window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
-                window.setMinWidth(300);
-                initWindow(window, choice);
-            } catch (IOException e) {
-                new MessageController(MessageController.titleErrorGetNewData,
-                        MessageController.contentTextErrorGetNewData, e);
-            }
+            PublicationProperty.CreateWindow("PublicationInsertCheckOverview.fxml", new PublicationInsertCheckController());
         });
 
         edit.setOnAction(t -> {
