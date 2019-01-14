@@ -698,6 +698,96 @@ public class Database {
         ps_pe.executeUpdate();
     }
 
+    public String deleteUser(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN})) {
+            return "error";
+        }
+        return deleteById("users", id);
+    }
+
+    public String deletePublication(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("publications", id);
+    }
+
+    public String deleteAuthor(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("authors", id);
+    }
+
+    public String deleteEditor(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("editors", id);
+    }
+
+    public String deleteOrganization(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("organizations", id);
+    }
+
+    public String deletePublHouse(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("publishing_houses", id);
+    }
+
+    public String deleteKeyword(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("keywords", id);
+    }
+
+    public String deleteUdc(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("udc_codes", id);
+    }
+
+    public String deleteMagazine(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("magazines", id);
+    }
+
+    public String deleteSubject(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("subjects", id);
+    }
+
+    public String deleteVerification(String u_id, String id) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        return deleteById("verifications", id);
+    }
+
+    private String deleteById(String table, String id) {
+        try {
+            String query = "DELETE FROM " + table + " WHERE " + table + "_id = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, Long.parseLong(id));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
     private String RSToString(ResultSet rs) throws SQLException {
         int columnCount = rs.getMetaData().getColumnCount();
         ArrayList<ArrayList<String>> rows = new ArrayList<>();

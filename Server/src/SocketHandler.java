@@ -317,6 +317,83 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.addEditorToPubl(data[0], data[2], data[3]));
                         break;
+                    case "deleteUser":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteUser(data[0], data[2]));
+                        break;
+                    case "deletePublication":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deletePublication(data[0], data[2]));
+                        break;
+                    case "deleteAuthor":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteAuthor(data[0], data[2]));
+                        break;
+                    case "deleteEditor":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteEditor(data[0], data[2]));
+                        break;
+                    case "deleteOrganization":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteOrganization(data[0], data[2]));
+                        break;
+                    case "deletePublHouse":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deletePublHouse(data[0], data[2]));
+                        break;
+                    case "deleteKeyword":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteKeyword(data[0], data[2]));
+                        break;
+                    case "deleteUdc":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteUdc(data[0], data[2]));
+                        break;
+                    case "deleteMagazine":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteMagazine(data[0], data[2]));
+                        break;
+                    case "deleteSubject":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteSubject(data[0], data[2]));
+                        break;
+                    case "deleteVerification":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteVerification(data[0], data[2]));
+                        break;
                     default:
                         send("unknown command");
                         break;
