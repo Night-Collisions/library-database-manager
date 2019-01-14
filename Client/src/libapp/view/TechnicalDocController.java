@@ -14,7 +14,7 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc>{
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {};
-        CreateMenu(menuPropertyTable, new TechnicalDocAddController(), new TechnicalDocChange(), "TechnicalDocAdd.fxml");
+        addMenu(menuPropertyTable, new TechnicalDocAddController(), new TechnicalDocChange(), "TechnicalDocAdd.fxml");
 
         organization.setCellValueFactory(
                 new PropertyValueFactory<>("organization"));

@@ -21,7 +21,7 @@ public class PublicationController extends PublicationProperty<Publication>  {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {};
-        CreateMenu(menuPropertyTable, new PublicationInsertCheckController(), null, "PublicationInsertCheckOverview.fxml", "");
+        addMenu(menuPropertyTable, new PublicationInsertCheckController(), null, "PublicationInsertCheckOverview.fxml", "");
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 

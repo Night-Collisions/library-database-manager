@@ -17,7 +17,7 @@ public class ArticleController extends PublicationProperty<Article> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors()};
-        CreateMenu(menuPropertyTable, null, null, "");
+        addMenu(menuPropertyTable, null, null, "");
 
         magazineOrWork.setCellValueFactory(
                 new PropertyValueFactory<>("magazineOrWork"));

@@ -5,8 +5,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.model.Thesis;
 
-import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
-
 public class ThesisController extends PublicationProperty<Thesis> {
 
     @FXML
@@ -16,7 +14,7 @@ public class ThesisController extends PublicationProperty<Thesis> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors()};
-        CreateMenu(menuPropertyTable, null, null, "");
+        addMenu(menuPropertyTable, null, null, "");
 
         magazineOrWork.setCellValueFactory(
                 new PropertyValueFactory<>("magazineOrWork"));

@@ -16,7 +16,7 @@ public class WorkController extends PublicationProperty<Work> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateEditors()};
-        CreateMenu(menuPropertyTable, new WorkAddController(), new WorkChangeController(), "BookWinOverview.fxml");
+        addMenu(menuPropertyTable, new WorkAddController(), new WorkChangeController(), "BookWinOverview.fxml");
 
         publishingHouse.setCellValueFactory(
                 new PropertyValueFactory<>("publishingHouse"));
