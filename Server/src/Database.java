@@ -588,6 +588,34 @@ public class Database {
         }
     }
 
+    public String addVerf(String u_id, String to_type, String a_id, String ph_id) {
+        if (!checkType(u_id, new int[] {U_READER})) {
+            return "access error";
+        }
+        try {
+            String query = "INSERT INTO verifications(users_id, to_type, authors_id, publishing_houses_id) " +
+                           "VALUES (?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, Long.parseLong(u_id));
+            ps.setInt(2, Integer.parseInt(to_type));
+            if (a_id.equals("NULL")) {
+                ps.setNull(3, Types.INTEGER);
+            } else {
+                ps.setLong(3, Long.parseLong(a_id));
+            }
+            if (ph_id.equals("NULL")) {
+                ps.setNull(4, Types.INTEGER);
+            } else {
+                ps.setLong(4, Long.parseLong(ph_id));
+            }
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     public String addKeywordToPubl(String id, String p_id, String k_id) {
         if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";

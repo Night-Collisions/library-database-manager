@@ -289,6 +289,13 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.addUdc(data[0], data[2]));
                         break;
+                    case "addVerf":
+                        if (data.length != 5) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addVerf(data[0], data[2], data[3], data[4]));
+                        break;
                     case "addKeywordToPubl":
                         if (data.length != 4) {
                             send("wrong args");
