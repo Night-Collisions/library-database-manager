@@ -1,7 +1,6 @@
 package libapp.model;
 
-public class Notification {
-    private String id;
+public class Notification extends Table {
     private String userId;
     private String login;
     private String potentialType;
@@ -17,10 +16,6 @@ public class Notification {
         this.potentialType = potentialType;
         this.phonenumber = phonenumber;
         this.email = email;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getUserId() {
@@ -41,10 +36,6 @@ public class Notification {
 
     public String getEmail() {
         return email;
-    }
-
-    void setId(String id) {
-        this.id = id;
     }
 
     void setUserId(String userId) {

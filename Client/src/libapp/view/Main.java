@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.view.magazine.MagazineController;
 import libapp.view.publication.Article.ArticleController;
 import libapp.view.publication.Book.BookController;
 import libapp.view.publication.AllPublication.PublicationController;
@@ -329,7 +330,7 @@ public class Main extends Application {
     public void showMagazines() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("MagazineOverview.fxml"));
+            loader.setLocation(Main.class.getResource("magazine\\MagazineOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);

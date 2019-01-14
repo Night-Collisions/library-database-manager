@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
 import libapp.model.PublicationTable;
+import libapp.model.Table;
 import libapp.view.publication.PublicationProperty;
 
 
@@ -44,9 +45,14 @@ public class TebleProperty<T> {
             window.setScene(scene);
             window.showAndWait();
         } catch (IOException e) {
-            new MessageController(MessageController.titleErrorGetNewData,
-                    MessageController.contentTextErrorGetNewData, e);
+            new MessageController(MessageController.titleErrorOpenFXML,
+                    MessageController.contentTextErrorOpenFXML, e);
         }
+    }
+
+    public void createMenu(Object add, Object change, String form) {
+        javafx.scene.control.Menu a[] = {};
+        createMenu(a, add, change, form, form);
     }
 
     public void createMenu(javafx.scene.control.Menu cascadingMenu[], Object add, Object change, String formAdd, String formChange) {
@@ -77,7 +83,7 @@ public class TebleProperty<T> {
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         delete.setOnAction(t -> {
-            deleteRow(((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
+            deleteWindow(((Table)table.getSelectionModel().getSelectedItem()).getId());
         });
 
         table.addEventHandler(MOUSE_CLICKED, t -> {
@@ -89,17 +95,16 @@ public class TebleProperty<T> {
         });
     }
 
-    public static boolean isDelete(String id, String whatDelete) {
+    public void deleteWindow(String id) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Удаление.");
         alert.setHeaderText(null);
-        alert.setContentText("Вы действительно хотите удалить " + whatDelete + " с id: " + id + "?");
+        alert.setContentText("Вы действительно хотите удалить?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            return true;
+            deleteRow(id);
         }
-        return false;
     }
 
     public void deleteRow(String id) {}

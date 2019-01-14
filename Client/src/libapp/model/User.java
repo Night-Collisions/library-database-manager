@@ -1,7 +1,6 @@
 package libapp.model;
 
-public class User {
-    private String id;
+public class User extends Table {
     private String surname;
     private String name;
     private String patronymic;
@@ -26,10 +25,6 @@ public class User {
         this.type = type;
         this.phonenumber = phonenumber;
         this.email = email;
-    }
-
-    public String getId() {
-        return this.id;
     }
 
     public String getSurname() {
@@ -66,10 +61,6 @@ public class User {
 
     public String getEmail() {
         return this.email;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setSurname(String surname) {

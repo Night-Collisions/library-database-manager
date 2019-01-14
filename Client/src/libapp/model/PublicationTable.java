@@ -1,7 +1,6 @@
 package libapp.model;
 
-public class PublicationTable {
-    protected String id;
+public class PublicationTable extends Table {
     protected String name;
 
     public void InitColumn(String id, String name) {

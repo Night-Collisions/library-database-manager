@@ -1,7 +1,6 @@
 package libapp.model;
 
-public class Magazine {
-    private String id;
+public class Magazine extends Table {
     private String name;
     private String topic;
 
@@ -11,20 +10,12 @@ public class Magazine {
         this.topic = topic;
     }
 
-    public String getId() {
-        return this.id;
-    }
-
     public String getName() {
         return this.name;
     }
 
     public String getTopic() {
         return this.topic;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setName(String name) {

@@ -1,7 +1,6 @@
 package libapp.model;
 
-public class Organization {
-    private String id;
+public class Organization extends Table {
     private String name;
     private String address;
     private String phonenumber;
@@ -15,10 +14,6 @@ public class Organization {
         this.address = address;
         this.phonenumber = phonenumber;
         this.email = email;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {

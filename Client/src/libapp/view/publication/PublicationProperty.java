@@ -120,9 +120,7 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
     }
 
     public void deleteRow(String id) {
-        if (isDelete(id, "публикацию")) {
             //TODO:удалять туту
-        }
     }
 
     public void fillTable() {}
