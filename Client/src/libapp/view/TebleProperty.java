@@ -83,7 +83,8 @@ public class TebleProperty<T> {
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         delete.setOnAction(t -> {
-            deleteWindow(((Table)table.getSelectionModel().getSelectedItem()).getId());
+            if (table.getSelectionModel().getSelectedItem() != null)
+                deleteWindow(((Table)table.getSelectionModel().getSelectedItem()).getId());
         });
 
         table.addEventHandler(MOUSE_CLICKED, t -> {

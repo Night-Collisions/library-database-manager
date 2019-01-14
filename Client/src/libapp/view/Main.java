@@ -13,6 +13,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.view.Organization.OrganizationController;
+import libapp.view.author.AuthorController;
 import libapp.view.magazine.MagazineController;
 import libapp.view.publication.Article.ArticleController;
 import libapp.view.publication.Book.BookController;
@@ -296,7 +298,7 @@ public class Main extends Application {
     public void showAuthors() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("AuthorOverview.fxml"));
+            loader.setLocation(Main.class.getResource("author\\AuthorOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
