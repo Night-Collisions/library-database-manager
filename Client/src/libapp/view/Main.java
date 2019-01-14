@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.view.Editor.EditorController;
 import libapp.view.Organization.OrganizationController;
 import libapp.view.author.AuthorController;
 import libapp.view.magazine.MagazineController;
@@ -197,7 +198,7 @@ public class Main extends Application {
     public void showEditors() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("EditorOverview.fxml"));
+            loader.setLocation(Main.class.getResource("Editor\\EditorOverview.fxml"));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
