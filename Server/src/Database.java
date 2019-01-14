@@ -471,6 +471,51 @@ public class Database {
         }
     }
 
+    public String addKeywordToPubl(String id, String p_id, String k_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        String query = "INSERT INTO publications_keywords(publications_id, keywords_id) VALUES (?, ?)";
+        return addSmthToPubl(query, p_id, k_id);
+    }
+
+    public String addUdcToPubl(String id, String p_id, String u_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        String query = "INSERT INTO publications_udc_codes(publications_id, udc_codes_id) VALUES (?, ?)";
+        return addSmthToPubl(query, p_id, u_id);
+    }
+
+    public String addAuthToPubl(String id, String p_id, String a_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        String query = "INSERT INTO authors_publications(publications_id, authors_id) VALUES (?, ?)";
+        return addSmthToPubl(query, p_id, a_id);
+    }
+
+    public String addEditorToPubl(String id, String p_id, String e_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        String query = "INSERT INTO editors_publications(publications_id, editors_id) VALUES (?, ?)";
+        return addSmthToPubl(query, p_id, e_id);
+    }
+
+    private String addSmthToPubl(String query, String p_id, String smth_id) {
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, Long.parseLong(p_id));
+            ps.setLong(2, Long.parseLong(smth_id));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
     private String addPublicationWithDigest(int type, String title, String d_id) {
         try {
             String query_p = "INSERT INTO publications(type, title) VALUES (" + type + ", ?) " +

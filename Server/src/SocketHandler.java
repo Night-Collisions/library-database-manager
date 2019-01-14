@@ -252,6 +252,34 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.addUdc(data[0], data[2]));
                         break;
+                    case "addKeywordToPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addKeywordToPubl(data[0], data[2], data[3]));
+                        break;
+                    case "addUdcToPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addUdcToPubl(data[0], data[2], data[3]));
+                        break;
+                    case "addAuthToPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addAuthToPubl(data[0], data[2], data[3]));
+                        break;
+                    case "addEditorToPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addEditorToPubl(data[0], data[2], data[3]));
+                        break;
                     default:
                         send("unknown command");
                         break;
