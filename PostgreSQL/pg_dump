@@ -16,7 +16,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: check_authors_publications(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_authors_publications(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_authors_publications() RETURNS trigger
@@ -37,10 +37,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_authors_publications() OWNER TO ivan;
+ALTER FUNCTION public.check_authors_publications() OWNER TO username;
 
 --
--- Name: check_digests_publications(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_digests_publications(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_digests_publications() RETURNS trigger
@@ -61,10 +61,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_digests_publications() OWNER TO ivan;
+ALTER FUNCTION public.check_digests_publications() OWNER TO username;
 
 --
--- Name: check_editors_publications(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_editors_publications(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_editors_publications() RETURNS trigger
@@ -85,10 +85,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_editors_publications() OWNER TO ivan;
+ALTER FUNCTION public.check_editors_publications() OWNER TO username;
 
 --
--- Name: check_intervals(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_intervals(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_intervals() RETURNS trigger
@@ -111,10 +111,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_intervals() OWNER TO ivan;
+ALTER FUNCTION public.check_intervals() OWNER TO username;
 
 --
--- Name: check_magazine_article_info(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_magazine_article_info(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_magazine_article_info() RETURNS trigger
@@ -136,10 +136,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_magazine_article_info() OWNER TO ivan;
+ALTER FUNCTION public.check_magazine_article_info() OWNER TO username;
 
 --
--- Name: check_magazines_publications(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_magazines_publications(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_magazines_publications() RETURNS trigger
@@ -160,10 +160,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_magazines_publications() OWNER TO ivan;
+ALTER FUNCTION public.check_magazines_publications() OWNER TO username;
 
 --
--- Name: check_organizations_publications(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_organizations_publications(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_organizations_publications() RETURNS trigger
@@ -184,10 +184,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_organizations_publications() OWNER TO ivan;
+ALTER FUNCTION public.check_organizations_publications() OWNER TO username;
 
 --
--- Name: check_publishing_houses_publications(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_publishing_houses_publications(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_publishing_houses_publications() RETURNS trigger
@@ -208,10 +208,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_publishing_houses_publications() OWNER TO ivan;
+ALTER FUNCTION public.check_publishing_houses_publications() OWNER TO username;
 
 --
--- Name: check_publishing_years(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_publishing_years(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_publishing_years() RETURNS trigger
@@ -232,10 +232,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_publishing_years() OWNER TO ivan;
+ALTER FUNCTION public.check_publishing_years() OWNER TO username;
 
 --
--- Name: check_users_authors(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_users_authors(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_users_authors() RETURNS trigger
@@ -256,10 +256,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_users_authors() OWNER TO ivan;
+ALTER FUNCTION public.check_users_authors() OWNER TO username;
 
 --
--- Name: check_users_publishing_houses(); Type: FUNCTION; Schema: public; Owner: ivan
+-- Name: check_users_publishing_houses(); Type: FUNCTION; Schema: public; Owner: username
 --
 
 CREATE FUNCTION public.check_users_publishing_houses() RETURNS trigger
@@ -280,14 +280,14 @@ END;
 $$;
 
 
-ALTER FUNCTION public.check_users_publishing_houses() OWNER TO ivan;
+ALTER FUNCTION public.check_users_publishing_houses() OWNER TO username;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: authors; Type: TABLE; Schema: public; Owner: ivan
+-- Name: authors; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.authors (
@@ -305,10 +305,10 @@ CREATE TABLE public.authors (
 );
 
 
-ALTER TABLE public.authors OWNER TO ivan;
+ALTER TABLE public.authors OWNER TO username;
 
 --
--- Name: authors_authors_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: authors_authors_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.authors_authors_id_seq
@@ -320,17 +320,17 @@ CREATE SEQUENCE public.authors_authors_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.authors_authors_id_seq OWNER TO ivan;
+ALTER TABLE public.authors_authors_id_seq OWNER TO username;
 
 --
--- Name: authors_authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: authors_authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.authors_authors_id_seq OWNED BY public.authors.authors_id;
 
 
 --
--- Name: authors_organizations; Type: TABLE; Schema: public; Owner: ivan
+-- Name: authors_organizations; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.authors_organizations (
@@ -342,10 +342,10 @@ CREATE TABLE public.authors_organizations (
 );
 
 
-ALTER TABLE public.authors_organizations OWNER TO ivan;
+ALTER TABLE public.authors_organizations OWNER TO username;
 
 --
--- Name: authors_publications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: authors_publications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.authors_publications (
@@ -354,10 +354,10 @@ CREATE TABLE public.authors_publications (
 );
 
 
-ALTER TABLE public.authors_publications OWNER TO ivan;
+ALTER TABLE public.authors_publications OWNER TO username;
 
 --
--- Name: digests_publications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: digests_publications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.digests_publications (
@@ -366,10 +366,10 @@ CREATE TABLE public.digests_publications (
 );
 
 
-ALTER TABLE public.digests_publications OWNER TO ivan;
+ALTER TABLE public.digests_publications OWNER TO username;
 
 --
--- Name: editors; Type: TABLE; Schema: public; Owner: ivan
+-- Name: editors; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.editors (
@@ -387,10 +387,10 @@ CREATE TABLE public.editors (
 );
 
 
-ALTER TABLE public.editors OWNER TO ivan;
+ALTER TABLE public.editors OWNER TO username;
 
 --
--- Name: editors_editors_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: editors_editors_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.editors_editors_id_seq
@@ -402,17 +402,17 @@ CREATE SEQUENCE public.editors_editors_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.editors_editors_id_seq OWNER TO ivan;
+ALTER TABLE public.editors_editors_id_seq OWNER TO username;
 
 --
--- Name: editors_editors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: editors_editors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.editors_editors_id_seq OWNED BY public.editors.editors_id;
 
 
 --
--- Name: editors_publications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: editors_publications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.editors_publications (
@@ -421,10 +421,10 @@ CREATE TABLE public.editors_publications (
 );
 
 
-ALTER TABLE public.editors_publications OWNER TO ivan;
+ALTER TABLE public.editors_publications OWNER TO username;
 
 --
--- Name: keywords; Type: TABLE; Schema: public; Owner: ivan
+-- Name: keywords; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.keywords (
@@ -433,10 +433,10 @@ CREATE TABLE public.keywords (
 );
 
 
-ALTER TABLE public.keywords OWNER TO ivan;
+ALTER TABLE public.keywords OWNER TO username;
 
 --
--- Name: keywords_keywords_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: keywords_keywords_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.keywords_keywords_id_seq
@@ -448,17 +448,17 @@ CREATE SEQUENCE public.keywords_keywords_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.keywords_keywords_id_seq OWNER TO ivan;
+ALTER TABLE public.keywords_keywords_id_seq OWNER TO username;
 
 --
--- Name: keywords_keywords_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: keywords_keywords_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.keywords_keywords_id_seq OWNED BY public.keywords.keywords_id;
 
 
 --
--- Name: magazine_article_info; Type: TABLE; Schema: public; Owner: ivan
+-- Name: magazine_article_info; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.magazine_article_info (
@@ -470,10 +470,10 @@ CREATE TABLE public.magazine_article_info (
 );
 
 
-ALTER TABLE public.magazine_article_info OWNER TO ivan;
+ALTER TABLE public.magazine_article_info OWNER TO username;
 
 --
--- Name: magazines; Type: TABLE; Schema: public; Owner: ivan
+-- Name: magazines; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.magazines (
@@ -484,10 +484,10 @@ CREATE TABLE public.magazines (
 );
 
 
-ALTER TABLE public.magazines OWNER TO ivan;
+ALTER TABLE public.magazines OWNER TO username;
 
 --
--- Name: magazines_magazines_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: magazines_magazines_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.magazines_magazines_id_seq
@@ -499,17 +499,17 @@ CREATE SEQUENCE public.magazines_magazines_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.magazines_magazines_id_seq OWNER TO ivan;
+ALTER TABLE public.magazines_magazines_id_seq OWNER TO username;
 
 --
--- Name: magazines_magazines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: magazines_magazines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.magazines_magazines_id_seq OWNED BY public.magazines.magazines_id;
 
 
 --
--- Name: magazines_publications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: magazines_publications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.magazines_publications (
@@ -518,10 +518,10 @@ CREATE TABLE public.magazines_publications (
 );
 
 
-ALTER TABLE public.magazines_publications OWNER TO ivan;
+ALTER TABLE public.magazines_publications OWNER TO username;
 
 --
--- Name: organizations; Type: TABLE; Schema: public; Owner: ivan
+-- Name: organizations; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.organizations (
@@ -533,10 +533,10 @@ CREATE TABLE public.organizations (
 );
 
 
-ALTER TABLE public.organizations OWNER TO ivan;
+ALTER TABLE public.organizations OWNER TO username;
 
 --
--- Name: organizations_organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: organizations_organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.organizations_organizations_id_seq
@@ -548,17 +548,17 @@ CREATE SEQUENCE public.organizations_organizations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.organizations_organizations_id_seq OWNER TO ivan;
+ALTER TABLE public.organizations_organizations_id_seq OWNER TO username;
 
 --
--- Name: organizations_organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: organizations_organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.organizations_organizations_id_seq OWNED BY public.organizations.organizations_id;
 
 
 --
--- Name: organizations_publications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: organizations_publications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.organizations_publications (
@@ -567,10 +567,10 @@ CREATE TABLE public.organizations_publications (
 );
 
 
-ALTER TABLE public.organizations_publications OWNER TO ivan;
+ALTER TABLE public.organizations_publications OWNER TO username;
 
 --
--- Name: publications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: publications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.publications (
@@ -581,10 +581,10 @@ CREATE TABLE public.publications (
 );
 
 
-ALTER TABLE public.publications OWNER TO ivan;
+ALTER TABLE public.publications OWNER TO username;
 
 --
--- Name: publications_keywords; Type: TABLE; Schema: public; Owner: ivan
+-- Name: publications_keywords; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.publications_keywords (
@@ -593,10 +593,10 @@ CREATE TABLE public.publications_keywords (
 );
 
 
-ALTER TABLE public.publications_keywords OWNER TO ivan;
+ALTER TABLE public.publications_keywords OWNER TO username;
 
 --
--- Name: publications_publications_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: publications_publications_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.publications_publications_id_seq
@@ -608,17 +608,17 @@ CREATE SEQUENCE public.publications_publications_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.publications_publications_id_seq OWNER TO ivan;
+ALTER TABLE public.publications_publications_id_seq OWNER TO username;
 
 --
--- Name: publications_publications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: publications_publications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.publications_publications_id_seq OWNED BY public.publications.publications_id;
 
 
 --
--- Name: publications_udc_codes; Type: TABLE; Schema: public; Owner: ivan
+-- Name: publications_udc_codes; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.publications_udc_codes (
@@ -627,10 +627,10 @@ CREATE TABLE public.publications_udc_codes (
 );
 
 
-ALTER TABLE public.publications_udc_codes OWNER TO ivan;
+ALTER TABLE public.publications_udc_codes OWNER TO username;
 
 --
--- Name: publishing_houses; Type: TABLE; Schema: public; Owner: ivan
+-- Name: publishing_houses; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.publishing_houses (
@@ -642,10 +642,10 @@ CREATE TABLE public.publishing_houses (
 );
 
 
-ALTER TABLE public.publishing_houses OWNER TO ivan;
+ALTER TABLE public.publishing_houses OWNER TO username;
 
 --
--- Name: publishing_houses_publications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: publishing_houses_publications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.publishing_houses_publications (
@@ -654,10 +654,10 @@ CREATE TABLE public.publishing_houses_publications (
 );
 
 
-ALTER TABLE public.publishing_houses_publications OWNER TO ivan;
+ALTER TABLE public.publishing_houses_publications OWNER TO username;
 
 --
--- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.publishing_houses_publishing_houses_id_seq
@@ -669,17 +669,17 @@ CREATE SEQUENCE public.publishing_houses_publishing_houses_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.publishing_houses_publishing_houses_id_seq OWNER TO ivan;
+ALTER TABLE public.publishing_houses_publishing_houses_id_seq OWNER TO username;
 
 --
--- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.publishing_houses_publishing_houses_id_seq OWNED BY public.publishing_houses.publishing_houses_id;
 
 
 --
--- Name: publishing_years; Type: TABLE; Schema: public; Owner: ivan
+-- Name: publishing_years; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.publishing_years (
@@ -689,10 +689,10 @@ CREATE TABLE public.publishing_years (
 );
 
 
-ALTER TABLE public.publishing_years OWNER TO ivan;
+ALTER TABLE public.publishing_years OWNER TO username;
 
 --
--- Name: subjects; Type: TABLE; Schema: public; Owner: ivan
+-- Name: subjects; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.subjects (
@@ -701,10 +701,10 @@ CREATE TABLE public.subjects (
 );
 
 
-ALTER TABLE public.subjects OWNER TO ivan;
+ALTER TABLE public.subjects OWNER TO username;
 
 --
--- Name: subjects_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: subjects_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.subjects_subjects_id_seq
@@ -716,17 +716,17 @@ CREATE SEQUENCE public.subjects_subjects_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.subjects_subjects_id_seq OWNER TO ivan;
+ALTER TABLE public.subjects_subjects_id_seq OWNER TO username;
 
 --
--- Name: subjects_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: subjects_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.subjects_subjects_id_seq OWNED BY public.subjects.subjects_id;
 
 
 --
--- Name: udc_codes; Type: TABLE; Schema: public; Owner: ivan
+-- Name: udc_codes; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.udc_codes (
@@ -735,10 +735,10 @@ CREATE TABLE public.udc_codes (
 );
 
 
-ALTER TABLE public.udc_codes OWNER TO ivan;
+ALTER TABLE public.udc_codes OWNER TO username;
 
 --
--- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.udc_codes_udc_codes_id_seq
@@ -750,17 +750,17 @@ CREATE SEQUENCE public.udc_codes_udc_codes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.udc_codes_udc_codes_id_seq OWNER TO ivan;
+ALTER TABLE public.udc_codes_udc_codes_id_seq OWNER TO username;
 
 --
--- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.udc_codes_udc_codes_id_seq OWNED BY public.udc_codes.udc_codes_id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: ivan
+-- Name: users; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.users (
@@ -781,10 +781,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO ivan;
+ALTER TABLE public.users OWNER TO username;
 
 --
--- Name: users_authors; Type: TABLE; Schema: public; Owner: ivan
+-- Name: users_authors; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.users_authors (
@@ -793,10 +793,10 @@ CREATE TABLE public.users_authors (
 );
 
 
-ALTER TABLE public.users_authors OWNER TO ivan;
+ALTER TABLE public.users_authors OWNER TO username;
 
 --
--- Name: users_publishing_houses; Type: TABLE; Schema: public; Owner: ivan
+-- Name: users_publishing_houses; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.users_publishing_houses (
@@ -805,10 +805,10 @@ CREATE TABLE public.users_publishing_houses (
 );
 
 
-ALTER TABLE public.users_publishing_houses OWNER TO ivan;
+ALTER TABLE public.users_publishing_houses OWNER TO username;
 
 --
--- Name: users_users_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: users_users_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.users_users_id_seq
@@ -820,17 +820,17 @@ CREATE SEQUENCE public.users_users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_users_id_seq OWNER TO ivan;
+ALTER TABLE public.users_users_id_seq OWNER TO username;
 
 --
--- Name: users_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: users_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.users_users_id_seq OWNED BY public.users.users_id;
 
 
 --
--- Name: verifications; Type: TABLE; Schema: public; Owner: ivan
+-- Name: verifications; Type: TABLE; Schema: public; Owner: username
 --
 
 CREATE TABLE public.verifications (
@@ -845,10 +845,10 @@ CREATE TABLE public.verifications (
 );
 
 
-ALTER TABLE public.verifications OWNER TO ivan;
+ALTER TABLE public.verifications OWNER TO username;
 
 --
--- Name: verifications_verifications_id_seq; Type: SEQUENCE; Schema: public; Owner: ivan
+-- Name: verifications_verifications_id_seq; Type: SEQUENCE; Schema: public; Owner: username
 --
 
 CREATE SEQUENCE public.verifications_verifications_id_seq
@@ -860,115 +860,115 @@ CREATE SEQUENCE public.verifications_verifications_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.verifications_verifications_id_seq OWNER TO ivan;
+ALTER TABLE public.verifications_verifications_id_seq OWNER TO username;
 
 --
--- Name: verifications_verifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ivan
+-- Name: verifications_verifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
 --
 
 ALTER SEQUENCE public.verifications_verifications_id_seq OWNED BY public.verifications.verifications_id;
 
 
 --
--- Name: authors authors_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: authors authors_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.authors ALTER COLUMN authors_id SET DEFAULT nextval('public.authors_authors_id_seq'::regclass);
 
 
 --
--- Name: editors editors_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: editors editors_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.editors ALTER COLUMN editors_id SET DEFAULT nextval('public.editors_editors_id_seq'::regclass);
 
 
 --
--- Name: keywords keywords_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: keywords keywords_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.keywords ALTER COLUMN keywords_id SET DEFAULT nextval('public.keywords_keywords_id_seq'::regclass);
 
 
 --
--- Name: magazines magazines_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: magazines magazines_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines ALTER COLUMN magazines_id SET DEFAULT nextval('public.magazines_magazines_id_seq'::regclass);
 
 
 --
--- Name: organizations organizations_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: organizations organizations_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.organizations ALTER COLUMN organizations_id SET DEFAULT nextval('public.organizations_organizations_id_seq'::regclass);
 
 
 --
--- Name: publications publications_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: publications publications_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications ALTER COLUMN publications_id SET DEFAULT nextval('public.publications_publications_id_seq'::regclass);
 
 
 --
--- Name: publishing_houses publishing_houses_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: publishing_houses publishing_houses_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_houses ALTER COLUMN publishing_houses_id SET DEFAULT nextval('public.publishing_houses_publishing_houses_id_seq'::regclass);
 
 
 --
--- Name: subjects subjects_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: subjects subjects_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.subjects ALTER COLUMN subjects_id SET DEFAULT nextval('public.subjects_subjects_id_seq'::regclass);
 
 
 --
--- Name: udc_codes udc_codes_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: udc_codes udc_codes_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.udc_codes ALTER COLUMN udc_codes_id SET DEFAULT nextval('public.udc_codes_udc_codes_id_seq'::regclass);
 
 
 --
--- Name: users users_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: users users_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN users_id SET DEFAULT nextval('public.users_users_id_seq'::regclass);
 
 
 --
--- Name: verifications verifications_id; Type: DEFAULT; Schema: public; Owner: ivan
+-- Name: verifications verifications_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.verifications ALTER COLUMN verifications_id SET DEFAULT nextval('public.verifications_verifications_id_seq'::regclass);
 
 
 --
--- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.authors VALUES (1, 'Виктор', 'Шулепкин', 'Александрович', 0, '1999-01-15', NULL, NULL, NULL);
 
 
 --
--- Data for Name: authors_organizations; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: authors_organizations; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.authors_organizations VALUES (1, 1, '2019-01-13', '2021-01-01');
 
 
 --
--- Data for Name: authors_publications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: authors_publications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.authors_publications VALUES (9, 1);
 
 
 --
--- Data for Name: digests_publications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: digests_publications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.digests_publications VALUES (4, 3);
@@ -976,21 +976,21 @@ INSERT INTO public.digests_publications VALUES (6, 3);
 
 
 --
--- Data for Name: editors; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: editors; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.editors VALUES (1, 'Дарья', 'Вотинцева', NULL, 1, NULL, NULL, NULL, NULL);
 
 
 --
--- Data for Name: editors_publications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: editors_publications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.editors_publications VALUES (9, 1);
 
 
 --
--- Data for Name: keywords; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: keywords; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.keywords VALUES (1, 'youtube');
@@ -1001,21 +1001,21 @@ INSERT INTO public.keywords VALUES (5, 'рэп');
 
 
 --
--- Data for Name: magazine_article_info; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: magazine_article_info; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.magazine_article_info VALUES (5, 1, 2018);
 
 
 --
--- Data for Name: magazines; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: magazines; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.magazines VALUES (1, 'Коммит в мастер', 1, 1);
 
 
 --
--- Data for Name: magazines_publications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: magazines_publications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.magazines_publications VALUES (5, 1);
@@ -1023,21 +1023,21 @@ INSERT INTO public.magazines_publications VALUES (7, 1);
 
 
 --
--- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.organizations VALUES (1, 'Ночные коллизии', 'город Владивосток, прямо, направо, до перекрестка и налево', NULL, NULL);
 
 
 --
--- Data for Name: organizations_publications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: organizations_publications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.organizations_publications VALUES (8, 1);
 
 
 --
--- Data for Name: publications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: publications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.publications VALUES (1, 0, 'Путь к успеху');
@@ -1052,7 +1052,7 @@ INSERT INTO public.publications VALUES (9, 0, 'Самый крутой рэп. �
 
 
 --
--- Data for Name: publications_keywords; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: publications_keywords; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.publications_keywords VALUES (1, 1);
@@ -1065,7 +1065,7 @@ INSERT INTO public.publications_keywords VALUES (9, 5);
 
 
 --
--- Data for Name: publications_udc_codes; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: publications_udc_codes; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.publications_udc_codes VALUES (1, 1);
@@ -1075,7 +1075,7 @@ INSERT INTO public.publications_udc_codes VALUES (2, 3);
 
 
 --
--- Data for Name: publishing_houses; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: publishing_houses; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.publishing_houses VALUES (1, 'Издательство АСТ', '129085, город  Москва, Звездный бульвар, дом 21, строение 1, комната 39', NULL, 'opt@ast.ru');
@@ -1084,7 +1084,7 @@ INSERT INTO public.publishing_houses VALUES (3, 'Суровый Спасск', '
 
 
 --
--- Data for Name: publishing_houses_publications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: publishing_houses_publications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.publishing_houses_publications VALUES (1, 1);
@@ -1094,7 +1094,7 @@ INSERT INTO public.publishing_houses_publications VALUES (9, 3);
 
 
 --
--- Data for Name: publishing_years; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: publishing_years; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.publishing_years VALUES (1, 2017);
@@ -1104,14 +1104,14 @@ INSERT INTO public.publishing_years VALUES (9, 2018);
 
 
 --
--- Data for Name: subjects; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: subjects; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.subjects VALUES (1, 'программирование');
 
 
 --
--- Data for Name: udc_codes; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: udc_codes; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.udc_codes VALUES (1, '1');
@@ -1120,7 +1120,7 @@ INSERT INTO public.udc_codes VALUES (3, '3');
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.users VALUES (1, 'А́рагорн', NULL, 'сын Араторна', 0, 'admin', 'password', '2931-01-01', 0, 88005553535, 'admin@library.com');
@@ -1131,19 +1131,19 @@ INSERT INTO public.users VALUES (5, 'Иван', 'Василенко', 'Макс�
 
 
 --
--- Data for Name: users_authors; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: users_authors; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 
 
 --
--- Data for Name: users_publishing_houses; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: users_publishing_houses; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 
 
 --
--- Data for Name: verifications; Type: TABLE DATA; Schema: public; Owner: ivan
+-- Data for Name: verifications; Type: TABLE DATA; Schema: public; Owner: username
 --
 
 INSERT INTO public.verifications VALUES (1, 4, 2, NULL, 3);
@@ -1151,84 +1151,84 @@ INSERT INTO public.verifications VALUES (2, 3, 3, 1, NULL);
 
 
 --
--- Name: authors_authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: authors_authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.authors_authors_id_seq', 1, true);
 
 
 --
--- Name: editors_editors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: editors_editors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.editors_editors_id_seq', 1, true);
 
 
 --
--- Name: keywords_keywords_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: keywords_keywords_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.keywords_keywords_id_seq', 5, true);
 
 
 --
--- Name: magazines_magazines_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: magazines_magazines_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.magazines_magazines_id_seq', 1, true);
 
 
 --
--- Name: organizations_organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: organizations_organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.organizations_organizations_id_seq', 1, true);
 
 
 --
--- Name: publications_publications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: publications_publications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.publications_publications_id_seq', 9, true);
 
 
 --
--- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.publishing_houses_publishing_houses_id_seq', 3, true);
 
 
 --
--- Name: subjects_subjects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: subjects_subjects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.subjects_subjects_id_seq', 1, true);
 
 
 --
--- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.udc_codes_udc_codes_id_seq', 3, true);
 
 
 --
--- Name: users_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: users_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.users_users_id_seq', 5, true);
 
 
 --
--- Name: verifications_verifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ivan
+-- Name: verifications_verifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
 SELECT pg_catalog.setval('public.verifications_verifications_id_seq', 2, true);
 
 
 --
--- Name: authors authors_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: authors authors_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.authors
@@ -1236,7 +1236,7 @@ ALTER TABLE ONLY public.authors
 
 
 --
--- Name: authors_publications authors_publications_publications_id_authors_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: authors_publications authors_publications_publications_id_authors_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.authors_publications
@@ -1244,7 +1244,7 @@ ALTER TABLE ONLY public.authors_publications
 
 
 --
--- Name: digests_publications digests_publications_publications_id_digests_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: digests_publications digests_publications_publications_id_digests_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.digests_publications
@@ -1252,7 +1252,7 @@ ALTER TABLE ONLY public.digests_publications
 
 
 --
--- Name: editors editors_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: editors editors_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.editors
@@ -1260,7 +1260,7 @@ ALTER TABLE ONLY public.editors
 
 
 --
--- Name: editors_publications editors_publications_publications_id_editors_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: editors_publications editors_publications_publications_id_editors_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.editors_publications
@@ -1268,7 +1268,7 @@ ALTER TABLE ONLY public.editors_publications
 
 
 --
--- Name: keywords keywords_keyword_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: keywords keywords_keyword_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.keywords
@@ -1276,7 +1276,7 @@ ALTER TABLE ONLY public.keywords
 
 
 --
--- Name: keywords keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: keywords keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.keywords
@@ -1284,7 +1284,7 @@ ALTER TABLE ONLY public.keywords
 
 
 --
--- Name: magazine_article_info magazine_article_info_publications_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazine_article_info magazine_article_info_publications_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazine_article_info
@@ -1292,7 +1292,7 @@ ALTER TABLE ONLY public.magazine_article_info
 
 
 --
--- Name: magazines magazines_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazines magazines_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines
@@ -1300,7 +1300,7 @@ ALTER TABLE ONLY public.magazines
 
 
 --
--- Name: magazines_publications magazines_publications_publications_id_magazines_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazines_publications magazines_publications_publications_id_magazines_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines_publications
@@ -1308,7 +1308,7 @@ ALTER TABLE ONLY public.magazines_publications
 
 
 --
--- Name: magazines magazines_title_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazines magazines_title_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines
@@ -1316,7 +1316,7 @@ ALTER TABLE ONLY public.magazines
 
 
 --
--- Name: organizations organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: organizations organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.organizations
@@ -1324,7 +1324,7 @@ ALTER TABLE ONLY public.organizations
 
 
 --
--- Name: organizations_publications organizations_publications_publications_id_organizations_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: organizations_publications organizations_publications_publications_id_organizations_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.organizations_publications
@@ -1332,7 +1332,7 @@ ALTER TABLE ONLY public.organizations_publications
 
 
 --
--- Name: organizations organizations_title_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: organizations organizations_title_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.organizations
@@ -1340,7 +1340,7 @@ ALTER TABLE ONLY public.organizations
 
 
 --
--- Name: publications_keywords publications_keywords_publications_id_keywords_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publications_keywords publications_keywords_publications_id_keywords_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications_keywords
@@ -1348,7 +1348,7 @@ ALTER TABLE ONLY public.publications_keywords
 
 
 --
--- Name: publications publications_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publications publications_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications
@@ -1356,7 +1356,7 @@ ALTER TABLE ONLY public.publications
 
 
 --
--- Name: publications_udc_codes publications_udc_codes_publications_id_udc_codes_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publications_udc_codes publications_udc_codes_publications_id_udc_codes_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications_udc_codes
@@ -1364,7 +1364,7 @@ ALTER TABLE ONLY public.publications_udc_codes
 
 
 --
--- Name: publishing_houses publishing_houses_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publishing_houses publishing_houses_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_houses
@@ -1372,7 +1372,7 @@ ALTER TABLE ONLY public.publishing_houses
 
 
 --
--- Name: publishing_houses_publications publishing_houses_publication_publications_id_publishing_ho_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publishing_houses_publications publishing_houses_publication_publications_id_publishing_ho_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_houses_publications
@@ -1380,7 +1380,7 @@ ALTER TABLE ONLY public.publishing_houses_publications
 
 
 --
--- Name: publishing_houses publishing_houses_title_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publishing_houses publishing_houses_title_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_houses
@@ -1388,7 +1388,7 @@ ALTER TABLE ONLY public.publishing_houses
 
 
 --
--- Name: publishing_years publishing_years_publications_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publishing_years publishing_years_publications_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_years
@@ -1396,7 +1396,7 @@ ALTER TABLE ONLY public.publishing_years
 
 
 --
--- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.subjects
@@ -1404,7 +1404,7 @@ ALTER TABLE ONLY public.subjects
 
 
 --
--- Name: subjects subjects_title_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: subjects subjects_title_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.subjects
@@ -1412,7 +1412,7 @@ ALTER TABLE ONLY public.subjects
 
 
 --
--- Name: udc_codes udc_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: udc_codes udc_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.udc_codes
@@ -1420,7 +1420,7 @@ ALTER TABLE ONLY public.udc_codes
 
 
 --
--- Name: udc_codes udc_codes_udc_code_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: udc_codes udc_codes_udc_code_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.udc_codes
@@ -1428,7 +1428,7 @@ ALTER TABLE ONLY public.udc_codes
 
 
 --
--- Name: users_authors users_authors_users_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users_authors users_authors_users_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users_authors
@@ -1436,7 +1436,7 @@ ALTER TABLE ONLY public.users_authors
 
 
 --
--- Name: users users_login_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users users_login_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users
@@ -1444,7 +1444,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users
@@ -1452,7 +1452,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users_publishing_houses users_publishing_houses_users_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users_publishing_houses users_publishing_houses_users_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users_publishing_houses
@@ -1460,7 +1460,7 @@ ALTER TABLE ONLY public.users_publishing_houses
 
 
 --
--- Name: verifications verifications_pkey; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: verifications verifications_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.verifications
@@ -1468,7 +1468,7 @@ ALTER TABLE ONLY public.verifications
 
 
 --
--- Name: verifications verifications_users_id_key; Type: CONSTRAINT; Schema: public; Owner: ivan
+-- Name: verifications verifications_users_id_key; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.verifications
@@ -1476,84 +1476,84 @@ ALTER TABLE ONLY public.verifications
 
 
 --
--- Name: authors_organizations authors_organizations_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: authors_organizations authors_organizations_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER authors_organizations_insert BEFORE INSERT ON public.authors_organizations FOR EACH ROW EXECUTE PROCEDURE public.check_intervals();
 
 
 --
--- Name: authors_publications authors_publications_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: authors_publications authors_publications_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER authors_publications_insert BEFORE INSERT ON public.authors_publications FOR EACH ROW EXECUTE PROCEDURE public.check_authors_publications();
 
 
 --
--- Name: digests_publications digests_publications_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: digests_publications digests_publications_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER digests_publications_insert BEFORE INSERT ON public.digests_publications FOR EACH ROW EXECUTE PROCEDURE public.check_digests_publications();
 
 
 --
--- Name: editors_publications editors_publications_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: editors_publications editors_publications_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER editors_publications_insert BEFORE INSERT ON public.editors_publications FOR EACH ROW EXECUTE PROCEDURE public.check_editors_publications();
 
 
 --
--- Name: magazine_article_info magazine_article_info_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: magazine_article_info magazine_article_info_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER magazine_article_info_insert BEFORE INSERT ON public.magazine_article_info FOR EACH ROW EXECUTE PROCEDURE public.check_magazine_article_info();
 
 
 --
--- Name: magazines_publications magazines_publications_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: magazines_publications magazines_publications_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER magazines_publications_insert BEFORE INSERT ON public.magazines_publications FOR EACH ROW EXECUTE PROCEDURE public.check_magazines_publications();
 
 
 --
--- Name: organizations_publications organizations_publications_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: organizations_publications organizations_publications_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER organizations_publications_insert BEFORE INSERT ON public.organizations_publications FOR EACH ROW EXECUTE PROCEDURE public.check_organizations_publications();
 
 
 --
--- Name: publishing_houses_publications publishing_houses_publications_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: publishing_houses_publications publishing_houses_publications_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER publishing_houses_publications_insert BEFORE INSERT ON public.publishing_houses_publications FOR EACH ROW EXECUTE PROCEDURE public.check_publishing_houses_publications();
 
 
 --
--- Name: publishing_years publishing_years_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: publishing_years publishing_years_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER publishing_years_insert BEFORE INSERT ON public.publishing_years FOR EACH ROW EXECUTE PROCEDURE public.check_publishing_years();
 
 
 --
--- Name: users_authors users_authors_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: users_authors users_authors_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER users_authors_insert BEFORE INSERT ON public.users_authors FOR EACH ROW EXECUTE PROCEDURE public.check_users_authors();
 
 
 --
--- Name: users_publishing_houses users_publishing_houses_insert; Type: TRIGGER; Schema: public; Owner: ivan
+-- Name: users_publishing_houses users_publishing_houses_insert; Type: TRIGGER; Schema: public; Owner: username
 --
 
 CREATE TRIGGER users_publishing_houses_insert BEFORE INSERT ON public.users_publishing_houses FOR EACH ROW EXECUTE PROCEDURE public.check_users_publishing_houses();
 
 
 --
--- Name: authors_organizations authors_organizations_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: authors_organizations authors_organizations_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.authors_organizations
@@ -1561,7 +1561,7 @@ ALTER TABLE ONLY public.authors_organizations
 
 
 --
--- Name: authors_organizations authors_organizations_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: authors_organizations authors_organizations_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.authors_organizations
@@ -1569,7 +1569,7 @@ ALTER TABLE ONLY public.authors_organizations
 
 
 --
--- Name: authors_publications authors_publications_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: authors_publications authors_publications_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.authors_publications
@@ -1577,7 +1577,7 @@ ALTER TABLE ONLY public.authors_publications
 
 
 --
--- Name: authors_publications authors_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: authors_publications authors_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.authors_publications
@@ -1585,7 +1585,7 @@ ALTER TABLE ONLY public.authors_publications
 
 
 --
--- Name: digests_publications digests_publications_digests_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: digests_publications digests_publications_digests_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.digests_publications
@@ -1593,7 +1593,7 @@ ALTER TABLE ONLY public.digests_publications
 
 
 --
--- Name: digests_publications digests_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: digests_publications digests_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.digests_publications
@@ -1601,7 +1601,7 @@ ALTER TABLE ONLY public.digests_publications
 
 
 --
--- Name: editors_publications editors_publications_editors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: editors_publications editors_publications_editors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.editors_publications
@@ -1609,7 +1609,7 @@ ALTER TABLE ONLY public.editors_publications
 
 
 --
--- Name: editors_publications editors_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: editors_publications editors_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.editors_publications
@@ -1617,7 +1617,7 @@ ALTER TABLE ONLY public.editors_publications
 
 
 --
--- Name: magazine_article_info magazine_article_info_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazine_article_info magazine_article_info_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazine_article_info
@@ -1625,7 +1625,7 @@ ALTER TABLE ONLY public.magazine_article_info
 
 
 --
--- Name: magazines magazines_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazines magazines_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines
@@ -1633,7 +1633,7 @@ ALTER TABLE ONLY public.magazines
 
 
 --
--- Name: magazines_publications magazines_publications_magazines_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazines_publications magazines_publications_magazines_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines_publications
@@ -1641,7 +1641,7 @@ ALTER TABLE ONLY public.magazines_publications
 
 
 --
--- Name: magazines_publications magazines_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazines_publications magazines_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines_publications
@@ -1649,7 +1649,7 @@ ALTER TABLE ONLY public.magazines_publications
 
 
 --
--- Name: magazines magazines_subjects_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: magazines magazines_subjects_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.magazines
@@ -1657,7 +1657,7 @@ ALTER TABLE ONLY public.magazines
 
 
 --
--- Name: organizations_publications organizations_publications_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: organizations_publications organizations_publications_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.organizations_publications
@@ -1665,7 +1665,7 @@ ALTER TABLE ONLY public.organizations_publications
 
 
 --
--- Name: organizations_publications organizations_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: organizations_publications organizations_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.organizations_publications
@@ -1673,7 +1673,7 @@ ALTER TABLE ONLY public.organizations_publications
 
 
 --
--- Name: publications_keywords publications_keywords_keywords_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publications_keywords publications_keywords_keywords_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications_keywords
@@ -1681,7 +1681,7 @@ ALTER TABLE ONLY public.publications_keywords
 
 
 --
--- Name: publications_keywords publications_keywords_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publications_keywords publications_keywords_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications_keywords
@@ -1689,7 +1689,7 @@ ALTER TABLE ONLY public.publications_keywords
 
 
 --
--- Name: publications_udc_codes publications_udc_codes_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publications_udc_codes publications_udc_codes_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications_udc_codes
@@ -1697,7 +1697,7 @@ ALTER TABLE ONLY public.publications_udc_codes
 
 
 --
--- Name: publications_udc_codes publications_udc_codes_udc_codes_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publications_udc_codes publications_udc_codes_udc_codes_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publications_udc_codes
@@ -1705,7 +1705,7 @@ ALTER TABLE ONLY public.publications_udc_codes
 
 
 --
--- Name: publishing_houses_publications publishing_houses_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publishing_houses_publications publishing_houses_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_houses_publications
@@ -1713,7 +1713,7 @@ ALTER TABLE ONLY public.publishing_houses_publications
 
 
 --
--- Name: publishing_houses_publications publishing_houses_publications_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publishing_houses_publications publishing_houses_publications_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_houses_publications
@@ -1721,7 +1721,7 @@ ALTER TABLE ONLY public.publishing_houses_publications
 
 
 --
--- Name: publishing_years publishing_years_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: publishing_years publishing_years_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.publishing_years
@@ -1729,7 +1729,7 @@ ALTER TABLE ONLY public.publishing_years
 
 
 --
--- Name: users_authors users_authors_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users_authors users_authors_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users_authors
@@ -1737,7 +1737,7 @@ ALTER TABLE ONLY public.users_authors
 
 
 --
--- Name: users_authors users_authors_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users_authors users_authors_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users_authors
@@ -1745,7 +1745,7 @@ ALTER TABLE ONLY public.users_authors
 
 
 --
--- Name: users_publishing_houses users_publishing_houses_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users_publishing_houses users_publishing_houses_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users_publishing_houses
@@ -1753,7 +1753,7 @@ ALTER TABLE ONLY public.users_publishing_houses
 
 
 --
--- Name: users_publishing_houses users_publishing_houses_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: users_publishing_houses users_publishing_houses_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.users_publishing_houses
@@ -1761,7 +1761,7 @@ ALTER TABLE ONLY public.users_publishing_houses
 
 
 --
--- Name: verifications verifications_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: verifications verifications_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.verifications
@@ -1769,7 +1769,7 @@ ALTER TABLE ONLY public.verifications
 
 
 --
--- Name: verifications verifications_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: verifications verifications_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.verifications
@@ -1777,7 +1777,7 @@ ALTER TABLE ONLY public.verifications
 
 
 --
--- Name: verifications verifications_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ivan
+-- Name: verifications verifications_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
 --
 
 ALTER TABLE ONLY public.verifications

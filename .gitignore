@@ -7,6 +7,7 @@
 !/PostgreSQL
 /PostgreSQL/* 
 !/PostgreSQL/consts.txt
+!/PostgreSQL/readme.txt
 !/PostgreSQL/pg_dump
 !/Documentation
 /Documentation/*
