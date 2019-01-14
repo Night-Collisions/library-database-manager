@@ -10,14 +10,12 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.ir.Expression;
 import libapp.ClientSocket;
 import libapp.model.PublicationTable;
+import libapp.view.publication.PublicationProperty;
 
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Optional;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -25,12 +23,12 @@ import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class TebleProperty<T> {
 
-    ClientSocket socket;
-    Main main;
-    ObservableList<T> dataList = FXCollections.observableArrayList();
+    public ClientSocket socket;
+    public Main main;
+    public ObservableList<T> dataList = FXCollections.observableArrayList();
 
     @FXML
-    TableView<T> table;
+    public TableView<T> table;
 
     public static void createWindow(String name, Object controller) {
         try {
@@ -51,7 +49,7 @@ public class TebleProperty<T> {
         }
     }
 
-    void createMenu(javafx.scene.control.Menu cascadingMenu[], Object add, Object change, String formAdd, String formChange) {
+    public void createMenu(javafx.scene.control.Menu cascadingMenu[], Object add, Object change, String formAdd, String formChange) {
         ContextMenu context = new ContextMenu();
 
         MenuItem insert = new MenuItem("Добавить");
@@ -91,7 +89,7 @@ public class TebleProperty<T> {
         });
     }
 
-    static boolean isDelete(String id, String whatDelete) {
+    public static boolean isDelete(String id, String whatDelete) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Удаление.");
         alert.setHeaderText(null);
@@ -104,5 +102,5 @@ public class TebleProperty<T> {
         return false;
     }
 
-    void deleteRow(String id) {}
+    public void deleteRow(String id) {}
 }

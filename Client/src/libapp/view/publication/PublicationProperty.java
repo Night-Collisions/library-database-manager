@@ -1,4 +1,4 @@
-package libapp.view;
+package libapp.view.publication;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.model.PublicationTable;
 import libapp.model.TechnicalDoc;
+import libapp.view.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -19,11 +20,11 @@ import java.io.IOException;
 public class PublicationProperty<T>  extends TebleProperty<T> {
 
     @FXML
-    TableColumn<T, String> id;
+    public TableColumn<T, String> id;
     @FXML
-    TableColumn<TechnicalDoc, String> name;
+    public TableColumn<TechnicalDoc, String> name;
 
-    void initProperty() {
+    public void initProperty() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
     }
@@ -35,6 +36,7 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
             loader.setController(conect);
             AnchorPane udcTable = loader.load();
 
+            //Todo: переделать этот кастыль
             if (conect instanceof UDCPropertyController) {
                 UDCPropertyController controller = loader.getController();
                 controller.fillTable(idFilter);
@@ -67,7 +69,7 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
         }
     }
 
-    javafx.scene.control.MenuItem CreateUDC() {
+    public javafx.scene.control.MenuItem CreateUDC() {
         javafx.scene.control.MenuItem udc = new MenuItem("УДК");
         udc.setOnAction(t -> {
             CreateTableProperty(new UDCPropertyController(), "УДК для id ",
@@ -76,7 +78,7 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
         return udc;
     }
 
-    javafx.scene.control.MenuItem CreateKeyWords() {
+    public javafx.scene.control.MenuItem CreateKeyWords() {
         MenuItem keywords = new MenuItem("Ключевые слова");
         keywords.setOnAction(t -> {
             CreateTableProperty(new KeywordPropertyController(), "Ключевые слова для id ",
@@ -85,7 +87,7 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
         return keywords;
     }
 
-    javafx.scene.control.MenuItem CreateAuthors() {
+    public javafx.scene.control.MenuItem CreateAuthors() {
         MenuItem authors = new MenuItem("Авторы");
         authors.setOnAction(t -> {
             CreateTableProperty(new AuthorsPropertyController(), "Авторы для id ",
@@ -94,7 +96,7 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
         return authors;
     }
 
-    javafx.scene.control.MenuItem CreateEditors() {
+    public javafx.scene.control.MenuItem CreateEditors() {
         MenuItem editors = new MenuItem("Редакторы");
         editors.setOnAction(t -> {
             CreateTableProperty(new EditorsPropertyController(), "Редакторы для id ",
@@ -103,11 +105,11 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
         return editors;
     }
 
-    void addMenu(javafx.scene.control.MenuItem moreTableProperty[], Object add, Object change, String form) {
+    public void addMenu(javafx.scene.control.MenuItem moreTableProperty[], Object add, Object change, String form) {
         addMenu(moreTableProperty, add, change, form, form);
     }
 
-    void addMenu(javafx.scene.control.MenuItem moreTableProperty[], Object add, Object change, String formAdd, String formChange) {
+    public void addMenu(javafx.scene.control.MenuItem moreTableProperty[], Object add, Object change, String formAdd, String formChange) {
         javafx.scene.control.Menu more[] = {new Menu("Подробнее")};
 
         more[0].getItems().add(CreateUDC());
@@ -117,7 +119,7 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
         createMenu(more, add, change, formAdd, formChange);
     }
 
-    void deleteRow(String id) {
+    public void deleteRow(String id) {
         if (isDelete(id, "публикацию")) {
             //TODO:удалять туту
         }
