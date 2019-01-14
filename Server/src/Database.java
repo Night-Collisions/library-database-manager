@@ -454,6 +454,48 @@ public class Database {
         }
     }
 
+    public String addOrganization(String id, String title, String address, String phone, String email) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        String query = "INSERT INTO organizations(title, legal_address, phone_number, email) VALUES (?, ?, ?, ?)";
+        return addOrgOrPublHouseCommonPart(query, title, address, phone, email);
+    }
+
+    public String addPublHouse(String id, String title, String address, String phone, String email) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        String query = "INSERT INTO publishing_houses(title, legal_address, phone_number, email) VALUES (?, ?, ?, ?)";
+        return addOrgOrPublHouseCommonPart(query, title, address, phone, email);
+    }
+
+    private String addOrgOrPublHouseCommonPart(String query, String title, String address, String phone, String email) {
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ///
+            ps.setString(1, title);
+            ps.setString(2, address);
+
+            if (phone.equals("NULL")) {
+                ps.setNull(3, Types.BIGINT);
+            } else {
+                ps.setLong(3, Long.parseLong(phone));
+            }
+            if (email.equals("NULL")) {
+                ps.setNull(4, Types.VARCHAR);
+            } else {
+                ps.setString(4, email);
+            }
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
     public String addKeyword(String id, String keyword) {
         if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "error";

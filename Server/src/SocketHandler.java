@@ -238,6 +238,20 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.addMagazine(data[0], data[2], data[3], data[4]));
                         break;
+                    case "addOrganization":
+                        if (data.length != 6) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addOrganization(data[0], data[2], data[3], data[4], data[5]));
+                        break;
+                    case "addPublHouse":
+                        if (data.length != 6) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.addPublHouse(data[0], data[2], data[3], data[4], data[5]));
+                        break;
                     case "addSubject":
                         if (data.length != 3) {
                             send("wrong args");
