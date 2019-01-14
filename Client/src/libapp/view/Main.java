@@ -24,6 +24,8 @@ import libapp.view.publication.AllPublication.PublicationController;
 import libapp.view.publication.TechnicalDoc.TechnicalDocController;
 import libapp.view.publication.Thesis.ThesisController;
 import libapp.view.publication.Work.WorkController;
+import libapp.view.user.UserController;
+import sun.plugin.util.UserProfile;
 
 import java.awt.*;
 import java.io.IOException;
@@ -181,7 +183,7 @@ public class Main extends Application {
     public void showUsers() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("UserOverview.fxml"));
+            loader.setLocation(Main.class.getResource("user\\UserOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -386,6 +388,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("UserProfileOverview.fxml"));
+            loader.setController(new UserProfileOverview());
             AnchorPane profileWindow = loader.load();
 
             Stage dialogStage = new Stage();

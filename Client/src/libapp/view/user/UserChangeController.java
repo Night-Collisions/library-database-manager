@@ -1,4 +1,4 @@
-package libapp.view;
+package libapp.view.user;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,7 +7,7 @@ import libapp.view.RegularForField;
 
 import java.util.Optional;
 
-public class UserProfileOverview {
+public class UserChangeController {
 
     @FXML
     private Label id;

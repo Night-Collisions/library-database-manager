@@ -55,6 +55,11 @@ public class TebleProperty<T> {
         createMenu(a, add, change, form, form);
     }
 
+    public void createMenu(Object add, Object change, String formAdd, String formChange) {
+        javafx.scene.control.Menu a[] = {};
+        createMenu(a, add, change, formAdd, formChange);
+    }
+
     public void createMenu(javafx.scene.control.Menu cascadingMenu[], Object add, Object change, String formAdd, String formChange) {
         ContextMenu context = new ContextMenu();
 

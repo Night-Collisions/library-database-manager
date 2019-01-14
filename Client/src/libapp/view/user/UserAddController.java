@@ -1,4 +1,4 @@
-package libapp.view;
+package libapp.view.user;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,16 +7,14 @@ import libapp.view.RegularForField;
 
 import java.util.Optional;
 
-public class UserProfileOverview {
+public class UserAddController {
 
     @FXML
-    private Label id;
+    private TextField login;
     @FXML
-    private Label login;
+    private TextField password;
     @FXML
-    private Button changePassword;
-    @FXML
-    private Label type;
+    private ComboBox<String> type;
     @FXML
     private TextField surname;
     @FXML
@@ -38,24 +36,9 @@ public class UserProfileOverview {
 
     @FXML
     private void initialize() throws InterruptedException {
+        RegularForField.setLoginField(login);
         RegularForField.setPhoneField(phone);
-    }
-
-    @FXML
-    int changePassword(){
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Изменить пароль");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Новый пароль:");
-
-        RegularForField.setPasswordField(dialog.getEditor());
-
-        Optional<String> result = dialog.showAndWait();
-
-        if (result.isPresent()){
-            System.out.println("Your name: " + result.get());
-        }
-        return 0;
+        RegularForField.setPasswordField(password);
     }
 
     @FXML
@@ -70,4 +53,5 @@ public class UserProfileOverview {
         stage.close();
         return 0;
     }
+
 }

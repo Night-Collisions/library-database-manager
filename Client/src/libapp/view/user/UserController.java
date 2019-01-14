@@ -1,4 +1,4 @@
-package libapp.view;
+package libapp.view.user;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,17 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import libapp.ClientSocket;
 import libapp.model.User;
+import libapp.view.Main;
+import libapp.view.TebleProperty;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
-public class UserController {
-    private ClientSocket socket;
-    private Main main;
-    private ObservableList<User> users =
-            FXCollections.observableArrayList();
+public class UserController extends TebleProperty<User> {
 
-    @FXML
-    private TableView<User> table;
     @FXML
     private TableColumn<User, String> id;
     @FXML
@@ -45,7 +41,7 @@ public class UserController {
 
     @FXML
     private void initialize() {
-        setEvents();
+        createMenu(new UserAddController(), new UserChangeController(), "user\\UserAddOverview.fxml", "UserProfileOverview.fxml");
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
@@ -58,7 +54,7 @@ public class UserController {
         phonenumber.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        table.setItems(users);
+        table.setItems(dataList);
     }
 
     public void fillTable() {
@@ -69,42 +65,4 @@ public class UserController {
         // TODO: ебашим запрос к серверу и заполняем
     }
 
-    private void setEvents() {
-        ContextMenu context = new ContextMenu();
-        MenuItem insert = new MenuItem("Добавить");
-        MenuItem edit = new MenuItem("Редактировать");
-        MenuItem delete = new MenuItem("Удалить");
-
-        context.getItems().add(insert);
-        context.getItems().add(edit);
-        context.getItems().add(delete);
-
-        //TODO: нахуячить, если это библиотекарь или че то такое
-        insert.setOnAction(t -> {
-            //TODO: нахуячить
-        });
-
-        //TODO: нахуячить, если это библиотекарь или че то такое
-        edit.setOnAction(t -> {
-            //TODO: нахуячить
-        });
-
-        //TODO: нахуячить, если это библиотекарь или че то такое
-        delete.setOnAction(t -> {
-            //TODO: нахуячить
-        });
-
-        table.addEventHandler(MOUSE_CLICKED, t -> {
-            if(t.getButton() == MouseButton.SECONDARY) {
-                context.show(table, t.getScreenX(), t.getScreenY());
-            } else {
-                context.hide();
-            }
-        });
-    }
-
-    public void setMain(Main main) {
-        this.main = main;
-        this.socket = main.getSocket();
-    }
 }
