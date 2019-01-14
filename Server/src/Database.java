@@ -437,6 +437,23 @@ public class Database {
         }
     }
 
+    public String addSubject(String id, String subject) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        try {
+            String query =
+                    "INSERT INTO subjects(title) VALUES (?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, subject);
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
     public String addKeyword(String id, String keyword) {
         if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "error";
