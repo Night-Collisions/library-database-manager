@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import libapp.view.PhoneField;
 
 public class AuthorAddController {
 
@@ -31,6 +32,7 @@ public class AuthorAddController {
     @FXML
     private void initialize() {
         name.setText("создалась");
+        PhoneField.setPhoneField(phone);
     }
 
     @FXML

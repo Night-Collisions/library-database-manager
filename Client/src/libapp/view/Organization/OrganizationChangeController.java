@@ -1,4 +1,4 @@
-package libapp.view.author;
+package libapp.view.Organization;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,18 +7,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libapp.view.PhoneField;
 
-public class AuthorChangeController {
-
-    @FXML
-    private TextField surname;
+public class OrganizationChangeController {
     @FXML
     private TextField name;
     @FXML
-    private TextField patronymic;
+    private TextField address;
     @FXML
     private DatePicker bornDate;
-    @FXML
-    private DatePicker deathDate;
     @FXML
     private TextField phone;
     @FXML
@@ -30,7 +25,7 @@ public class AuthorChangeController {
 
     @FXML
     private void initialize() {
-        name.setText("Редакт");
+        name.setText("Редактирование");
         PhoneField.setPhoneField(phone);
     }
 
@@ -40,5 +35,4 @@ public class AuthorChangeController {
         stage.close();
         return 0;
     }
-
 }

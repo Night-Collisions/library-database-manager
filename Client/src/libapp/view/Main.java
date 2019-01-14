@@ -264,7 +264,7 @@ public class Main extends Application {
     public void showOrganizations() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("OrganizationOverview.fxml"));
+            loader.setLocation(Main.class.getResource("Organization\\OrganizationOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);

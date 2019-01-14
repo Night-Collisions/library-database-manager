@@ -40,16 +40,7 @@ public class UserProfileOverview {
 
     @FXML
     private void initialize() throws InterruptedException {
-        phone.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-
-                if ((!newValue.matches("[0-9]*")) || (newValue.length() > 11)) {
-                    phone.setText(oldValue);
-                }
-            }
-        });
+        PhoneField.setPhoneField(phone);
     }
 
     @FXML
