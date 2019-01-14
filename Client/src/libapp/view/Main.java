@@ -14,7 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
 import libapp.view.Editor.EditorController;
-import libapp.view.Organization.OrganizationController;
+import libapp.view.organization.OrganizationController;
+import libapp.view.publishingHouse.PublishingHouseController;
 import libapp.view.author.AuthorController;
 import libapp.view.magazine.MagazineController;
 import libapp.view.publication.Article.ArticleController;
@@ -265,7 +266,7 @@ public class Main extends Application {
     public void showOrganizations() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("Organization\\OrganizationOverview.fxml"));
+            loader.setLocation(Main.class.getResource("organization\\OrganizationOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -282,7 +283,7 @@ public class Main extends Application {
     public void showPublishingHouses() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("PublishingHouseOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publishingHouse\\PublishingHouseOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);

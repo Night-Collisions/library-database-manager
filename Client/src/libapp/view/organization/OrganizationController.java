@@ -1,20 +1,10 @@
-package libapp.view.Organization;
+package libapp.view.organization;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
-import libapp.ClientSocket;
 import libapp.model.Organization;
-import libapp.view.Main;
 import libapp.view.TebleProperty;
-
-import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class OrganizationController extends TebleProperty<Organization> {
     @FXML
@@ -30,7 +20,7 @@ public class OrganizationController extends TebleProperty<Organization> {
 
     @FXML
     private void initialize() {
-        createMenu(new OrganizationAddController(), new OrganizationChangeController(), "Organization\\OrganizationAddOverview.fxml");
+        createMenu(new OrganizationAddController(), new OrganizationChangeController(), "organization\\OrganizationAddOverview.fxml");
 
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));

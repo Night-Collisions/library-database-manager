@@ -1,4 +1,4 @@
-package libapp.view.Organization;
+package libapp.view.publishingHouse;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,8 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libapp.view.RegularForField;
 
-public class OrganizationAddController {
-
+public class PublishingHouseChangeController {
     @FXML
     private TextField name;
     @FXML
@@ -26,7 +25,7 @@ public class OrganizationAddController {
 
     @FXML
     private void initialize() {
-        name.setText("Создал");
+        name.setText("Редактирование");
         RegularForField.setPhoneField(phone);
     }
 
@@ -36,5 +35,4 @@ public class OrganizationAddController {
         stage.close();
         return 0;
     }
-
 }
