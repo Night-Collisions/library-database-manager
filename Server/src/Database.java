@@ -437,6 +437,40 @@ public class Database {
         }
     }
 
+    public String addKeyword(String id, String keyword) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        try {
+            String query =
+                    "INSERT INTO keywords(keyword) VALUES (?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, keyword);
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
+    public String addUdc(String id, String udc) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        try {
+            String query =
+                    "INSERT INTO udc_codes(udc_code) VALUES (?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, udc);
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
     private String addPublicationWithDigest(int type, String title, String d_id) {
         try {
             String query_p = "INSERT INTO publications(type, title) VALUES (" + type + ", ?) " +
