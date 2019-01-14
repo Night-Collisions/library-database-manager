@@ -231,7 +231,8 @@ public class Database {
             return "access error";
         }
         return execSelectQuery(
-                "SELECT v.verifications_id, v.users_id, u.login, u.phone_number, u.email, v.to_type " +
+                "SELECT v.verifications_id, v.users_id, u.login, u.phone_number, u.email, v.to_type, v.authors_id, " +
+                        "v.publishing_houses_id " +
                 "FROM verifications v " +
                 "JOIN users u on v.users_id = u.users_id"
         );
