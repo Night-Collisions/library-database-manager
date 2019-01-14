@@ -66,7 +66,8 @@ public class KeywordPropertyController {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                keywords.add(new Keyword(i.get(1).toString()));
+                //TODO: ВИТЯ ИСПРАВЬ ПЕРВЫЙ АРГУМЕНТ
+                keywords.add(new Keyword(i.get(0).toString(), i.get(1).toString()));
             }
 
             table.setItems(keywords);

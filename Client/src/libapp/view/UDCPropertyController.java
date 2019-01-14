@@ -68,7 +68,8 @@ public class UDCPropertyController {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                udcs.add(new UDC(i.get(1).toString()));
+                //TODO: ВИТЯ ИСПРАВЬ ПЕРВЫЙ АРГУМЕНТ
+                udcs.add(new UDC(i.get(0).toString(), i.get(1).toString()));
             }
 
             table.setItems(udcs);

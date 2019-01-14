@@ -1,9 +1,10 @@
 package libapp.model;
 
-public class UDC {
+public class UDC extends Table{
     private String code;
 
-    public UDC(String code) {
+    public UDC(String id, String code) {
+        this.id = id;
         this.code = code;
     }
 
