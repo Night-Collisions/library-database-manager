@@ -1,11 +1,8 @@
 package libapp.view;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import libapp.Specification;
 
 import java.util.Optional;
 
@@ -40,7 +37,7 @@ public class UserProfileOverview {
 
     @FXML
     private void initialize() throws InterruptedException {
-        PhoneField.setPhoneField(phone);
+        RegularForField.setPhoneField(phone);
     }
 
     @FXML
@@ -50,16 +47,7 @@ public class UserProfileOverview {
         dialog.setHeaderText(null);
         dialog.setContentText("Новый пароль:");
 
-        TextField pass = dialog.getEditor();
-        pass.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if ((!newValue.matches(Specification.passwordReg))) {
-                    pass.setText(oldValue);
-                }
-            }
-        });
+        RegularForField.setPasswordField(dialog.getEditor());
 
         Optional<String> result = dialog.showAndWait();
 

@@ -1,14 +1,11 @@
 package libapp.view;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
-import libapp.Specification;
 
 import java.io.IOException;
 
@@ -34,24 +31,8 @@ public class ConnectController {
 
     @FXML
     private void initialize() throws InterruptedException {
-        usernameTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if ((!newValue.matches(Specification.userLoginReg))) {
-                    usernameTextField.setText(oldValue);
-                }
-            }
-        });
-        passwordTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if ((!newValue.matches(Specification.passwordReg))) {
-                    passwordTextField.setText(oldValue);
-                }
-            }
-        });
+        RegularForField.setLoginField(usernameTextField);
+        RegularForField.setPasswordField(passwordTextField);
     }
 
     @FXML

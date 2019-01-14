@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import libapp.view.PhoneField;
+import libapp.view.RegularForField;
 
 public class AuthorChangeController {
 
@@ -31,7 +31,7 @@ public class AuthorChangeController {
     @FXML
     private void initialize() {
         name.setText("Редакт");
-        PhoneField.setPhoneField(phone);
+        RegularForField.setPhoneField(phone);
     }
 
     @FXML

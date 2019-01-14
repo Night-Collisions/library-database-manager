@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import libapp.view.PhoneField;
+import libapp.view.RegularForField;
 
 public class OrganizationChangeController {
     @FXML
@@ -26,7 +26,7 @@ public class OrganizationChangeController {
     @FXML
     private void initialize() {
         name.setText("Редактирование");
-        PhoneField.setPhoneField(phone);
+        RegularForField.setPhoneField(phone);
     }
 
     @FXML

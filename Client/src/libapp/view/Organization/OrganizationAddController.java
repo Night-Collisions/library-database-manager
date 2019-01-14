@@ -1,13 +1,11 @@
 package libapp.view.Organization;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import libapp.view.PhoneField;
+import libapp.view.RegularForField;
 
 public class OrganizationAddController {
 
@@ -29,7 +27,7 @@ public class OrganizationAddController {
     @FXML
     private void initialize() {
         name.setText("Создал");
-        PhoneField.setPhoneField(phone);
+        RegularForField.setPhoneField(phone);
     }
 
     @FXML

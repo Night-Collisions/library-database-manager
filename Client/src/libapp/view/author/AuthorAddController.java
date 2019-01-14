@@ -2,11 +2,10 @@ package libapp.view.author;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import libapp.view.PhoneField;
+import libapp.view.RegularForField;
 
 public class AuthorAddController {
 
@@ -32,7 +31,7 @@ public class AuthorAddController {
     @FXML
     private void initialize() {
         name.setText("создалась");
-        PhoneField.setPhoneField(phone);
+        RegularForField.setPhoneField(phone);
     }
 
     @FXML
