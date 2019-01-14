@@ -227,7 +227,7 @@ public class Database {
     }
 
     public String getVerfs(String id) {
-        if (!checkType(id, new int[] {U_LIBRARIAN})) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "error";
         }
         return execSelectQuery(
