@@ -51,7 +51,7 @@
             </Menu>
                 <Menu fx:id="info" mnemonicParsing="false" text="Инфо">
                     <items>
-                        <MenuItem fx:id="about" mnemonicParsing="false" text="О программе" />
+                        <MenuItem fx:id="about" mnemonicParsing="false" onAction="#showAboutProgram" text="О программе" />
                     </items>
                 </Menu>
             </menus>

@@ -455,6 +455,18 @@ public class Main extends Application {
     }
 
     @FXML
+    private void showAboutProgram() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("AboutProgram.fxml"));
+        AnchorPane abour = loader.load();
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("О программе");
+        Scene scene = new Scene(abour);
+        dialogStage.setScene(scene);
+        dialogStage.showAndWait();
+    }
+
+    @FXML
     private void disconnect() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("ConnectOverview.fxml"));
