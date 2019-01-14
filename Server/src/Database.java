@@ -418,6 +418,25 @@ public class Database {
         }
     }
 
+    public String addMagazine(String id, String title, String s_id, String o_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "error";
+        }
+        try {
+            String query =
+                    "INSERT INTO magazines(title, subjects_id, organizations_id) VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, title);
+            ps.setLong(2, Long.parseLong(s_id));
+            ps.setLong(3, Long.parseLong(o_id));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return "error";
+        }
+    }
+
     private String addPublicationWithDigest(int type, String title, String d_id) {
         try {
             String query_p = "INSERT INTO publications(type, title) VALUES (" + type + ", ?) " +
