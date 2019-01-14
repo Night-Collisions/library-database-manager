@@ -1,24 +1,13 @@
 package libapp.model;
 
-public class Work {
-    private String id;
-    private String name;
+public class Work extends PublicationTable {
     private String publishingHouse;
     private String year;
 
     public Work(String id, String name, String publishigHouse, String year) {
-        this.id = id;
-        this.name = name;
+        InitColumn(id, name);
         this.publishingHouse = publishigHouse;
         this.year = year;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public String getPublishingHouse() {
@@ -27,14 +16,6 @@ public class Work {
 
     public String getYear() {
         return this.year;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setPublishingHouse(String publishingHouse) {

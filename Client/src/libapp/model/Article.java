@@ -1,8 +1,6 @@
 package libapp.model;
 
-public class Article {
-    private String id;
-    private String name;
+public class Article extends PublicationTable {
     private String magazineOrWork;
     private String volume;
     private String number;
@@ -10,19 +8,10 @@ public class Article {
     public Article(String id, String name, String magazineOrWork,
                    String volume, String number)
     {
-        this.id = id;
-        this.name = name;
+        InitColumn(id, name);
         this.volume = volume;
         this.magazineOrWork = magazineOrWork;
         this.number = number;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public String getVolume() {
@@ -35,14 +24,6 @@ public class Article {
 
     public String getNumber() {
         return this.number;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setMagazineOrWork(String name) {
