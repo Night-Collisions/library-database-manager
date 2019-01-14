@@ -237,6 +237,15 @@ public class Database {
         );
     }
 
+    public String getAuthOrg(String a_id) {
+        String query =
+                "SELECT o.title, ao.start, ao.finish " +
+                "FROM authors_organizations ao " +
+                "JOIN authors a on ao.authors_id = ? " +
+                "JOIN organizations o on ao.organizations_id = o.organizations_id";
+        return execPSWithId(a_id, query);
+    }
+
     private int getUserType(String id) throws Exception {
         PreparedStatement ps = con.prepareStatement("SELECT u.type FROM users u WHERE u.users_id = ?");
         ps.setInt(1, Integer.parseInt(id));

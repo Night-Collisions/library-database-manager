@@ -167,6 +167,13 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.getVerfs(data[0]));
                         break;
+                    case "getAuthOrg":
+                        if (data.length != 3) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.getAuthOrg(data[2]));
+                        break;
                     case "addUser":
                         if (data.length != 12) {
                             send("wrong args");
