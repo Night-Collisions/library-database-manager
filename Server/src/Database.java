@@ -1,7 +1,5 @@
 import com.google.gson.Gson;
-import jdk.nashorn.internal.ir.IdentNode;
 
-import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -621,7 +619,7 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO publications_keywords(publications_id, keywords_id) VALUES (?, ?)";
-        return addSmthToPubl(query, p_id, k_id);
+        return doSmthToPubl(query, p_id, k_id);
     }
 
     public String addUdcToPubl(String id, String p_id, String u_id) {
@@ -629,7 +627,7 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO publications_udc_codes(publications_id, udc_codes_id) VALUES (?, ?)";
-        return addSmthToPubl(query, p_id, u_id);
+        return doSmthToPubl(query, p_id, u_id);
     }
 
     public String addAuthToPubl(String id, String p_id, String a_id) {
@@ -637,7 +635,7 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO authors_publications(publications_id, authors_id) VALUES (?, ?)";
-        return addSmthToPubl(query, p_id, a_id);
+        return doSmthToPubl(query, p_id, a_id);
     }
 
     public String addEditorToPubl(String id, String p_id, String e_id) {
@@ -645,10 +643,10 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO editors_publications(publications_id, editors_id) VALUES (?, ?)";
-        return addSmthToPubl(query, p_id, e_id);
+        return doSmthToPubl(query, p_id, e_id);
     }
 
-    private String addSmthToPubl(String query, String p_id, String smth_id) {
+    private String doSmthToPubl(String query, String p_id, String smth_id) {
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setLong(1, Long.parseLong(p_id));
@@ -802,6 +800,38 @@ public class Database {
             return "access error";
         }
         return deleteById("verifications", id);
+    }
+
+    public String deleteKeywordFromPubl(String id, String p_id, String k_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query = "DELETE FROM publications_keywords WHERE publications_id = ? AND keywords_id = ?";
+        return doSmthToPubl(query, p_id, k_id);
+    }
+
+    public String deleteUdcFromPubl(String id, String p_id, String u_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query = "DELETE FROM publications_udc_codes WHERE publications_id = ? AND udc_codes_id = ?";
+        return doSmthToPubl(query, p_id, u_id);
+    }
+
+    public String deleteAuthFromPubl(String id, String p_id, String a_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query = "DELETE FROM authors_publications WHERE publications_id = ? AND authors_id = ?";
+        return doSmthToPubl(query, p_id, a_id);
+    }
+
+    public String deleteEditorFromPubl(String id, String p_id, String e_id) {
+        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query = "DELETE FROM editors_publications WHERE publications_id = ? AND editors_id = ?";
+        return doSmthToPubl(query, p_id, e_id);
     }
 
     private String deleteById(String table, String id) {

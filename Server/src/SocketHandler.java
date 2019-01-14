@@ -401,6 +401,34 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.deleteVerification(data[0], data[2]));
                         break;
+                    case "deleteKeywordFromPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteKeywordFromPubl(data[0], data[2], data[3]));
+                        break;
+                    case "deleteUdcFromPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteUdcFromPubl(data[0], data[2], data[3]));
+                        break;
+                    case "deleteAuthFromPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteAuthFromPubl(data[0], data[2], data[3]));
+                        break;
+                    case "deleteEditorFromPubl":
+                        if (data.length != 4) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.deleteEditorFromPubl(data[0], data[2], data[3]));
+                        break;
                     default:
                         send("unknown command");
                         break;
