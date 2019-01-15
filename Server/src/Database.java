@@ -322,6 +322,22 @@ public class Database {
         }
     }
 
+    public String addUserToAuthor(String u_id, String ua_id, String a_id) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query = "INSERT INTO users_authors(users_id, authors_id) VALUES (?, ?)";
+        return execQueryWithTwoIds(query, ua_id, a_id);
+    }
+
+    public String addUserToPublHouse(String u_id, String uph_id, String ph_id) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query = "INSERT INTO users_publishing_houses(users_id, publishing_houses_id) VALUES (?, ?)";
+        return execQueryWithTwoIds(query, uph_id, ph_id);
+    }
+
     public String addBook(String id, String title, String ph_id, String year) {
         if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
@@ -624,7 +640,7 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO publications_keywords(publications_id, keywords_id) VALUES (?, ?)";
-        return doSmthToPubl(query, p_id, k_id);
+        return execQueryWithTwoIds(query, p_id, k_id);
     }
 
     public String addUdcToPubl(String id, String p_id, String u_id) {
@@ -632,7 +648,7 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO publications_udc_codes(publications_id, udc_codes_id) VALUES (?, ?)";
-        return doSmthToPubl(query, p_id, u_id);
+        return execQueryWithTwoIds(query, p_id, u_id);
     }
 
     public String addAuthToPubl(String id, String p_id, String a_id) {
@@ -640,7 +656,7 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO authors_publications(publications_id, authors_id) VALUES (?, ?)";
-        return doSmthToPubl(query, p_id, a_id);
+        return execQueryWithTwoIds(query, p_id, a_id);
     }
 
     public String addEditorToPubl(String id, String p_id, String e_id) {
@@ -648,14 +664,14 @@ public class Database {
             return "access error";
         }
         String query = "INSERT INTO editors_publications(publications_id, editors_id) VALUES (?, ?)";
-        return doSmthToPubl(query, p_id, e_id);
+        return execQueryWithTwoIds(query, p_id, e_id);
     }
 
-    private String doSmthToPubl(String query, String p_id, String smth_id) {
+    private String execQueryWithTwoIds(String query, String id1, String id2) {
         try {
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setLong(1, Long.parseLong(p_id));
-            ps.setLong(2, Long.parseLong(smth_id));
+            ps.setLong(1, Long.parseLong(id1));
+            ps.setLong(2, Long.parseLong(id2));
             ps.executeUpdate();
             return "ok";
         }
@@ -812,7 +828,7 @@ public class Database {
             return "access error";
         }
         String query = "DELETE FROM publications_keywords WHERE publications_id = ? AND keywords_id = ?";
-        return doSmthToPubl(query, p_id, k_id);
+        return execQueryWithTwoIds(query, p_id, k_id);
     }
 
     public String deleteUdcFromPubl(String id, String p_id, String u_id) {
@@ -820,7 +836,7 @@ public class Database {
             return "access error";
         }
         String query = "DELETE FROM publications_udc_codes WHERE publications_id = ? AND udc_codes_id = ?";
-        return doSmthToPubl(query, p_id, u_id);
+        return execQueryWithTwoIds(query, p_id, u_id);
     }
 
     public String deleteAuthFromPubl(String id, String p_id, String a_id) {
@@ -828,7 +844,7 @@ public class Database {
             return "access error";
         }
         String query = "DELETE FROM authors_publications WHERE publications_id = ? AND authors_id = ?";
-        return doSmthToPubl(query, p_id, a_id);
+        return execQueryWithTwoIds(query, p_id, a_id);
     }
 
     public String deleteEditorFromPubl(String id, String p_id, String e_id) {
@@ -836,7 +852,7 @@ public class Database {
             return "access error";
         }
         String query = "DELETE FROM editors_publications WHERE publications_id = ? AND editors_id = ?";
-        return doSmthToPubl(query, p_id, e_id);
+        return execQueryWithTwoIds(query, p_id, e_id);
     }
 
     private String deleteById(String table, String id) {
