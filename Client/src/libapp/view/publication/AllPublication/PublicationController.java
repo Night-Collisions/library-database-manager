@@ -25,20 +25,18 @@ public class PublicationController extends PublicationProperty<Publication> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {};
-        addMenu(
-                menuPropertyTable,
-                new PublicationAddController(),
-                null,
-                "publication" +
-                        File.separator +
-                        "AllPublication" +
-                        File.separator +
-                        "PublicationAddOverview.fxml",
-                "");
+        addMenu(menuPropertyTable);
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
         table.setItems(dataList);
+    }
+
+    public void onAddMenu() {
+        createWindow("publication" + File.separator + "AllPublication" + File.separator + "PublicationAddOverview.fxml", new PublicationAddController());
+    }
+
+    public void onEditMenu() {
     }
 
     public void fillTable() {

@@ -29,12 +29,7 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
 
     @FXML
     private void initialize() {
-        createMenu(
-                new PublishingHouseAddController(),
-                new PublishingHouseChangeController(),
-                "organization" + File.separator + "OrganizationAddOverview.fxml");
-
-
+        createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -42,6 +37,14 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         table.setItems(dataList);
+    }
+
+    public void onAddMenu() {
+        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new PublishingHouseAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new PublishingHouseChangeController());
     }
 
     public void fillTable() {

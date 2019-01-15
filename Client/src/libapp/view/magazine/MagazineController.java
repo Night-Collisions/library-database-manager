@@ -11,6 +11,7 @@ import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.TableProperty;
 
+
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class MagazineController extends TableProperty<Magazine> {
 
     @FXML
     private void initialize() {
-        createMenu(new MagazineAddController(), new MagazineChangeController(), "magazine" + File.separator + "MagazineAddOverview.fxml");
+        createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         topic.setCellValueFactory(
@@ -34,11 +35,19 @@ public class MagazineController extends TableProperty<Magazine> {
         table.setItems(dataList);
     }
 
+    public void onAddMenu() {
+        createWindow("magazine" + File.separator + "MagazineAddOverview.fxml", new MagazineAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("magazine" + File.separator + "MagazineAddOverview.fxml", new MagazineChangeController());
+    }
+
     public void fillTable() {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getArticles");
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getMagazine");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);

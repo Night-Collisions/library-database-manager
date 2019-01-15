@@ -28,7 +28,7 @@ public class ArticleController extends PublicationProperty<Article> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors()};
-        addMenu(menuPropertyTable, new ArticleAddController(), new ArticleChangeController(), "publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml");
+        addMenu(menuPropertyTable);
 
         magazineOrWork.setCellValueFactory(
                 new PropertyValueFactory<>("magazineOrWork"));
@@ -37,6 +37,15 @@ public class ArticleController extends PublicationProperty<Article> {
 
         table.setItems(dataList);
     }
+
+    public void onAddMenu() {
+        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController());
+    }
+
 
     public void fillTable() {
         try {
