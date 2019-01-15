@@ -35,7 +35,7 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser() + ", getArticles");
+            result = socket.makeRequest(main.getUser() + ClientSocket.argSep + " getArticles");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);

@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class ClientSocket {
+    public static final String argSep = "##@%%";
     static private int port;
     static private String address;
     private static InetAddress ipAddress;

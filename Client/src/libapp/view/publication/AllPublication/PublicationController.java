@@ -44,7 +44,7 @@ public class PublicationController extends PublicationProperty<Publication> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser() + ", getPublications");
+            result = socket.makeRequest(main.getUser() + ClientSocket.argSep + " getPublications");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
