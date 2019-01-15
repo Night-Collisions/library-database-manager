@@ -50,12 +50,12 @@ public class TableProperty<T> {
         }
     }
 
-    public void createMenu() {
+    public ContextMenu createMenu() {
         javafx.scene.control.Menu[] cascadingMenu = {};
-        createMenu(cascadingMenu);
+        return createMenu(cascadingMenu);
     }
 
-    public void createMenu(javafx.scene.control.Menu[] cascadingMenu) {
+    public ContextMenu createMenu(javafx.scene.control.Menu[] cascadingMenu) {
         ContextMenu context = new ContextMenu();
 
         MenuItem insert = new MenuItem("Добавить");
@@ -88,6 +88,7 @@ public class TableProperty<T> {
                 context.hide();
             }
         });
+        return context;
     }
 
     public void deleteWindow(String id) {

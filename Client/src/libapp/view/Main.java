@@ -228,7 +228,7 @@ public class Main extends Application {
     public void showKeywords() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTableу" + File.separator + "OneColumnTableOverview.fxml"));
+            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
             loader.setController(new KeywordOCTController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
@@ -246,7 +246,7 @@ public class Main extends Application {
     public void showUDCs() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTableу" + File.separator + "OneColumnTableOverview.fxml"));
+            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
             loader.setController(new UDCOCTController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
