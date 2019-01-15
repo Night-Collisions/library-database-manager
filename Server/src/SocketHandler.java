@@ -507,6 +507,20 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.changeSubject(data[0], data[2], data[3]));
                         break;
+                    case "changeOrganization":
+                        if (data.length != 7) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.changeOrganization(data[0], data[2], data[3], data[4], data[5], data[6]));
+                        break;
+                    case "changePublHouse":
+                        if (data.length != 7) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.changePublHouse(data[0], data[2], data[3], data[4], data[5], data[6]));
+                        break;
                     default:
                         send("unknown command");
                         break;

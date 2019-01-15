@@ -450,8 +450,7 @@ public class Database {
             return "access error";
         }
         try {
-            String query =
-                    "INSERT INTO subjects(title) VALUES (?)";
+            String query = "INSERT INTO subjects(title) VALUES (?)";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, subject);
             ps.executeUpdate();
@@ -481,10 +480,7 @@ public class Database {
     private String addOrgOrPublHouseCommonPart(String query, String title, String address, String phone, String email) {
         try {
             PreparedStatement ps = con.prepareStatement(query);
-
-            ps.setString(1, title);
-            ps.setString(2, address);
-            setPhoneAndEmailInPs(ps, phone, email, 3);
+            setOrgOrPublHouseInfoInPS(ps, title, address, phone, email);
             ps.executeUpdate();
             return "ok";
         }
@@ -992,6 +988,47 @@ public class Database {
         catch (Exception e) {
             return e.getMessage();
         }
+    }
+
+    public String changeOrganization(String u_id, String o_id, String title, String address, String phone, String email) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query =
+                "UPDATE organizations SET title = ?, legal_address = ?, phone_number = ?, email = ? " +
+                "WHERE organizations_id = ?";
+        return changeOrgOrPublHouseCommonPart(query, title, address, phone, email, o_id);
+    }
+
+    public String changePublHouse(String id, String ph_id, String title, String address, String phone, String email) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query =
+                "UPDATE publishing_houses SET title = ?, legal_address = ?, phone_number = ?, email = ? " +
+                "WHERE organizations_id = ?";
+        return changeOrgOrPublHouseCommonPart(query, title, address, phone, email, ph_id);
+    }
+
+    private String changeOrgOrPublHouseCommonPart(String query, String title, String address, String phone,
+                                                  String email, String id) {
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            setOrgOrPublHouseInfoInPS(ps, title, address, phone, email);
+            ps.setLong(4, Long.parseLong(id));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    private void setOrgOrPublHouseInfoInPS(PreparedStatement ps, String title,
+                                           String address, String phone, String email) throws Exception {
+        ps.setString(1, title);
+        ps.setString(2, address);
+        setPhoneAndEmailInPs(ps, phone, email, 3);
     }
 
     private void changeStringById(String query, String string, String id) throws Exception {
