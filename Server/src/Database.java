@@ -253,7 +253,7 @@ public class Database {
 
     public String getAuthOrg(String a_id) {
         String query =
-                "SELECT o.title, ao.start, ao.finish " +
+                "SELECT ao.authors_organizations_id, o.title, ao.start, ao.finish " +
                 "FROM authors_organizations ao " +
                 "JOIN authors a on ao.authors_id = ? " +
                 "JOIN organizations o on ao.organizations_id = o.organizations_id";
