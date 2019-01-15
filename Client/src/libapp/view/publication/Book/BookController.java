@@ -28,8 +28,15 @@ public class BookController extends PublicationProperty<Book> {
     @FXML
     private void initialize() {
         initProperty();
-        MenuItem menuPropertyTable[] = {CreateAuthors(), CreateEditors()};
-        addMenu(menuPropertyTable, new BookAddController(), new BookChangeController(), "publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml");
+        MenuItem[] menuPropertyTable = {CreateAuthors(), CreateEditors()};
+        addMenu(menuPropertyTable,
+                new BookAddController(),
+                new BookChangeController(),
+                "publication" +
+                        File.separator +
+                        "Book" +
+                        File.separator +
+                        "BookAddOverview.fxml");
 
         publishingHouse.setCellValueFactory(new PropertyValueFactory<>("publishingHouse"));
         year.setCellValueFactory(new PropertyValueFactory<>("year"));
@@ -39,7 +46,6 @@ public class BookController extends PublicationProperty<Book> {
     }
 
     public void fillTable() {
-        // TODO: ебашим запрос к серверу и заполняем
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
