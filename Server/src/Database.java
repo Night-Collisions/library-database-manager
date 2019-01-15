@@ -245,6 +245,27 @@ public class Database {
         return execPSWithId(a_id, query);
     }
 
+    public String getUserPubl(String u_id) {
+        try {
+            String query =
+                    "SELECT p.publications_id " +
+                    "FROM publications p " +
+                    "LEFT JOIN authors_publications ap ON p.publications_id = ap.publications_id " +
+                    "LEFT JOIN users_authors ua ON ua.authors_id = ap.authors_id " +
+                    "LEFT JOIN publishing_houses_publications php ON p.publications_id = php.publications_id " +
+                    "LEFT JOIN users_publishing_houses uph ON uph.publishing_houses_id = php.publishing_houses_id " +
+                    "WHERE ua.users_id = ? OR uph.users_id = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, Long.parseLong(u_id));
+            ps.setLong(2, Long.parseLong(u_id));
+            ResultSet rs = ps.executeQuery();
+            return RSToString(rs);
+        }
+        catch (SQLException e) {
+            return e.getMessage();
+        }
+    }
+
     private int getUserType(String id) throws Exception {
         PreparedStatement ps = con.prepareStatement("SELECT u.type FROM users u WHERE u.users_id = ?");
         ps.setInt(1, Integer.parseInt(id));
