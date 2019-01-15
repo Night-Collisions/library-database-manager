@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class MessageController extends Alert {
 
-    public enum MessageType {INFORMATION, WARNING, ERROR}
+    public static enum MessageType {INFORMATION, WARNING, ERROR}
 
     final static String titleErrorServerConnect = "Ошибка подключения к серверу!";
     final static String contentTextErrorServerConnect = "Проверьте подключение к серверу или обратитесь к администратору.";
@@ -24,7 +24,7 @@ public class MessageController extends Alert {
         put(MessageType.ERROR, AlertType.ERROR);
     }};
 
-     MessageController(MessageType type, String title, String headerText, String contentText) {
+     public MessageController(MessageType type, String title, String headerText, String contentText) {
         super(AlertType.INFORMATION);
         setAlertType(MessageType2AlertType.get(type));
         setTitle(title);
@@ -33,7 +33,7 @@ public class MessageController extends Alert {
         showAndWait();
     }
 
-    MessageController(MessageType type, String title, String contentText) {
+    public MessageController(MessageType type, String title, String contentText) {
         super(AlertType.INFORMATION);
         setAlertType(MessageType2AlertType.get(type));
         setTitle(title);
@@ -51,7 +51,7 @@ public class MessageController extends Alert {
         showAndWait();
     }
 
-    MessageController(String contentText, Exception except) {
+    public MessageController(String contentText, Exception except) {
         super(AlertType.ERROR);
         setTitle("Ошибка!");
         setHeaderText(null);
