@@ -41,11 +41,17 @@ public class ThesisController extends PublicationProperty<Thesis> {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                System.out.println(parsed);
-                dataList.add(new Thesis(
-                        i.get(0).toString(),
-                        i.get(1).toString(),
-                        i.get(2).toString()));
+                if (i.get(2) == null) {
+                    dataList.add(new Thesis(
+                            i.get(0).toString(),
+                            i.get(1).toString(),
+                            i.get(3).toString()));
+                } else {
+                    dataList.add(new Thesis(
+                            i.get(0).toString(),
+                            i.get(1).toString(),
+                            i.get(2).toString()));
+                }
             }
         } catch (Exception e) {
             System.out.println(e);

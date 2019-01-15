@@ -46,12 +46,20 @@ public class ArticleController extends PublicationProperty<Article> {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
+                String[] args = new String[i.size()];
+                for (int j = 0; j < i.size(); ++j) {
+                    if (i.get(j) != null) {
+                        args[j] = i.get(j).toString();
+                    } else {
+                        args[j] = "";
+                    }
+                }
                 dataList.add(new Article(
-                        i.get(0).toString(),
-                        i.get(1).toString(),
-                        i.get(2).toString(),
-                        i.get(3).toString(),
-                        i.get(4).toString()));
+                        args[0],
+                        args[1],
+                        args[2],
+                        args[3],
+                        args[4]));
             }
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
