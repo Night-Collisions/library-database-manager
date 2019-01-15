@@ -12,7 +12,6 @@ import libapp.view.TableProperty;
 
 public class OneColumnTableController<T> extends TableProperty<T> {
     protected String columnName;
-    protected String PropertyValueFactory;
 
     @FXML
     public TableColumn<T, String> column;
@@ -20,7 +19,7 @@ public class OneColumnTableController<T> extends TableProperty<T> {
 
     public void initialize() {
         column.setText(columnName);
-        column.setCellValueFactory(new PropertyValueFactory<>(PropertyValueFactory));
+        column.setCellValueFactory(new PropertyValueFactory<>("data"));
     }
 
     public void setColumnText(String text) {

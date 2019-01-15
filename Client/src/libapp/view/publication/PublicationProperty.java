@@ -12,7 +12,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.model.PublicationTable;
 import libapp.model.TechnicalDoc;
-import libapp.model.UDC;
 import libapp.view.*;
 import libapp.view.publication.oneColumnTable.Author.AuthorsOCTController;
 import libapp.view.publication.oneColumnTable.Edithor.EditorsOCTController;

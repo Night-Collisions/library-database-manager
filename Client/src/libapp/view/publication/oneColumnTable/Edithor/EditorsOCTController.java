@@ -5,32 +5,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.ClientSocket;
-import libapp.model.Keyword;
+import libapp.model.OneColumnTable;
 import libapp.view.Main;
+import libapp.view.publication.oneColumnTable.OneColumnTableController;
 
-public class EditorsOCTController {
-    private Main main;
-    private ClientSocket socket;
+public class EditorsOCTController extends OneColumnTableController<OneColumnTable> {
     @FXML
-    private TableView<Keyword> table;
-    @FXML
-    private TableColumn<Keyword, String> column;
-
-    @FXML
-    private void initialize() {
-        column.setCellValueFactory(new PropertyValueFactory<>("word"));
+    public void initialize() {
+        columnName = "Ркдакторы:";
+        super.initialize();
     }
 
-    //Для вывода всех слов
     public void fillTable(String idFilter) {
-    }
-
-    public void setColumnText(String text) {
-        column.setText(text);
-    }
-
-    public void setMain(Main main) {
-        this.main = main;
-        this.socket = main.getSocket();
     }
 }
