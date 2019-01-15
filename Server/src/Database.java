@@ -964,6 +964,20 @@ public class Database {
         }
     }
 
+    public String changeTheses(String u_id, String p_id, String title) {
+        try {
+            String error = checkChangePublPermissions(u_id, p_id, P_THESES);
+            if (!error.equals("ok")) {
+                return error;
+            }
+            changePublTitle(p_id, title);
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     private String changeBookAndDigestCommonPart(String u_id, String p_id, String title, String year, int type) {
         try {
             String error = checkChangePublPermissions(u_id, p_id, type);
