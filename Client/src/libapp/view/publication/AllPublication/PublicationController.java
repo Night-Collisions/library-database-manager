@@ -12,6 +12,7 @@ import libapp.model.Publication;
 import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -27,7 +28,11 @@ public class PublicationController extends PublicationProperty<Publication> {
                 menuPropertyTable,
                 new PublicationAddController(),
                 null,
-                "publication\\AllPublication\\PublicationAddOverview.fxml",
+                "publication" +
+                        File.separator +
+                        "AllPublication" +
+                        File.separator +
+                        "PublicationAddOverview.fxml",
                 "");
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -39,7 +44,7 @@ public class PublicationController extends PublicationProperty<Publication> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest("<empty>, getPublications");
+            result = socket.makeRequest(main.getUser() + ", getPublications");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
