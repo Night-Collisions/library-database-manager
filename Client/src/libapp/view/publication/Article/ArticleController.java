@@ -14,6 +14,8 @@ import libapp.view.publication.PublicationProperty;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import java.io.File;
+
 public class ArticleController extends PublicationProperty<Article> {
     @FXML
     private TableColumn<Article, String> magazineOrWork;
