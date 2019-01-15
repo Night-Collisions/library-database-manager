@@ -769,13 +769,12 @@ CREATE TABLE public.users (
     surname character varying(50),
     patronymic character varying(50),
     sex smallint NOT NULL,
-    login character varying(15) NOT NULL,
+    login character varying(50) NOT NULL,
     password character varying(50) NOT NULL,
     birth_date date,
     type smallint NOT NULL,
     phone_number bigint,
     email character varying(100),
-    CONSTRAINT users_password_check CHECK ((length((password)::text) >= 8)),
     CONSTRAINT users_sex_check CHECK ((sex = ANY (ARRAY[0, 1, 2]))),
     CONSTRAINT users_type_check CHECK ((type = ANY (ARRAY[0, 1, 2, 3, 4])))
 );
@@ -957,7 +956,7 @@ INSERT INTO public.authors VALUES (1, 'Виктор', 'Шулепкин', 'Ал�
 -- Data for Name: authors_organizations; Type: TABLE DATA; Schema: public; Owner: username
 --
 
-INSERT INTO public.authors_organizations VALUES (1, 1, '2019-01-13', '2021-01-01');
+INSERT INTO public.authors_organizations VALUES (1, 1, '2019-01-15', '2021-01-01');
 
 
 --
@@ -1123,11 +1122,11 @@ INSERT INTO public.udc_codes VALUES (3, '3');
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: username
 --
 
-INSERT INTO public.users VALUES (1, 'А́рагорн', NULL, 'сын Араторна', 0, 'admin', 'password', '2931-01-01', 0, 88005553535, 'admin@library.com');
-INSERT INTO public.users VALUES (2, 'Люк', 'Скайуокер', 'Энакинович', 0, 'librarian', 'password', '2001-01-19', 1, NULL, 'librarian@library.com');
-INSERT INTO public.users VALUES (3, 'Виктор', 'Шулепкин', 'Александрович', 0, 'victor', 'password', '1999-01-15', 4, NULL, 'victor@library.com');
-INSERT INTO public.users VALUES (4, 'Данила', 'Горячкин', 'Михайлович', 0, 'danila', 'password', '1999-04-26', 4, NULL, 'danila@library.com');
-INSERT INTO public.users VALUES (5, 'Иван', 'Василенко', 'Максимович', 0, 'ivan', 'password', '1999-10-15', 4, NULL, NULL);
+INSERT INTO public.users VALUES (1, 'А́рагорн', NULL, 'сын Араторна', 0, 'admin', '1216985755', '2931-01-01', 0, 88005553535, 'admin@library.com');
+INSERT INTO public.users VALUES (2, 'Люк', 'Скайуокер', 'Энакинович', 0, 'librarian', '1216985755', '2001-01-19', 1, NULL, 'librarian@library.com');
+INSERT INTO public.users VALUES (3, 'Виктор', 'Шулепкин', 'Александрович', 0, 'victor', '1216985755', '1999-01-15', 4, NULL, 'victor@library.com');
+INSERT INTO public.users VALUES (4, 'Данила', 'Горячкин', 'Михайлович', 0, 'danila', '1216985755', '1999-04-26', 4, NULL, 'danila@library.com');
+INSERT INTO public.users VALUES (5, 'Иван', 'Василенко', 'Максимович', 0, 'ivan', '1216985755', '1999-10-15', 4, NULL, NULL);
 
 
 --
