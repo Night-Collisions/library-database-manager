@@ -513,19 +513,7 @@ public class Database {
                                               String birth_date, String death_date, String phone_number, String email) {
         try {
             PreparedStatement ps = con.prepareStatement(query);
-            setFullNameAndSexInPs(ps, name, surname, patronymic, sex);
-            setDateInPs(ps, birth_date, 5);
-            setDateInPs(ps, death_date, 6);
-            if (phone_number.equals("NULL")) {
-                ps.setNull(7, Types.BIGINT);
-            } else {
-                ps.setLong(7, Long.parseLong(phone_number));
-            }
-            if (email.equals("NULL")) {
-                ps.setNull(8, Types.VARCHAR);
-            } else {
-                ps.setString(8, email);
-            }
+            setAuthOrEditorInfoInPS(ps, name, surname, patronymic, sex, birth_date, death_date, phone_number, email);
             ps.executeUpdate();
             return "ok";
         }
@@ -1021,6 +1009,61 @@ public class Database {
         }
         catch (Exception e) {
             return e.getMessage();
+        }
+    }
+
+    public String changeAuthor(String u_id, String a_id, String name, String surname, String patronymic,
+                               String sex, String birth_date, String death_date, String phone_number, String email) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query =
+                "UPDATE authors SET name = ?, surname = ?, patronymic = ?, sex = ?, birth_date = ?, " +
+                "death_date = ?, phone_number = ?, email = ? " +
+                "WHERE authors_id = ?";
+        return changeAuthorOrEditorCommonPart(query, name, surname, patronymic, sex, birth_date, death_date, phone_number, email, a_id);
+    }
+
+    public String changeEditor(String id, String e_id, String name, String surname, String patronymic, String sex,
+                               String birth_date, String death_date, String phone_number, String email) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        String query =
+                "UPDATE editors SET name = ?, surname = ?, patronymic = ?, sex = ?, birth_date = ?, " +
+                "death_date = ?, phone_number = ?, email = ? " +
+                "WHERE editors_id = ?";
+        return changeAuthorOrEditorCommonPart(query, name, surname, patronymic, sex, birth_date, death_date, phone_number, email, e_id);
+    }
+
+    public String changeAuthorOrEditorCommonPart(String query, String name, String surname, String patronymic, String sex,
+                                              String birth_date, String death_date, String phone_number, String email, String id) {
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            setAuthOrEditorInfoInPS(ps, name, surname, patronymic, sex, birth_date, death_date, phone_number, email);
+            ps.setLong(9, Long.parseLong(id));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    private void setAuthOrEditorInfoInPS(PreparedStatement ps, String name, String surname, String patronymic, String sex,
+                                         String birth_date, String death_date, String phone_number, String email) throws Exception {
+        setFullNameAndSexInPs(ps, name, surname, patronymic, sex);
+        setDateInPs(ps, birth_date, 5);
+        setDateInPs(ps, death_date, 6);
+        if (phone_number.equals("NULL")) {
+            ps.setNull(7, Types.BIGINT);
+        } else {
+            ps.setLong(7, Long.parseLong(phone_number));
+        }
+        if (email.equals("NULL")) {
+            ps.setNull(8, Types.VARCHAR);
+        } else {
+            ps.setString(8, email);
         }
     }
 
