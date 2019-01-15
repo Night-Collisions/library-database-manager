@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.ProgramUser;
 
 import java.io.IOException;
 
@@ -36,10 +37,8 @@ public class ConnectController {
     }
 
     @FXML
-    private int connectToServer() throws IOException {
+    private int connectToServer() {
         int res = 0;
-
-        connect.setDisable(true);
 
             try {
                 String result = "";
@@ -52,14 +51,18 @@ public class ConnectController {
                         ClientSocket.argSep +
                         "authUser" +
                         ClientSocket.argSep +
-                        usernameTextField +
+                        usernameTextField.getText() +
                         ClientSocket.argSep +
-                        passwordTextField);
+                        passwordTextField.getText());
 
                 data = result.split(", ");
                 if (data[0].equals("-1")) {
                     throw new Exception();
                 }
+
+
+                //TODO дохуячить
+                //main.getUser() = new ProgramUser();
 
                 dialogStage.close();
             } catch (Exception e) {
