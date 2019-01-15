@@ -149,6 +149,12 @@ public class Database {
         );
     }
 
+    public String getSubjects() {
+        return execSelectQuery(
+                "SELECT * FROM subjects"
+        );
+    }
+
     public String getMagazines() {
         return execSelectQuery(
                 "SELECT m.magazines_id, m.title, s.title " +

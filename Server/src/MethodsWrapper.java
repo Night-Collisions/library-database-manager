@@ -69,7 +69,12 @@ public class MethodsWrapper {
         return Server.db.getDocs();
     }
 
-    // TODO getSubjects
+    public static String getSubjects(String[] data) {
+        if (data.length != 2) {
+            return "wrong args";
+        }
+        return Server.db.getSubjects();
+    }
 
     public static String getMagazines(String[] data) {
         if (data.length != 2) {
