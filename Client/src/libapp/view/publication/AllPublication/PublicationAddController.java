@@ -41,7 +41,6 @@ public class PublicationAddController extends PropertyWin {
         int index = combobox.getSelectionModel().getSelectedIndex();
         if (index >= 0) {
             TableProperty.createWindow(windows.get(index).getKey(), windows.get(index).getValue());
-            System.out.print(1);
         } else {
             new MessageController(MessageController.MessageType.WARNING,
                     "Не удалось создать публикацию.",
