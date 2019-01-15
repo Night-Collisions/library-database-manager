@@ -12,14 +12,15 @@ class SocketHandler extends Thread {
     private static final String SEPARATOR = "##@%%";
 
     private static Map<String, Method> commands = new HashMap<>();
+
     static {
         for (Method method : MethodsWrapper.class.getDeclaredMethods()) {
             commands.put(method.getName(), method);
         }
     }
 
-    public SocketHandler(Socket socket) throws IOException {
-        this.socket = socket;
+    SocketHandler(Socket _socket) throws IOException {
+        socket = _socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         start();
@@ -47,6 +48,7 @@ class SocketHandler extends Thread {
         try {
             out.write(msg + "\n");
             out.flush();
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
     }
 }
