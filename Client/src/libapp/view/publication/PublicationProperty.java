@@ -12,13 +12,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.model.PublicationTable;
 import libapp.model.TechnicalDoc;
+import libapp.model.UDC;
 import libapp.view.*;
 import libapp.view.publication.oneColumnTable.Author.AuthorsOCTController;
 import libapp.view.publication.oneColumnTable.Edithor.EditorsOCTController;
 import libapp.view.publication.oneColumnTable.KeyWords.KeywordOCTController;
+import libapp.view.publication.oneColumnTable.OneColumnTableController;
 import libapp.view.publication.oneColumnTable.UDC.UDCOCTController;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class PublicationProperty<T>  extends TableProperty<T> {
@@ -36,28 +39,13 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     protected static void CreateTableProperty(Object connect, String columnName, String idFilter) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("OneColumnTableOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
             loader.setController(connect);
             AnchorPane udcTable = loader.load();
 
-            //Todo: переделать этот кастыль
-            if (connect instanceof UDCOCTController) {
-                UDCOCTController controller = loader.getController();
-                controller.fillTable(idFilter);
-                controller.setColumnText(columnName + " " + idFilter);
-            } else if (connect instanceof KeywordOCTController) {
-                KeywordOCTController controller = loader.getController();
-                controller.fillTable(idFilter);
-                controller.setColumnText(columnName + " " + idFilter);
-            } else if (connect instanceof AuthorsOCTController) {
-                AuthorsOCTController controller = loader.getController();
-                controller.fillTable(idFilter);
-                controller.setColumnText(columnName + " " + idFilter);
-            } else if (connect instanceof EditorsOCTController) {
-                EditorsOCTController controller = loader.getController();
-                controller.fillTable(idFilter);
-                controller.setColumnText(columnName + " " + idFilter);
-            }
+            OneColumnTableController controller = loader.getController();
+            controller.fillTable(idFilter);
+            controller.setColumnText(columnName + " " + idFilter);
 
             Stage window = new Stage();
             window.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
