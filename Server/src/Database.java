@@ -829,6 +829,13 @@ public class Database {
         return deleteById("verifications", id);
     }
 
+    public String deleteAuthOrg(String u_id, String ao_id) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        return deleteById("authors_organizations", ao_id);
+    }
+
     public String deleteKeywordFromPubl(String id, String p_id, String k_id) {
         if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";

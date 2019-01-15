@@ -425,8 +425,12 @@ public class MethodsWrapper {
         return Server.db.deleteVerification(data[0], data[2]);
     }
 
-    // TODO deleteAuthOrg
-
+    public static String deleteAuthOrg(String[] data) {
+        if (data.length != 3) {
+            return "wrong args";
+        }
+        return Server.db.deleteAuthOrg(data[0], data[2]);
+    }
     /* Remove reference from publication */
 
     public static String deleteAuthFromPubl(String[] data) {
