@@ -39,26 +39,46 @@ public class UDCPropertyController {
         column.setCellValueFactory(new PropertyValueFactory<>("code"));
     }
 
-    //Для вывода всех слов
     public void fillTable() {
-        // TODO: ебашим запрос к серверу и заполняем
-        //...
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "getAllUdc" +
+                            ClientSocket.argSep);
+
+            if (result.equals("wrong args")) {
+                throw new Exception();
+            }
+
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                udcs.add(new UDC(i.get(0).toString(), i.get(1).toString()));
+            }
+
+            table.setItems(udcs);
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
 
         table.setItems(udcs);
     }
 
-    //Для вывода для конкретной записи
     public void fillTable(String idFilter) {
         try {
             String result = "";
-            try {
-                socket = ClientSocket.enableConnection(socket);
-                result = socket.makeRequest("<empty> , getUdcOfPubl, " + idFilter);
-            } catch (Exception e) {
-                new MessageController(MessageController.titleErrorServerConnect,
-                        MessageController.contentTextErrorServerConnect, e);
-                return;
-            }
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "getUdcOfPubl" +
+                            ClientSocket.argSep + idFilter);
 
             if (result.equals("wrong args")) {
                 throw new Exception();
@@ -68,14 +88,13 @@ public class UDCPropertyController {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                //TODO: ВИТЯ ИСПРАВЬ ПЕРВЫЙ АРГУМЕНТ
                 udcs.add(new UDC(i.get(0).toString(), i.get(1).toString()));
             }
 
             table.setItems(udcs);
         } catch (Exception e) {
-            //Оп, какая то проблемочка
-            e.printStackTrace();
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
         }
 
         table.setItems(udcs);
