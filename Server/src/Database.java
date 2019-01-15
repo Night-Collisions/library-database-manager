@@ -926,14 +926,8 @@ public class Database {
             return "access error";
         }
         try {
-            String query =
-                    "UPDATE users " +
-                    "SET password = ? " +
-                    "WHERE users_id = ?";
-            PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, password);
-            ps.setLong(2, Long.parseLong(changing_u_id));
-            ps.executeUpdate();
+            String query = "UPDATE users SET password = ? WHERE users_id = ?";
+            changeStringById(query, password, changing_u_id);
             return "ok";
         }
         catch (Exception e) {
@@ -970,6 +964,27 @@ public class Database {
 
     public String changeDocs(String u_id, String p_id, String title) {
         return changeThesesAndDocsCommonPart(u_id, p_id, title, P_DOCS);
+    }
+
+    public String changeMagazine(String id, String m_id, String title) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        try {
+            String query = "UPDATE magazines SET title = ? WHERE magazines_id = ?";
+            changeStringById(query, title, m_id);
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    private void changeStringById(String query, String string, String id) throws Exception {
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, string);
+        ps.setLong(2, Long.parseLong(id));
+        ps.executeUpdate();
     }
 
     private String changeThesesAndDocsCommonPart(String u_id, String p_id, String title, int type) {
