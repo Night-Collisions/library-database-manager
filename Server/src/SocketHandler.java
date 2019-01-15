@@ -443,6 +443,14 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.deleteEditorFromPubl(data[0], data[2], data[3]));
                         break;
+                    case "changeUser":
+                        if (data.length != 10) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.changeUser(data[0], data[2], data[3], data[4], data[5], data[6], data[7],
+                                data[8], data[9]));
+                        break;
                     default:
                         send("unknown command");
                         break;

@@ -301,22 +301,6 @@ public class Database {
             setFullNameAndSexInPs(ps, name, surname, patronymic, sex);
             ps.setString(5, login);
             ps.setString(6, password);
-            if (birth_date.equals("NULL")) {
-                ps.setNull(7, Types.DATE);
-            } else {
-                ps.setDate(7, java.sql.Date.valueOf(birth_date));
-            }
-            ps.setInt(8, Integer.parseInt(type));
-            if (phone_number.equals("NULL")) {
-                ps.setNull(9, Types.BIGINT);
-            } else {
-                ps.setLong(9, Long.parseLong(phone_number));
-            }
-            if (email.equals("NULL")) {
-                ps.setNull(10, Types.VARCHAR);
-            } else {
-                ps.setString(10, email);
-            }
             ps.executeUpdate();
             return "ok";
         }
@@ -529,16 +513,8 @@ public class Database {
         try {
             PreparedStatement ps = con.prepareStatement(query);
             setFullNameAndSexInPs(ps, name, surname, patronymic, sex);
-            if (birth_date.equals("NULL")) {
-                ps.setNull(5, Types.DATE);
-            } else {
-                ps.setDate(5, java.sql.Date.valueOf(birth_date));
-            }
-            if (death_date.equals("NULL")) {
-                ps.setNull(6, Types.DATE);
-            } else {
-                ps.setDate(6, java.sql.Date.valueOf(death_date));
-            }
+            setDateInPs(ps, birth_date, 5);
+            setDateInPs(ps, death_date, 6);
             if (phone_number.equals("NULL")) {
                 ps.setNull(7, Types.BIGINT);
             } else {
@@ -884,6 +860,45 @@ public class Database {
         }
         catch (Exception e) {
             return e.getMessage();
+        }
+    }
+    public String changeUser(String u_id, String changing_u_id, String name, String surname, String patronymic,
+                             String sex, String birth_date, String phone_number, String email) {
+        if (!(checkType(u_id, new int[] {U_ADMIN}) || u_id.equals(changing_u_id))) {
+            return "access error";
+        }
+        try {
+            String query =
+                    "UPDATE users " +
+                    "SET name = ?, surname = ?, patronymic = ?, sex = ?, birth_date = ?, phone_number = ?, email = ? " +
+                    "WHERE users_id = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            setFullNameAndSexInPs(ps, name, surname, patronymic, sex);
+            setDateInPs(ps, birth_date, 5);
+            if (phone_number.equals("NULL")) {
+                ps.setNull(6, Types.BIGINT);
+            } else {
+                ps.setLong(6, Long.parseLong(phone_number));
+            }
+            if (email.equals("NULL")) {
+                ps.setNull(7, Types.VARCHAR);
+            } else {
+                ps.setString(7, email);
+            }
+            ps.setLong(8, Long.parseLong(changing_u_id));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    private void setDateInPs(PreparedStatement ps, String date, int index) throws Exception {
+        if (date.equals("NULL")) {
+            ps.setNull(index, Types.DATE);
+        } else {
+            ps.setDate(index, java.sql.Date.valueOf(date));
         }
     }
 
