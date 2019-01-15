@@ -65,6 +65,7 @@ public class ArticleController extends PublicationProperty<Article> {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
         }
+
     }
 
     public void setMain(Main main) {
