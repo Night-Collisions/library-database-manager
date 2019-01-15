@@ -1,12 +1,19 @@
 package libapp.view.publication.Work;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import libapp.ClientSocket;
 import libapp.model.Work;
+import libapp.view.Main;
+import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
 import java.io.File;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class WorkController extends PublicationProperty<Work> {
 
@@ -29,27 +36,30 @@ public class WorkController extends PublicationProperty<Work> {
     }
 
     public void fillTable() {
-        // TODO: ебашим запрос к серверу и заполняем
-        dataList.add(new Work(
-                "1",
-                "Применение аккустических систем для массажа ануса",
-                "ДВФУ",
-                "2018"));
-        dataList.add(new Work(
-                "2",
-                "Жил был научный труд",
-                "И сделал он пруд",
-                "(напрудил)"));
-        dataList.add(new Work(
-                "В",
-                "И",
-                "Т",
-                "Я"));
-        dataList.add(new Work(
-                "4",
-                "Прикладное использование школьной алгебры при покупках в магазине",
-                "MIT",
-                "2018"));
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getDigests");
 
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                dataList.add(new Work(
+                        i.get(0).toString(),
+                        i.get(1).toString(),
+                        i.get(2).toString(),
+                        i.get(3).toString()));
+            }
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
+
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.ClientSocket;
 import libapp.Dictionary;
 import libapp.model.Publication;
+import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
@@ -44,7 +45,7 @@ public class PublicationController extends PublicationProperty<Publication> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser() + ClientSocket.argSep + " getPublications");
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getPublications");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
@@ -59,5 +60,10 @@ public class PublicationController extends PublicationProperty<Publication> {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
         }
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }

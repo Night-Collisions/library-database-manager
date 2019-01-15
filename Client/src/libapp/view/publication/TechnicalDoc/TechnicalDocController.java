@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.ClientSocket;
 import libapp.model.TechnicalDoc;
+import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
@@ -35,7 +36,7 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser() + ClientSocket.argSep + " getArticles");
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getDoc");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
@@ -50,5 +51,10 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
         }
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }

@@ -17,7 +17,7 @@ import libapp.view.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class PublicationProperty<T>  extends TebleProperty<T> {
+public class PublicationProperty<T>  extends TableProperty<T> {
 
     @FXML
     public TableColumn<T, String> id;

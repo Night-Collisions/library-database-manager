@@ -22,7 +22,7 @@ import java.util.Optional;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 
-public class TebleProperty<T> {
+public class TableProperty<T> {
 
     public ClientSocket socket;
     public Main main;
@@ -51,16 +51,16 @@ public class TebleProperty<T> {
     }
 
     public void createMenu(Object add, Object change, String form) {
-        javafx.scene.control.Menu a[] = {};
+        javafx.scene.control.Menu[] a = {};
         createMenu(a, add, change, form, form);
     }
 
     public void createMenu(Object add, Object change, String formAdd, String formChange) {
-        javafx.scene.control.Menu a[] = {};
+        javafx.scene.control.Menu[] a = {};
         createMenu(a, add, change, formAdd, formChange);
     }
 
-    public void createMenu(javafx.scene.control.Menu cascadingMenu[], Object add, Object change, String formAdd, String formChange) {
+    public void createMenu(javafx.scene.control.Menu[] cascadingMenu, Object add, Object change, String formAdd, String formChange) {
         ContextMenu context = new ContextMenu();
 
         MenuItem insert = new MenuItem("Добавить");

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import libapp.ClientSocket;
 
 public class GroupChangeRequestOverview {
 
@@ -19,6 +20,8 @@ public class GroupChangeRequestOverview {
 
     private ObservableList<String> grupsNameList =
             FXCollections.observableArrayList("Автор", "Издательство");
+    private Main main;
+    private ClientSocket socket;
 
     @FXML
     private void initialize() {
@@ -30,5 +33,10 @@ public class GroupChangeRequestOverview {
         Stage stage = (Stage) reject.getScene().getWindow();
         stage.close();
         return 0;
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }

@@ -10,6 +10,7 @@ import libapp.ClientSocket;
 import libapp.Dictionary;
 import libapp.model.Book;
 import libapp.model.Publication;
+import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
@@ -49,7 +50,7 @@ public class BookController extends PublicationProperty<Book> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser() + ", getBooks");
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getBooks");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
@@ -65,5 +66,10 @@ public class BookController extends PublicationProperty<Book> {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
         }
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }

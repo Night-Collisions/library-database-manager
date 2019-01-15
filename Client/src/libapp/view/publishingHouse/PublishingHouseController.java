@@ -1,24 +1,15 @@
 package libapp.view.publishingHouse;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
-import libapp.ClientSocket;
 import libapp.model.PublishingHouse;
 import libapp.view.Main;
-import libapp.view.TebleProperty;
+import libapp.view.TableProperty;
 
 import java.io.File;
 
-import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
-
-public class PublishingHouseController extends TebleProperty<PublishingHouse> {
+public class PublishingHouseController extends TableProperty<PublishingHouse> {
     @FXML
     private TableColumn<PublishingHouse, String> id;
     @FXML
@@ -48,4 +39,8 @@ public class PublishingHouseController extends TebleProperty<PublishingHouse> {
         // TODO: ебашим запрос к серверу и заполняем
     }
 
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
+    }
 }
