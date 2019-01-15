@@ -6,6 +6,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.model.Article;
 import libapp.view.publication.PublicationProperty;
 
+import java.io.File;
+
 public class ArticleController extends PublicationProperty<Article> {
     @FXML
     private TableColumn<Article, String> magazineOrWork;
@@ -18,7 +20,8 @@ public class ArticleController extends PublicationProperty<Article> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors()};
-        addMenu(menuPropertyTable, null, null, "");
+        addMenu(menuPropertyTable, new ArticleAddController(), new ArticleChangeController(), "publication" + File.separator
+                + "Article" + File.separator + "ArticleAddOverview.fxml");
 
         magazineOrWork.setCellValueFactory(
                 new PropertyValueFactory<>("magazineOrWork"));
