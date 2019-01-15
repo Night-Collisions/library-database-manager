@@ -301,6 +301,9 @@ public class Database {
             setFullNameAndSexInPs(ps, name, surname, patronymic, sex);
             ps.setString(5, login);
             ps.setString(6, password);
+            setDateInPs(ps, birth_date, 7);
+            ps.setInt(8, Integer.parseInt(type));
+            setPhoneAndEmailInPs(ps, phone_number, email, 9);
             ps.executeUpdate();
             return "ok";
         }
@@ -469,17 +472,7 @@ public class Database {
 
             ps.setString(1, title);
             ps.setString(2, address);
-
-            if (phone.equals("NULL")) {
-                ps.setNull(3, Types.BIGINT);
-            } else {
-                ps.setLong(3, Long.parseLong(phone));
-            }
-            if (email.equals("NULL")) {
-                ps.setNull(4, Types.VARCHAR);
-            } else {
-                ps.setString(4, email);
-            }
+            setPhoneAndEmailInPs(ps, phone, email, 3);
             ps.executeUpdate();
             return "ok";
         }
@@ -899,6 +892,19 @@ public class Database {
             ps.setNull(index, Types.DATE);
         } else {
             ps.setDate(index, java.sql.Date.valueOf(date));
+        }
+    }
+
+    private void setPhoneAndEmailInPs(PreparedStatement ps, String phone, String email, int start_index) throws Exception {
+        if (phone.equals("NULL")) {
+            ps.setNull(start_index, Types.BIGINT);
+        } else {
+            ps.setLong(start_index, Long.parseLong(phone));
+        }
+        if (email.equals("NULL")) {
+            ps.setNull(start_index + 1, Types.VARCHAR);
+        } else {
+            ps.setString(start_index + 1, email);
         }
     }
 
