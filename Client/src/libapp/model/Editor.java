@@ -1,6 +1,7 @@
 package libapp.model;
 
 public class Editor extends Table {
+    private String id;
     private String surname;
     private String name;
     private String patronymic;
@@ -21,6 +22,10 @@ public class Editor extends Table {
         this.deathday = deathday;
         this.phonenumber = phonenumber;
         this.email = email;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public String getSurname() {
@@ -79,4 +84,7 @@ public class Editor extends Table {
         this.email = email;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 }
