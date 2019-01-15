@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.model.User;
 import libapp.view.Editor.EditorController;
 import libapp.view.organization.OrganizationController;
 import libapp.view.publishingHouse.PublishingHouseController;
@@ -90,6 +91,8 @@ public class Main extends Application {
     MenuItem sendRequest;
     @FXML
     MenuItem about;
+
+    private User user;
 
     @FXML
     private void initialize() {
@@ -478,6 +481,10 @@ public class Main extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public static void main(String[] args) {
