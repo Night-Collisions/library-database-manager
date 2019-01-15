@@ -67,18 +67,15 @@ public class TableProperty<T> {
         context.getItems().add(edit);
         context.getItems().add(delete);
 
-        //TODO: нахуячить, если это библиотекарь или че то такое
         insert.setOnAction(t -> {
             onAddMenu();
         });
 
-        //TODO: нахуячить, если это библиотекарь или че то такое
         edit.setOnAction(t -> {
-            onEditMenu();
+            if (table.getSelectionModel().getSelectedItem() != null)
+                onEditMenu();
         });
 
-
-        //TODO: нахуячить, если это библиотекарь или че то такое
         delete.setOnAction(t -> {
             if (table.getSelectionModel().getSelectedItem() != null)
                 deleteWindow(((Table)table.getSelectionModel().getSelectedItem()).getId());
