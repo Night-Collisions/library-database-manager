@@ -458,6 +458,20 @@ class SocketHandler extends Thread {
                         }
                         send(Server.db.changeUserPassword(data[0], data[2], data[3]));
                         break;
+                    case "changeBook":
+                        if (data.length != 5) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.changeBook(data[0], data[2], data[3], data[4]));
+                        break;
+                    case "changeDigest":
+                        if (data.length != 5) {
+                            send("wrong args");
+                            continue;
+                        }
+                        send(Server.db.changeDigest(data[0], data[2], data[3], data[4]));
+                        break;
                     default:
                         send("unknown command");
                         break;

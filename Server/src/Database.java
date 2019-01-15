@@ -53,7 +53,7 @@ public class Database {
         }
     }
 
-    private boolean checkType(String id, int[] types) {
+    private boolean checkUserType(String id, int[] types) {
         int user_type;
         try {
             user_type = getUserType(id);
@@ -69,8 +69,17 @@ public class Database {
         return false;
     }
 
+    private boolean checkPublType(String id, int type) throws Exception {
+        String query = "SELECT 1 FROM publications WHERE publications_id = ? AND type = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setLong(1, Long.parseLong(id));
+        ps.setInt(2, type);
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
+    }
+
     public String getUsers(String id) {
-        if (!checkType(id, new int[] {U_ADMIN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN})) {
             return "access error";
         }
         return execSelectQuery(
@@ -225,7 +234,7 @@ public class Database {
     }
 
     public String getVerfs(String id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return execSelectQuery(
@@ -291,11 +300,12 @@ public class Database {
 
     public String addUser(String id, String name, String surname, String patronymic, String sex, String login,
                           String password, String birth_date, String type, String phone_number, String email) {
-        if (!checkType(id, new int[] {U_ADMIN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN})) {
             return "access error";
         }
         try {
-            String query = "INSERT INTO users(name, surname, patronymic, sex, login, password, birth_date, type, " +
+            String query =
+                    "INSERT INTO users(name, surname, patronymic, sex, login, password, birth_date, type, " +
                     "phone_number, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(query);
             setFullNameAndSexInPs(ps, name, surname, patronymic, sex);
@@ -313,7 +323,7 @@ public class Database {
     }
 
     public String addBook(String id, String title, String ph_id, String year) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -327,11 +337,12 @@ public class Database {
     }
 
     public String addDigest(String id, String title, String ph_id, String year) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
-            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_DIGEST + ", ?) " +
+            String query_p =
+                    "INSERT INTO publications(type, title) VALUES (" + P_DIGEST + ", ?) " +
                     "RETURNING publications_id";
             addPublHouseAndYear(title, ph_id, year, query_p);
             return "ok";        }
@@ -341,11 +352,12 @@ public class Database {
     }
 
     public String addMArticle(String id, String title, String m_id, String volume, String relase_number) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
-            String query_p = "INSERT INTO publications(type, title) VALUES (" + P_ARTICLE + ", ?) " +
+            String query_p =
+                    "INSERT INTO publications(type, title) VALUES (" + P_ARTICLE + ", ?) " +
                     "RETURNING publications_id";
             long p_id = getPublIdAfterInsert(title, query_p);
 
@@ -365,14 +377,14 @@ public class Database {
     }
 
     public String addDArticle(String id, String title, String d_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return addPublicationWithDigest(P_ARTICLE, title, d_id);
     }
 
     public String addMTheses(String id, String title, String m_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -388,14 +400,14 @@ public class Database {
     }
 
     public String addDTheses(String id, String title, String d_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return addPublicationWithDigest(P_THESES, title, d_id);
     }
 
     public String addDocs(String id, String title, String o_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -415,7 +427,7 @@ public class Database {
     }
 
     public String addMagazine(String id, String title, String s_id, String o_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -434,7 +446,7 @@ public class Database {
     }
 
     public String addSubject(String id, String subject) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -451,7 +463,7 @@ public class Database {
     }
 
     public String addOrganization(String id, String title, String address, String phone, String email) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO organizations(title, legal_address, phone_number, email) VALUES (?, ?, ?, ?)";
@@ -459,7 +471,7 @@ public class Database {
     }
 
     public String addPublHouse(String id, String title, String address, String phone, String email) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO publishing_houses(title, legal_address, phone_number, email) VALUES (?, ?, ?, ?)";
@@ -483,7 +495,7 @@ public class Database {
 
     public String addAuthor(String id, String name, String surname, String patronymic, String sex, String birth_date,
                      String death_date, String phone_number, String email) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO authors(name, surname, patronymic, sex, birth_date, death_date, phone_number, email) " +
@@ -493,7 +505,7 @@ public class Database {
 
     public String addEditor(String id, String name, String surname, String patronymic, String sex, String birth_date,
                             String death_date, String phone_number, String email) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO editors(name, surname, patronymic, sex, birth_date, death_date, phone_number, email) " +
@@ -543,7 +555,7 @@ public class Database {
     }
 
     public String addKeyword(String id, String keyword) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -560,7 +572,7 @@ public class Database {
     }
 
     public String addUdc(String id, String udc) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -577,7 +589,7 @@ public class Database {
     }
 
     public String addVerf(String u_id, String to_type, String a_id, String ph_id) {
-        if (!checkType(u_id, new int[] {U_READER})) {
+        if (!checkUserType(u_id, new int[] {U_READER})) {
             return "access error";
         }
         try {
@@ -605,7 +617,7 @@ public class Database {
     }
 
     public String addAuthOrg(String u_id, String a_id, String o_id, String start, String finish) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         try {
@@ -624,7 +636,7 @@ public class Database {
         }    }
 
     public String addKeywordToPubl(String id, String p_id, String k_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO publications_keywords(publications_id, keywords_id) VALUES (?, ?)";
@@ -632,7 +644,7 @@ public class Database {
     }
 
     public String addUdcToPubl(String id, String p_id, String u_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO publications_udc_codes(publications_id, udc_codes_id) VALUES (?, ?)";
@@ -640,7 +652,7 @@ public class Database {
     }
 
     public String addAuthToPubl(String id, String p_id, String a_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO authors_publications(publications_id, authors_id) VALUES (?, ?)";
@@ -648,7 +660,7 @@ public class Database {
     }
 
     public String addEditorToPubl(String id, String p_id, String e_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "INSERT INTO editors_publications(publications_id, editors_id) VALUES (?, ?)";
@@ -735,84 +747,84 @@ public class Database {
     }
 
     public String deleteUser(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN})) {
             return "access error";
         }
         return deleteById("users", id);
     }
 
     public String deletePublication(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("publications", id);
     }
 
     public String deleteAuthor(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("authors", id);
     }
 
     public String deleteEditor(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("editors", id);
     }
 
     public String deleteOrganization(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("organizations", id);
     }
 
     public String deletePublHouse(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("publishing_houses", id);
     }
 
     public String deleteKeyword(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("keywords", id);
     }
 
     public String deleteUdc(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("udc_codes", id);
     }
 
     public String deleteMagazine(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("magazines", id);
     }
 
     public String deleteSubject(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("subjects", id);
     }
 
     public String deleteVerification(String u_id, String id) {
-        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         return deleteById("verifications", id);
     }
 
     public String deleteKeywordFromPubl(String id, String p_id, String k_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "DELETE FROM publications_keywords WHERE publications_id = ? AND keywords_id = ?";
@@ -820,7 +832,7 @@ public class Database {
     }
 
     public String deleteUdcFromPubl(String id, String p_id, String u_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "DELETE FROM publications_udc_codes WHERE publications_id = ? AND udc_codes_id = ?";
@@ -828,7 +840,7 @@ public class Database {
     }
 
     public String deleteAuthFromPubl(String id, String p_id, String a_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "DELETE FROM authors_publications WHERE publications_id = ? AND authors_id = ?";
@@ -836,7 +848,7 @@ public class Database {
     }
 
     public String deleteEditorFromPubl(String id, String p_id, String e_id) {
-        if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
         }
         String query = "DELETE FROM editors_publications WHERE publications_id = ? AND editors_id = ?";
@@ -858,7 +870,7 @@ public class Database {
 
     public String changeUser(String u_id, String changing_u_id, String name, String surname, String patronymic,
                              String sex, String birth_date, String phone_number, String email) {
-        if (!(checkType(u_id, new int[] {U_ADMIN}) || u_id.equals(changing_u_id))) {
+        if (!(checkUserType(u_id, new int[] {U_ADMIN}) || u_id.equals(changing_u_id))) {
             return "access error";
         }
         try {
@@ -910,7 +922,7 @@ public class Database {
     }
 
     public String changeUserPassword(String u_id, String changing_u_id, String password) {
-        if (!(checkType(u_id, new int[] {U_ADMIN}) || u_id.equals(changing_u_id))) {
+        if (!(checkUserType(u_id, new int[] {U_ADMIN}) || u_id.equals(changing_u_id))) {
             return "access error";
         }
         try {
@@ -927,6 +939,64 @@ public class Database {
         catch (Exception e) {
             return e.getMessage();
         }
+    }
+
+    public String changeBook(String u_id, String p_id, String title, String year) {
+        return changeBookAndDigestCommonPart(u_id, p_id, title, year, P_BOOK);
+    }
+
+    public String changeDigest(String u_id, String p_id, String title, String year) {
+        return changeBookAndDigestCommonPart(u_id, p_id, title, year, P_DIGEST);
+    }
+
+    private String changeBookAndDigestCommonPart(String u_id, String p_id, String title, String year, int type) {
+        try {
+            if (!(checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN}) || isOwner(u_id, p_id))) {
+                return "access error";
+            }
+            if (!checkPublType(p_id, type)) {
+                return "wrong publication type";
+            }
+            changePublTitle(p_id, title);
+            changePublishingYear(p_id, year);
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    private void changePublTitle(String p_id, String title) throws Exception {
+        String query = "UPDATE publications SET title = ? WHERE publications_id = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, title);
+        ps.setLong(2, Long.parseLong(p_id));
+        ps.executeUpdate();
+    }
+
+    private boolean isOwner(String u_id, String p_id) throws Exception {
+        String query =
+                "SELECT 1 " +
+                "FROM publications p " +
+                "LEFT JOIN authors_publications ap ON p.publications_id = ap.publications_id " +
+                "LEFT JOIN users_authors ua ON ua.authors_id = ap.authors_id " +
+                "LEFT JOIN publishing_houses_publications php ON p.publications_id = php.publications_id " +
+                "LEFT JOIN users_publishing_houses uph ON uph.publishing_houses_id = php.publishing_houses_id " +
+                "WHERE (ua.users_id = ? OR uph.users_id = ?) AND p.publications_id = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setLong(1, Long.parseLong(u_id));
+        ps.setLong(2, Long.parseLong(u_id));
+        ps.setLong(3, Long.parseLong(p_id));
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
+    }
+
+    private void changePublishingYear(String p_id, String year) throws Exception {
+        String query = "UPDATE publishing_years SET year = ? WHERE publications_id = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, Integer.parseInt(year));
+        ps.setLong(2, Long.parseLong(p_id));
+        ps.executeUpdate();
     }
 
     private String RSToString(ResultSet rs) throws SQLException {
