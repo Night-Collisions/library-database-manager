@@ -17,7 +17,7 @@ import libapp.view.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class PublicationProperty<T>  extends TebleProperty<T> {
+public class PublicationProperty<T>  extends TableProperty<T> {
 
     @FXML
     public TableColumn<T, String> id;
@@ -29,27 +29,27 @@ public class PublicationProperty<T>  extends TebleProperty<T> {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
     }
 
-    protected static void CreateTableProperty(Object conect, String columnName, String idFilter) {
+    protected static void CreateTableProperty(Object connect, String columnName, String idFilter) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
-            loader.setController(conect);
+            loader.setController(connect);
             AnchorPane udcTable = loader.load();
 
             //Todo: переделать этот кастыль
-            if (conect instanceof UDCPropertyController) {
+            if (connect instanceof UDCPropertyController) {
                 UDCPropertyController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);
-            } else if (conect instanceof KeywordPropertyController) {
+            } else if (connect instanceof KeywordPropertyController) {
                 KeywordPropertyController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);
-            } else if (conect instanceof AuthorsPropertyController) {
+            } else if (connect instanceof AuthorsPropertyController) {
                 AuthorsPropertyController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);
-            } else if (conect instanceof EditorsPropertyController) {
+            } else if (connect instanceof EditorsPropertyController) {
                 EditorsPropertyController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);

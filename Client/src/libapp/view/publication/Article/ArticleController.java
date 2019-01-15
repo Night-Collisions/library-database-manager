@@ -1,10 +1,18 @@
 package libapp.view.publication.Article;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import libapp.ClientSocket;
 import libapp.model.Article;
+import libapp.view.Main;
+import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import java.io.File;
 
@@ -20,8 +28,7 @@ public class ArticleController extends PublicationProperty<Article> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors()};
-        addMenu(menuPropertyTable, new ArticleAddController(), new ArticleChangeController(), "publication" + File.separator
-                + "Article" + File.separator + "ArticleAddOverview.fxml");
+        addMenu(menuPropertyTable, null, null, "");
 
         magazineOrWork.setCellValueFactory(
                 new PropertyValueFactory<>("magazineOrWork"));

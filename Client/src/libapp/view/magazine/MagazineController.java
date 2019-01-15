@@ -1,17 +1,15 @@
 package libapp.view.magazine;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import libapp.model.Magazine;
 import libapp.view.Main;
-import libapp.view.TebleProperty;
+import libapp.view.TableProperty;
 
 import java.io.File;
 
-public class MagazineController extends TebleProperty<Magazine> {
+public class MagazineController extends TableProperty<Magazine> {
     @FXML
     private TableColumn<Magazine, String> id;
     @FXML

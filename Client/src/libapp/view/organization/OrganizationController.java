@@ -4,11 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.model.Organization;
-import libapp.view.TebleProperty;
+import libapp.view.Main;
+import libapp.view.TableProperty;
 
 import java.io.File;
 
-public class OrganizationController extends TebleProperty<Organization> {
+public class OrganizationController extends TableProperty<Organization> {
     @FXML
     private TableColumn<Organization, String> id;
     @FXML
@@ -37,5 +38,10 @@ public class OrganizationController extends TebleProperty<Organization> {
     public void fillTable() {
         // TODO: ебашим запрос к серверу и заполняем
 
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }

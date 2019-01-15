@@ -13,6 +13,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
+import libapp.ProgramUser;
+import libapp.model.User;
 import libapp.view.Editor.EditorController;
 import libapp.view.organization.OrganizationController;
 import libapp.view.publishingHouse.PublishingHouseController;
@@ -91,11 +93,15 @@ public class Main extends Application {
     @FXML
     MenuItem about;
 
+    private ProgramUser user;
+
     @FXML
     private void initialize() {
        /* users.setVisible(false);
         notifications.setVisible(false);
         sendRequest.setVisible(false);*/
+
+       user = new ProgramUser("1", "Vovan");
     }
 
     private void initRootLayout() {
@@ -173,6 +179,7 @@ public class Main extends Application {
             sc.setContent(rootLayout);
 
             BookController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -192,6 +199,7 @@ public class Main extends Application {
             sc.setContent(rootLayout);
 
             UserController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             e.printStackTrace();
@@ -207,6 +215,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             EditorController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -224,6 +233,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             KeywordPropertyController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -241,6 +251,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             UDCPropertyController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -258,6 +269,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             ThesisController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -275,6 +287,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             OrganizationController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -292,6 +305,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             PublishingHouseController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -309,6 +323,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             AuthorController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -326,6 +341,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             TechnicalDocController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -343,6 +359,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             MagazineController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -360,6 +377,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             WorkController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -377,6 +395,7 @@ public class Main extends Application {
             rootLayout.setCenter(table);
 
             ArticleController controller = loader.getController();
+            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -478,6 +497,10 @@ public class Main extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public ProgramUser getUser() {
+        return user;
     }
 
     public static void main(String[] args) {

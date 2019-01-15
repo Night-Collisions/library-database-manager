@@ -1,21 +1,15 @@
 package libapp.view.Editor;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
-import libapp.ClientSocket;
 import libapp.model.Editor;
 import libapp.view.Main;
-import libapp.view.TebleProperty;
+import libapp.view.TableProperty;
 
 import java.io.File;
 
-import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
-
-public class EditorController extends TebleProperty<Editor> {
+public class EditorController extends TableProperty<Editor> {
     @FXML
     private TableColumn<Editor, String> id;
     @FXML
@@ -56,4 +50,8 @@ public class EditorController extends TebleProperty<Editor> {
         // TODO: ебашим запрос к серверу и заполняем
     }
 
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
+    }
 }

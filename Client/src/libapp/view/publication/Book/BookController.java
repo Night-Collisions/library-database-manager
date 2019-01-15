@@ -1,13 +1,22 @@
 package libapp.view.publication.Book;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
+import libapp.ClientSocket;
+import libapp.Dictionary;
 import libapp.model.Book;
+import libapp.model.Publication;
+import libapp.view.Main;
+import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
 import java.io.File;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 
 public class BookController extends PublicationProperty<Book> {
@@ -20,8 +29,15 @@ public class BookController extends PublicationProperty<Book> {
     @FXML
     private void initialize() {
         initProperty();
-        MenuItem menuPropertyTable[] = {CreateAuthors(), CreateEditors()};
-        addMenu(menuPropertyTable, new BookAddController(), new BookChangeController(), "publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml");
+        MenuItem[] menuPropertyTable = {CreateAuthors(), CreateEditors()};
+        addMenu(menuPropertyTable,
+                new BookAddController(),
+                new BookChangeController(),
+                "publication" +
+                        File.separator +
+                        "Book" +
+                        File.separator +
+                        "BookAddOverview.fxml");
 
         publishingHouse.setCellValueFactory(new PropertyValueFactory<>("publishingHouse"));
         year.setCellValueFactory(new PropertyValueFactory<>("year"));
@@ -31,26 +47,29 @@ public class BookController extends PublicationProperty<Book> {
     }
 
     public void fillTable() {
-        // TODO: ебашим запрос к серверу и заполняем
-        dataList.add(new Book(
-                "1",
-                "Витек и Пяточки против волка",
-                "БлэкСтар",
-                "3019"));
-        dataList.add(new Book(
-                "4",
-                "Японские сказки про осьминогов",
-                "ХентайСтудио",
-                "1941"));
-        dataList.add(new Book(
-                "11",
-                "Жили у бабуси",
-                "Два веселых гуся",
-                "1999"));
-        dataList.add(new Book(
-                "5",
-                "Do you speak English?",
-                "Yes, of coarse it is",
-                "XX в д.н.э."));
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getBooks");
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                dataList.add(new Book(
+                        i.get(0).toString(),
+                        i.get(1).toString(),
+                        i.get(2).toString(),
+                        i.get(3).toString()));
+            }
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }
