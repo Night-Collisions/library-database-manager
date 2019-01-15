@@ -37,7 +37,7 @@ public class Database {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             int columnCount = rs.getMetaData().getColumnCount();
-            String[] user = {"-1", "", "", "", "", "", "", "", "", "", ""};
+            String[] user = {"-1", "", "", "", "", "", "", "", "", ""};
             if (rs.next()) {
                 int i = 1;
                 while (i <= columnCount) {
@@ -45,7 +45,7 @@ public class Database {
                     ++i;
                 }
             }
-            return String.join(", ", user);
+            return new Gson().toJson(user);
 
         }
         catch (SQLException e) {
