@@ -37,26 +37,14 @@ public class KeywordPropertyController {
         column.setCellValueFactory(new PropertyValueFactory<>("word"));
     }
 
-    //Для вывода всех слов
     public void fillTable() {
-        // TODO: ебашим запрос к серверу и заполняем
-        //...
-
-        table.setItems(keywords);
-    }
-
-    //Для вывода для конкретной записи
-    public void fillTable(String idFilter) {
         String result = "";
         try {
-            try {
-                socket = ClientSocket.enableConnection(socket);
-                result = socket.makeRequest("<empty> , getKeywordsOfPubl, " + idFilter);
-            } catch (Exception e) {
-                new MessageController(MessageController.titleErrorServerConnect,
-                        MessageController.contentTextErrorServerConnect, e);
-                return;
-            }
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "getAllKeywords");
 
             if (result.equals("wrong args")) {
                 throw new Exception();
@@ -66,7 +54,35 @@ public class KeywordPropertyController {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                //TODO: ВИТЯ ИСПРАВЬ ПЕРВЫЙ АРГУМЕНТ
+                keywords.add(new Keyword(i.get(0).toString(), i.get(1).toString()));
+            }
+
+            table.setItems(keywords);
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
+    }
+
+    public void fillTable(String idFilter) {
+        String result = "";
+        try {
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "GetKeywordsOfPubl" +
+                            ClientSocket.argSep +
+                            idFilter);
+
+            if (result.equals("wrong args")) {
+                throw new Exception();
+            }
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
                 keywords.add(new Keyword(i.get(0).toString(), i.get(1).toString()));
             }
 

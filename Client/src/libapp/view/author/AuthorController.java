@@ -90,7 +90,7 @@ public class AuthorController extends TableProperty<Author> {
             result = socket.makeRequest(
                     main.getUser().getId() +
                             ClientSocket.argSep +
-                            "getAuthors" +
+                            "getAuthorsOfPubl" +
                             ClientSocket.argSep +
                             idFilter);
 

@@ -83,7 +83,42 @@ public class EditorController extends TableProperty<Editor> {
     }
 
     public void fillTable(String idFilter) {
-        // TODO: ебашим запрос к серверу и заполняем
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "getEditorsOfPubl" +
+                            ClientSocket.argSep +
+                            idFilter);
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                String[] args = new String[i.size()];
+                for (int j = 0; j < i.size(); ++j) {
+                    if (i.get(j) != null) {
+                        args[j] = i.get(j).toString();
+                    } else {
+                        args[j] = "";
+                    }
+                }
+                dataList.add(new Editor(
+                        args[0],
+                        args[1],
+                        args[2],
+                        args[3],
+                        args[4],
+                        args[5],
+                        args[6],
+                        args[7]));
+            }
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
     }
 
     public void setMain(Main main) {
