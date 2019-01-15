@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import libapp.model.PublicationTable;
 import libapp.model.TechnicalDoc;
 import libapp.view.*;
+import libapp.view.publication.oneColumnTable.Author.AuthorsOCTController;
+import libapp.view.publication.oneColumnTable.Edithor.EditorsOCTController;
+import libapp.view.publication.oneColumnTable.KeyWords.KeywordOCTController;
+import libapp.view.publication.oneColumnTable.UDC.UDCOCTController;
 
 import java.awt.*;
 import java.io.IOException;
@@ -32,25 +36,25 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     protected static void CreateTableProperty(Object connect, String columnName, String idFilter) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
+            loader.setLocation(Main.class.getResource("OneColumnTableOverview.fxml"));
             loader.setController(connect);
             AnchorPane udcTable = loader.load();
 
             //Todo: переделать этот кастыль
-            if (connect instanceof UDCPropertyController) {
-                UDCPropertyController controller = loader.getController();
+            if (connect instanceof UDCOCTController) {
+                UDCOCTController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);
-            } else if (connect instanceof KeywordPropertyController) {
-                KeywordPropertyController controller = loader.getController();
+            } else if (connect instanceof KeywordOCTController) {
+                KeywordOCTController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);
-            } else if (connect instanceof AuthorsPropertyController) {
-                AuthorsPropertyController controller = loader.getController();
+            } else if (connect instanceof AuthorsOCTController) {
+                AuthorsOCTController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);
-            } else if (connect instanceof EditorsPropertyController) {
-                EditorsPropertyController controller = loader.getController();
+            } else if (connect instanceof EditorsOCTController) {
+                EditorsOCTController controller = loader.getController();
                 controller.fillTable(idFilter);
                 controller.setColumnText(columnName + " " + idFilter);
             }
@@ -72,7 +76,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateUDC() {
         javafx.scene.control.MenuItem udc = new MenuItem("УДК");
         udc.setOnAction(t -> {
-            CreateTableProperty(new UDCPropertyController(), "УДК для id ",
+            CreateTableProperty(new UDCOCTController(), "УДК для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return udc;
@@ -81,7 +85,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateKeyWords() {
         MenuItem keywords = new MenuItem("Ключевые слова");
         keywords.setOnAction(t -> {
-            CreateTableProperty(new KeywordPropertyController(), "Ключевые слова для id ",
+            CreateTableProperty(new KeywordOCTController(), "Ключевые слова для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return keywords;
@@ -90,7 +94,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateAuthors() {
         MenuItem authors = new MenuItem("Авторы");
         authors.setOnAction(t -> {
-            CreateTableProperty(new AuthorsPropertyController(), "Авторы для id ",
+            CreateTableProperty(new AuthorsOCTController(), "Авторы для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return authors;
@@ -99,24 +103,20 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateEditors() {
         MenuItem editors = new MenuItem("Редакторы");
         editors.setOnAction(t -> {
-            CreateTableProperty(new EditorsPropertyController(), "Редакторы для id ",
+            CreateTableProperty(new EditorsOCTController(), "Редакторы для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return editors;
     }
 
-    public void addMenu(javafx.scene.control.MenuItem moreTableProperty[], Object add, Object change, String form) {
-        addMenu(moreTableProperty, add, change, form, form);
-    }
-
-    public void addMenu(javafx.scene.control.MenuItem moreTableProperty[], Object add, Object change, String formAdd, String formChange) {
+    public void addMenu(javafx.scene.control.MenuItem moreTableProperty[]) {
         javafx.scene.control.Menu more[] = {new Menu("Подробнее")};
 
         more[0].getItems().add(CreateUDC());
         more[0].getItems().add(CreateKeyWords());
         more[0].getItems().addAll(moreTableProperty);
 
-        createMenu(more, add, change, formAdd, formChange);
+        createMenu(more);
     }
 
     public void deleteRow(String id) {

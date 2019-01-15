@@ -24,13 +24,20 @@ public class ThesisController extends PublicationProperty<Thesis> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors()};
-        addMenu(menuPropertyTable, new ThesisAddController(), new ThesisChangeController(), "publication" + File.separator
-                + "Thesis" + File.separator + "ThesisAddOverview.fxml");
+        addMenu(menuPropertyTable);
 
         magazineOrWork.setCellValueFactory(
                 new PropertyValueFactory<>("magazineOrWork"));
 
         table.setItems(dataList);
+    }
+
+    public void onAddMenu() {
+        createWindow("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisChangeController());
     }
 
     public void fillTable() {

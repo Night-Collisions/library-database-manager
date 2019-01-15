@@ -29,9 +29,7 @@ public class OrganizationController extends TableProperty<Organization> {
 
     @FXML
     private void initialize() {
-        createMenu(new OrganizationAddController(), new OrganizationChangeController(), "organization" + File.separator + "OrganizationAddOverview.fxml");
-
-
+        createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -39,6 +37,14 @@ public class OrganizationController extends TableProperty<Organization> {
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         table.setItems(dataList);
+    }
+
+    public void onAddMenu() {
+        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new OrganizationAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new OrganizationChangeController());
     }
 
     public void fillTable() {

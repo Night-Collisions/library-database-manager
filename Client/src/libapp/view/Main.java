@@ -14,9 +14,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
 import libapp.ProgramUser;
-import libapp.model.User;
 import libapp.view.Editor.EditorController;
 import libapp.view.organization.OrganizationController;
+import libapp.view.publication.oneColumnTable.KeyWords.KeywordOCTController;
+import libapp.view.publication.oneColumnTable.UDC.UDCOCTController;
 import libapp.view.publishingHouse.PublishingHouseController;
 import libapp.view.author.AuthorController;
 import libapp.view.magazine.MagazineController;
@@ -27,7 +28,7 @@ import libapp.view.publication.TechnicalDoc.TechnicalDocController;
 import libapp.view.publication.Thesis.ThesisController;
 import libapp.view.publication.Work.WorkController;
 import libapp.view.user.UserController;
-import sun.plugin.util.UserProfile;
+
 
 import java.awt.*;
 import java.io.File;
@@ -101,7 +102,7 @@ public class Main extends Application {
         notifications.setVisible(false);
         sendRequest.setVisible(false);*/
 
-       user = new ProgramUser("1", "Vovan");
+       user = new ProgramUser("1", "Vovan", ProgramUser.UserType.Admin);
     }
 
     private void initRootLayout() {
@@ -227,12 +228,12 @@ public class Main extends Application {
     public void showKeywords() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
-            loader.setController(new KeywordPropertyController());
+            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTableу" + File.separator + "OneColumnTableOverview.fxml"));
+            loader.setController(new KeywordOCTController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
-            KeywordPropertyController controller = loader.getController();
+            KeywordOCTController controller = loader.getController();
             controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
@@ -245,12 +246,12 @@ public class Main extends Application {
     public void showUDCs() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("PropertyTableWinOverview.fxml"));
-            loader.setController(new UDCPropertyController());
+            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTableу" + File.separator + "OneColumnTableOverview.fxml"));
+            loader.setController(new UDCOCTController());
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
-            UDCPropertyController controller = loader.getController();
+            UDCOCTController controller = loader.getController();
             controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {

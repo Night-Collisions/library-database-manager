@@ -26,13 +26,21 @@ public class WorkController extends PublicationProperty<Work> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateEditors()};
-        addMenu(menuPropertyTable, new WorkAddController(), new WorkChangeController(), "publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml");
+        addMenu(menuPropertyTable);
 
         publishingHouse.setCellValueFactory(
                 new PropertyValueFactory<>("publishingHouse"));
         year.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         table.setItems(dataList);
+    }
+
+    public void onAddMenu() {
+        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController());
     }
 
     public void fillTable() {

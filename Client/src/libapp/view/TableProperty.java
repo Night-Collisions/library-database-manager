@@ -50,17 +50,12 @@ public class TableProperty<T> {
         }
     }
 
-    public void createMenu(Object add, Object change, String form) {
-        javafx.scene.control.Menu[] a = {};
-        createMenu(a, add, change, form, form);
+    public void createMenu() {
+        javafx.scene.control.Menu[] cascadingMenu = {};
+        createMenu(cascadingMenu);
     }
 
-    public void createMenu(Object add, Object change, String formAdd, String formChange) {
-        javafx.scene.control.Menu[] a = {};
-        createMenu(a, add, change, formAdd, formChange);
-    }
-
-    public void createMenu(javafx.scene.control.Menu[] cascadingMenu, Object add, Object change, String formAdd, String formChange) {
+    public void createMenu(javafx.scene.control.Menu[] cascadingMenu) {
         ContextMenu context = new ContextMenu();
 
         MenuItem insert = new MenuItem("Добавить");
@@ -73,18 +68,15 @@ public class TableProperty<T> {
         context.getItems().add(delete);
 
         //TODO: нахуячить, если это библиотекарь или че то такое
-        if (add != null) {
-            insert.setOnAction(t -> {
-                PublicationProperty.createWindow(formAdd, add);
-            });
-        }
+        insert.setOnAction(t -> {
+            onAddMenu();
+        });
 
         //TODO: нахуячить, если это библиотекарь или че то такое
-        if (change != null) {
-            edit.setOnAction(t -> {
-                PublicationProperty.createWindow(formChange, change);
-            });
-        }
+        edit.setOnAction(t -> {
+            onEditMenu();
+        });
+
 
         //TODO: нахуячить, если это библиотекарь или че то такое
         delete.setOnAction(t -> {
@@ -112,6 +104,10 @@ public class TableProperty<T> {
             deleteRow(id);
         }
     }
+
+    public void onAddMenu() {}
+
+    public void onEditMenu() {}
 
     public void deleteRow(String id) {}
 }

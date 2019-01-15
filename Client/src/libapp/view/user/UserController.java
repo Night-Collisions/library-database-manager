@@ -40,8 +40,7 @@ public class UserController extends TableProperty<User> {
 
     @FXML
     private void initialize() {
-        createMenu(new UserAddController(), new UserChangeController(), "user" + File.separator + "UserAddOverview.fxml", "UserProfileOverview.fxml");
-
+        createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -54,6 +53,14 @@ public class UserController extends TableProperty<User> {
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         table.setItems(dataList);
+    }
+
+    public void onAddMenu() {
+        createWindow("user" + File.separator + "UserAddOverview.fxml", new UserAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("UserProfileOverview.fxml", new UserChangeController());
     }
 
     public void fillTable() {

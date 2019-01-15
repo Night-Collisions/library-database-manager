@@ -30,20 +30,21 @@ public class BookController extends PublicationProperty<Book> {
     private void initialize() {
         initProperty();
         MenuItem[] menuPropertyTable = {CreateAuthors(), CreateEditors()};
-        addMenu(menuPropertyTable,
-                new BookAddController(),
-                new BookChangeController(),
-                "publication" +
-                        File.separator +
-                        "Book" +
-                        File.separator +
-                        "BookAddOverview.fxml");
+        addMenu(menuPropertyTable);
 
         publishingHouse.setCellValueFactory(new PropertyValueFactory<>("publishingHouse"));
         year.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         table.setItems(dataList);
         table.setScaleShape(false);
+    }
+
+    public void onAddMenu() {
+        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController());
     }
 
     public void fillTable() {

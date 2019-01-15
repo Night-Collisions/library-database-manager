@@ -36,7 +36,7 @@ public class AuthorController extends TableProperty<Author> {
 
     @FXML
     private void initialize() {
-        createMenu(new AuthorAddController(), new AuthorChangeController(), "author" + File.separator + "AuthorAddOverview.fxml");
+        createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -47,6 +47,14 @@ public class AuthorController extends TableProperty<Author> {
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         table.setItems(dataList);
+    }
+
+    public void onAddMenu() {
+        createWindow("author" + File.separator + "AuthorAddOverview.fxml", new AuthorAddController());
+    }
+
+    public void onEditMenu() {
+        createWindow("author" + File.separator + "AuthorAddOverview.fxml", new AuthorChangeController());
     }
 
     public void fillTable() {
