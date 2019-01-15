@@ -980,6 +980,20 @@ public class Database {
         }
     }
 
+    public String changeSubject(String id, String s_id, String title) {
+        if (!checkUserType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        try {
+            String query = "UPDATE subjects SET subject = ? WHERE subjects_id = ?";
+            changeStringById(query, title, s_id);
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     private void changeStringById(String query, String string, String id) throws Exception {
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, string);
