@@ -2,42 +2,23 @@ package libapp.view.user;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import libapp.view.RegularForField;
 
 import java.util.Optional;
 
-public class UserChangeController {
+public class UserChangeController extends UserWinController {
 
     @FXML
-    private Label id;
+    protected Label id;
     @FXML
-    private Label login;
+    protected Label login;
     @FXML
-    private Button changePassword;
+    protected Button changePassword;
     @FXML
-    private Label type;
+    protected Label type;
+    
     @FXML
-    private TextField surname;
-    @FXML
-    private TextField name;
-    @FXML
-    private TextField patronymic;
-    @FXML
-    private ComboBox<String> sex;
-    @FXML
-    private DatePicker bornDate;
-    @FXML
-    private TextField phone;
-    @FXML
-    private TextField email;
-    @FXML
-    private Button accept;
-    @FXML
-    private Button reject;
-
-    @FXML
-    private void initialize() throws InterruptedException {
+    protected void initialize() {
         RegularForField.setPhoneField(phone);
     }
 
@@ -59,15 +40,7 @@ public class UserChangeController {
     }
 
     @FXML
-    private int applyChange() {
-
-        return 0;
-    }
-
-    @FXML
-    private int closeWindow(){
-        Stage stage = (Stage) reject.getScene().getWindow();
-        stage.close();
-        return 0;
+    protected void applyChange() {
+        super.applyChange();
     }
 }

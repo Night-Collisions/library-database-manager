@@ -37,4 +37,8 @@ public class RegularForField {
     public static void setLoginField(TextField field) {
         createRegular(field, "[A-Za-z0-9_]*");
     }
+
+    public static void setIntField(TextField field) {
+        createRegular(field, "[0-9]*");
+    }
 }
