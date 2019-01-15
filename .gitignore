@@ -14,6 +14,7 @@
 !/Client/src/libapp/*
 !/Client/src/libapp/model/*
 !/Client/src/libapp/view/*
+!/Client/src/libapp/view/*/*
 !*.fxml
 !*.java
 !/Client/Client.iml
