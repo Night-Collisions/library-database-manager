@@ -6,6 +6,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.model.Work;
 import libapp.view.publication.PublicationProperty;
 
+import java.io.File;
+
 public class WorkController extends PublicationProperty<Work> {
 
     @FXML
@@ -17,7 +19,7 @@ public class WorkController extends PublicationProperty<Work> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateEditors()};
-        addMenu(menuPropertyTable, new WorkAddController(), new WorkChangeController(), "publication\\Book\\BookAddOverview.fxml");
+        addMenu(menuPropertyTable, new WorkAddController(), new WorkChangeController(), "publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml");
 
         publishingHouse.setCellValueFactory(
                 new PropertyValueFactory<>("publishingHouse"));

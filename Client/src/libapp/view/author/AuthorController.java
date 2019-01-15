@@ -14,6 +14,8 @@ import libapp.model.Author;
 import libapp.view.Main;
 import libapp.view.TebleProperty;
 
+import java.io.File;
+
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class AuthorController extends TebleProperty<Author> {
@@ -36,7 +38,7 @@ public class AuthorController extends TebleProperty<Author> {
 
     @FXML
     private void initialize() {
-        createMenu(new AuthorAddController(), new AuthorChangeController(), "author\\AuthorAddOverview.fxml");
+        createMenu(new AuthorAddController(), new AuthorChangeController(), "author" + File.separator + "AuthorAddOverview.fxml");
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

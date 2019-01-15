@@ -12,6 +12,7 @@ import libapp.model.Publication;
 import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class PublicationController extends PublicationProperty<Publication> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {};
-        addMenu(menuPropertyTable, new PublicationAddController(), null, "publication\\AllPublication\\PublicationAddOverview.fxml", "");
+        addMenu(menuPropertyTable, new PublicationAddController(), null, "publication" + File.separator + "AllPublication" + File.separator + "PublicationAddOverview.fxml", "");
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 

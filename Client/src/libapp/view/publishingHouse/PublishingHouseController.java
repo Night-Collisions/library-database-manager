@@ -14,6 +14,8 @@ import libapp.model.PublishingHouse;
 import libapp.view.Main;
 import libapp.view.TebleProperty;
 
+import java.io.File;
+
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class PublishingHouseController extends TebleProperty<PublishingHouse> {
@@ -30,7 +32,7 @@ public class PublishingHouseController extends TebleProperty<PublishingHouse> {
 
     @FXML
     private void initialize() {
-        createMenu(new PublishingHouseAddController(), new PublishingHouseChangeController(), "organization\\OrganizationAddOverview.fxml");
+        createMenu(new PublishingHouseAddController(), new PublishingHouseChangeController(), "organization" + File.separator + "OrganizationAddOverview.fxml");
 
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));

@@ -28,6 +28,7 @@ import libapp.view.user.UserController;
 import sun.plugin.util.UserProfile;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -118,7 +119,7 @@ public class Main extends Application {
     public void showPublications() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("publication\\AllPublication\\PublicationOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publication" + File.separator + "AllPublication" + File.separator + "PublicationOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -164,7 +165,7 @@ public class Main extends Application {
     public void showBooks() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("publication\\Book\\BookOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publication" + File.separator + "Book" + File.separator + "BookOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -183,7 +184,7 @@ public class Main extends Application {
     public void showUsers() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("user\\UserOverview.fxml"));
+            loader.setLocation(Main.class.getResource("user" + File.separator + "UserOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -201,7 +202,7 @@ public class Main extends Application {
     public void showEditors() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("Editor\\EditorOverview.fxml"));
+            loader.setLocation(Main.class.getResource("Editor" + File.separator + "EditorOverview.fxml"));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
@@ -251,7 +252,7 @@ public class Main extends Application {
     public void showTheses() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("publication\\Thesis\\ThesisOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publication" + File.separator + "Thesis" + File.separator + "ThesisOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -268,7 +269,7 @@ public class Main extends Application {
     public void showOrganizations() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("organization\\OrganizationOverview.fxml"));
+            loader.setLocation(Main.class.getResource("organization" + File.separator + "OrganizationOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -285,7 +286,7 @@ public class Main extends Application {
     public void showPublishingHouses() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("publishingHouse\\PublishingHouseOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publishingHouse" + File.separator + "PublishingHouseOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -302,7 +303,7 @@ public class Main extends Application {
     public void showAuthors() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("author\\AuthorOverview.fxml"));
+            loader.setLocation(Main.class.getResource("author" + File.separator + "AuthorOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -319,7 +320,7 @@ public class Main extends Application {
     public void showTechnicalDocs() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("publication\\TechnicalDoc\\TechnicalDocOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -336,7 +337,7 @@ public class Main extends Application {
     public void showMagazines() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("magazine\\MagazineOverview.fxml"));
+            loader.setLocation(Main.class.getResource("magazine" + File.separator + "MagazineOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -353,7 +354,7 @@ public class Main extends Application {
     public void showWorks() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("publication\\Work\\WorkOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publication" + File.separator + "Work" + File.separator + "WorkOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -370,7 +371,7 @@ public class Main extends Application {
     public void showArticles() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("publication\\Article\\ArticleOverview.fxml"));
+            loader.setLocation(Main.class.getResource("publication" + File.separator + "Article" + File.separator + "ArticleOverview.fxml"));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);

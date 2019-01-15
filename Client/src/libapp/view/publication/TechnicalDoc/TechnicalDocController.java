@@ -6,6 +6,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.model.TechnicalDoc;
 import libapp.view.publication.PublicationProperty;
 
+import java.io.File;
+
 public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
 
     @FXML
@@ -15,7 +17,7 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {};
-        addMenu(menuPropertyTable, new TechnicalDocAddController(), new TechnicalDocChange(), "publication\\TechnicalDoc\\TechnicalDocAddOverview.fxml");
+        addMenu(menuPropertyTable, new TechnicalDocAddController(), new TechnicalDocChange(), "publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml");
 
         organization.setCellValueFactory(
                 new PropertyValueFactory<>("organization"));

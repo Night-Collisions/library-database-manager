@@ -6,6 +6,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.model.Organization;
 import libapp.view.TebleProperty;
 
+import java.io.File;
+
 public class OrganizationController extends TebleProperty<Organization> {
     @FXML
     private TableColumn<Organization, String> id;
@@ -20,7 +22,7 @@ public class OrganizationController extends TebleProperty<Organization> {
 
     @FXML
     private void initialize() {
-        createMenu(new OrganizationAddController(), new OrganizationChangeController(), "organization\\OrganizationAddOverview.fxml");
+        createMenu(new OrganizationAddController(), new OrganizationChangeController(), "organization" + File.separator + "OrganizationAddOverview.fxml");
 
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));

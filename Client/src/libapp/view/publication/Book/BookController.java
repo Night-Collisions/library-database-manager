@@ -7,6 +7,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.model.Book;
 import libapp.view.publication.PublicationProperty;
 
+import java.io.File;
+
 
 public class BookController extends PublicationProperty<Book> {
 
@@ -19,7 +21,7 @@ public class BookController extends PublicationProperty<Book> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors(), CreateEditors()};
-        addMenu(menuPropertyTable, new BookAddController(), new BookChangeController(), "publication\\Book\\BookAddOverview.fxml");
+        addMenu(menuPropertyTable, new BookAddController(), new BookChangeController(), "publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml");
 
         publishingHouse.setCellValueFactory(new PropertyValueFactory<>("publishingHouse"));
         year.setCellValueFactory(new PropertyValueFactory<>("year"));

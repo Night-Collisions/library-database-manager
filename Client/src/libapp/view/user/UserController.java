@@ -14,6 +14,8 @@ import libapp.model.User;
 import libapp.view.Main;
 import libapp.view.TebleProperty;
 
+import java.io.File;
+
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class UserController extends TebleProperty<User> {
@@ -41,7 +43,7 @@ public class UserController extends TebleProperty<User> {
 
     @FXML
     private void initialize() {
-        createMenu(new UserAddController(), new UserChangeController(), "user\\UserAddOverview.fxml", "UserProfileOverview.fxml");
+        createMenu(new UserAddController(), new UserChangeController(), "user" + File.separator + "UserAddOverview.fxml", "UserProfileOverview.fxml");
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));

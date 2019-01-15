@@ -9,6 +9,8 @@ import libapp.model.Magazine;
 import libapp.view.Main;
 import libapp.view.TebleProperty;
 
+import java.io.File;
+
 public class MagazineController extends TebleProperty<Magazine> {
     @FXML
     private TableColumn<Magazine, String> id;
@@ -19,7 +21,7 @@ public class MagazineController extends TebleProperty<Magazine> {
 
     @FXML
     private void initialize() {
-        createMenu(new MagazineAddController(), new MagazineChangeController(), "magazine\\MagazineAddOverview.fxml");
+        createMenu(new MagazineAddController(), new MagazineChangeController(), "magazine" + File.separator + "MagazineAddOverview.fxml");
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         topic.setCellValueFactory(

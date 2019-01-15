@@ -11,6 +11,8 @@ import libapp.model.Editor;
 import libapp.view.Main;
 import libapp.view.TebleProperty;
 
+import java.io.File;
+
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class EditorController extends TebleProperty<Editor> {
@@ -33,7 +35,7 @@ public class EditorController extends TebleProperty<Editor> {
 
     @FXML
     private void initialize() {
-        createMenu(new EditorAddController(), new EditorChangeController(), "author\\AuthorAddOverview.fxml");
+        createMenu(new EditorAddController(), new EditorChangeController(), "author" + File.separator + "AuthorAddOverview.fxml");
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
