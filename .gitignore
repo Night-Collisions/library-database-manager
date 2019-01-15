@@ -1,5 +1,6 @@
 *
 !.gitignore
+
 !/Server
 /Server/*
 !/Server/Server.iml
@@ -7,7 +8,16 @@
 /Server/src/*
 !/Server/src/*.java
 !/Server/src/*.jar
+
 !/Client
 /Client/*
+
 !/PostgreSQL
 /PostgreSQL/* 
+!/PostgreSQL/consts.txt
+!/PostgreSQL/readme.txt
+!/PostgreSQL/pg_dump
+
+!/Documentation
+/Documentation/*
+!/Documentation/Documentation.docx

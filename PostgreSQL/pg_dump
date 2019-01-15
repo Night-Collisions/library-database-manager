@@ -1,0 +1,1447 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.1
+-- Dumped by pg_dump version 11.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: authors; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.authors (
+    authors_id integer NOT NULL,
+    name character varying(50) NOT NULL,
+    surname character varying(50),
+    patronymic character varying(50),
+    sex smallint NOT NULL,
+    birth_date date,
+    death_date date,
+    phone_number bigint,
+    email character varying(100),
+    CONSTRAINT authors_check CHECK ((birth_date <= death_date)),
+    CONSTRAINT authors_sex_check CHECK ((sex = ANY (ARRAY[0, 1, 2])))
+);
+
+
+ALTER TABLE public.authors OWNER TO username;
+
+--
+-- Name: authors_authors_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.authors_authors_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.authors_authors_id_seq OWNER TO username;
+
+--
+-- Name: authors_authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.authors_authors_id_seq OWNED BY public.authors.authors_id;
+
+
+--
+-- Name: authors_organizations; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.authors_organizations (
+    authors_id integer NOT NULL,
+    organizations_id integer NOT NULL,
+    start date NOT NULL,
+    finish date NOT NULL,
+    CONSTRAINT authors_organizations_check CHECK ((start <= finish))
+);
+
+
+ALTER TABLE public.authors_organizations OWNER TO username;
+
+--
+-- Name: authors_publications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.authors_publications (
+    publications_id integer NOT NULL,
+    authors_id integer NOT NULL
+);
+
+
+ALTER TABLE public.authors_publications OWNER TO username;
+
+--
+-- Name: digests_publications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.digests_publications (
+    publications_id integer NOT NULL,
+    digests_id integer NOT NULL
+);
+
+
+ALTER TABLE public.digests_publications OWNER TO username;
+
+--
+-- Name: editors; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.editors (
+    editors_id integer NOT NULL,
+    name character varying(50) NOT NULL,
+    surname character varying(50),
+    patronymic character varying(50),
+    sex smallint NOT NULL,
+    birth_date date,
+    death_date date,
+    phone_number bigint,
+    email character varying(100),
+    CONSTRAINT editors_check CHECK ((birth_date <= death_date)),
+    CONSTRAINT editors_sex_check CHECK ((sex = ANY (ARRAY[0, 1, 2])))
+);
+
+
+ALTER TABLE public.editors OWNER TO username;
+
+--
+-- Name: editors_editors_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.editors_editors_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.editors_editors_id_seq OWNER TO username;
+
+--
+-- Name: editors_editors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.editors_editors_id_seq OWNED BY public.editors.editors_id;
+
+
+--
+-- Name: editors_publications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.editors_publications (
+    publications_id integer NOT NULL,
+    editors_id integer NOT NULL
+);
+
+
+ALTER TABLE public.editors_publications OWNER TO username;
+
+--
+-- Name: keywords; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.keywords (
+    keywords_id integer NOT NULL,
+    keyword character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.keywords OWNER TO username;
+
+--
+-- Name: keywords_keywords_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.keywords_keywords_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.keywords_keywords_id_seq OWNER TO username;
+
+--
+-- Name: keywords_keywords_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.keywords_keywords_id_seq OWNED BY public.keywords.keywords_id;
+
+
+--
+-- Name: magazine_article_info; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.magazine_article_info (
+    publications_id integer NOT NULL,
+    volume integer NOT NULL,
+    release_number integer NOT NULL,
+    CONSTRAINT magazine_article_info_release_number_check CHECK ((release_number > 0)),
+    CONSTRAINT magazine_article_info_volume_check CHECK ((volume > 0))
+);
+
+
+ALTER TABLE public.magazine_article_info OWNER TO username;
+
+--
+-- Name: magazines; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.magazines (
+    magazines_id integer NOT NULL,
+    title character varying(100) NOT NULL,
+    subjects_id integer,
+    organizations_id integer NOT NULL
+);
+
+
+ALTER TABLE public.magazines OWNER TO username;
+
+--
+-- Name: magazines_magazines_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.magazines_magazines_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.magazines_magazines_id_seq OWNER TO username;
+
+--
+-- Name: magazines_magazines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.magazines_magazines_id_seq OWNED BY public.magazines.magazines_id;
+
+
+--
+-- Name: magazines_publications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.magazines_publications (
+    publications_id integer NOT NULL,
+    magazines_id integer NOT NULL
+);
+
+
+ALTER TABLE public.magazines_publications OWNER TO username;
+
+--
+-- Name: organizations; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.organizations (
+    organizations_id integer NOT NULL,
+    title character varying(1000) NOT NULL,
+    legal_address character varying(1000) NOT NULL,
+    phone_number bigint,
+    email character varying(100)
+);
+
+
+ALTER TABLE public.organizations OWNER TO username;
+
+--
+-- Name: organizations_organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.organizations_organizations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.organizations_organizations_id_seq OWNER TO username;
+
+--
+-- Name: organizations_organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.organizations_organizations_id_seq OWNED BY public.organizations.organizations_id;
+
+
+--
+-- Name: organizations_publications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.organizations_publications (
+    publications_id integer NOT NULL,
+    organizations_id integer NOT NULL
+);
+
+
+ALTER TABLE public.organizations_publications OWNER TO username;
+
+--
+-- Name: publications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.publications (
+    publications_id integer NOT NULL,
+    type smallint NOT NULL,
+    title character varying(1000) NOT NULL,
+    CONSTRAINT publications_type_check CHECK ((type >= 0))
+);
+
+
+ALTER TABLE public.publications OWNER TO username;
+
+--
+-- Name: publications_keywords; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.publications_keywords (
+    publications_id integer NOT NULL,
+    keywords_id integer NOT NULL
+);
+
+
+ALTER TABLE public.publications_keywords OWNER TO username;
+
+--
+-- Name: publications_publications_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.publications_publications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.publications_publications_id_seq OWNER TO username;
+
+--
+-- Name: publications_publications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.publications_publications_id_seq OWNED BY public.publications.publications_id;
+
+
+--
+-- Name: publications_udc_codes; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.publications_udc_codes (
+    publications_id integer NOT NULL,
+    udc_codes_id integer NOT NULL
+);
+
+
+ALTER TABLE public.publications_udc_codes OWNER TO username;
+
+--
+-- Name: publishing_houses; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.publishing_houses (
+    publishing_houses_id integer NOT NULL,
+    title character varying(1000) NOT NULL,
+    legal_address character varying(1000) NOT NULL,
+    phone_number bigint,
+    email character varying(100)
+);
+
+
+ALTER TABLE public.publishing_houses OWNER TO username;
+
+--
+-- Name: publishing_houses_publications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.publishing_houses_publications (
+    publications_id integer NOT NULL,
+    publishing_houses_id integer NOT NULL
+);
+
+
+ALTER TABLE public.publishing_houses_publications OWNER TO username;
+
+--
+-- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.publishing_houses_publishing_houses_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.publishing_houses_publishing_houses_id_seq OWNER TO username;
+
+--
+-- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.publishing_houses_publishing_houses_id_seq OWNED BY public.publishing_houses.publishing_houses_id;
+
+
+--
+-- Name: publishing_years; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.publishing_years (
+    publications_id integer NOT NULL,
+    year integer NOT NULL,
+    CONSTRAINT publishing_years_year_check CHECK ((year > 0))
+);
+
+
+ALTER TABLE public.publishing_years OWNER TO username;
+
+--
+-- Name: subjects; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.subjects (
+    subjects_id integer NOT NULL,
+    title character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.subjects OWNER TO username;
+
+--
+-- Name: subjects_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.subjects_subjects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.subjects_subjects_id_seq OWNER TO username;
+
+--
+-- Name: subjects_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.subjects_subjects_id_seq OWNED BY public.subjects.subjects_id;
+
+
+--
+-- Name: udc_codes; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.udc_codes (
+    udc_codes_id integer NOT NULL,
+    udc_code character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.udc_codes OWNER TO username;
+
+--
+-- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.udc_codes_udc_codes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.udc_codes_udc_codes_id_seq OWNER TO username;
+
+--
+-- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.udc_codes_udc_codes_id_seq OWNED BY public.udc_codes.udc_codes_id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.users (
+    users_id integer NOT NULL,
+    name character varying(50) NOT NULL,
+    surname character varying(50),
+    patronymic character varying(50),
+    sex smallint NOT NULL,
+    login character varying(50) NOT NULL,
+    password character varying(50) NOT NULL,
+    birth_date date,
+    type smallint NOT NULL,
+    phone_number bigint,
+    email character varying(100),
+    CONSTRAINT users_password_check CHECK ((length((password)::text) >= 1)),
+    CONSTRAINT users_password_check1 CHECK ((length((password)::text) >= 1)),
+    CONSTRAINT users_sex_check CHECK ((sex = ANY (ARRAY[0, 1, 2]))),
+    CONSTRAINT users_type_check CHECK ((type = ANY (ARRAY[0, 1, 2, 3, 4])))
+);
+
+
+ALTER TABLE public.users OWNER TO username;
+
+--
+-- Name: users_authors; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.users_authors (
+    users_id integer,
+    authors_id integer NOT NULL
+);
+
+
+ALTER TABLE public.users_authors OWNER TO username;
+
+--
+-- Name: users_publishing_houses; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.users_publishing_houses (
+    users_id integer,
+    publishing_houses_id integer NOT NULL
+);
+
+
+ALTER TABLE public.users_publishing_houses OWNER TO username;
+
+--
+-- Name: users_users_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.users_users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_users_id_seq OWNER TO username;
+
+--
+-- Name: users_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.users_users_id_seq OWNED BY public.users.users_id;
+
+
+--
+-- Name: verifications; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.verifications (
+    verifications_id integer NOT NULL,
+    users_id integer,
+    to_type smallint NOT NULL,
+    authors_id integer,
+    publishing_houses_id integer,
+    CONSTRAINT verifications_check CHECK ((((authors_id IS NULL) AND (publishing_houses_id IS NOT NULL)) OR ((authors_id IS NOT NULL) AND (publishing_houses_id IS NULL)))),
+    CONSTRAINT verifications_check1 CHECK ((((authors_id IS NOT NULL) AND (to_type = (3)::smallint)) OR ((publishing_houses_id IS NOT NULL) AND (to_type = (2)::smallint)))),
+    CONSTRAINT verifications_to_type_check CHECK ((to_type = ANY (ARRAY[2, 3])))
+);
+
+
+ALTER TABLE public.verifications OWNER TO username;
+
+--
+-- Name: verifications_verifications_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.verifications_verifications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.verifications_verifications_id_seq OWNER TO username;
+
+--
+-- Name: verifications_verifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.verifications_verifications_id_seq OWNED BY public.verifications.verifications_id;
+
+
+--
+-- Name: authors authors_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors ALTER COLUMN authors_id SET DEFAULT nextval('public.authors_authors_id_seq'::regclass);
+
+
+--
+-- Name: editors editors_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.editors ALTER COLUMN editors_id SET DEFAULT nextval('public.editors_editors_id_seq'::regclass);
+
+
+--
+-- Name: keywords keywords_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.keywords ALTER COLUMN keywords_id SET DEFAULT nextval('public.keywords_keywords_id_seq'::regclass);
+
+
+--
+-- Name: magazines magazines_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines ALTER COLUMN magazines_id SET DEFAULT nextval('public.magazines_magazines_id_seq'::regclass);
+
+
+--
+-- Name: organizations organizations_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.organizations ALTER COLUMN organizations_id SET DEFAULT nextval('public.organizations_organizations_id_seq'::regclass);
+
+
+--
+-- Name: publications publications_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications ALTER COLUMN publications_id SET DEFAULT nextval('public.publications_publications_id_seq'::regclass);
+
+
+--
+-- Name: publishing_houses publishing_houses_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_houses ALTER COLUMN publishing_houses_id SET DEFAULT nextval('public.publishing_houses_publishing_houses_id_seq'::regclass);
+
+
+--
+-- Name: subjects subjects_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.subjects ALTER COLUMN subjects_id SET DEFAULT nextval('public.subjects_subjects_id_seq'::regclass);
+
+
+--
+-- Name: udc_codes udc_codes_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.udc_codes ALTER COLUMN udc_codes_id SET DEFAULT nextval('public.udc_codes_udc_codes_id_seq'::regclass);
+
+
+--
+-- Name: users users_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN users_id SET DEFAULT nextval('public.users_users_id_seq'::regclass);
+
+
+--
+-- Name: verifications verifications_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.verifications ALTER COLUMN verifications_id SET DEFAULT nextval('public.verifications_verifications_id_seq'::regclass);
+
+
+--
+-- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.authors VALUES (1, 'Виктор', 'Шулепкин', 'Александрович', 0, '1999-01-15', NULL, NULL, NULL);
+
+
+--
+-- Data for Name: authors_organizations; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.authors_organizations VALUES (1, 1, '2019-01-15', '2021-01-01');
+
+
+--
+-- Data for Name: authors_publications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.authors_publications VALUES (9, 1);
+
+
+--
+-- Data for Name: digests_publications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.digests_publications VALUES (4, 3);
+INSERT INTO public.digests_publications VALUES (6, 3);
+
+
+--
+-- Data for Name: editors; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.editors VALUES (1, 'Дарья', 'Вотинцева', NULL, 1, NULL, NULL, NULL, NULL);
+
+
+--
+-- Data for Name: editors_publications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.editors_publications VALUES (9, 1);
+
+
+--
+-- Data for Name: keywords; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.keywords VALUES (1, 'youtube');
+INSERT INTO public.keywords VALUES (2, 'успех');
+INSERT INTO public.keywords VALUES (3, 'религия');
+INSERT INTO public.keywords VALUES (4, 'спасск');
+INSERT INTO public.keywords VALUES (5, 'рэп');
+
+
+--
+-- Data for Name: magazine_article_info; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.magazine_article_info VALUES (5, 1, 2018);
+
+
+--
+-- Data for Name: magazines; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.magazines VALUES (1, 'Коммит в мастер', 1, 1);
+
+
+--
+-- Data for Name: magazines_publications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.magazines_publications VALUES (5, 1);
+INSERT INTO public.magazines_publications VALUES (7, 1);
+
+
+--
+-- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.organizations VALUES (1, 'Ночные коллизии', 'город Владивосток, прямо, направо, до перекрестка и налево', NULL, NULL);
+
+
+--
+-- Data for Name: organizations_publications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.organizations_publications VALUES (8, 1);
+
+
+--
+-- Data for Name: publications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.publications VALUES (1, 0, 'Путь к успеху');
+INSERT INTO public.publications VALUES (2, 0, 'Коран');
+INSERT INTO public.publications VALUES (3, 1, 'Страх и ненависть в Спасске-Дальнем');
+INSERT INTO public.publications VALUES (4, 2, 'Как дожить в Спасске до 8 лет');
+INSERT INTO public.publications VALUES (5, 2, 'Ошибка программирования');
+INSERT INTO public.publications VALUES (6, 3, '20 самых эффективных пыток');
+INSERT INTO public.publications VALUES (7, 3, 'Топ худших коммитов');
+INSERT INTO public.publications VALUES (8, 4, 'Документация к проекту');
+INSERT INTO public.publications VALUES (9, 0, 'Самый крутой рэп. Йоу');
+
+
+--
+-- Data for Name: publications_keywords; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.publications_keywords VALUES (1, 1);
+INSERT INTO public.publications_keywords VALUES (1, 2);
+INSERT INTO public.publications_keywords VALUES (2, 3);
+INSERT INTO public.publications_keywords VALUES (3, 4);
+INSERT INTO public.publications_keywords VALUES (4, 4);
+INSERT INTO public.publications_keywords VALUES (6, 4);
+INSERT INTO public.publications_keywords VALUES (9, 5);
+
+
+--
+-- Data for Name: publications_udc_codes; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.publications_udc_codes VALUES (1, 1);
+INSERT INTO public.publications_udc_codes VALUES (1, 2);
+INSERT INTO public.publications_udc_codes VALUES (2, 2);
+INSERT INTO public.publications_udc_codes VALUES (2, 3);
+
+
+--
+-- Data for Name: publishing_houses; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.publishing_houses VALUES (1, 'Издательство АСТ', '129085, город  Москва, Звездный бульвар, дом 21, строение 1, комната 39', NULL, 'opt@ast.ru');
+INSERT INTO public.publishing_houses VALUES (2, 'Диля', '129085, город  Санкт-Петербург, Митрофаньевское шоссе д.18 литер "Ж"', NULL, 'spb@dilya.ru');
+INSERT INTO public.publishing_houses VALUES (3, 'Суровый Спасск', 'город Спасск-Дальний, спросить у бомжа Семёна', NULL, NULL);
+
+
+--
+-- Data for Name: publishing_houses_publications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.publishing_houses_publications VALUES (1, 1);
+INSERT INTO public.publishing_houses_publications VALUES (2, 2);
+INSERT INTO public.publishing_houses_publications VALUES (3, 3);
+INSERT INTO public.publishing_houses_publications VALUES (9, 3);
+
+
+--
+-- Data for Name: publishing_years; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.publishing_years VALUES (1, 2017);
+INSERT INTO public.publishing_years VALUES (2, 2011);
+INSERT INTO public.publishing_years VALUES (3, 2007);
+INSERT INTO public.publishing_years VALUES (9, 2018);
+
+
+--
+-- Data for Name: subjects; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.subjects VALUES (1, 'программирование');
+
+
+--
+-- Data for Name: udc_codes; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.udc_codes VALUES (1, '1');
+INSERT INTO public.udc_codes VALUES (2, '2');
+INSERT INTO public.udc_codes VALUES (3, '3');
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.users VALUES (1, 'А́рагорн', NULL, 'сын Араторна', 0, 'admin', '1216985755', '2931-01-01', 0, 88005553535, 'admin@library.com');
+INSERT INTO public.users VALUES (2, 'Люк', 'Скайуокер', 'Энакинович', 0, 'librarian', '1216985755', '2001-01-19', 1, NULL, 'librarian@library.com');
+INSERT INTO public.users VALUES (3, 'Виктор', 'Шулепкин', 'Александрович', 0, 'victor', '1216985755', '1999-01-15', 4, NULL, 'victor@library.com');
+INSERT INTO public.users VALUES (4, 'Данила', 'Горячкин', 'Михайлович', 0, 'danila', '1216985755', '1999-04-26', 4, NULL, 'danila@library.com');
+INSERT INTO public.users VALUES (5, 'Иван', 'Василенко', 'Максимович', 0, 'ivan', '1216985755', '1999-10-15', 4, NULL, NULL);
+
+
+--
+-- Data for Name: users_authors; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+
+
+--
+-- Data for Name: users_publishing_houses; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+
+
+--
+-- Data for Name: verifications; Type: TABLE DATA; Schema: public; Owner: username
+--
+
+INSERT INTO public.verifications VALUES (1, 4, 2, NULL, 3);
+INSERT INTO public.verifications VALUES (2, 3, 3, 1, NULL);
+
+
+--
+-- Name: authors_authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.authors_authors_id_seq', 1, true);
+
+
+--
+-- Name: editors_editors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.editors_editors_id_seq', 1, true);
+
+
+--
+-- Name: keywords_keywords_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.keywords_keywords_id_seq', 5, true);
+
+
+--
+-- Name: magazines_magazines_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.magazines_magazines_id_seq', 1, true);
+
+
+--
+-- Name: organizations_organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.organizations_organizations_id_seq', 1, true);
+
+
+--
+-- Name: publications_publications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.publications_publications_id_seq', 9, true);
+
+
+--
+-- Name: publishing_houses_publishing_houses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.publishing_houses_publishing_houses_id_seq', 3, true);
+
+
+--
+-- Name: subjects_subjects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.subjects_subjects_id_seq', 1, true);
+
+
+--
+-- Name: udc_codes_udc_codes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.udc_codes_udc_codes_id_seq', 3, true);
+
+
+--
+-- Name: users_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.users_users_id_seq', 5, true);
+
+
+--
+-- Name: verifications_verifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.verifications_verifications_id_seq', 2, true);
+
+
+--
+-- Name: authors authors_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors
+    ADD CONSTRAINT authors_pkey PRIMARY KEY (authors_id);
+
+
+--
+-- Name: authors_publications authors_publications_publications_id_authors_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors_publications
+    ADD CONSTRAINT authors_publications_publications_id_authors_id_key UNIQUE (publications_id, authors_id);
+
+
+--
+-- Name: digests_publications digests_publications_publications_id_digests_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.digests_publications
+    ADD CONSTRAINT digests_publications_publications_id_digests_id_key UNIQUE (publications_id, digests_id);
+
+
+--
+-- Name: editors editors_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.editors
+    ADD CONSTRAINT editors_pkey PRIMARY KEY (editors_id);
+
+
+--
+-- Name: editors_publications editors_publications_publications_id_editors_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.editors_publications
+    ADD CONSTRAINT editors_publications_publications_id_editors_id_key UNIQUE (publications_id, editors_id);
+
+
+--
+-- Name: keywords keywords_keyword_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.keywords
+    ADD CONSTRAINT keywords_keyword_key UNIQUE (keyword);
+
+
+--
+-- Name: keywords keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.keywords
+    ADD CONSTRAINT keywords_pkey PRIMARY KEY (keywords_id);
+
+
+--
+-- Name: magazine_article_info magazine_article_info_publications_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazine_article_info
+    ADD CONSTRAINT magazine_article_info_publications_id_key UNIQUE (publications_id);
+
+
+--
+-- Name: magazines magazines_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines
+    ADD CONSTRAINT magazines_pkey PRIMARY KEY (magazines_id);
+
+
+--
+-- Name: magazines_publications magazines_publications_publications_id_magazines_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines_publications
+    ADD CONSTRAINT magazines_publications_publications_id_magazines_id_key UNIQUE (publications_id, magazines_id);
+
+
+--
+-- Name: magazines magazines_title_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines
+    ADD CONSTRAINT magazines_title_key UNIQUE (title);
+
+
+--
+-- Name: organizations organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.organizations
+    ADD CONSTRAINT organizations_pkey PRIMARY KEY (organizations_id);
+
+
+--
+-- Name: organizations_publications organizations_publications_publications_id_organizations_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.organizations_publications
+    ADD CONSTRAINT organizations_publications_publications_id_organizations_id_key UNIQUE (publications_id, organizations_id);
+
+
+--
+-- Name: organizations organizations_title_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.organizations
+    ADD CONSTRAINT organizations_title_key UNIQUE (title);
+
+
+--
+-- Name: publications_keywords publications_keywords_publications_id_keywords_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications_keywords
+    ADD CONSTRAINT publications_keywords_publications_id_keywords_id_key UNIQUE (publications_id, keywords_id);
+
+
+--
+-- Name: publications publications_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications
+    ADD CONSTRAINT publications_pkey PRIMARY KEY (publications_id);
+
+
+--
+-- Name: publications_udc_codes publications_udc_codes_publications_id_udc_codes_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications_udc_codes
+    ADD CONSTRAINT publications_udc_codes_publications_id_udc_codes_id_key UNIQUE (publications_id, udc_codes_id);
+
+
+--
+-- Name: publishing_houses publishing_houses_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_houses
+    ADD CONSTRAINT publishing_houses_pkey PRIMARY KEY (publishing_houses_id);
+
+
+--
+-- Name: publishing_houses_publications publishing_houses_publication_publications_id_publishing_ho_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_houses_publications
+    ADD CONSTRAINT publishing_houses_publication_publications_id_publishing_ho_key UNIQUE (publications_id, publishing_houses_id);
+
+
+--
+-- Name: publishing_houses publishing_houses_title_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_houses
+    ADD CONSTRAINT publishing_houses_title_key UNIQUE (title);
+
+
+--
+-- Name: publishing_years publishing_years_publications_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_years
+    ADD CONSTRAINT publishing_years_publications_id_key UNIQUE (publications_id);
+
+
+--
+-- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.subjects
+    ADD CONSTRAINT subjects_pkey PRIMARY KEY (subjects_id);
+
+
+--
+-- Name: subjects subjects_title_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.subjects
+    ADD CONSTRAINT subjects_title_key UNIQUE (title);
+
+
+--
+-- Name: udc_codes udc_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.udc_codes
+    ADD CONSTRAINT udc_codes_pkey PRIMARY KEY (udc_codes_id);
+
+
+--
+-- Name: udc_codes udc_codes_udc_code_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.udc_codes
+    ADD CONSTRAINT udc_codes_udc_code_key UNIQUE (udc_code);
+
+
+--
+-- Name: users_authors users_authors_users_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users_authors
+    ADD CONSTRAINT users_authors_users_id_key UNIQUE (users_id);
+
+
+--
+-- Name: users users_login_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_login_key UNIQUE (login);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (users_id);
+
+
+--
+-- Name: users_publishing_houses users_publishing_houses_users_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users_publishing_houses
+    ADD CONSTRAINT users_publishing_houses_users_id_key UNIQUE (users_id);
+
+
+--
+-- Name: verifications verifications_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.verifications
+    ADD CONSTRAINT verifications_pkey PRIMARY KEY (verifications_id);
+
+
+--
+-- Name: verifications verifications_users_id_key; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.verifications
+    ADD CONSTRAINT verifications_users_id_key UNIQUE (users_id);
+
+
+--
+-- Name: authors_organizations authors_organizations_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors_organizations
+    ADD CONSTRAINT authors_organizations_authors_id_fkey FOREIGN KEY (authors_id) REFERENCES public.authors(authors_id) ON DELETE CASCADE;
+
+
+--
+-- Name: authors_organizations authors_organizations_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors_organizations
+    ADD CONSTRAINT authors_organizations_organizations_id_fkey FOREIGN KEY (organizations_id) REFERENCES public.organizations(organizations_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: authors_publications authors_publications_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors_publications
+    ADD CONSTRAINT authors_publications_authors_id_fkey FOREIGN KEY (authors_id) REFERENCES public.authors(authors_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: authors_publications authors_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors_publications
+    ADD CONSTRAINT authors_publications_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: digests_publications digests_publications_digests_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.digests_publications
+    ADD CONSTRAINT digests_publications_digests_id_fkey FOREIGN KEY (digests_id) REFERENCES public.publications(publications_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: digests_publications digests_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.digests_publications
+    ADD CONSTRAINT digests_publications_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: editors_publications editors_publications_editors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.editors_publications
+    ADD CONSTRAINT editors_publications_editors_id_fkey FOREIGN KEY (editors_id) REFERENCES public.editors(editors_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: editors_publications editors_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.editors_publications
+    ADD CONSTRAINT editors_publications_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: magazine_article_info magazine_article_info_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazine_article_info
+    ADD CONSTRAINT magazine_article_info_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: magazines magazines_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines
+    ADD CONSTRAINT magazines_organizations_id_fkey FOREIGN KEY (organizations_id) REFERENCES public.organizations(organizations_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: magazines_publications magazines_publications_magazines_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines_publications
+    ADD CONSTRAINT magazines_publications_magazines_id_fkey FOREIGN KEY (magazines_id) REFERENCES public.magazines(magazines_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: magazines_publications magazines_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines_publications
+    ADD CONSTRAINT magazines_publications_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: magazines magazines_subjects_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.magazines
+    ADD CONSTRAINT magazines_subjects_id_fkey FOREIGN KEY (subjects_id) REFERENCES public.subjects(subjects_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: organizations_publications organizations_publications_organizations_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.organizations_publications
+    ADD CONSTRAINT organizations_publications_organizations_id_fkey FOREIGN KEY (organizations_id) REFERENCES public.organizations(organizations_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: organizations_publications organizations_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.organizations_publications
+    ADD CONSTRAINT organizations_publications_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: publications_keywords publications_keywords_keywords_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications_keywords
+    ADD CONSTRAINT publications_keywords_keywords_id_fkey FOREIGN KEY (keywords_id) REFERENCES public.keywords(keywords_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: publications_keywords publications_keywords_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications_keywords
+    ADD CONSTRAINT publications_keywords_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: publications_udc_codes publications_udc_codes_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications_udc_codes
+    ADD CONSTRAINT publications_udc_codes_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: publications_udc_codes publications_udc_codes_udc_codes_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publications_udc_codes
+    ADD CONSTRAINT publications_udc_codes_udc_codes_id_fkey FOREIGN KEY (udc_codes_id) REFERENCES public.udc_codes(udc_codes_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: publishing_houses_publications publishing_houses_publications_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_houses_publications
+    ADD CONSTRAINT publishing_houses_publications_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: publishing_houses_publications publishing_houses_publications_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_houses_publications
+    ADD CONSTRAINT publishing_houses_publications_publishing_houses_id_fkey FOREIGN KEY (publishing_houses_id) REFERENCES public.publishing_houses(publishing_houses_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: publishing_years publishing_years_publications_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.publishing_years
+    ADD CONSTRAINT publishing_years_publications_id_fkey FOREIGN KEY (publications_id) REFERENCES public.publications(publications_id) ON DELETE CASCADE;
+
+
+--
+-- Name: users_authors users_authors_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users_authors
+    ADD CONSTRAINT users_authors_authors_id_fkey FOREIGN KEY (authors_id) REFERENCES public.authors(authors_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: users_authors users_authors_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users_authors
+    ADD CONSTRAINT users_authors_users_id_fkey FOREIGN KEY (users_id) REFERENCES public.users(users_id) ON DELETE CASCADE;
+
+
+--
+-- Name: users_publishing_houses users_publishing_houses_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users_publishing_houses
+    ADD CONSTRAINT users_publishing_houses_publishing_houses_id_fkey FOREIGN KEY (publishing_houses_id) REFERENCES public.publishing_houses(publishing_houses_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: users_publishing_houses users_publishing_houses_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.users_publishing_houses
+    ADD CONSTRAINT users_publishing_houses_users_id_fkey FOREIGN KEY (users_id) REFERENCES public.users(users_id) ON DELETE CASCADE;
+
+
+--
+-- Name: verifications verifications_authors_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.verifications
+    ADD CONSTRAINT verifications_authors_id_fkey FOREIGN KEY (authors_id) REFERENCES public.authors(authors_id) ON DELETE CASCADE;
+
+
+--
+-- Name: verifications verifications_publishing_houses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.verifications
+    ADD CONSTRAINT verifications_publishing_houses_id_fkey FOREIGN KEY (publishing_houses_id) REFERENCES public.publishing_houses(publishing_houses_id) ON DELETE CASCADE;
+
+
+--
+-- Name: verifications verifications_users_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.verifications
+    ADD CONSTRAINT verifications_users_id_fkey FOREIGN KEY (users_id) REFERENCES public.users(users_id) ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
