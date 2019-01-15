@@ -949,13 +949,26 @@ public class Database {
         return changeBookAndDigestCommonPart(u_id, p_id, title, year, P_DIGEST);
     }
 
+    public String changeArticle(String u_id, String p_id, String title, String volume, String relase_number) {
+        try {
+            String error = checkChangePublPermissions(u_id, p_id, P_ARTICLE);
+            if (!error.equals("ok")) {
+                return error;
+            }
+            changePublTitle(p_id, title);
+            changeVolumeAndReleaseNumber(p_id, volume, relase_number);
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     private String changeBookAndDigestCommonPart(String u_id, String p_id, String title, String year, int type) {
         try {
-            if (!(checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN}) || isOwner(u_id, p_id))) {
-                return "access error";
-            }
-            if (!checkPublType(p_id, type)) {
-                return "wrong publication type";
+            String error = checkChangePublPermissions(u_id, p_id, type);
+            if (!error.equals("ok")) {
+                return error;
             }
             changePublTitle(p_id, title);
             changePublishingYear(p_id, year);
@@ -966,11 +979,30 @@ public class Database {
         }
     }
 
+    private String checkChangePublPermissions(String u_id, String p_id, int type) throws Exception {
+        if (!(checkUserType(u_id, new int[] {U_ADMIN, U_LIBRARIAN}) || isOwner(u_id, p_id))) {
+            return "access error";
+        }
+        if (!checkPublType(p_id, type)) {
+            return "wrong publication type";
+        }
+        return "ok";
+    }
+
     private void changePublTitle(String p_id, String title) throws Exception {
         String query = "UPDATE publications SET title = ? WHERE publications_id = ?";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, title);
         ps.setLong(2, Long.parseLong(p_id));
+        ps.executeUpdate();
+    }
+
+    private void changeVolumeAndReleaseNumber(String p_id, String volume, String number) throws Exception {
+        String query = "UPDATE magazine_article_info SET volume = ?, release_number = ? WHERE publications_id = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, Integer.parseInt(volume));
+        ps.setInt(2, Integer.parseInt(number));
+        ps.setLong(3, Long.parseLong(p_id));
         ps.executeUpdate();
     }
 
