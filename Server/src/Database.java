@@ -855,6 +855,7 @@ public class Database {
             return e.getMessage();
         }
     }
+
     public String changeUser(String u_id, String changing_u_id, String name, String surname, String patronymic,
                              String sex, String birth_date, String phone_number, String email) {
         if (!(checkType(u_id, new int[] {U_ADMIN}) || u_id.equals(changing_u_id))) {
@@ -905,6 +906,26 @@ public class Database {
             ps.setNull(start_index + 1, Types.VARCHAR);
         } else {
             ps.setString(start_index + 1, email);
+        }
+    }
+
+    public String changeUserPassword(String u_id, String changing_u_id, String password) {
+        if (!(checkType(u_id, new int[] {U_ADMIN}) || u_id.equals(changing_u_id))) {
+            return "access error";
+        }
+        try {
+            String query =
+                    "UPDATE users " +
+                    "SET password = ? " +
+                    "WHERE users_id = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, password);
+            ps.setLong(2, Long.parseLong(changing_u_id));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
         }
     }
 
