@@ -14,8 +14,6 @@ public class ConnectController {
     private Main main;
     private ClientSocket socket;
 
-    private String message = "Нет соединения. Новая попытка через ";
-
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -33,6 +31,8 @@ public class ConnectController {
     private void initialize() throws InterruptedException {
         RegularForField.setLoginField(usernameTextField);
         RegularForField.setPasswordField(passwordTextField);
+        error.setText("Не удалось подключиться.");
+        error.setVisible(false);
     }
 
     @FXML
@@ -41,23 +41,30 @@ public class ConnectController {
 
         connect.setDisable(true);
 
-        while (true) {
             try {
+                String result = "";
+                String[] data;
                 socket = ClientSocket.enableConnection(socket);
 
                 error.setVisible(false);
                 connect.setDisable(false);
-                break;
+                result = socket.makeRequest(" " +
+                        ClientSocket.argSep +
+                        "authUser" +
+                        ClientSocket.argSep +
+                        usernameTextField +
+                        ClientSocket.argSep +
+                        passwordTextField);
+
+                data = result.split(", ");
+                if (data[0].equals("-1")) {
+                    throw new Exception();
+                }
+
+                dialogStage.close();
             } catch (Exception e) {
-                //TODO: можно зациклить попытки уставновить соединение
+                error.setVisible(true);
             }
-        }
-
-        socket.makeRequest("123, authUser, pizda228, passwordTextField");
-
-        //TODO: если что, сообщить, что пароль неправильый
-
-        dialogStage.close();
 
         return res;
     }
