@@ -1,9 +1,9 @@
 package libapp.view.publication.TechnicalDoc;
 
-public class TechnicalDocAddController extends TechnicalDocWinController {
+public class TechnicalDocChangeController extends TechnicalDocWinController {
     protected void initialize() {
         super.initialize();
-        name.setText("Cr");
+        name.setText("Ch");
     }
 
     protected void applyChange() {
