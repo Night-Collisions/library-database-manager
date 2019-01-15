@@ -36,12 +36,13 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getDoc");
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getDocs");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
+                System.out.println(result);
                 dataList.add(new TechnicalDoc(
                         i.get(0).toString(),
                         i.get(1).toString(),
