@@ -614,6 +614,25 @@ public class Database {
         }
     }
 
+    public String addAuthOrg(String u_id, String a_id, String o_id, String start, String finish) {
+        if (!checkType(u_id, new int[] {U_ADMIN, U_LIBRARIAN})) {
+            return "access error";
+        }
+        try {
+            String query = "INSERT INTO authors_organizations(authors_id, organizations_id, start, finish) VALUES " +
+                    "(?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, Long.parseLong(a_id));
+            ps.setLong(2, Long.parseLong(o_id));
+            ps.setDate(3, java.sql.Date.valueOf(start));
+            ps.setDate(4, java.sql.Date.valueOf(finish));
+            ps.executeUpdate();
+            return "ok";
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }    }
+
     public String addKeywordToPubl(String id, String p_id, String k_id) {
         if (!checkType(id, new int[] {U_ADMIN, U_LIBRARIAN})) {
             return "access error";
