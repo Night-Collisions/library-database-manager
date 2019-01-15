@@ -31,6 +31,8 @@ public class ConnectController {
     private void initialize() throws InterruptedException {
         RegularForField.setLoginField(usernameTextField);
         RegularForField.setPasswordField(passwordTextField);
+        error.setText("Не удалось подключиться.");
+        error.setVisible(false);
     }
 
     @FXML
