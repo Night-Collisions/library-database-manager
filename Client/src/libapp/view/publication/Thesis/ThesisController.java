@@ -11,6 +11,7 @@ import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.PublicationProperty;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -23,7 +24,8 @@ public class ThesisController extends PublicationProperty<Thesis> {
     private void initialize() {
         initProperty();
         MenuItem menuPropertyTable[] = {CreateAuthors()};
-        addMenu(menuPropertyTable, null, null, "");
+        addMenu(menuPropertyTable, new ThesisAddController(), new ThesisChangeController(), "publication" + File.separator
+                + "Thesis" + File.separator + "ThesisAddOverview.fxml");
 
         magazineOrWork.setCellValueFactory(
                 new PropertyValueFactory<>("magazineOrWork"));
