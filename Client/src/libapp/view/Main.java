@@ -97,6 +97,7 @@ public class Main extends Application {
     MenuItem about;
 
     private ProgramUser user;
+    private ConnectController connectController;
 
     @FXML
     private void initialize() {
@@ -493,9 +494,9 @@ public class Main extends Application {
         Scene scene = new Scene(connectWindow);
         dialogStage.setScene(scene);
 
-        ConnectController controller = loader.getController();
-        controller.setMain(this);
-        controller.setDialogStage(dialogStage);
+        connectController = loader.getController();
+        connectController.setMain(this);
+        connectController.setDialogStage(dialogStage);
 
         dialogStage.showAndWait();
     }
@@ -518,10 +519,10 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("ConnectOverview.fxml"));
 
         setUndefineUser();
-        rootLayout.setCenter(null);
+        //rootLayout.setCenter(null);
 
-        ConnectController controller = loader.getController();
-        controller.disconnectFromServer();
+        //ConnectController controller = loader.getController();
+        connectController.disconnectFromServer();
     }
 
     public Stage getPrimaryStage() {
