@@ -13,11 +13,11 @@ public class OneColumnTable extends Table{
         return id;
     }
 
-    public String getCode() {
+    public String getData() {
         return data;
     }
 
-    public void setCode(String data) {
+    public void setData(String data) {
         this.data = data;
     }
 

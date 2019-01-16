@@ -21,7 +21,7 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
     public void initialize() {
         columnName = "УДК:";
         super.initialize();
-        table.setItems(dataList);
+        //table.setItems(dataList);
     }
 
     public void fillTable() {
