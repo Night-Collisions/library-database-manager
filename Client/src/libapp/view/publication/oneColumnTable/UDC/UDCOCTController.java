@@ -12,9 +12,15 @@ import libapp.view.publication.oneColumnTable.OneColumnTableController;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.view.MessageController.contentTextErrorDB;
+import static libapp.view.MessageController.titleErrorDB;
+
 public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
-    public UDCOCTController(Main main) {
+    private String publicationID;
+
+    public UDCOCTController(Main main, String publicationID) {
         this.main = main;
+        this.publicationID = publicationID;
     }
 
     @FXML
@@ -78,6 +84,33 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
+        }
+    }
+
+    public void onAddMenu() {}
+
+    public void deleteRow(String id) {
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "deleteUdcFromPubl" +
+                            ClientSocket.argSep +
+                            publicationID +
+                            ClientSocket.argSep +
+                            id);
+
+            if (result.equals("ok")) {
+                table.getItems().remove(table.getSelectionModel().getSelectedItem());
+            } else {
+                //TODO: не удалиласб, пока кидаю просто эксепшн
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            new MessageController(titleErrorDB,
+                    contentTextErrorDB, e);
         }
     }
 }
