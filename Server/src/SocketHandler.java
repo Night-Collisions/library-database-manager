@@ -40,7 +40,7 @@ class SocketHandler extends Thread {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            send("error: " + e.getMessage());
         }
     }
 
