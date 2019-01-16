@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.util.Pair;
+import libapp.model.Publication;
+import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.PropertyWin;
 import libapp.view.TableProperty;
@@ -21,20 +23,25 @@ public class PublicationAddController extends PropertyWin {
             FXCollections.observableArrayList(
                     "Книга", "Сборник трудов", "Статья", "Тезисы",
                     "Техническая документация");
-    private ObservableList<Pair<String, Object>> windows =
-            FXCollections.observableArrayList(
-                    new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookAddController()),
-                    new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkAddController()),
-                    new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleAddController()),
-                    new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisAddController()),
-                    new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocAddController())
-            );
+    private ObservableList<Pair<String, Object>> windows;
     @FXML
     private ComboBox<String> combobox;
 
     @FXML
     protected void initialize() {
         combobox.setItems(types);
+    }
+
+    public PublicationAddController(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
+        windows = FXCollections.observableArrayList(
+                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookAddController(main)),
+                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkAddController()),
+                new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleAddController()),
+                new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisAddController()),
+                new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocAddController())
+        );
     }
 
     protected void applyChange() {

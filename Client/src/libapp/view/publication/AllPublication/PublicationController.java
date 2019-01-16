@@ -37,6 +37,13 @@ import static libapp.Dictionary.userType2Server;
 public class PublicationController extends PublicationProperty<Publication> {
     public PublicationController(Main m) {
         main = m;
+        windows = FXCollections.observableArrayList(
+                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController(main)),
+                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController()),
+                new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController()),
+                new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisChangeController()),
+                new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocChangeController())
+        );
     }
 
     @FXML
@@ -54,17 +61,16 @@ public class PublicationController extends PublicationProperty<Publication> {
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "AllPublication" + File.separator + "PublicationAddOverview.fxml", new PublicationAddController());
+        createWindow(
+                "publication" +
+                        File.separator +
+                        "AllPublication" +
+                        File.separator +
+                        "PublicationAddOverview.fxml",
+                new PublicationAddController(main));
     }
 
-    private ObservableList<Pair<String, Object>> windows =
-            FXCollections.observableArrayList(
-                    new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController()),
-                    new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController()),
-                    new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController()),
-                    new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisChangeController()),
-                    new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocChangeController())
-            );
+    private ObservableList<Pair<String, Object>> windows;
 
     public void onEditMenu() {
         if (table.getSelectionModel().getSelectedItem() != null) {

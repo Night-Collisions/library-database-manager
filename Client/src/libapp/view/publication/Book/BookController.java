@@ -43,11 +43,11 @@ public class BookController extends PublicationProperty<Book> {
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookAddController());
+        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookAddController(main));
     }
 
     public void onEditMenu() {
-        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController());
+        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController(main));
     }
 
     public void fillTable() {
