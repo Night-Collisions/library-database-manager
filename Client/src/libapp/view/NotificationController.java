@@ -49,7 +49,7 @@ public class NotificationController extends TableProperty<Notification> {
     }
 
     public void fillTable() {
-        // TODO: ебашим запрос к серверу и заполняем
+
     }
 
     public void setWindowStage(Stage stage) {
