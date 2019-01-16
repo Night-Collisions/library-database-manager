@@ -79,8 +79,27 @@ public class MagazineController extends TableProperty<Magazine> {
         }
     }
 
-    public void deleteRow(String id) {
-        // TODO: ебашим запрос к серверу на удаление
+    public void deleteRow() {
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "deleteMagazine" +
+                            ClientSocket.argSep +
+                            id);
+
+            if (result.equals("ok")) {
+                table.getItems().remove(table.getSelectionModel().getSelectedItem());
+            } else {
+                //TODO: не удалиласб, пока кидаю просто эксепшн
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            new MessageController("Не удалоь удалить запись",
+                    "Запись связана с другой таблицей", e);
+        }
     }
 
     public void setMain(Main main) {

@@ -105,12 +105,11 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
             if (result.equals("ok")) {
                 table.getItems().remove(table.getSelectionModel().getSelectedItem());
             } else {
-                //TODO: не удалиласб, пока кидаю просто эксепшн
                 throw new Exception();
             }
         } catch (Exception e) {
-            new MessageController(MessageController.titleErrorGetNewData,
-                    MessageController.contentTextErrorGetNewData, e);
+            new MessageController("Не удалоь удалить запись",
+                    "Издательство привязано к публикации", e);
         }
     }
 }

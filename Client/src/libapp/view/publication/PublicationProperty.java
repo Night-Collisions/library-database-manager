@@ -176,8 +176,8 @@ public class PublicationProperty<T>  extends TableProperty<T> {
                 throw new Exception();
             }
         } catch (Exception e) {
-            new MessageController(MessageController.titleErrorGetNewData,
-                    MessageController.contentTextErrorGetNewData, e);
+            new MessageController("Не удалоь удалить запись",
+                    "Запись связана с другой таблицей", e);
         }
     }
 

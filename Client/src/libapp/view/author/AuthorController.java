@@ -130,6 +130,29 @@ public class AuthorController extends TableProperty<Author> {
         }
     }
 
+    public void deleteRow() {
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "deleteAuthorWorktime" +
+                            ClientSocket.argSep +
+                            id);
+
+            if (result.equals("ok")) {
+                table.getItems().remove(table.getSelectionModel().getSelectedItem());
+            } else {
+                //TODO: не удалиласб, пока кидаю просто эксепшн
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            new MessageController("Не удалоь удалить запись",
+                    "Автор привязан к публикации", e);
+        }
+    }
+
     public void setMain(Main main) {
         this.main = main;
         this.socket = main.getSocket();

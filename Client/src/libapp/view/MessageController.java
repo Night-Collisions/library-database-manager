@@ -19,7 +19,7 @@ public class MessageController extends Alert {
     public final static String contentTextErrorOpenFXML = contentTextErrorGetNewData;
 
     public final static String titleErrorDB = "Ошибка базы данных!";
-    public final static String contentTextErrorDB = "Обратитесь к Василенко И. - ivan991015@gmail.com.";
+    public final static String contentTextErrorDB = "Обратитесь к Василенко Ивану - ivan991015@gmail.com.";
 
     private Map<MessageType, AlertType> MessageType2AlertType = new HashMap<MessageType, AlertType>() {{
         put(MessageType.INFORMATION, AlertType.INFORMATION);
@@ -50,7 +50,7 @@ public class MessageController extends Alert {
         setTitle("Ошибка!");
         setHeaderText(headerText);
         setContentText(contentText);
-        except.printStackTrace();
+        //except.printStackTrace();
         showAndWait();
     }
 
@@ -59,7 +59,7 @@ public class MessageController extends Alert {
         setTitle("Ошибка!");
         setHeaderText(null);
         setContentText(contentText);
-        except.printStackTrace();
+        //except.printStackTrace();
         showAndWait();
     }
 }
