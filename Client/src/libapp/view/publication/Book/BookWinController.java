@@ -10,7 +10,7 @@ public class BookWinController extends PropertyWin {
     @FXML
     protected TextField name;
     @FXML
-    protected ComboBox<String> publishingHouses;
+    protected ComboBox<String> ph;
     @FXML
     protected DatePicker date;
 
