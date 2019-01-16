@@ -3,7 +3,7 @@ package libapp;
 import java.util.HashSet;
 
 public class ProgramUser {
-    public enum UserType{Undefined, Reader, Author, PublishingHouse, Librarian, Admin}
+    public enum UserType{Undefined, Admin, Librarian, PublishingHouse, Author, Reader}
 
     String id;
     String name;
@@ -25,5 +25,8 @@ public class ProgramUser {
     };
     public HashSet<String> getPublication() {
         return publicationsID;
+    }
+    public static UserType int2UserType(int i) {
+        return UserType.values()[i + 1];
     }
 }

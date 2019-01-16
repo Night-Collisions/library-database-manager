@@ -9,6 +9,7 @@ import libapp.ClientSocket;
 import libapp.ProgramUser;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 public class ConnectController {
     private Stage dialogStage;
@@ -49,15 +50,24 @@ public class ConnectController {
                 connect.setDisable(false);
                 result = socket.makeRequest(" " +
                         ClientSocket.argSep +
-                        "authUser" +
+                        "authorizeUser" +
                         ClientSocket.argSep +
                         usernameTextField.getText() +
                         ClientSocket.argSep +
                         passwordTextField.getText());
 
-                data = result.split(", ");
+                data = result.split(","); //TODO: ВИТЯ ТУТ НЕ ПРАВИЛЬНО
                 if (data[0].equals("-1")) {
                     throw new Exception();
+                }
+
+                String userLogin = data[5];
+                String userID = data[4];
+                ProgramUser.UserType userType = ProgramUser.int2UserType(Integer.parseInt(data[7]));
+                HashSet<String> userPublicationsID = new HashSet<String>();
+                if((userType == ProgramUser.UserType.Author) || (userType == ProgramUser.UserType.PublishingHouse)) {
+                    String[] IDPubls = socket.makeRequest(userID + ClientSocket.argSep + "getPublsOfUser").split(", ");
+                    System.out.print(123);
                 }
 
 
