@@ -15,7 +15,13 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.ProgramUser.UserType.Librarian;
+
 public class EditorController extends TableProperty<Editor> {
+    public EditorController(Main main) {
+        this.main = main;
+    }
+
     @FXML
     private TableColumn<Editor, String> id;
     @FXML
@@ -35,7 +41,8 @@ public class EditorController extends TableProperty<Editor> {
 
     @FXML
     private void initialize() {
-        createMenu();
+        if (main.getUser().getType() == Librarian)
+            createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

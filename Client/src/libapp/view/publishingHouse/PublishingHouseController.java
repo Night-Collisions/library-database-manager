@@ -15,7 +15,13 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.ProgramUser.UserType.Librarian;
+
 public class PublishingHouseController extends TableProperty<PublishingHouse> {
+    public PublishingHouseController(Main main) {
+        this.main = main;
+    }
+
     @FXML
     private TableColumn<PublishingHouse, String> id;
     @FXML
@@ -29,7 +35,8 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
 
     @FXML
     private void initialize() {
-        createMenu();
+        if (main.getUser().getType() == Librarian)
+            createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));

@@ -32,6 +32,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class PublicationController extends PublicationProperty<Publication> {
+    public PublicationController(Main m) {
+        main = m;
+    }
+
     @FXML
     private TableColumn<Publication, String> type;
 

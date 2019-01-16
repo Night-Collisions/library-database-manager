@@ -3,6 +3,7 @@ package libapp.view.author;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.ClientSocket;
@@ -16,7 +17,13 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.ProgramUser.UserType.Librarian;
+
 public class AuthorController extends TableProperty<Author> {
+    public AuthorController(Main main) {
+        this.main = main;
+    }
+
     @FXML
     private TableColumn<Author, String> id;
     @FXML
@@ -36,7 +43,8 @@ public class AuthorController extends TableProperty<Author> {
 
     @FXML
     private void initialize() {
-        createMenu();
+        if (main.getUser().getType() == Librarian)
+            createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

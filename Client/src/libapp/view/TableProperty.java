@@ -51,21 +51,9 @@ public class TableProperty<T> {
     }
 
     public ContextMenu createMenu() {
-        javafx.scene.control.Menu[] cascadingMenu = {};
-        return createMenu(cascadingMenu);
-    }
-
-    public ContextMenu createMenu(javafx.scene.control.Menu[] cascadingMenu) {
-        ContextMenu context = new ContextMenu();
-
         MenuItem insert = new MenuItem("Добавить");
         MenuItem edit = new MenuItem("Редактировать");
         MenuItem delete = new MenuItem("Удалить");
-
-        context.getItems().addAll(cascadingMenu);
-        context.getItems().add(insert);
-        context.getItems().add(edit);
-        context.getItems().add(delete);
 
         insert.setOnAction(t -> {
             onAddMenu();
@@ -81,6 +69,21 @@ public class TableProperty<T> {
                 deleteWindow(((Table)table.getSelectionModel().getSelectedItem()).getId());
         });
 
+        MenuItem Items[] = {insert, edit, delete};
+
+        javafx.scene.control.Menu[] cascadingMenu = {};
+        return createMenu(cascadingMenu, Items);
+    }
+
+    public ContextMenu createMenu(MenuItem items[]) {
+        javafx.scene.control.Menu[] cascadingMenu = {};
+        return createMenu(cascadingMenu, items);
+    }
+
+    public ContextMenu createMenu(javafx.scene.control.Menu[] cascadingMenu, MenuItem items[]) {
+        ContextMenu context = new ContextMenu();
+        context.getItems().addAll(cascadingMenu);
+        context.getItems().addAll(items);
         table.addEventHandler(MOUSE_CLICKED, t -> {
             if(t.getButton() == MouseButton.SECONDARY) {
                 context.show(table, t.getScreenX(), t.getScreenY());

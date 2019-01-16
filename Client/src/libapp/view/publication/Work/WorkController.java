@@ -16,7 +16,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class WorkController extends PublicationProperty<Work> {
-
+    public WorkController(Main m) {
+        main = m;
+    }
     @FXML
     private TableColumn<Work, String> publishingHouse;
     @FXML

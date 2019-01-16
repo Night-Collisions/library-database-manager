@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 
 public class BookController extends PublicationProperty<Book> {
+    public BookController(Main m) {
+        main = m;
+    }
 
     @FXML
     private TableColumn<Book, String> publishingHouse;

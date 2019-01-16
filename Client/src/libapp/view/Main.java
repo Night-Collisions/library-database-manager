@@ -16,6 +16,7 @@ import libapp.ClientSocket;
 import libapp.ProgramUser;
 import libapp.view.Editor.EditorController;
 import libapp.view.organization.OrganizationController;
+import libapp.view.publication.Book.BookChangeController;
 import libapp.view.publication.oneColumnTable.KeyWords.KeywordOCTController;
 import libapp.view.publication.oneColumnTable.UDC.UDCOCTController;
 import libapp.view.publishingHouse.PublishingHouseController;
@@ -33,6 +34,7 @@ import libapp.view.user.UserController;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 
 public class Main extends Application {
     private ClientSocket socket;
@@ -101,8 +103,9 @@ public class Main extends Application {
        /* users.setVisible(false);
         notifications.setVisible(false);
         sendRequest.setVisible(false);*/
-
-       user = new ProgramUser("1", "Vovan", ProgramUser.UserType.Admin);
+        HashSet<String> a = new HashSet<String>();
+        a.add("1");
+        user = new ProgramUser("1", "Vovan", ProgramUser.UserType.Reader, a);
     }
 
     private void initRootLayout() {
@@ -127,12 +130,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("publication" + File.separator + "AllPublication" + File.separator + "PublicationOverview.fxml"));
+            loader.setController(new PublicationController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             PublicationController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -173,6 +176,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("publication" + File.separator + "Book" + File.separator + "BookOverview.fxml"));
+            loader.setController(new BookController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -180,7 +184,6 @@ public class Main extends Application {
             sc.setContent(rootLayout);
 
             BookController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -212,11 +215,11 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("Editor" + File.separator + "EditorOverview.fxml"));
+            loader.setController(new EditorController(this));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
             EditorController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -265,12 +268,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("publication" + File.separator + "Thesis" + File.separator + "ThesisOverview.fxml"));
+            loader.setController(new ThesisController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             ThesisController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -283,12 +286,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("organization" + File.separator + "OrganizationOverview.fxml"));
+            loader.setController(new OrganizationController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             OrganizationController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -301,12 +304,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("publishingHouse" + File.separator + "PublishingHouseOverview.fxml"));
+            loader.setController(new PublishingHouseController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             PublishingHouseController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -319,12 +322,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("author" + File.separator + "AuthorOverview.fxml"));
+            loader.setController(new AuthorController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             AuthorController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -337,12 +340,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocOverview.fxml"));
+            loader.setController(new TechnicalDocController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             TechnicalDocController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -355,12 +358,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("magazine" + File.separator + "MagazineOverview.fxml"));
+            loader.setController(new MagazineController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             MagazineController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,
@@ -373,6 +376,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("publication" + File.separator + "Work" + File.separator + "WorkOverview.fxml"));
+            loader.setController(new WorkController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
@@ -391,12 +395,12 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("publication" + File.separator + "Article" + File.separator + "ArticleOverview.fxml"));
+            loader.setController(new ArticleController(this));
             AnchorPane table = loader.load();
 
             rootLayout.setCenter(table);
 
             ArticleController controller = loader.getController();
-            controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
             new MessageController(MessageController.titleErrorOpenFXML,

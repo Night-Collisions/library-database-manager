@@ -16,6 +16,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
+    public TechnicalDocController(Main m) {
+        main = m;
+    }
 
     @FXML
     private TableColumn<TechnicalDoc, String> organization;

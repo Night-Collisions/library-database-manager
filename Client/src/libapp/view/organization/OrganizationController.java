@@ -15,7 +15,13 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.ProgramUser.UserType.Librarian;
+
 public class OrganizationController extends TableProperty<Organization> {
+    public OrganizationController(Main main) {
+        this.main = main;
+    }
+
     @FXML
     private TableColumn<Organization, String> id;
     @FXML
@@ -29,7 +35,8 @@ public class OrganizationController extends TableProperty<Organization> {
 
     @FXML
     private void initialize() {
-        createMenu();
+        if (main.getUser().getType() == Librarian)
+            createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));

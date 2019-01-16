@@ -16,6 +16,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ThesisController extends PublicationProperty<Thesis> {
+    public ThesisController(Main m) {
+        main = m;
+    }
 
     @FXML
     private TableColumn<Thesis, String> magazineOrWork;

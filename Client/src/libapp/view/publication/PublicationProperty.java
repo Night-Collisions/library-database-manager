@@ -1,5 +1,8 @@
 package libapp.view.publication;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,11 +10,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import libapp.ProgramUser;
 import libapp.model.PublicationTable;
+import libapp.model.Table;
 import libapp.model.TechnicalDoc;
+import libapp.model.User;
 import libapp.view.*;
 import libapp.view.publication.oneColumnTable.Author.AuthorsOCTController;
 import libapp.view.publication.oneColumnTable.Edithor.EditorsOCTController;
@@ -22,6 +29,9 @@ import libapp.view.publication.oneColumnTable.UDC.UDCOCTController;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+
+import static javafx.scene.input.MouseButton.SECONDARY;
+import static libapp.ProgramUser.UserType.Librarian;
 
 public class PublicationProperty<T>  extends TableProperty<T> {
 
@@ -103,7 +113,43 @@ public class PublicationProperty<T>  extends TableProperty<T> {
         more[0].getItems().add(CreateKeyWords());
         more[0].getItems().addAll(moreTableProperty);
 
-        createMenu(more);
+        MenuItem insert = new MenuItem("Добавить");
+        MenuItem edit = new MenuItem("Редактировать");
+        MenuItem delete = new MenuItem("Удалить");
+
+        insert.setOnAction(t -> {
+            onAddMenu();
+        });
+
+        edit.setOnAction(t -> {
+            if (table.getSelectionModel().getSelectedItem() != null)
+                onEditMenu();
+        });
+
+        delete.setOnAction(t -> {
+            if (table.getSelectionModel().getSelectedItem() != null)
+                deleteWindow(((Table)table.getSelectionModel().getSelectedItem()).getId());
+        });
+
+        insert.setVisible(main.getUser().getType() == Librarian);
+        edit.setVisible((main.getUser().getType() == Librarian) ||
+                (main.getUser().getType() == ProgramUser.UserType.PublishingHouse) ||
+                (main.getUser().getType() == ProgramUser.UserType.Author));
+        delete.setVisible(main.getUser().getType() == Librarian);
+
+        table.onMouseClickedProperty().set(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent arg0) {
+                if ((table.getSelectionModel().getSelectedItem() != null) && (arg0.getButton() == SECONDARY))
+                    edit.setDisable(!(((main.getUser().getType() == ProgramUser.UserType.PublishingHouse)
+                            || (main.getUser().getType() == ProgramUser.UserType.Author))
+                            && (main.getUser().getPublication().contains(((Table) table.getSelectionModel().getSelectedItem()).getId()))));
+            }
+        });
+
+        MenuItem items[] = {insert, edit, delete};
+        createMenu(more, items);
     }
 
     public void deleteRow(String id) {

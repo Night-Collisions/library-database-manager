@@ -16,7 +16,13 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.ProgramUser.UserType.Librarian;
+
 public class MagazineController extends TableProperty<Magazine> {
+    public MagazineController(Main main) {
+        this.main = main;
+    }
+
     @FXML
     private TableColumn<Magazine, String> id;
     @FXML
@@ -26,7 +32,8 @@ public class MagazineController extends TableProperty<Magazine> {
 
     @FXML
     private void initialize() {
-        createMenu();
+        if (main.getUser().getType() == Librarian)
+            createMenu();
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         topic.setCellValueFactory(
@@ -47,7 +54,7 @@ public class MagazineController extends TableProperty<Magazine> {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getMagazine");
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getMagazines");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
