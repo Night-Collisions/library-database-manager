@@ -12,11 +12,11 @@
       <VBox alignment="CENTER" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <HBox alignment="CENTER">
             <Label textAlignment="RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="37.0" minWidth="120" text="Имя пользователя:" />
-            <TextField fx:id="usernameTextField" layoutX="8.0" layoutY="51.0" prefHeight="25.0" prefWidth="9999999999" text="admin"/>
+            <TextField fx:id="usernameTextField" layoutX="8.0" layoutY="51.0" prefHeight="25.0" prefWidth="9999999999" text="librarian"/>
          </HBox>
          <HBox alignment="CENTER">
             <Label textAlignment="RIGHT" layoutX="14.0" layoutY="86.0" prefHeight="37.0" minWidth="120" text="Пароль:" />
-            <TextField fx:id="passwordTextField" layoutX="8.0" layoutY="123.0" prefHeight="25.0" prefWidth="9999999999" text="1216985755"/>
+            <TextField fx:id="passwordTextField" layoutX="8.0" layoutY="123.0" prefHeight="25.0" prefWidth="9999999999" text="password"/>
          </HBox>
          <HBox alignment="BOTTOM_RIGHT">
             <Label fx:id="error" layoutX="8.0" layoutY="178.0" prefHeight="15.0" maxWidth="200" textFill="#ee0404" />

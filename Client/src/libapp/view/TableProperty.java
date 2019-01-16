@@ -1,7 +1,5 @@
 package libapp.view;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -114,6 +112,10 @@ public class TableProperty<T> {
 
     public void onEditMenu() {}
 
-    public void deleteRow(String id) {
+    public void deleteRow(String id) {}
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
     }
 }
