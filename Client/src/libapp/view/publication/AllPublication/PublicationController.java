@@ -31,6 +31,9 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.Dictionary.publicationType2Server;
+import static libapp.Dictionary.userType2Server;
+
 public class PublicationController extends PublicationProperty<Publication> {
     public PublicationController(Main m) {
         main = m;
@@ -65,7 +68,7 @@ public class PublicationController extends PublicationProperty<Publication> {
 
     public void onEditMenu() {
         if (table.getSelectionModel().getSelectedItem() != null) {
-            int type = Integer.parseInt(table.getSelectionModel().getSelectedItem().getType());
+            int type = Integer.parseInt(publicationType2Server.get(table.getSelectionModel().getSelectedItem().getType()));
             if (type >= 0) {
                 TableProperty.createWindow(windows.get(type).getKey(), windows.get(type).getValue());
             } else {

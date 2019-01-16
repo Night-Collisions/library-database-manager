@@ -20,4 +20,20 @@ public class Dictionary {
         userType.put("3", "Автор");
         userType.put("4", "Читатель");
     }
+
+    public static final Map<String,String> publicationType2Server = new HashMap<String,String>();
+    public static final Map<String,String> userType2Server = new HashMap<String,String>();
+    static {
+        publicationType2Server.put("Книга", "0");
+        publicationType2Server.put("Сборник трудов", "1");
+        publicationType2Server.put("Статья", "2");
+        publicationType2Server.put("Тезисы", "3");
+        publicationType2Server.put("Техническая документация", "4");
+
+        userType2Server.put("Администратор", "0");
+        userType2Server.put("Библиотекарь", "1");
+        userType2Server.put("Издательство", "2");
+        userType2Server.put("Автор", "3");
+        userType2Server.put("Читатель", "4");
+    }
 }
