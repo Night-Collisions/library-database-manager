@@ -111,4 +111,9 @@ public class TableProperty<T> {
     public void onEditMenu() {}
 
     public void deleteRow(String id) {}
+
+    public void setMain(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
+    }
 }

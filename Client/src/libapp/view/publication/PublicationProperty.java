@@ -162,9 +162,4 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     }
 
     public void fillTable() {}
-
-    public void setMain(Main main) {
-        this.main = main;
-        this.socket = main.getSocket();
-    }
 }
