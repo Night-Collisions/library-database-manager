@@ -65,7 +65,7 @@ public class PublicationController extends PublicationProperty<Publication> {
 
     public void onEditMenu() {
         if (table.getSelectionModel().getSelectedItem() != null) {
-            int type = 1;//TODO: Витя, доделать полученеие типа текущей публикации
+            int type = Integer.parseInt(table.getSelectionModel().getSelectedItem().getType());
             if (type >= 0) {
                 TableProperty.createWindow(windows.get(type).getKey(), windows.get(type).getValue());
             } else {
