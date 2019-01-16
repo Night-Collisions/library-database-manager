@@ -15,6 +15,273 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: check_authors_publications(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_authors_publications() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type IN (0, 2, 3);
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_authors_publications() OWNER TO username;
+
+--
+-- Name: check_digests_publications(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_digests_publications() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type IN (2, 3);
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_digests_publications() OWNER TO username;
+
+--
+-- Name: check_editors_publications(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_editors_publications() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type IN (0, 1);
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_editors_publications() OWNER TO username;
+
+--
+-- Name: check_intervals(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_intervals() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM authors_organizations ao
+  WHERE NEW.start BETWEEN ao.start AND ao.finish
+     OR NEW.finish BETWEEN ao.start AND ao.finish
+     OR ao.start BETWEEN NEW.start AND NEW.finish
+     OR ao.finish BETWEEN NEW.start AND NEW.finish;
+
+  IF FOUND THEN
+    RAISE EXCEPTION 'Автор в это время уже работал.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_intervals() OWNER TO username;
+
+--
+-- Name: check_magazine_article_info(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_magazine_article_info() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  JOIN magazines_publications mp ON p.publications_id = mp.publications_id
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type = 2;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_magazine_article_info() OWNER TO username;
+
+--
+-- Name: check_magazines_publications(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_magazines_publications() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type IN (2, 3);
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_magazines_publications() OWNER TO username;
+
+--
+-- Name: check_organizations_publications(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_organizations_publications() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type = 4;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_organizations_publications() OWNER TO username;
+
+--
+-- Name: check_publishing_houses_publications(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_publishing_houses_publications() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type IN (0, 1);
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_publishing_houses_publications() OWNER TO username;
+
+--
+-- Name: check_publishing_years(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_publishing_years() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM 1
+  FROM publications p
+  WHERE p.publications_id = NEW.publications_id
+    AND p.type IN (0, 1);
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Неверный тип публикации.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_publishing_years() OWNER TO username;
+
+--
+-- Name: check_users_authors(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_users_authors() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  UPDATE users u
+  SET type = 3
+  WHERE u.users_id = NEW.users_id
+    AND u.type = 4;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Пользователь не может быть привязан.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_users_authors() OWNER TO username;
+
+--
+-- Name: check_users_publishing_houses(); Type: FUNCTION; Schema: public; Owner: username
+--
+
+CREATE FUNCTION public.check_users_publishing_houses() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  UPDATE users u
+  SET type = 2
+  WHERE u.users_id = NEW.users_id
+    AND u.type = 4;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'Пользователь не может быть привязан.';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_users_publishing_houses() OWNER TO username;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -67,6 +334,7 @@ ALTER SEQUENCE public.authors_authors_id_seq OWNED BY public.authors.authors_id;
 --
 
 CREATE TABLE public.authors_organizations (
+    authors_organizations_id integer NOT NULL,
     authors_id integer NOT NULL,
     organizations_id integer NOT NULL,
     start date NOT NULL,
@@ -76,6 +344,28 @@ CREATE TABLE public.authors_organizations (
 
 
 ALTER TABLE public.authors_organizations OWNER TO username;
+
+--
+-- Name: authors_organizations_authors_organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+--
+
+CREATE SEQUENCE public.authors_organizations_authors_organizations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.authors_organizations_authors_organizations_id_seq OWNER TO username;
+
+--
+-- Name: authors_organizations_authors_organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+--
+
+ALTER SEQUENCE public.authors_organizations_authors_organizations_id_seq OWNED BY public.authors_organizations.authors_organizations_id;
+
 
 --
 -- Name: authors_publications; Type: TABLE; Schema: public; Owner: username
@@ -611,6 +901,13 @@ ALTER TABLE ONLY public.authors ALTER COLUMN authors_id SET DEFAULT nextval('pub
 
 
 --
+-- Name: authors_organizations authors_organizations_id; Type: DEFAULT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors_organizations ALTER COLUMN authors_organizations_id SET DEFAULT nextval('public.authors_organizations_authors_organizations_id_seq'::regclass);
+
+
+--
 -- Name: editors editors_id; Type: DEFAULT; Schema: public; Owner: username
 --
 
@@ -691,7 +988,7 @@ INSERT INTO public.authors VALUES (1, 'Виктор', 'Шулепкин', 'Ал�
 -- Data for Name: authors_organizations; Type: TABLE DATA; Schema: public; Owner: username
 --
 
-INSERT INTO public.authors_organizations VALUES (1, 1, '2019-01-15', '2021-01-01');
+INSERT INTO public.authors_organizations VALUES (1, 1, 1, '2019-01-15', '2021-01-01');
 
 
 --
@@ -892,6 +1189,13 @@ SELECT pg_catalog.setval('public.authors_authors_id_seq', 1, true);
 
 
 --
+-- Name: authors_organizations_authors_organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
+--
+
+SELECT pg_catalog.setval('public.authors_organizations_authors_organizations_id_seq', 1, true);
+
+
+--
 -- Name: editors_editors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: username
 --
 
@@ -959,6 +1263,14 @@ SELECT pg_catalog.setval('public.users_users_id_seq', 5, true);
 --
 
 SELECT pg_catalog.setval('public.verifications_verifications_id_seq', 2, true);
+
+
+--
+-- Name: authors_organizations authors_organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+--
+
+ALTER TABLE ONLY public.authors_organizations
+    ADD CONSTRAINT authors_organizations_pkey PRIMARY KEY (authors_organizations_id);
 
 
 --
@@ -1207,6 +1519,83 @@ ALTER TABLE ONLY public.verifications
 
 ALTER TABLE ONLY public.verifications
     ADD CONSTRAINT verifications_users_id_key UNIQUE (users_id);
+
+
+--
+-- Name: authors_organizations authors_organizations_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER authors_organizations_insert BEFORE INSERT ON public.authors_organizations FOR EACH ROW EXECUTE PROCEDURE public.check_intervals();
+
+
+--
+-- Name: authors_publications authors_publications_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER authors_publications_insert BEFORE INSERT ON public.authors_publications FOR EACH ROW EXECUTE PROCEDURE public.check_authors_publications();
+
+
+--
+-- Name: digests_publications digests_publications_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER digests_publications_insert BEFORE INSERT ON public.digests_publications FOR EACH ROW EXECUTE PROCEDURE public.check_digests_publications();
+
+
+--
+-- Name: editors_publications editors_publications_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER editors_publications_insert BEFORE INSERT ON public.editors_publications FOR EACH ROW EXECUTE PROCEDURE public.check_editors_publications();
+
+
+--
+-- Name: magazine_article_info magazine_article_info_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER magazine_article_info_insert BEFORE INSERT ON public.magazine_article_info FOR EACH ROW EXECUTE PROCEDURE public.check_magazine_article_info();
+
+
+--
+-- Name: magazines_publications magazines_publications_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER magazines_publications_insert BEFORE INSERT ON public.magazines_publications FOR EACH ROW EXECUTE PROCEDURE public.check_magazines_publications();
+
+
+--
+-- Name: organizations_publications organizations_publications_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER organizations_publications_insert BEFORE INSERT ON public.organizations_publications FOR EACH ROW EXECUTE PROCEDURE public.check_organizations_publications();
+
+
+--
+-- Name: publishing_houses_publications publishing_houses_publications_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER publishing_houses_publications_insert BEFORE INSERT ON public.publishing_houses_publications FOR EACH ROW EXECUTE PROCEDURE public.check_publishing_houses_publications();
+
+
+--
+-- Name: publishing_years publishing_years_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER publishing_years_insert BEFORE INSERT ON public.publishing_years FOR EACH ROW EXECUTE PROCEDURE public.check_publishing_years();
+
+
+--
+-- Name: users_authors users_authors_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER users_authors_insert BEFORE INSERT ON public.users_authors FOR EACH ROW EXECUTE PROCEDURE public.check_users_authors();
+
+
+--
+-- Name: users_publishing_houses users_publishing_houses_insert; Type: TRIGGER; Schema: public; Owner: username
+--
+
+CREATE TRIGGER users_publishing_houses_insert BEFORE INSERT ON public.users_publishing_houses FOR EACH ROW EXECUTE PROCEDURE public.check_users_publishing_houses();
 
 
 --
