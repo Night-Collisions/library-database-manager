@@ -148,7 +148,8 @@ public class PublicationProperty<T>  extends TableProperty<T> {
             @Override
             public void handle(MouseEvent arg0) {
                 if ((table.getSelectionModel().getSelectedItem() != null) && (arg0.getButton() == SECONDARY))
-                    edit.setDisable(!(((main.getUser().getType() == ProgramUser.UserType.PublishingHouse)
+                    edit.setDisable(!(main.getUser().getType() == Librarian)
+                            || (((main.getUser().getType() == ProgramUser.UserType.PublishingHouse)
                             || (main.getUser().getType() == ProgramUser.UserType.Author))
                             && (main.getUser().getPublication().contains(((Table) table.getSelectionModel().getSelectedItem()).getId()))));
             }
