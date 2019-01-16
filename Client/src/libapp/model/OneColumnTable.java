@@ -4,9 +4,9 @@ public class OneColumnTable extends Table{
     private String id;
     private String data;
 
-    public OneColumnTable(String id, String code) {
+    public OneColumnTable(String id, String data) {
         this.id = id;
-        this.data = code;
+        this.data = data;
     }
 
     public String getId() {
