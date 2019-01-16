@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import libapp.ClientSocket;
 import libapp.model.OneColumnTable;
+import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.oneColumnTable.OneColumnTableController;
 
@@ -12,6 +13,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class KeywordOCTController extends OneColumnTableController<OneColumnTable> {
+    public KeywordOCTController(Main main) {
+        this.main = main;
+    }
 
     @FXML
     public void initialize() {
@@ -26,7 +30,7 @@ public class KeywordOCTController extends OneColumnTableController<OneColumnTabl
             result = socket.makeRequest(
                     main.getUser().getId() +
                             ClientSocket.argSep +
-                            "getAllKeywords");
+                            "getKeywords");
 
             if (result.equals("wrong args")) {
                 throw new Exception();
@@ -53,7 +57,7 @@ public class KeywordOCTController extends OneColumnTableController<OneColumnTabl
             result = socket.makeRequest(
                     main.getUser().getId() +
                             ClientSocket.argSep +
-                            "GetKeywordsOfPubl" +
+                            "getUdcOfPubl" +
                             ClientSocket.argSep +
                             idFilter);
 

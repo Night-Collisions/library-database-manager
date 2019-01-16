@@ -73,7 +73,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateUDC() {
         javafx.scene.control.MenuItem udc = new MenuItem("УДК");
         udc.setOnAction(t -> {
-            CreateTableProperty(new UDCOCTController(), "УДК для id ",
+            CreateTableProperty(new UDCOCTController(main), "УДК для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return udc;
@@ -82,7 +82,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateKeyWords() {
         MenuItem keywords = new MenuItem("Ключевые слова");
         keywords.setOnAction(t -> {
-            CreateTableProperty(new KeywordOCTController(), "Ключевые слова для id ",
+            CreateTableProperty(new KeywordOCTController(main), "Ключевые слова для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return keywords;
@@ -91,7 +91,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateAuthors() {
         MenuItem authors = new MenuItem("Авторы");
         authors.setOnAction(t -> {
-            CreateTableProperty(new AuthorsOCTController(), "Авторы для id ",
+            CreateTableProperty(new AuthorsOCTController(main), "Авторы для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return authors;
@@ -100,7 +100,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateEditors() {
         MenuItem editors = new MenuItem("Редакторы");
         editors.setOnAction(t -> {
-            CreateTableProperty(new EditorsOCTController(), "Редакторы для id ",
+            CreateTableProperty(new EditorsOCTController(main), "Редакторы для id ",
                     ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return editors;

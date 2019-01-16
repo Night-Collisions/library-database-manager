@@ -10,6 +10,10 @@ import libapp.view.Main;
 import libapp.view.publication.oneColumnTable.OneColumnTableController;
 
 public class EditorsOCTController extends OneColumnTableController<OneColumnTable> {
+    public EditorsOCTController(Main main) {
+        this.main = main;
+    }
+
     @FXML
     public void initialize() {
         columnName = "Ркдакторы:";

@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import libapp.ClientSocket;
 import libapp.model.OneColumnTable;
+import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.oneColumnTable.OneColumnTableController;
 
@@ -12,6 +13,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
+    public UDCOCTController(Main main) {
+        this.main = main;
+    }
+
     @FXML
     public void initialize() {
         columnName = "УДК:";
@@ -25,7 +30,7 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
             result = socket.makeRequest(
                     main.getUser().getId() +
                             ClientSocket.argSep +
-                            "getAllUdc" +
+                            "getUdc" +
                             ClientSocket.argSep);
 
             if (result.equals("wrong args")) {

@@ -105,7 +105,7 @@ public class Main extends Application {
         sendRequest.setVisible(false);*/
         HashSet<String> a = new HashSet<String>();
         a.add("1");
-        ChangeUser("1", "Vovan", ProgramUser.UserType.Undefined, a);
+        ChangeUser("1", "Vovan", ProgramUser.UserType.Librarian, a);
     }
 
     public void ChangeUser(String id, String name, ProgramUser.UserType type, HashSet<String> publicationsID) {
@@ -249,7 +249,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
-            loader.setController(new KeywordOCTController());
+            loader.setController(new KeywordOCTController(this));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
@@ -267,7 +267,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
-            loader.setController(new UDCOCTController());
+            loader.setController(new UDCOCTController(this));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
