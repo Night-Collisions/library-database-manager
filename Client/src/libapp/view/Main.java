@@ -115,6 +115,14 @@ public class Main extends Application {
         tables.setDisable(user.getType() == ProgramUser.UserType.Undefined);
         functions.setDisable(user.getType() == ProgramUser.UserType.Undefined);
         info.setDisable(user.getType() == ProgramUser.UserType.Undefined);
+
+        connect.setDisable(user.getType() != ProgramUser.UserType.Undefined);
+
+        users.setVisible(user.getType() == ProgramUser.UserType.Admin);
+
+        sendRequest.setVisible(user.getType() == ProgramUser.UserType.Reader);
+
+        notifications.setVisible(user.getType() == ProgramUser.UserType.Librarian);
     }
 
     private void initRootLayout() {
