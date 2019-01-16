@@ -515,13 +515,8 @@ public class Main extends Application {
 
     @FXML
     private void disconnect() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("ConnectOverview.fxml"));
-
         setUndefineUser();
-        //rootLayout.setCenter(null);
-
-        //ConnectController controller = loader.getController();
+        rootLayout.setCenter(null);
         connectController.disconnectFromServer();
     }
 
