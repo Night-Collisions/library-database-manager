@@ -105,7 +105,7 @@ public class Main extends Application {
         sendRequest.setVisible(false);*/
         HashSet<String> a = new HashSet<String>();
         a.add("1");
-        ChangeUser("1", "Vovan", ProgramUser.UserType.Librarian, a);
+        ChangeUser("1", "Vovan", ProgramUser.UserType.Undefined, a);
     }
 
     public void ChangeUser(String id, String name, ProgramUser.UserType type, HashSet<String> publicationsID) {

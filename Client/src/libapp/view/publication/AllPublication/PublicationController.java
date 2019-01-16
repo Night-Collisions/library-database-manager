@@ -42,7 +42,7 @@ public class PublicationController extends PublicationProperty<Publication> {
     @FXML
     private void initialize() {
         initProperty();
-        MenuItem menuPropertyTable[] = {};
+        MenuItem[] menuPropertyTable = {};
         addMenu(menuPropertyTable);
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));

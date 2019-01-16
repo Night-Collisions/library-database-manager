@@ -1,5 +1,7 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +11,8 @@ import libapp.ClientSocket;
 import libapp.ProgramUser;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ConnectController {
@@ -48,31 +52,56 @@ public class ConnectController {
 
                 error.setVisible(false);
                 connect.setDisable(false);
-                result = socket.makeRequest(" " +
+
+                result = socket.makeRequest(
+                        "-1" +
                         ClientSocket.argSep +
                         "authorizeUser" +
                         ClientSocket.argSep +
                         usernameTextField.getText() +
                         ClientSocket.argSep +
-                        passwordTextField.getText());
+                        passwordTextField.getText().hashCode());
 
-                data = result.split(","); //TODO: ВИТЯ ТУТ НЕ ПРАВИЛЬНО
-                if (data[0].equals("-1")) {
+                if (result.equals("error: null")) {
                     throw new Exception();
                 }
 
-                String userLogin = data[5];
-                String userID = data[4];
-                ProgramUser.UserType userType = ProgramUser.int2UserType(Integer.parseInt(data[7]));
-                HashSet<String> userPublicationsID = new HashSet<String>();
-                if((userType == ProgramUser.UserType.Author) || (userType == ProgramUser.UserType.PublishingHouse)) {
-                    String[] IDPubls = socket.makeRequest(userID + ClientSocket.argSep + "getPublsOfUser").split(", ");
-                    System.out.print(123);
+
+                Type type = new TypeToken<ArrayList<String>>(){}.getType();
+                ArrayList<String> parsed = new Gson().fromJson(result, type);
+                if (parsed.get(0).equals("-1")) {
+                    throw new Exception();
                 }
 
+                String[] userData = new String[parsed.size()];
+                for (int i = 0; i < parsed.size(); ++i) {
+                    if (parsed.get(i) != null) {
+                        userData[i] = parsed.get(i);
+                    } else {
+                        userData[i] = "";
+                    }
+                }
 
-                //TODO дохуячить
-                //main.getUser() = new ProgramUser();
+                String userID = userData[0];
+                ProgramUser.UserType userType = ProgramUser.int2UserType(Integer.parseInt(userData[7]));
+                HashSet<String> publicationsID = new HashSet<>();
+
+                if((userType == ProgramUser.UserType.Author) || (userType == ProgramUser.UserType.PublishingHouse)) {
+                    String IDPubls = socket.makeRequest(userID + ClientSocket.argSep + "getPublsOfUser");
+                    parsed = new Gson().fromJson(IDPubls, type);
+
+                    for (int i = 0; i < parsed.size(); ++i) {
+                        if (parsed.get(i) != null) {
+                            publicationsID.add(parsed.get(i));
+                        }
+                    }
+                }
+
+                main.ChangeUser(
+                        userData[0],
+                        userData[5],
+                        userType,
+                        publicationsID);
 
                 dialogStage.close();
             } catch (Exception e) {
