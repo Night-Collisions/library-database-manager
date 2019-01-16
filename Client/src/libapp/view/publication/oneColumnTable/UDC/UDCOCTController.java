@@ -70,7 +70,9 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                dataList.add(new OneColumnTable(i.get(0).toString(), i.get(1).toString()));
+                String a0 = i.get(0).toString();
+                String a1 = i.get(1).toString();
+                dataList.add(new OneColumnTable(a0, a1));
             }
 
         } catch (Exception e) {
