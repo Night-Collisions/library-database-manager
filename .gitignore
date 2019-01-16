@@ -1,8 +1,11 @@
 *
+
 !.gitignore
 
 !/Server
 /Server/*
+!/Server/.idea
+!/Server/.idea/*
 !/Server/Server.iml
 !/Server/src
 /Server/src/*
