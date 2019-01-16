@@ -112,7 +112,9 @@ public class ConnectController {
     }
 
     public void disconnectFromServer() throws IOException {
-        socket.getSocket().close();
+        if (socket.getSocket() != null) {
+            socket.getSocket().close();
+        }
     }
 
     public void setMain(Main main) {
