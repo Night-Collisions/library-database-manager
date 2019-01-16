@@ -17,8 +17,7 @@ public class OneColumnTableController<T> extends TableProperty<T> {
 
     public void initialize() {
         createMenu().getItems().get(1).setVisible(false);
-        id.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
+
         data.setCellValueFactory(new PropertyValueFactory<>("data"));
 
         table.setItems(dataList);

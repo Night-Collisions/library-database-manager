@@ -103,9 +103,13 @@ public class Main extends Application {
        /* users.setVisible(false);
         notifications.setVisible(false);
         sendRequest.setVisible(false);*/
+        setUndefineUser();
+    }
+
+    private void setUndefineUser() {
         HashSet<String> a = new HashSet<String>();
         a.add("1");
-        ChangeUser("1", "Vovan", ProgramUser.UserType.Undefined, a);
+        ChangeUser("-1", "Ананимус", ProgramUser.UserType.Undefined, a);
     }
 
     public void ChangeUser(String id, String name, ProgramUser.UserType type, HashSet<String> publicationsID) {
@@ -512,6 +516,9 @@ public class Main extends Application {
     private void disconnect() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("ConnectOverview.fxml"));
+
+        setUndefineUser();
+        rootLayout.setCenter(null);
 
         ConnectController controller = loader.getController();
         controller.disconnectFromServer();

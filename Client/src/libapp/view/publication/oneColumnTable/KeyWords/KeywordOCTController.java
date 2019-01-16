@@ -57,7 +57,7 @@ public class KeywordOCTController extends OneColumnTableController<OneColumnTabl
             result = socket.makeRequest(
                     main.getUser().getId() +
                             ClientSocket.argSep +
-                            "getUdcOfPubl" +
+                            "getKeywordsOfPubl" +
                             ClientSocket.argSep +
                             idFilter);
 
