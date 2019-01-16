@@ -6,11 +6,15 @@
 /Server/*
 !/Server/.idea
 !/Server/.idea/*
+!/Server/.idea/libraries/*
+/Server/.idea/workspace.xml
 !/Server/Server.iml
 !/Server/src
 /Server/src/*
 !/Server/src/*.java
-!/Server/src/*.jar
+!/Server/lib
+/Server/lib/*
+!/Server/lib/*.jar
 
 !/Client
 /Client/*
