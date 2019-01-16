@@ -16,7 +16,7 @@ public class EditorsOCTController extends OneColumnTableController<OneColumnTabl
 
     @FXML
     public void initialize() {
-        columnName = "Ркдакторы:";
+        columnName = "Редакторы:";
         super.initialize();
     }
 

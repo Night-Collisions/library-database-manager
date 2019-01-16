@@ -1,5 +1,7 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +19,8 @@ import libapp.view.publication.PublicationProperty;
 
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -110,5 +114,6 @@ public class TableProperty<T> {
 
     public void onEditMenu() {}
 
-    public void deleteRow(String id) {}
+    public void deleteRow(String id) {
+    }
 }

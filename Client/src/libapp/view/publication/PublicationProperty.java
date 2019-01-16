@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import libapp.ClientSocket;
 import libapp.ProgramUser;
 import libapp.model.PublicationTable;
 import libapp.model.Table;
@@ -158,7 +159,26 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     }
 
     public void deleteRow(String id) {
-            //TODO:удалять туту
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "deletePublication" +
+                            ClientSocket.argSep +
+                            id);
+
+            if (result.equals("ok")) {
+                table.getItems().remove(table.getSelectionModel().getSelectedItem());
+            } else {
+                //TODO: не удалиласб, пока кидаю просто эксепшн
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
     }
 
     public void fillTable() {}

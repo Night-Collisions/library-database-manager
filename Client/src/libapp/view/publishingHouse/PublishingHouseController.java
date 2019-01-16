@@ -89,4 +89,28 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
         this.main = main;
         this.socket = main.getSocket();
     }
+
+
+    public void deleteRow(String id) {
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "deletePublHouse" +
+                            ClientSocket.argSep +
+                            id);
+
+            if (result.equals("ok")) {
+                table.getItems().remove(table.getSelectionModel().getSelectedItem());
+            } else {
+                //TODO: не удалиласб, пока кидаю просто эксепшн
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
+    }
 }

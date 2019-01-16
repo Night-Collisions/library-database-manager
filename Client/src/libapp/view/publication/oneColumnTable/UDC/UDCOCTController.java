@@ -21,6 +21,7 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
     public void initialize() {
         columnName = "УДК:";
         super.initialize();
+        table.setItems(dataList);
     }
 
     public void fillTable() {
@@ -45,13 +46,10 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
                 dataList.add(new OneColumnTable(i.get(0).toString(), i.get(1).toString()));
             }
 
-            table.setItems(dataList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
         }
-
-        table.setItems(dataList);
     }
 
     public void fillTable(String idFilter) {
@@ -75,12 +73,9 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
                 dataList.add(new OneColumnTable(i.get(0).toString(), i.get(1).toString()));
             }
 
-            table.setItems(dataList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
         }
-
-        table.setItems(dataList);
     }
 }
