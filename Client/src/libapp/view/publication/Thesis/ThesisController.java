@@ -36,11 +36,27 @@ public class ThesisController extends PublicationProperty<Thesis> {
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisAddController());
+        createWindow(
+                "publication" +
+                        File.separator +
+                        "Thesis" +
+                        File.separator +
+                        "ThesisAddOverview.fxml",
+                new ThesisAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        createWindow("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisChangeController());
+        createWindow(
+                "publication" +
+                        File.separator +
+                        "Thesis" +
+                        File.separator +
+                        "ThesisAddOverview.fxml",
+                new ThesisAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void fillTable() {

@@ -51,6 +51,4 @@ public class ArticleAddController extends ArticleWinController{
                     "Не удалось вставить запись", e);
         }
     }
-
-
 }

@@ -20,6 +20,7 @@ public class WorkAddController extends WorkWinController {
     public ObservableList<PublishingHouse> dataList = FXCollections.observableArrayList();
     protected void initialize() {
         super.initialize();
+        ph.setEditable(false);
         fillPubHouseCombobox();
     }
 
