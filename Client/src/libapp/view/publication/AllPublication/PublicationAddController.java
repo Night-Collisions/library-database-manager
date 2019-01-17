@@ -39,7 +39,7 @@ public class PublicationAddController extends PropertyWin {
                 new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookAddController(main)),
                 new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkAddController(main)),
                 new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleAddController(main)),
-                new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisAddController()),
+                new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisAddController(main)),
                 new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocAddController(main))
         );
     }
