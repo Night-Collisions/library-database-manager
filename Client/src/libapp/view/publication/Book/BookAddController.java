@@ -53,9 +53,9 @@ public class BookAddController extends BookWinController{
                         args[2],
                         args[3],
                         args[4]));
-
-                ph.getItems().addAll(dataList);
             }
+
+            ph.getItems().addAll(dataList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
