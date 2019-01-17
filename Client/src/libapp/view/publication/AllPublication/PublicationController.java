@@ -68,6 +68,10 @@ public class PublicationController extends PublicationProperty<Publication> {
                         File.separator +
                         "PublicationAddOverview.fxml",
                 new PublicationAddController(main));
+
+        //TODO: это не прикольно
+        table.getItems().clear();
+        fillTable();
     }
 
     private ObservableList<Pair<String, Object>> windows;
