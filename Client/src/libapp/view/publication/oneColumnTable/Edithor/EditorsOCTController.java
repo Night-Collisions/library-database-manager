@@ -10,6 +10,8 @@ import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.oneColumnTable.OneColumnTableController;
 
+import java.io.File;
+
 import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
@@ -28,7 +30,9 @@ public class EditorsOCTController extends OneColumnTableController<OneColumnTabl
     public void fillTable(String idFilter) {
     }
 
-    public void onAddMenu() {}
+    public void onAddMenu() {
+        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new EditorsOCTAddController(publicationID, main));
+    }
 
     public void deleteRow(String id) {
         try {

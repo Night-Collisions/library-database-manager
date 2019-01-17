@@ -9,6 +9,7 @@ import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.publication.oneColumnTable.OneColumnTableController;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -56,7 +57,9 @@ public class KeywordOCTController extends OneColumnTableController<OneColumnTabl
         }
     }
 
-    public void onAddMenu() {}
+    public void onAddMenu() {
+        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new KeywordOCTAddController(publicationID, main));
+    }
 
     public void deleteRow(String id) {
         try {
