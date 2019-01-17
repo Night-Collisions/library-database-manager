@@ -9,8 +9,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import libapp.ClientSocket;
-import libapp.model.Publication;
 import libapp.model.PublishingHouse;
+import libapp.model.Work;
 import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.RegularForField;
@@ -29,11 +29,14 @@ public class ArticleWinController extends PropertyWin {
     @FXML
     protected ComboBox<PublishingHouse> where;
     @FXML
+    protected ComboBox<Work> works;
+    @FXML
     protected TextField issue;
     @FXML
     protected TextField number;
 
-    public ObservableList<PublishingHouse> dataList = FXCollections.observableArrayList();
+    public ObservableList<PublishingHouse> publList = FXCollections.observableArrayList();
+    public ObservableList<Work> workList = FXCollections.observableArrayList();
 
     protected enum type {Magazine, Collection}
     protected type currentType;
@@ -47,6 +50,8 @@ public class ArticleWinController extends PropertyWin {
     }
 
     public void fillPubHouseCombobox() {
+        where.getItems().clear();
+
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
@@ -64,15 +69,49 @@ public class ArticleWinController extends PropertyWin {
                         args[j] = "";
                     }
                 }
-                dataList.add(new PublishingHouse(
+                publList.add(new PublishingHouse(
                         args[0],
                         args[1],
                         args[2],
                         args[3],
                         args[4]));
-
-                where.getItems().addAll(dataList);
             }
+
+            where.getItems().addAll(publList);
+        } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
+    }
+
+    public void fillDigestsCombobox() {
+        try {
+            where.getItems().clear();
+
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getDigests");
+
+            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
+            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
+
+            for (ArrayList i : parsed) {
+                String[] args = new String[i.size()];
+                for (int j = 0; j < i.size(); ++j) {
+                    if (i.get(j) != null) {
+                        args[j] = i.get(j).toString();
+                    } else {
+                        args[j] = "";
+                    }
+                }
+                workList.add(new Work(
+                        args[0],
+                        args[1],
+                        args[2],
+                        args[3]));
+            }
+
+            works.getItems().addAll(workList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
@@ -88,7 +127,6 @@ public class ArticleWinController extends PropertyWin {
         typeMagazine.setToggleGroup(group);
         typeCollection.setToggleGroup(group);
         typeMagazine.setSelected(true);
-        fillPubHouseCombobox();
         group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov,
                                 Toggle old_toggle, Toggle new_toggle) {
@@ -99,12 +137,14 @@ public class ArticleWinController extends PropertyWin {
                         issue.clear();
                         number.setDisable(false);
                         number.clear();
+                        fillPubHouseCombobox();
                     } else {
                         currentType = type.Collection;
                         issue.setDisable(true);
                         issue.clear();
                         number.setDisable(true);
                         number.clear();
+                        fillDigestsCombobox();
                     }
                 }
             }

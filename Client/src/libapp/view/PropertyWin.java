@@ -11,18 +11,6 @@ public class PropertyWin {
     @FXML
     protected Button reject;
 
-    protected boolean res = false;
-
-    public boolean getRes() {
-        if (res) {
-            res = false;
-            return true;
-        } else {
-            res = false;
-            return false;
-        }
-    }
-
     protected Main main;
     protected ClientSocket socket;
 
