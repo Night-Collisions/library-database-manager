@@ -13,7 +13,6 @@ public class AuthorAddController extends AuthorWinController {
         super.initialize();
         sexDict.put("женский", "1");
         sexDict.put("мужской", "0");
-        sex.setEditable(false);
         sex.getSelectionModel().selectFirst();
     }
 

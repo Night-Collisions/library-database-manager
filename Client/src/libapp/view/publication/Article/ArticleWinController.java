@@ -116,7 +116,7 @@ public class ArticleWinController extends PropertyWin {
     @FXML
     protected void initialize() {
         RegularForField.setIntField(number);
-        where.setEditable(false);
+
         final ToggleGroup group = new ToggleGroup();
         typeMagazine.setToggleGroup(group);
         typeCollection.setToggleGroup(group);

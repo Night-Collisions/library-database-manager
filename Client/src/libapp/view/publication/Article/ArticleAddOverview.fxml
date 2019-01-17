@@ -21,7 +21,7 @@
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Издательство:" />
-            <ComboBox fx:id="where" editable="true" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
+            <ComboBox fx:id="where" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Название:" />

@@ -40,7 +40,6 @@ public class TechnicalDocWinController extends PropertyWin {
 
     @FXML
     protected void initialize() {
-        organization.setEditable(false);
         fillOrganizationCombobox();
     }
 

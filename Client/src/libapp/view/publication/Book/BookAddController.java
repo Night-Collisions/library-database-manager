@@ -20,8 +20,6 @@ public class BookAddController extends BookWinController{
 
     protected void initialize() {
         super.initialize();
-
-        ph.setEditable(false);
       //  ph.getSelectionModel().selectFirst();
         fillPubHouseCombobox();
     }

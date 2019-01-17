@@ -41,8 +41,6 @@ public class MagazineWinController extends PropertyWin {
 
     protected void initialize() {
         super.initialize();
-        organization.setEditable(false);
-        subject.setEditable(false);
         fillOrganizationsCombobox();
         fillSubjectCombobox();
     }

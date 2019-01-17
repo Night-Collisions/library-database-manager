@@ -13,7 +13,7 @@
         <VBox alignment="CENTER" spacing="5" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <HBox alignment="BOTTOM_RIGHT" spacing="10">
                 <Label fx:id="label" minHeight="-Infinity" maxHeight="Infinity" minWidth="-Infinity" maxWidth="Infinity"/>
-                <ComboBox fx:id="combobox" editable="true" prefWidth="9999999999999" AnchorPane.leftAnchor="0" />
+                <ComboBox fx:id="combobox" prefWidth="9999999999999" AnchorPane.leftAnchor="0" />
             </HBox>
             <HBox alignment="BOTTOM_RIGHT" spacing="10">
                 <Button fx:id="accept" minWidth="100" onAction="#applyChange" text="Применить" />

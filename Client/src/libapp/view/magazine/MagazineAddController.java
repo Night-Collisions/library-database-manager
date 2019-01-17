@@ -9,7 +9,6 @@ import static libapp.QueryParser.buildQuery;
 public class MagazineAddController extends MagazineWinController {
     protected void initialize() {
         super.initialize();
-        organization.setEditable(false);
     }
 
     public MagazineAddController(Main main) {
