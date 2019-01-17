@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import libapp.ClientSocket;
 import libapp.model.OneColumnTable;
 import libapp.view.Main;
@@ -21,9 +22,10 @@ import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
 public class UDCOCTAddController extends OneColumnTableWinController {
-    public UDCOCTAddController(String publicationID, Main main) {
+    public UDCOCTAddController(String publicationID, Main main, TableView<OneColumnTable> table) {
         this.publicationID = publicationID;
         this.main = main;
+        this.table = table;
     }
 
     protected void initialize() {
@@ -31,10 +33,11 @@ public class UDCOCTAddController extends OneColumnTableWinController {
     }
 
     protected ObservableList<String> fillComboBox() {
-        return fillComboBox("getUdcOfPubl");
+        return fillComboBox("getUdcNotOfPubl", 1);
     }
 
     protected void applyChange() {
-        System.out.print(combobox.getId());
+        addRow("addUdcToPubl");
+        super.applyChange();
     }
 }

@@ -8,6 +8,7 @@ import libapp.ClientSocket;
 import libapp.model.OneColumnTable;
 import libapp.view.Main;
 import libapp.view.MessageController;
+import libapp.view.publication.oneColumnTable.Edithor.EditorsOCTAddController;
 import libapp.view.publication.oneColumnTable.OneColumnTableController;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import java.io.File;
 import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
-public class AuthorsOCTController extends OneColumnTableController<OneColumnTable> {
+public class AuthorsOCTController extends OneColumnTableController {
     public AuthorsOCTController(Main main, String publicationID) {
         this.main = main;
         this.publicationID = publicationID;
@@ -28,10 +29,11 @@ public class AuthorsOCTController extends OneColumnTableController<OneColumnTabl
     }
 
     public void fillTable(String idFilter) {
+        fillTable(idFilter, "getAuthorsOfPubl", 4);
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new AuthorsOCTAddController(publicationID, main));
+        createWindow("OneColumnAddOverview.fxml", new AuthorsOCTAddController(publicationID, main, table));
     }
 
     public void deleteRow(String id) {
