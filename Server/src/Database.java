@@ -160,13 +160,15 @@ class Database {
 
     String getAuthors() {
         return execSelectQuery(
-                "SELECT * FROM authors"
+                "SELECT authors_id, surname, name, patronymic, sex, birth_date, death_date, phone_number, email " +
+                "FROM authors"
         );
     }
 
     String getEditors() {
         return execSelectQuery(
-                "SELECT * FROM editors"
+                "SELECT editors_id, surname, name, patronymic, sex, birth_date, death_date, phone_number, email " +
+                "FROM editors"
         );
     }
 
@@ -217,7 +219,7 @@ class Database {
 
     String getAuthorsOfPubl(String p_id) {
         String query =
-                "SELECT a.authors_id, a.name, a.surname, a.patronymic, a.sex, a.birth_date, " +
+                "SELECT a.authors_id, a.surname, a.name, a.patronymic, a.sex, a.birth_date, " +
                 "a.death_date, a.phone_number, a.email " +
                 "FROM authors a " +
                 "JOIN authors_publications ap ON a.authors_id = ap.authors_id " +
@@ -227,7 +229,7 @@ class Database {
 
     String getEditorsOfPubl(String p_id) {
         String query =
-                "SELECT e.editors_id, e.name, e.surname, e.patronymic, e.sex, e.birth_date, " +
+                "SELECT e.editors_id, e.surname, e.name, e.patronymic, e.sex, e.birth_date, " +
                 "e.death_date, e.phone_number, e.email " +
                 "FROM editors e " +
                 "JOIN editors_publications ep ON e.editors_id = ep.editors_id " +
@@ -257,7 +259,7 @@ class Database {
 
     String getAuthorsNotOfPubl(String p_id) {
         String query =
-                "SELECT a.authors_id, a.name, a.surname, a.patronymic, a.sex, a.birth_date, " +
+                "SELECT a.authors_id, a.surname, a.name, a.patronymic, a.sex, a.birth_date, " +
                         "a.death_date, a.phone_number, a.email " +
                         "FROM authors a " +
                         "JOIN authors_publications ap ON a.authors_id = ap.authors_id " +
@@ -267,7 +269,7 @@ class Database {
 
     String getEditorsNotOfPubl(String p_id) {
         String query =
-                "SELECT e.editors_id, e.name, e.surname, e.patronymic, e.sex, e.birth_date, " +
+                "SELECT e.editors_id, e.surname, e.name, e.patronymic, e.sex, e.birth_date, " +
                 "e.death_date, e.phone_number, e.email " +
                 "FROM editors e " +
                 "JOIN editors_publications ep ON e.editors_id = ep.editors_id " +
