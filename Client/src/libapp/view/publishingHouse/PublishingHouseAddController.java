@@ -14,6 +14,8 @@ public class PublishingHouseAddController extends PublishingHouseWinController {
 
     public PublishingHouseAddController(Main main) {
         super(main);
+
+
     }
 
     protected void applyChange() {
