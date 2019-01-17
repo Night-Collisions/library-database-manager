@@ -260,40 +260,46 @@ class Database {
     String getAuthorsNotOfPubl(String p_id) {
         String query =
                 "SELECT a.authors_id, a.surname, a.name, a.patronymic, a.sex, a.birth_date, " +
-                        "a.death_date, a.phone_number, a.email " +
-                        "FROM authors a " +
-                        "JOIN authors_publications ap ON a.authors_id = ap.authors_id " +
-                        "AND ap.publications_id != ?";
+                       "a.death_date, a.phone_number, a.email " +
+                "FROM authors a " +
+                "WHERE NOT EXISTS(SELECT 1 " +
+                                 "FROM authors_publications ap " +
+                                 "WHERE ap.authors_id = a.authors_id " +
+                                   "AND ap.publications_id = ?)";
         return execPSWithId(p_id, query);
     }
 
     String getEditorsNotOfPubl(String p_id) {
         String query =
                 "SELECT e.editors_id, e.surname, e.name, e.patronymic, e.sex, e.birth_date, " +
-                "e.death_date, e.phone_number, e.email " +
+                       "e.death_date, e.phone_number, e.email " +
                 "FROM editors e " +
-                "JOIN editors_publications ep ON e.editors_id = ep.editors_id " +
-                "AND ep.publications_id != ?";
+                "WHERE NOT EXISTS(SELECT 1 " +
+                                 "FROM editors_publications ep " +
+                                 "WHERE ep.editors_id = e.editors_id " +
+                                   "AND ep.publications_id = ?)";
         return execPSWithId(p_id, query);
     }
 
     String getKeywordsNotOfPubl(String id) {
         String s =
-                "SELECT k.keywords_id, k.keyword " +
+                "SELECT * " +
                 "FROM keywords k " +
-                "JOIN publications_keywords pk on k.keywords_id = pk.keywords_id " +
-                "JOIN publications p on pk.publications_id = p.publications_id " +
-                "WHERE p.publications_id != ?";
+                "WHERE NOT EXISTS(SELECT 1 " +
+                                 "FROM publications_keywords pk " +
+                                 "WHERE pk.keywords_id = k.keywords_id " +
+                                   "AND pk.publications_id = ?)";
         return execPSWithId(id, s);
     }
 
     String getUdcNotOfPubl(String id) {
         String s =
-                "SELECT uc.udc_codes_id, uc.udc_code " +
+                "SELECT * " +
                 "FROM udc_codes uc " +
-                "JOIN publications_udc_codes puc ON uc.udc_codes_id = puc.udc_codes_id " +
-                "JOIN publications p on puc.publications_id = p.publications_id " +
-                "WHERE p.publications_id != ?";
+                "WHERE NOT EXISTS(SELECT 1 " +
+                                 "FROM publications_udc_codes puc " +
+                                 "WHERE puc.udc_codes_id = uc.udc_codes_id " +
+                                   "AND puc.publications_id = ?)";
         return execPSWithId(id, s);
     }
 
