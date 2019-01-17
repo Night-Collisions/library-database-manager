@@ -14,7 +14,6 @@ import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
 public class EditorsOCTController extends OneColumnTableController<OneColumnTable> {
-    private String publicationID;
     public EditorsOCTController(Main main, String publicationID) {
         this.main = main;
         this.publicationID = publicationID;

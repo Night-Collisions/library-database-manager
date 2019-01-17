@@ -254,11 +254,11 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
-            loader.setController(new KeywordOCTController(this));
+            loader.setController(new AllKeyWordsController(this));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
-            KeywordOCTController controller = loader.getController();
+            AllKeyWordsController controller = loader.getController();
             controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {
@@ -272,11 +272,11 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
-            loader.setController(new UDCOCTController(this));
+            loader.setController(new AllUDCController(this));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
 
-            UDCOCTController controller = loader.getController();
+            AllUDCController controller = loader.getController();
             controller.setMain(this);
             controller.fillTable();
         } catch (IOException e) {

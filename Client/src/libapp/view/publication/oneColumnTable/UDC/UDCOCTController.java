@@ -16,8 +16,6 @@ import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
 public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
-    private String publicationID;
-
     public UDCOCTController(Main main, String publicationID) {
         this.main = main;
         this.publicationID = publicationID;
@@ -28,34 +26,6 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
         columnName = "УДК:";
         super.initialize();
         //table.setItems(dataList);
-    }
-
-    public void fillTable() {
-        try {
-            String result = "";
-            socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(
-                    main.getUser().getId() +
-                            ClientSocket.argSep +
-                            "getUdc" +
-                            ClientSocket.argSep);
-
-            if (result.equals("wrong args")) {
-                throw new Exception();
-            }
-
-
-            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
-            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
-
-            for (ArrayList i : parsed) {
-                dataList.add(new OneColumnTable(i.get(0).toString(), i.get(1).toString()));
-            }
-
-        } catch (Exception e) {
-            new MessageController(MessageController.titleErrorGetNewData,
-                    MessageController.contentTextErrorGetNewData, e);
-        }
     }
 
     public void fillTable(String idFilter) {
