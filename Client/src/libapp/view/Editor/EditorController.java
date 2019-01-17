@@ -29,6 +29,8 @@ public class EditorController extends TableProperty<Editor> {
     @FXML
     private TableColumn<Editor, String> name;
     @FXML
+    private TableColumn<Editor, String> sex;
+    @FXML
     private TableColumn<Editor, String> patronymic;
     @FXML
     private TableColumn<Editor, String> birthday;
