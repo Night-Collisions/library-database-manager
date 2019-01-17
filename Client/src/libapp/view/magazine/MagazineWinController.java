@@ -69,9 +69,9 @@ public class MagazineWinController extends PropertyWin {
                 subjectlList.add(new Subject(
                         args[0],
                         args[1]));
-
-                subject.getItems().addAll(subjectlList);
             }
+
+            subject.getItems().addAll(subjectlList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
@@ -103,9 +103,9 @@ public class MagazineWinController extends PropertyWin {
                         args[2],
                         args[3],
                         args[4]));
-
-                organization.getItems().addAll(orgList);
             }
+
+            organization.getItems().addAll(orgList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
