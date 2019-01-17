@@ -560,14 +560,14 @@ class Database {
         ps_pe.executeUpdate();
     }
 
-    String addSubject(String caller_id, String subject) {
+    String addSubject(String caller_id, String title) {
         if (!checkUserType(caller_id, new int[]{U_ADMIN, U_LIBRARIAN})) {
             return "error: access";
         }
         try {
             String query = "INSERT INTO subjects(title) VALUES (?)";
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, subject);
+            ps.setString(1, title);
             ps.executeUpdate();
             return "ok";
         } catch (Exception e) {
