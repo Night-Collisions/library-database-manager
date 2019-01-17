@@ -260,7 +260,7 @@ class Database {
                 "SELECT a.authors_id, a.name, a.surname, a.patronymic, a.sex, a.birth_date, " +
                         "a.death_date, a.phone_number, a.email " +
                         "FROM authors a " +
-                        "JOIN authors_publications ap ON a.authors_id = ap.authors_id" +
+                        "JOIN authors_publications ap ON a.authors_id = ap.authors_id " +
                         "AND ap.publications_id != ?";
         return execPSWithId(p_id, query);
     }
