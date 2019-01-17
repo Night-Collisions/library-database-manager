@@ -28,11 +28,11 @@ public class EditorsOCTController extends OneColumnTableController {
     }
 
     public void fillTable(String idFilter) {
-        fillTable(idFilter, "getEditorsOfPubl", 1);
+        fillTable(idFilter, "getEditorsOfPubl", 3);
     }
 
     public void onAddMenu() {
-        createWindow("OneColumnAddOverview.fxml", new EditorsOCTAddController(publicationID, main, table));
+        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new EditorsOCTAddController(publicationID, main, table));
     }
 
     public void deleteRow(String id) {
@@ -51,7 +51,6 @@ public class EditorsOCTController extends OneColumnTableController {
             if (result.equals("ok")) {
                 table.getItems().remove(table.getSelectionModel().getSelectedItem());
             } else {
-                //TODO: не удалиласб, пока кидаю просто эксепшн
                 throw new Exception();
             }
         } catch (Exception e) {

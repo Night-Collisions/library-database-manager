@@ -105,7 +105,6 @@ public class MagazineController extends TableProperty<Magazine> {
             if (result.equals("ok")) {
                 table.getItems().remove(table.getSelectionModel().getSelectedItem());
             } else {
-                //TODO: не удалиласб, пока кидаю просто эксепшн
                 throw new Exception();
             }
         } catch (Exception e) {

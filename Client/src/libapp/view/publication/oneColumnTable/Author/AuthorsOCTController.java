@@ -33,7 +33,7 @@ public class AuthorsOCTController extends OneColumnTableController {
     }
 
     public void onAddMenu() {
-        createWindow("OneColumnAddOverview.fxml", new AuthorsOCTAddController(publicationID, main, table));
+        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new AuthorsOCTAddController(publicationID, main, table));
     }
 
     public void deleteRow(String id) {
@@ -52,7 +52,6 @@ public class AuthorsOCTController extends OneColumnTableController {
             if (result.equals("ok")) {
                 table.getItems().remove(table.getSelectionModel().getSelectedItem());
             } else {
-                //TODO: не удалиласб, пока кидаю просто эксепшн
                 throw new Exception();
             }
         } catch (Exception e) {
