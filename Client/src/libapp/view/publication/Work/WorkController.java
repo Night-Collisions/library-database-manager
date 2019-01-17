@@ -38,11 +38,27 @@ public class WorkController extends PublicationProperty<Work> {
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkAddController());
+        createWindow(
+                "publication" +
+                        File.separator +
+                        "Book" +
+                        File.separator +
+                        "BookAddOverview.fxml",
+                new WorkAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        createWindow("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController());
+        createWindow(
+                "publication" +
+                        File.separator +
+                        "Book" +
+                        File.separator +
+                        "BookAddOverview.fxml",
+                new WorkAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void fillTable() {
