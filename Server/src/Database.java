@@ -25,7 +25,8 @@ class Database {
 
     Database() throws Exception {
         Class.forName("org.postgresql.Driver");
-        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/library_db", "ivan", "password");
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/library_db",
+                "ivan", "password");
     }
 
     String authorizeUser(String login, String password) {
@@ -339,14 +340,31 @@ class Database {
     }
 
     private String addBookAndDigestCommonPart(String title, String ph_id, String year, int type) {
+        Savepoint sp = null;
         try {
+            con.setAutoCommit(false);
+            sp = con.setSavepoint();
             String query_p =
                     "INSERT INTO publications(type, title) VALUES (" + type + ", ?) " +
                     "RETURNING publications_id";
-            addPublHouseAndYear(title, ph_id, year, query_p);
+            long p_id = getPublIdAfterInsert(title, query_p);
+            addPublHouseAndYear(title, ph_id, year, p_id);
+            con.commit();
             return "ok";
         } catch (Exception e) {
+            try {
+                con.rollback(sp);
+            }
+            catch (SQLException ignore) {
+            }
             return "error: " + e.getMessage();
+        }
+        finally {
+            try {
+                con.setAutoCommit(true);
+            }
+            catch (SQLException ignore) {
+            }
         }
     }
 
@@ -354,7 +372,10 @@ class Database {
         if (!checkUserType(caller_id, new int[]{U_ADMIN, U_LIBRARIAN})) {
             return "error: access";
         }
+        Savepoint sp = null;
         try {
+            con.setAutoCommit(false);
+            sp = con.setSavepoint();
             String query_p =
                     "INSERT INTO publications(type, title) VALUES (" + P_ARTICLE + ", ?) " +
                     "RETURNING publications_id";
@@ -370,9 +391,22 @@ class Database {
             ps_mai.setLong(2, Integer.parseInt(volume));
             ps_mai.setLong(3, Integer.parseInt(relase_number));
             ps_mai.executeUpdate();
+            con.commit();
             return "ok";
         } catch (Exception e) {
+            try {
+                con.rollback(sp);
+            }
+            catch (SQLException ignore) {
+            }
             return "error: " + e.getMessage();
+        }
+        finally {
+            try {
+                con.setAutoCommit(true);
+            }
+            catch (SQLException ignore) {
+            }
         }
     }
 
@@ -387,15 +421,30 @@ class Database {
         if (!checkUserType(caller_id, new int[]{U_ADMIN, U_LIBRARIAN})) {
             return "error: access";
         }
+        Savepoint sp = null;
         try {
+            con.setAutoCommit(false);
+            sp = con.setSavepoint();
             String query_p =
-                    "INSERT INTO publications(type, title) VALUES (" + P_THESES + ", ?) " +
-                    "RETURNING publications_id";
+                    "INSERT INTO publications(type, title) VALUES (" + P_THESES + ", ?) RETURNING publications_id";
             long p_id = getPublIdAfterInsert(title, query_p);
             addMagazinePublication(p_id, m_id);
+            con.commit();
             return "ok";
         } catch (Exception e) {
+            try {
+                con.rollback(sp);
+            }
+            catch (SQLException ignore) {
+            }
             return "error: " + e.getMessage();
+        }
+        finally {
+            try {
+                con.setAutoCommit(true);
+            }
+            catch (SQLException ignore) {
+            }
         }
     }
 
@@ -410,7 +459,10 @@ class Database {
         if (!checkUserType(caller_id, new int[]{U_ADMIN, U_LIBRARIAN})) {
             return "error: access";
         }
+        Savepoint sp = null;
         try {
+            con.setAutoCommit(false);
+            sp = con.setSavepoint();
             String query_p =
                     "INSERT INTO publications(type, title) VALUES (" + P_DOCS + ", ?) " +
                     "RETURNING publications_id";
@@ -420,21 +472,50 @@ class Database {
             ps_op.setLong(1, p_id);
             ps_op.setInt(2, Integer.parseInt(o_id));
             ps_op.executeUpdate();
+            con.commit();
             return "ok";
         } catch (Exception e) {
+            try {
+                con.rollback(sp);
+            }
+            catch (SQLException ignore) {
+            }
             return "error: " + e.getMessage();
+        }
+        finally {
+            try {
+                con.setAutoCommit(true);
+            }
+            catch (SQLException ignore) {
+            }
         }
     }
 
     private String addPublicationWithDigest(int type, String title, String d_id) {
+        Savepoint sp = null;
         try {
+            con.setAutoCommit(false);
+            sp = con.setSavepoint();
             String query_p =
                     "INSERT INTO publications(type, title) VALUES (" + type + ", ?) " + "RETURNING publications_id";
             long p_id = getPublIdAfterInsert(title, query_p);
             addDigestPublication(p_id, d_id);
+            con.commit();
             return "ok";
         } catch (Exception e) {
+            try {
+                con.rollback(sp);
+            }
+            catch (SQLException ignore) {
+            }
             return "error: " + e.getMessage();
+        }
+        finally {
+            try {
+                con.setAutoCommit(true);
+            }
+            catch (SQLException ignore) {
+            }
         }
     }
 
@@ -463,9 +544,7 @@ class Database {
         return rs.getLong(1);
     }
 
-    private void addPublHouseAndYear(String title, String ph_id, String year, String query_p) throws Exception {
-        long p_id = getPublIdAfterInsert(title, query_p);
-
+    private void addPublHouseAndYear(String title, String ph_id, String year, long p_id) throws Exception {
         String query_php =
                 "INSERT INTO publishing_houses_publications(publications_id, publishing_houses_id) " +
                 "VALUES (?, ?)";
