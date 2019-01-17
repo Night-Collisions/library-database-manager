@@ -2,12 +2,14 @@ package libapp.view.user;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import libapp.view.Main;
 import libapp.view.RegularForField;
 
 import java.util.Optional;
 
 public class UserChangeController extends UserWinController {
-    public UserChangeController(String id) {
+    public UserChangeController(Main main, String id) {
+        super(main);
         ID = id;
     }
 

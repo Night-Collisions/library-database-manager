@@ -56,12 +56,17 @@ public class UserController extends TableProperty<User> {
     }
 
     public void onAddMenu() {
-        createWindow("user" + File.separator + "UserAddOverview.fxml", new UserAddController());
+        createWindow("user" + File.separator + "UserAddOverview.fxml", new UserAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        if (table.getSelectionModel().getSelectedItem() != null)
-            createWindow("UserProfileOverview.fxml", new UserChangeController(table.getSelectionModel().getSelectedItem().getId()));
+        if (table.getSelectionModel().getSelectedItem() != null) {
+            createWindow("UserProfileOverview.fxml", new UserChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+            table.getItems().clear();
+            fillTable();
+        }
     }
 
     public void fillTable() {
