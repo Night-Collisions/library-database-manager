@@ -15,6 +15,7 @@
           <TableColumn fx:id="surname" minWidth="50" text="Фамилия" />
             <TableColumn fx:id="name" minWidth="50" text="Имя" />
             <TableColumn fx:id="patronymic" minWidth="50" text="Отчество" />
+            <TableColumn fx:id="sex" minWidth="30" text="Отчество" />
             <TableColumn fx:id="birthday" minWidth="50" text="Дата рождения" />
             <TableColumn fx:id="deathday" minWidth="50" text="Дата смерти" />
             <TableColumn fx:id="phonenumber" minWidth="50" text="Номер телефона" />

@@ -33,6 +33,8 @@ public class AuthorController extends TableProperty<Author> {
     @FXML
     private TableColumn<Author, String> patronymic;
     @FXML
+    private TableColumn<Author, String> sex;
+    @FXML
     private TableColumn<Author, String> birthday;
     @FXML
     private TableColumn<Author, String> deathday;
