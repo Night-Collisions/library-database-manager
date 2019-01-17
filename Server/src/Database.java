@@ -1094,7 +1094,7 @@ class Database {
         try {
             PreparedStatement ps = con.prepareStatement(query);
             setOrgOrPublHouseInfoInPS(ps, title, address, phone, email);
-            ps.setLong(4, Long.parseLong(id));
+            ps.setLong(5, Long.parseLong(id));
             ps.executeUpdate();
             return "ok";
         } catch (Exception e) {
