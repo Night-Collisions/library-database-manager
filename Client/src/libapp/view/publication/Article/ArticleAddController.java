@@ -43,7 +43,7 @@ public class ArticleAddController extends ArticleWinController{
             }
 
             result = socket.makeRequest(buildQuery(args));
-            System.out.println(result);
+
             if (!result.equals("ok")) {
                 throw new Exception();
             }
