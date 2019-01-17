@@ -11,6 +11,7 @@ import static libapp.QueryParser.buildQuery;
 public class ArticleAddController extends ArticleWinController{
     protected void initialize() {
         super.initialize();
+      //  where.getSelectionModel().selectFirst();
     }
 
     public ArticleAddController(Main main) {

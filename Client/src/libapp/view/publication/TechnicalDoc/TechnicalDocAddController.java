@@ -13,6 +13,7 @@ public class TechnicalDocAddController extends TechnicalDocWinController {
 
     public TechnicalDocAddController(Main main) {
         super(main);
+      //  organization.getSelectionModel().selectFirst();
     }
 
     protected void applyChange() {

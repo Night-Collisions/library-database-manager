@@ -43,11 +43,23 @@ public class MagazineController extends TableProperty<Magazine> {
     }
 
     public void onAddMenu() {
-        createWindow("magazine" + File.separator + "MagazineAddOverview.fxml", new MagazineAddController());
+        createWindow(
+                "magazine" +
+                        File.separator +
+                        "MagazineAddOverview.fxml",
+                new MagazineAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        createWindow("magazine" + File.separator + "MagazineAddOverview.fxml", new MagazineChangeController());
+        createWindow(
+                "magazine" +
+                        File.separator +
+                        "MagazineAddOverview.fxml",
+                new MagazineAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void fillTable() {

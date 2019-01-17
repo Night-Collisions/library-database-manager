@@ -21,6 +21,7 @@ public class WorkAddController extends WorkWinController {
     protected void initialize() {
         super.initialize();
         ph.setEditable(false);
+        //ph.getSelectionModel().selectFirst();
         fillPubHouseCombobox();
     }
 

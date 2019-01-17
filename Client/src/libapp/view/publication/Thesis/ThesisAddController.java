@@ -13,6 +13,7 @@ public class ThesisAddController extends ThesisWinController {
 
     public ThesisAddController(Main main) {
         super(main);
+
     }
 
     protected void applyChange() {
