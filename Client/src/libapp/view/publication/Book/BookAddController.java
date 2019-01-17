@@ -10,7 +10,10 @@ import libapp.view.Main;
 import libapp.view.MessageController;
 
 import java.lang.reflect.Type;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import static libapp.QueryParser.buildQuery;
 
 public class BookAddController extends BookWinController{
     public ObservableList<PublishingHouse> dataList = FXCollections.observableArrayList();
@@ -18,6 +21,7 @@ public class BookAddController extends BookWinController{
     protected void initialize() {
         super.initialize();
 
+        ph.setEditable(false);
         fillPubHouseCombobox();
     }
 
@@ -60,5 +64,26 @@ public class BookAddController extends BookWinController{
 
     protected void applyChange() {
         super.applyChange();
+
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+
+            String[] args = {
+                    main.getUser().getId(),
+                    "addBook",
+                    name.getText(),
+                    ph.getValue().getId(),
+                    date.getValue().format(DateTimeFormatter.ofPattern("yyyy"))};
+
+            result = socket.makeRequest(buildQuery(args));
+
+            if (!result.equals("ok")) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            new MessageController("Ошибка",
+                    "Не удалось вставить запись", e);
+        }
     }
 }

@@ -71,13 +71,13 @@ public class TableProperty<T> {
                 deleteWindow(((Table)table.getSelectionModel().getSelectedItem()).getId());
         });
 
-        MenuItem Items[] = {insert, edit, delete};
+        MenuItem[] Items = {insert, edit, delete};
 
         javafx.scene.control.Menu[] cascadingMenu = {};
         return createMenu(cascadingMenu, Items);
     }
 
-    public ContextMenu createMenu(MenuItem items[]) {
+    public ContextMenu createMenu(MenuItem[] items) {
         javafx.scene.control.Menu[] cascadingMenu = {};
         return createMenu(cascadingMenu, items);
     }
