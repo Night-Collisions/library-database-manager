@@ -26,16 +26,15 @@ public class AuthorAddController extends AuthorWinController {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-
             String[] args = {
                     main.getUser().getId(),
                     "addAuthor",
-                    surname.getText(),
                     name.getText(),
+                    surname.getText(),
                     patronymic.getText(),
                     sexDict.get(sex.getValue()),
-                    bornDate.getValue().format(DateTimeFormatter.ofPattern("dd--mm--yyyy")),
-                    deathDate.getValue().format(DateTimeFormatter.ofPattern("dd--mm--yyyy")),
+                    bornDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    deathDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     phone.getText(),
                     email.getText()
                     };
