@@ -7,6 +7,9 @@ import libapp.view.RegularForField;
 import java.util.Optional;
 
 public class UserChangeController extends UserWinController {
+    public UserChangeController(String id) {
+        ID = id;
+    }
 
     @FXML
     protected Label id;

@@ -72,7 +72,7 @@ public class EditorController extends TableProperty<Editor> {
                 "author" +
                         File.separator +
                         "AuthorAddOverview.fxml",
-                new EditorAddController(main));
+                new EditorChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

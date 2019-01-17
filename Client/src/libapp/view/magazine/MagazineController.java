@@ -57,7 +57,7 @@ public class MagazineController extends TableProperty<Magazine> {
                 "magazine" +
                         File.separator +
                         "MagazineAddOverview.fxml",
-                new MagazineAddController(main));
+                new MagazineChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

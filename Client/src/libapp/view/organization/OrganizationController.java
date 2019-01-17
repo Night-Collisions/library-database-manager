@@ -61,7 +61,7 @@ public class OrganizationController extends TableProperty<Organization> {
                 "organization" +
                         File.separator +
                         "OrganizationAddOverview.fxml",
-                new OrganizationAddController(main));
+                new OrganizationChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }
