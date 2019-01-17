@@ -42,11 +42,11 @@ public class ArticleController extends PublicationProperty<Article> {
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleAddController());
+        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleAddController(main));
     }
 
     public void onEditMenu() {
-        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController());
+        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController(main));
     }
 
 
@@ -60,17 +60,18 @@ public class ArticleController extends PublicationProperty<Article> {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
+                //TODO где то нульпоунтер
                 if (i.get(2) == null) {
                     dataList.add(new Article(
                             i.get(0).toString(),
-                            i.get(0).toString(),
+                            i.get(1).toString(),
                             i.get(3).toString(),
                             "",
                             ""));
                 } else {
                     dataList.add(new Article(
                             i.get(0).toString(),
-                            i.get(0).toString(),
+                            i.get(1).toString(),
                             i.get(2).toString(),
                             i.get(4).toString(),
                             i.get(5).toString()));

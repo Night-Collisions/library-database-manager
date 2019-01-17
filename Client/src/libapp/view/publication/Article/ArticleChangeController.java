@@ -1,9 +1,14 @@
 package libapp.view.publication.Article;
 
+import libapp.view.Main;
+
 public class ArticleChangeController extends ArticleWinController {
     protected void initialize() {
         super.initialize();
-        name.setText("редактируется");
+    }
+
+    public ArticleChangeController(Main main) {
+        super(main);
     }
 
     protected void applyChange() {

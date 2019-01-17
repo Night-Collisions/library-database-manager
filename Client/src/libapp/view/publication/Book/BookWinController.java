@@ -17,8 +17,6 @@ public class BookWinController extends PropertyWin {
     @FXML
     protected DatePicker date;
 
-
-
     protected Main main;
     protected ClientSocket socket;
 
