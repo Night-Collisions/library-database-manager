@@ -115,7 +115,7 @@ class Database {
                 "FROM publications p " +
                 "LEFT JOIN digests_publications dp ON p.publications_id = dp.publications_id " +
                 "LEFT JOIN magazines_publications mp ON p.publications_id = mp.publications_id " +
-                "LEFT JOIN publications p1 ON p1.publications_id = dp.publications_id " +
+                "LEFT JOIN publications p1 ON p1.publications_id = dp.digests_id " +
                 "LEFT JOIN magazines m on mp.magazines_id = m.magazines_id " +
                 "LEFT JOIN magazine_article_info mai on p.publications_id = mai.publications_id " +
                 "WHERE p.type = " + P_ARTICLE
@@ -128,7 +128,7 @@ class Database {
                 "FROM publications p " +
                 "LEFT JOIN digests_publications dp ON p.publications_id = dp.publications_id " +
                 "LEFT JOIN magazines_publications mp ON p.publications_id = mp.publications_id " +
-                "LEFT JOIN publications p1 ON p1.publications_id = dp.publications_id " +
+                "LEFT JOIN publications p1 ON p1.publications_id = dp.digests_id " +
                 "LEFT JOIN magazines m on mp.magazines_id = m.magazines_id " +
                 "WHERE p.type = " + P_THESES
         );
