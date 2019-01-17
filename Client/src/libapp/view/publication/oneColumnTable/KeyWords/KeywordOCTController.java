@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
-public class KeywordOCTController extends OneColumnTableController<OneColumnTable> {
+public class KeywordOCTController extends OneColumnTableController {
     public KeywordOCTController(Main main, String publicationID) {
         this.main = main;
         this.publicationID = publicationID;
@@ -29,36 +29,11 @@ public class KeywordOCTController extends OneColumnTableController<OneColumnTabl
     }
 
     public void fillTable(String idFilter) {
-        String result = "";
-        try {
-            socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(
-                    main.getUser().getId() +
-                            ClientSocket.argSep +
-                            "getKeywordsOfPubl" +
-                            ClientSocket.argSep +
-                            idFilter);
-
-            if (result.equals("wrong args")) {
-                throw new Exception();
-            }
-
-            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
-            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
-
-            for (ArrayList i : parsed) {
-                dataList.add(new OneColumnTable(i.get(0).toString(), i.get(1).toString()));
-            }
-
-            table.setItems(dataList);
-        } catch (Exception e) {
-            new MessageController(MessageController.titleErrorGetNewData,
-                    MessageController.contentTextErrorGetNewData, e);
-        }
+        fillTable(idFilter, "getKeywordsOfPubl", 1);
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new KeywordOCTAddController(publicationID, main));
+        createWindow("OneColumnAddOverview.fxml", new KeywordOCTAddController(publicationID, main, table));
     }
 
     public void deleteRow(String id) {

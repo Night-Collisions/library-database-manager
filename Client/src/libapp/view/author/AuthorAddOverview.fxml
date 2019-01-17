@@ -39,7 +39,7 @@
             <DatePicker fx:id="bornDate" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
-            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Дата мерти:" />
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Дата серти:" />
             <DatePicker fx:id="deathDate" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">

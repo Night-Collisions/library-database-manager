@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
-public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
+public class UDCOCTController extends OneColumnTableController {
     public UDCOCTController(Main main, String publicationID) {
         this.main = main;
         this.publicationID = publicationID;
@@ -30,36 +30,11 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
     }
 
     public void fillTable(String idFilter) {
-        try {
-            String result = "";
-            socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(
-                    main.getUser().getId() +
-                            ClientSocket.argSep +
-                            "getUdcOfPubl" +
-                            ClientSocket.argSep + idFilter);
-
-            if (result.equals("wrong args")) {
-                throw new Exception();
-            }
-
-            Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
-            ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
-
-            for (ArrayList i : parsed) {
-                String a0 = i.get(0).toString();
-                String a1 = i.get(1).toString();
-                dataList.add(new OneColumnTable(a0, a1));
-            }
-
-        } catch (Exception e) {
-            new MessageController(MessageController.titleErrorGetNewData,
-                    MessageController.contentTextErrorGetNewData, e);
-        }
+        fillTable(idFilter, "getUdcOfPubl",1);
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new UDCOCTAddController(publicationID, main));
+        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new UDCOCTAddController(publicationID, main, table));
     }
 
     public void deleteRow(String id) {
@@ -78,7 +53,6 @@ public class UDCOCTController extends OneColumnTableController<OneColumnTable> {
             if (result.equals("ok")) {
                 table.getItems().remove(table.getSelectionModel().getSelectedItem());
             } else {
-                //TODO: не удалиласб, пока кидаю просто эксепшн
                 throw new Exception();
             }
         } catch (Exception e) {

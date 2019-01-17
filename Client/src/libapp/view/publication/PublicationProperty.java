@@ -49,12 +49,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     protected static void CreateTableProperty(Object connect, String columnName, String idFilter) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(
-                    "publication" +
-                            File.separator +
-                            "oneColumnTable" +
-                            File.separator +
-                            "OneColumnTableOverview.fxml"));
+            loader.setLocation(Main.class.getResource("OneColumnTableOverview.fxml"));
             loader.setController(connect);
             AnchorPane udcTable = loader.load();
 
@@ -181,7 +176,6 @@ public class PublicationProperty<T>  extends TableProperty<T> {
             if (result.equals("ok")) {
                 table.getItems().remove(table.getSelectionModel().getSelectedItem());
             } else {
-                //TODO: не удалиласб, пока кидаю просто эксепшн
                 throw new Exception();
             }
         } catch (Exception e) {

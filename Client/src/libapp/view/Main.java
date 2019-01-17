@@ -14,11 +14,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import libapp.ClientSocket;
 import libapp.ProgramUser;
+import libapp.view.AllOneColumnTable.AllKeyWordsController;
+import libapp.view.AllOneColumnTable.AllUDCController;
 import libapp.view.Editor.EditorController;
 import libapp.view.organization.OrganizationController;
-import libapp.view.publication.Book.BookChangeController;
-import libapp.view.publication.oneColumnTable.KeyWords.KeywordOCTController;
-import libapp.view.publication.oneColumnTable.UDC.UDCOCTController;
 import libapp.view.publishingHouse.PublishingHouseController;
 import libapp.view.author.AuthorController;
 import libapp.view.magazine.MagazineController;
@@ -253,7 +252,7 @@ public class Main extends Application {
     public void showKeywords() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
+            loader.setLocation(Main.class.getResource( "OneColumnTableOverview.fxml"));
             loader.setController(new AllKeyWordsController(this));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);
@@ -271,7 +270,7 @@ public class Main extends Application {
     public void showUDCs() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource( "publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnTableOverview.fxml"));
+            loader.setLocation(Main.class.getResource( "OneColumnTableOverview.fxml"));
             loader.setController(new AllUDCController(this));
             AnchorPane table = loader.load();
             rootLayout.setCenter(table);

@@ -15,7 +15,7 @@ import java.io.File;
 import static libapp.view.MessageController.contentTextErrorDB;
 import static libapp.view.MessageController.titleErrorDB;
 
-public class EditorsOCTController extends OneColumnTableController<OneColumnTable> {
+public class EditorsOCTController extends OneColumnTableController {
     public EditorsOCTController(Main main, String publicationID) {
         this.main = main;
         this.publicationID = publicationID;
@@ -28,10 +28,11 @@ public class EditorsOCTController extends OneColumnTableController<OneColumnTabl
     }
 
     public void fillTable(String idFilter) {
+        fillTable(idFilter, "getEditorsOfPubl", 1);
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "oneColumnTable" + File.separator + "OneColumnAddOverview.fxml", new EditorsOCTAddController(publicationID, main));
+        createWindow("OneColumnAddOverview.fxml", new EditorsOCTAddController(publicationID, main, table));
     }
 
     public void deleteRow(String id) {

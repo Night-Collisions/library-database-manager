@@ -44,8 +44,8 @@
             <ComboBox fx:id="sex" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="9999999999" >
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Хуй есть" />
-                        <String fx:value="Отсутствует" />
+                        <String fx:value="мужской " />
+                        <String fx:value="женский" />
                     </FXCollections>
                 </items>
             </ComboBox>
