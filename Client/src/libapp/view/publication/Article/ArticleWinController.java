@@ -9,8 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import libapp.ClientSocket;
-import libapp.model.PublishingHouse;
-import libapp.model.Work;
 import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.RegularForField;
@@ -50,14 +48,14 @@ public class ArticleWinController extends PropertyWin {
         this.socket = main.getSocket();
     }
 
-    public void fillPubHouseCombobox() {
+    public void fillMagazinesCombobox() {
         try {
             where.getItems().clear();
             idDict.clear();
             publList.clear();
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getPublHouses");
+            result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getMagazines");
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
@@ -123,7 +121,7 @@ public class ArticleWinController extends PropertyWin {
         typeMagazine.setToggleGroup(group);
         typeCollection.setToggleGroup(group);
         typeMagazine.setSelected(true);
-        fillPubHouseCombobox();
+        fillMagazinesCombobox();
         group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov,
                                 Toggle old_toggle, Toggle new_toggle) {
@@ -134,7 +132,7 @@ public class ArticleWinController extends PropertyWin {
                         issue.clear();
                         number.setDisable(false);
                         number.clear();
-                        fillPubHouseCombobox();
+                        fillMagazinesCombobox();
                     } else {
                         currentType = type.Collection;
                         issue.setDisable(true);
