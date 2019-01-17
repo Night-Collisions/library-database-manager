@@ -6,9 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="300.0" prefWidth="300.0">
+            prefHeight="330.0" prefWidth="300.0">
     <VBox alignment="TOP_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Фамилия:" />
@@ -21,6 +22,17 @@
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Отчество:" />
             <TextField fx:id="patronymic" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  text="User patronymic"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Пол:" />
+            <ComboBox fx:id="sex" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="9999999999" >
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="мужской " />
+                        <String fx:value="женский" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Дата рождения:" />

@@ -2,6 +2,7 @@ package libapp.view.Editor;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import libapp.view.PropertyWin;
@@ -14,6 +15,8 @@ public class EditorWinController extends PropertyWin {
     protected TextField name;
     @FXML
     protected TextField patronymic;
+    @FXML
+    protected ComboBox<String> sex;
     @FXML
     protected DatePicker bornDate;
     @FXML
