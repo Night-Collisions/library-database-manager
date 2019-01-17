@@ -5,18 +5,20 @@ public class Editor extends Table {
     private String surname;
     private String name;
     private String patronymic;
+    private String sex;
     private String birthday;
     private String deathday;
     private String phonenumber;
     private String email;
 
-    public Editor(String id, String surname, String name, String patronymic,
+    public Editor(String id, String surname, String name, String patronymic, String sex,
                   String birthday, String deathday, String phonenumber,
                   String email)
     {
         this.id = id;
         this.surname = surname;
         this.name = name;
+        this.sex = sex;
         this.patronymic = patronymic;
         this.birthday = birthday;
         this.deathday = deathday;
@@ -30,6 +32,10 @@ public class Editor extends Table {
 
     public String getSurname() {
         return this.surname;
+    }
+
+    public String getSex() {
+        return this.sex;
     }
 
     public String getName() {
@@ -86,5 +92,9 @@ public class Editor extends Table {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

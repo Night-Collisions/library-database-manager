@@ -91,7 +91,8 @@ public class AuthorController extends TableProperty<Author> {
                         args[4],
                         args[5],
                         args[6],
-                        args[7]));
+                        args[7],
+                        args[8]));
             }
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
@@ -114,15 +115,24 @@ public class AuthorController extends TableProperty<Author> {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
+                String[] args = new String[i.size()];
+                for (int j = 0; j < i.size(); ++j) {
+                    if (i.get(j) != null) {
+                        args[j] = i.get(j).toString();
+                    } else {
+                        args[j] = "";
+                    }
+                }
                 dataList.add(new Author(
-                        i.get(0).toString(),
-                        i.get(1).toString(),
-                        i.get(2).toString(),
-                        i.get(3).toString(),
-                        i.get(4).toString(),
-                        i.get(5).toString(),
-                        i.get(6).toString(),
-                        i.get(7).toString()));
+                        args[0],
+                        args[1],
+                        args[2],
+                        args[3],
+                        args[4],
+                        args[5],
+                        args[6],
+                        args[7],
+                        args[8]));
             }
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,

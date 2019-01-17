@@ -89,7 +89,8 @@ public class EditorController extends TableProperty<Editor> {
                         args[4],
                         args[5],
                         args[6],
-                        args[7]));
+                        args[7],
+                        args[8]));
             }
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
@@ -128,7 +129,8 @@ public class EditorController extends TableProperty<Editor> {
                         args[4],
                         args[5],
                         args[6],
-                        args[7]));
+                        args[7],
+                        args[8]));
             }
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,

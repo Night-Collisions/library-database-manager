@@ -5,18 +5,20 @@ public class Author extends Table {
     private String surname;
     private String name;
     private String patronymic;
+    private String sex;
     private String birthday;
     private String deathday;
     private String phonenumber;
     private String email;
 
-    public Author(String id, String surname, String name, String patronymic,
+    public Author(String id, String surname, String name, String patronymic, String sex,
                   String birthday, String deathday, String phonenumber,
                   String email)
     {
         this.id = id;
         this.surname = surname;
         this.name = name;
+        this.sex = sex;
         this.patronymic = patronymic;
         this.birthday = birthday;
         this.deathday = deathday;
@@ -26,6 +28,10 @@ public class Author extends Table {
 
     public String getId() {
         return this.id;
+    }
+
+    public String getSex() {
+        return this.sex;
     }
 
     public String getSurname() {
@@ -86,5 +92,9 @@ public class Author extends Table {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }
