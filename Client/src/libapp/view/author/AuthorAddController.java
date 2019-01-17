@@ -11,8 +11,8 @@ import static libapp.QueryParser.buildQuery;
 public class AuthorAddController extends AuthorWinController {
     protected void initialize() {
         super.initialize();
-        sexDict.put("мужской", "0");
         sexDict.put("женский", "1");
+        sexDict.put("мужской", "0");
         sex.setEditable(false);
         sex.getSelectionModel().selectFirst();
     }
@@ -27,6 +27,7 @@ public class AuthorAddController extends AuthorWinController {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
+
             String[] args = {
                     main.getUser().getId(),
                     "addAuthor",
@@ -41,7 +42,6 @@ public class AuthorAddController extends AuthorWinController {
                     };
 
             result = socket.makeRequest(buildQuery(args));
-
             if (!result.equals("ok")) {
                 throw new Exception();
             }

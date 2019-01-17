@@ -47,11 +47,23 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
     }
 
     public void onAddMenu() {
-        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new PublishingHouseAddController());
+        createWindow(
+                "organization" +
+                        File.separator +
+                        "OrganizationAddOverview.fxml",
+                new PublishingHouseAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new PublishingHouseChangeController());
+        createWindow(
+                "organization" +
+                        File.separator +
+                        "OrganizationAddOverview.fxml",
+                new PublishingHouseAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void fillTable() {

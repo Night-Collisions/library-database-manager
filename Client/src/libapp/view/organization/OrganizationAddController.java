@@ -1,6 +1,7 @@
 package libapp.view.organization;
 
 import libapp.ClientSocket;
+import libapp.view.Main;
 import libapp.view.MessageController;
 
 import static libapp.QueryParser.buildQuery;
@@ -9,6 +10,10 @@ public class OrganizationAddController extends OrganizationWinController {
     protected void initialize() {
         super.initialize();
 
+    }
+
+    public OrganizationAddController(Main main) {
+        super(main);
     }
 
     protected void applyChange() {
@@ -27,7 +32,7 @@ public class OrganizationAddController extends OrganizationWinController {
                         email.getText()};
 
             result = socket.makeRequest(buildQuery(args));
-
+            System.out.println(result);
             if (!result.equals("ok")) {
                 throw new Exception();
             }

@@ -47,11 +47,23 @@ public class OrganizationController extends TableProperty<Organization> {
     }
 
     public void onAddMenu() {
-        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new OrganizationAddController());
+        createWindow(
+                "organization" +
+                        File.separator +
+                        "OrganizationAddOverview.fxml",
+                new OrganizationAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        createWindow("organization" + File.separator + "OrganizationAddOverview.fxml", new OrganizationChangeController());
+        createWindow(
+                "organization" +
+                        File.separator +
+                        "OrganizationAddOverview.fxml",
+                new OrganizationAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void fillTable() {

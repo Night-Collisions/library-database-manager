@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import libapp.ClientSocket;
+import libapp.view.Main;
 import libapp.view.PropertyWin;
 import libapp.view.RegularForField;
 
@@ -22,7 +24,13 @@ public class PublishingHouseWinController extends PropertyWin {
     protected Button accept;
     @FXML
     protected Button reject;
+    protected Main main;
+    protected ClientSocket socket;
 
+    public PublishingHouseWinController(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
+    }
     @FXML
     protected void initialize() {
         RegularForField.setPhoneField(phone);
