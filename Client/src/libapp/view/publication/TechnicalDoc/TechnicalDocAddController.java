@@ -24,7 +24,7 @@ public class TechnicalDocAddController extends TechnicalDocWinController {
 
             String[] args = {
                     main.getUser().getId(),
-                    "addMagazineArticle",
+                    "addDocs",
                     name.getText(),
                     organization.getValue().getId()};
 

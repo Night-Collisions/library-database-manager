@@ -39,7 +39,7 @@ public class PublicationController extends PublicationProperty<Publication> {
         main = m;
         windows = FXCollections.observableArrayList(
                 new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController(main)),
-                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController()),
+                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController(main)),
                 new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController(main)),
                 new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisChangeController()),
                 new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocChangeController(main))

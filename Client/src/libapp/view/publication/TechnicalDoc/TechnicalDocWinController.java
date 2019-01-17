@@ -41,10 +41,10 @@ public class TechnicalDocWinController extends PropertyWin {
     @FXML
     protected void initialize() {
         organization.setEditable(false);
-        fillPubHouseCombobox();
+        fillOrganizationCombobox();
     }
 
-    public void fillPubHouseCombobox() {
+    public void fillOrganizationCombobox() {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
