@@ -60,11 +60,23 @@ public class AuthorController extends TableProperty<Author> {
     }
 
     public void onAddMenu() {
-        createWindow("author" + File.separator + "AuthorAddOverview.fxml", new AuthorAddController());
+        createWindow(
+                "author" +
+                        File.separator +
+                        "AuthorAddOverview.fxml",
+                new AuthorAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        createWindow("author" + File.separator + "AuthorAddOverview.fxml", new AuthorChangeController());
+        createWindow(
+                "author" +
+                        File.separator +
+                        "AuthorAddOverview.fxml",
+                new AuthorAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void fillTable() {

@@ -29,7 +29,7 @@ public class ThesisAddController extends ThesisWinController {
                         idDict.get(where.getValue())};
 
             result = socket.makeRequest(buildQuery(args));
-            System.out.println(result);
+
             if (!result.equals("ok")) {
                 throw new Exception();
             }
