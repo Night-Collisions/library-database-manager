@@ -36,11 +36,11 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocAddController());
+        createWindow("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocAddController(main));
     }
 
     public void onEditMenu() {
-        createWindow("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocChangeController());
+        createWindow("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocChangeController(main));
     }
 
     public void fillTable() {

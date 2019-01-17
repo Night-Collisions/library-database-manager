@@ -42,11 +42,27 @@ public class ArticleController extends PublicationProperty<Article> {
     }
 
     public void onAddMenu() {
-        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleAddController(main));
+        createWindow(
+                "publication" +
+                        File.separator +
+                        "Article" +
+                        File.separator +
+                        "ArticleAddOverview.fxml",
+                new ArticleAddController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
     public void onEditMenu() {
-        createWindow("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController(main));
+        createWindow(
+                "publication" +
+                        File.separator +
+                        "Article" +
+                        File.separator +
+                        "ArticleAddOverview.fxml",
+                new ArticleChangeController(main));
+        table.getItems().clear();
+        fillTable();
     }
 
 
@@ -61,6 +77,7 @@ public class ArticleController extends PublicationProperty<Article> {
 
             for (ArrayList i : parsed) {
                 //TODO где то нульпоунтер
+                System.out.println(i);
                 if (i.get(2) == null) {
                     dataList.add(new Article(
                             i.get(0).toString(),

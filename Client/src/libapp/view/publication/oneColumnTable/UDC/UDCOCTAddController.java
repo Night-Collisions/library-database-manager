@@ -35,6 +35,6 @@ public class UDCOCTAddController extends OneColumnTableWinController {
     }
 
     protected void applyChange() {
-        System.out.print(combobox.getI);
+        System.out.print(combobox.getId());
     }
 }

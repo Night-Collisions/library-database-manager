@@ -70,9 +70,9 @@ public class ArticleWinController extends PropertyWin {
                         args[2],
                         args[3],
                         args[4]));
-
-                where.getItems().addAll(dataList);
             }
+
+            where.getItems().addAll(dataList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
