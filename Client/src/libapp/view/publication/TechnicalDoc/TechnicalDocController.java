@@ -48,13 +48,14 @@ public class TechnicalDocController extends PublicationProperty<TechnicalDoc> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "publication" +
-                        File.separator +
-                        "TechnicalDoc" +
-                        File.separator +
-                        "TechnicalDocAddOverview.fxml",
-                new TechnicalDocAddController(main));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "publication" +
+                            File.separator +
+                            "TechnicalDoc" +
+                            File.separator +
+                            "TechnicalDocAddOverview.fxml",
+                    new TechnicalDocChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

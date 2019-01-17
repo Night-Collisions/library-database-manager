@@ -57,11 +57,12 @@ public class OrganizationController extends TableProperty<Organization> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "organization" +
-                        File.separator +
-                        "OrganizationAddOverview.fxml",
-                new OrganizationChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "organization" +
+                            File.separator +
+                            "OrganizationAddOverview.fxml",
+                    new OrganizationChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

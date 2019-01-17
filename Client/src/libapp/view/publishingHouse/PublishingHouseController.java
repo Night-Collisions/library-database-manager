@@ -57,11 +57,12 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "organization" +
-                        File.separator +
-                        "OrganizationAddOverview.fxml",
-                new PublishingHouseChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "organization" +
+                            File.separator +
+                            "OrganizationAddOverview.fxml",
+                    new PublishingHouseChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

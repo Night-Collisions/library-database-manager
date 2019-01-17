@@ -60,7 +60,8 @@ public class UserController extends TableProperty<User> {
     }
 
     public void onEditMenu() {
-        createWindow("UserProfileOverview.fxml", new UserChangeController(table.getSelectionModel().getSelectedItem().getId()));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow("UserProfileOverview.fxml", new UserChangeController(table.getSelectionModel().getSelectedItem().getId()));
     }
 
     public void fillTable() {

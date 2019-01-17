@@ -48,13 +48,14 @@ public class ThesisController extends PublicationProperty<Thesis> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "publication" +
-                        File.separator +
-                        "Thesis" +
-                        File.separator +
-                        "ThesisAddOverview.fxml",
-                new ThesisAddController(main));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "publication" +
+                            File.separator +
+                            "Thesis" +
+                            File.separator +
+                            "ThesisAddOverview.fxml",
+                    new ThesisChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }
