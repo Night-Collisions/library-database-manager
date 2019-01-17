@@ -68,11 +68,12 @@ public class EditorController extends TableProperty<Editor> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "author" +
-                        File.separator +
-                        "AuthorAddOverview.fxml",
-                new EditorChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "author" +
+                            File.separator +
+                            "AuthorAddOverview.fxml",
+                    new EditorChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

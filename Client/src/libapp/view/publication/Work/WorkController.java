@@ -50,13 +50,14 @@ public class WorkController extends PublicationProperty<Work> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "publication" +
-                        File.separator +
-                        "Book" +
-                        File.separator +
-                        "BookAddOverview.fxml",
-                new WorkAddController(main));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "publication" +
+                            File.separator +
+                            "Book" +
+                            File.separator +
+                            "BookAddOverview.fxml",
+                    new WorkChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

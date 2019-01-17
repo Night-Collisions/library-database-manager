@@ -53,11 +53,12 @@ public class MagazineController extends TableProperty<Magazine> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "magazine" +
-                        File.separator +
-                        "MagazineAddOverview.fxml",
-                new MagazineChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "magazine" +
+                            File.separator +
+                            "MagazineAddOverview.fxml",
+                    new MagazineChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }

@@ -54,13 +54,14 @@ public class ArticleController extends PublicationProperty<Article> {
     }
 
     public void onEditMenu() {
-        createWindow(
-                "publication" +
-                        File.separator +
-                        "Article" +
-                        File.separator +
-                        "ArticleAddOverview.fxml",
-                new ArticleChangeController(main));
+        if (table.getSelectionModel().getSelectedItem() != null)
+            createWindow(
+                    "publication" +
+                            File.separator +
+                            "Article" +
+                            File.separator +
+                            "ArticleAddOverview.fxml",
+                    new ArticleChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
         table.getItems().clear();
         fillTable();
     }
