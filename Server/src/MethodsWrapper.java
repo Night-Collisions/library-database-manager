@@ -139,7 +139,7 @@ class MethodsWrapper {
         return Main.db.getAuthorsWorktimes(args[2]);
     }
 
-    /* Get rows that references to publication */
+    /* Get rows that refer to publication */
 
     static String getAuthorsOfPubl(String[] args) {
         if (args.length != 3) {
@@ -167,6 +167,36 @@ class MethodsWrapper {
             return "wrong args";
         }
         return Main.db.getUdcOfPubl(args[2]);
+    }
+
+    /* Get rows that don't refer to publication */
+
+    static String getAuthorsNotOfPubl(String[] args) {
+        if (args.length != 3) {
+            return "wrong args";
+        }
+        return Main.db.getAuthorsNotOfPubl(args[2]);
+    }
+
+    static String getEditorsNotOfPubl(String[] args) {
+        if (args.length != 3) {
+            return "wrong args";
+        }
+        return Main.db.getEditorsNotOfPubl(args[2]);
+    }
+
+    static String getKeywordsNotOfPubl(String[] args) {
+        if (args.length != 3) {
+            return "wrong args";
+        }
+        return Main.db.getKeywordsNotOfPubl(args[2]);
+    }
+
+    static String getUdcNotOfPubl(String[] args) {
+        if (args.length != 3) {
+            return "wrong args";
+        }
+        return Main.db.getUdcNotOfPubl(args[2]);
     }
 
     /* Add rows to tables */
