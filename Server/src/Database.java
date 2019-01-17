@@ -242,8 +242,7 @@ class Database {
                 "SELECT k.keywords_id, k.keyword " +
                 "FROM keywords k " +
                 "JOIN publications_keywords pk on k.keywords_id = pk.keywords_id " +
-                "JOIN publications p on pk.publications_id = p.publications_id " +
-                "WHERE p.publications_id = ?";
+                "WHERE pk.publications_id = ?";
         return execPSWithId(id, s);
     }
 
@@ -252,8 +251,7 @@ class Database {
                 "SELECT uc.udc_codes_id, uc.udc_code " +
                 "FROM udc_codes uc " +
                 "JOIN publications_udc_codes puc ON uc.udc_codes_id = puc.udc_codes_id " +
-                "JOIN publications p on puc.publications_id = p.publications_id " +
-                "WHERE p.publications_id = ?";
+                "WHERE puc.publications_id = ?";
         return execPSWithId(id, s);
     }
 
