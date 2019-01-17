@@ -25,4 +25,9 @@ public class Work extends PublicationTable {
     public void setYear(String publishingHouse) {
         this.year = year;
     }
+
+    @Override
+    public String toString()  {
+        return this.name;
+    }
 }
