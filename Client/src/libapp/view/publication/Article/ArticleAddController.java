@@ -11,6 +11,7 @@ import static libapp.QueryParser.buildQuery;
 public class ArticleAddController extends ArticleWinController{
     protected void initialize() {
         super.initialize();
+      //  where.getSelectionModel().selectFirst();
     }
 
     public ArticleAddController(Main main) {
@@ -42,7 +43,7 @@ public class ArticleAddController extends ArticleWinController{
             }
 
             result = socket.makeRequest(buildQuery(args));
-            System.out.println(result);
+
             if (!result.equals("ok")) {
                 throw new Exception();
             }
