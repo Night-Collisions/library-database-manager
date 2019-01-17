@@ -30,7 +30,7 @@ public class ArticleAddController extends ArticleWinController{
                         main.getUser().getId(),
                         "addMagazineArticle",
                         name.getText(),
-                        where.getValue().getId(),
+                        idDict.get(where.getValue()),
                         issue.getText(),
                         number.getText()};
             } else {
@@ -38,7 +38,7 @@ public class ArticleAddController extends ArticleWinController{
                         main.getUser().getId(),
                         "addDigestArticle",
                         name.getText(),
-                        where.getValue().getId()};
+                        idDict.get(where.getValue())};
             }
 
             result = socket.makeRequest(buildQuery(args));

@@ -18,6 +18,8 @@ import libapp.view.PropertyWin;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ArticleWinController extends PropertyWin {
     @FXML
@@ -27,16 +29,15 @@ public class ArticleWinController extends PropertyWin {
     @FXML
     protected RadioButton typeCollection;
     @FXML
-    protected ComboBox<PublishingHouse> where;
-    @FXML
-    protected ComboBox<Work> works;
+    protected ComboBox<String> where;
     @FXML
     protected TextField issue;
     @FXML
     protected TextField number;
 
-    public ObservableList<PublishingHouse> publList = FXCollections.observableArrayList();
-    public ObservableList<Work> workList = FXCollections.observableArrayList();
+    public ObservableList<String> publList = FXCollections.observableArrayList();
+
+    protected Map<String,String> idDict = new HashMap<String,String>();
 
     protected enum type {Magazine, Collection}
     protected type currentType;
@@ -50,9 +51,10 @@ public class ArticleWinController extends PropertyWin {
     }
 
     public void fillPubHouseCombobox() {
-        where.getItems().clear();
-
         try {
+            where.getItems().clear();
+            idDict.clear();
+            publList.clear();
             String result = "";
             socket = ClientSocket.enableConnection(socket);
             result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getPublHouses");
@@ -69,12 +71,8 @@ public class ArticleWinController extends PropertyWin {
                         args[j] = "";
                     }
                 }
-                publList.add(new PublishingHouse(
-                        args[0],
-                        args[1],
-                        args[2],
-                        args[3],
-                        args[4]));
+                publList.add(args[1]);
+                idDict.put(args[1], args[0]);
             }
 
             where.getItems().addAll(publList);
@@ -87,7 +85,8 @@ public class ArticleWinController extends PropertyWin {
     public void fillDigestsCombobox() {
         try {
             where.getItems().clear();
-
+            idDict.clear();
+            publList.clear();
             String result = "";
             socket = ClientSocket.enableConnection(socket);
             result = socket.makeRequest(main.getUser().getId() + ClientSocket.argSep + "getDigests");
@@ -104,14 +103,11 @@ public class ArticleWinController extends PropertyWin {
                         args[j] = "";
                     }
                 }
-                workList.add(new Work(
-                        args[0],
-                        args[1],
-                        args[2],
-                        args[3]));
+                publList.add(args[1]);
+                idDict.put(args[1], args[0]);
             }
 
-            works.getItems().addAll(workList);
+            where.getItems().addAll(publList);
         } catch (Exception e) {
             new MessageController(MessageController.titleErrorGetNewData,
                     MessageController.contentTextErrorGetNewData, e);
@@ -127,6 +123,7 @@ public class ArticleWinController extends PropertyWin {
         typeMagazine.setToggleGroup(group);
         typeCollection.setToggleGroup(group);
         typeMagazine.setSelected(true);
+        fillPubHouseCombobox();
         group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov,
                                 Toggle old_toggle, Toggle new_toggle) {
