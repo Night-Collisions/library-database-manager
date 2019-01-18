@@ -251,6 +251,9 @@ BEGIN
     RAISE EXCEPTION 'Пользователь не может быть привязан.';
   END IF;
 
+  DELETE FROM verifications v
+  WHERE v.users_id = NEW.users_id;
+
   RETURN NEW;
 END;
 $$;
@@ -274,6 +277,9 @@ BEGIN
   IF NOT FOUND THEN
     RAISE EXCEPTION 'Пользователь не может быть привязан.';
   END IF;
+
+  DELETE FROM verifications v
+  WHERE v.users_id = NEW.users_id;
 
   RETURN NEW;
 END;
@@ -988,7 +994,7 @@ INSERT INTO public.authors VALUES (1, 'Виктор', 'Шулепкин', 'Ал�
 -- Data for Name: authors_organizations; Type: TABLE DATA; Schema: public; Owner: username
 --
 
-INSERT INTO public.authors_organizations VALUES (1, 1, 1, '2019-01-15', '2021-01-01');
+INSERT INTO public.authors_organizations VALUES (1, 1, 1, '2019-01-18', '2021-01-01');
 
 
 --
@@ -1158,7 +1164,7 @@ INSERT INTO public.users VALUES (1, 'А́рагорн', NULL, 'сын Арато
 INSERT INTO public.users VALUES (2, 'Люк', 'Скайуокер', 'Энакинович', 0, 'librarian', '1216985755', '2001-01-19', 1, NULL, 'librarian@library.com');
 INSERT INTO public.users VALUES (3, 'Виктор', 'Шулепкин', 'Александрович', 0, 'victor', '1216985755', '1999-01-15', 4, NULL, 'victor@library.com');
 INSERT INTO public.users VALUES (4, 'Данила', 'Горячкин', 'Михайлович', 0, 'danila', '1216985755', '1999-04-26', 4, NULL, 'danila@library.com');
-INSERT INTO public.users VALUES (5, 'Иван', 'Василенко', 'Максимович', 0, 'ivan', '1216985755', '1999-10-15', 4, NULL, NULL);
+INSERT INTO public.users VALUES (5, 'Иван', 'Василенко', 'Максимович', 0, 'username', '1216985755', '1999-10-15', 4, NULL, NULL);
 
 
 --
