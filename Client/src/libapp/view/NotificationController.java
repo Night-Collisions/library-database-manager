@@ -34,21 +34,25 @@ public class NotificationController extends TableProperty<Notification> {
     private void initialize() {
         MenuItem commit = new MenuItem("Принять");
         MenuItem refuse = new MenuItem("Отклонить");
-
+//table.getSelectionModel().getSelectedItem()
         commit.setOnAction(t -> {
             try {
                 String result = "";
                 socket = ClientSocket.enableConnection(socket);
+                /*if (table.getSelectionModel().getSelectedItem().get)
                 String[] args = {
                         main.getUser().getId(),
                         "addVerf",
-                        potentialType.getText()};
+                        table.getSelectionModel().getSelectedItem()};
 
-                result = socket.makeRequest(buildQuery(args));
+                result = socket.makeRequest(buildQuery(args));*/
 
                 if (!result.equals("ok")) {
                     throw new Exception();
                 }
+
+                table.getItems().clear();
+                fillTable();
             } catch (Exception e) {
                 System.out.println(e);
                 new MessageController(MessageController.titleErrorGetNewData,
@@ -63,13 +67,16 @@ public class NotificationController extends TableProperty<Notification> {
                 String[] args = {
                         main.getUser().getId(),
                         "deleteVerf",
-                        id.getText()};
+                        table.getSelectionModel().getSelectedItem().getId()};
 
                 result = socket.makeRequest(buildQuery(args));
 
                 if (!result.equals("ok")) {
                     throw new Exception();
                 }
+
+                table.getItems().clear();
+                fillTable();
             } catch (Exception e) {
                 System.out.println(e);
                 new MessageController(MessageController.titleErrorGetNewData,
