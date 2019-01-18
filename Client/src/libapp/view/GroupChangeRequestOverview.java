@@ -26,7 +26,6 @@ public class GroupChangeRequestOverview {
     @FXML
     private void initialize() {
         group.setItems(grupsNameList);
-
     }
 
     @FXML
