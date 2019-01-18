@@ -5,20 +5,20 @@ public class Notification extends Table {
     private String login;
     private String phonenumber;
     private String email;
-    private String authorPrefID;
-    private String phPrefID;
+    private String type;
+    private String prefID;
 
     public Notification(String id, String userId, String login,
                         String phonenumber, String email,
-                        String authorPrefID, String phPrefID)
+                        String authorPrefID, String prefID)
     {
         this.id = id;
         this.userId = userId;
         this.login = login;
         this.phonenumber = phonenumber;
         this.email = email;
-        this.authorPrefID = authorPrefID;
-        this.phPrefID = phPrefID;
+        this.type = authorPrefID;
+        this.prefID = prefID;
     }
 
     public String getUserId() {
@@ -37,12 +37,12 @@ public class Notification extends Table {
         return email;
     }
 
-    public String getAuthorPrefID() {
-        return authorPrefID;
+    public String getType() {
+        return type;
     }
 
-    public String getPhPrefID() {
-        return phPrefID;
+    public String getPrefID() {
+        return prefID;
     }
 
     void setUserId(String userId) {
@@ -61,11 +61,11 @@ public class Notification extends Table {
         this.email = email;
     }
 
-    void setAuthorPrefID(String authorPrefID) {
-        this.authorPrefID = authorPrefID;
+    void setType(String authorPrefID) {
+        this.type = authorPrefID;
     }
 
-    void setPhPrefID(String phPrefID) {
-        this.phPrefID = phPrefID;
+    void setPrefID(String prefID) {
+        this.prefID = prefID;
     }
 }

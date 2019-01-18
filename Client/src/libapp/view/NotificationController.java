@@ -12,6 +12,7 @@ import libapp.model.Notification;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static libapp.Dictionary.userType;
 import static libapp.QueryParser.buildQuery;
 
 public class NotificationController extends TableProperty<Notification> {
@@ -28,28 +29,37 @@ public class NotificationController extends TableProperty<Notification> {
     @FXML
     private TableColumn<Notification, String> email;
     @FXML
-    private TableColumn<Notification, String> authorPrefID;
+    private TableColumn<Notification, String> prefTyoe;
     @FXML
-    private TableColumn<Notification, String> phPrefID;
+    private TableColumn<Notification, String> prefID;
 
     @FXML
     private void initialize() {
         MenuItem commit = new MenuItem("Принять");
         MenuItem refuse = new MenuItem("Отклонить");
-
+//table.getSelectionModel().getSelectedItem()
         commit.setOnAction(t -> {
             try {
                 String result = "";
                 socket = ClientSocket.enableConnection(socket);
+                /*if (table.getSelectionModel().getSelectedItem().get)
                 String[] args = {
                         main.getUser().getId(),
+<<<<<<< HEAD
                         "addVerf"};
+=======
+                        "addVerf",
+                        table.getSelectionModel().getSelectedItem()};
+>>>>>>> origin/dev_client
 
-                result = socket.makeRequest(buildQuery(args));
+                result = socket.makeRequest(buildQuery(args));*/
 
                 if (!result.equals("ok")) {
                     throw new Exception();
                 }
+
+                table.getItems().clear();
+                fillTable();
             } catch (Exception e) {
                 System.out.println(e);
                 new MessageController(MessageController.titleErrorGetNewData,
@@ -64,13 +74,16 @@ public class NotificationController extends TableProperty<Notification> {
                 String[] args = {
                         main.getUser().getId(),
                         "deleteVerf",
-                        id.getText()};
+                        table.getSelectionModel().getSelectedItem().getId()};
 
                 result = socket.makeRequest(buildQuery(args));
 
                 if (!result.equals("ok")) {
                     throw new Exception();
                 }
+
+                table.getItems().clear();
+                fillTable();
             } catch (Exception e) {
                 System.out.println(e);
                 new MessageController(MessageController.titleErrorGetNewData,
@@ -86,8 +99,8 @@ public class NotificationController extends TableProperty<Notification> {
         login.setCellValueFactory(new PropertyValueFactory<>("login"));
         phonenumber.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        authorPrefID.setCellValueFactory(new PropertyValueFactory<>("authorPrefID"));
-        phPrefID.setCellValueFactory(new PropertyValueFactory<>("phPrefID"));
+        prefTyoe.setCellValueFactory(new PropertyValueFactory<>("type"));
+        prefID.setCellValueFactory(new PropertyValueFactory<>("prefID"));
 
         table.setItems(dataList);
     }
@@ -119,8 +132,8 @@ public class NotificationController extends TableProperty<Notification> {
                         args[2],
                         args[3],
                         args[4],
-                        args[5],
-                        args[6]));
+                        userType.get(args[5]),
+                        args[5].equals("3") ? args[6] : args[7]));
             }
         } catch (Exception e) {
             System.out.println(e);
