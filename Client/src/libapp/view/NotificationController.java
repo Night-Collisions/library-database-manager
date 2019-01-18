@@ -132,7 +132,6 @@ public class NotificationController extends TableProperty<Notification> {
 
             Type type = new TypeToken<ArrayList<ArrayList<String>>>(){}.getType();
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
-            System.out.println(parsed);
             for (ArrayList i : parsed) {
                 String[] args = new String[i.size()];
                 for (int j = 0; j < i.size(); ++j) {

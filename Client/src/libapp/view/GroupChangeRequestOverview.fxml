@@ -6,22 +6,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="libapp.view.GroupChangeRequestOverview"
-            prefHeight="400.0" prefWidth="600.0">
-    <VBox alignment="TOP_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-        <HBox alignment="CENTER_LEFT" spacing="10">
-            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Желаемая группа:" />
-            <ComboBox fx:id="group" minWidth="100" prefWidth="9999999999" />
-        </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="10">
-            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="-Infinity" maxWidth="Infinity" text="Наличие контактов:" />
-            <Label fx:id="labelContacts" minHeight="-Infinity" maxHeight="Infinity" minWidth="-Infinity" maxWidth="Infinity" text="нет" />
-        </HBox>
-        <HBox alignment="BOTTOM_RIGHT" spacing="10">
-            <Button fx:id="accept" minWidth="100" text="Отправить" />
-            <Button fx:id="reject" minWidth="100"  onAction="#closeWindow" text="Отмена" />
-        </HBox>
-    </VBox>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libapp.view.GroupChangeRequestOverview">
+   <children>
+       <VBox alignment="TOP_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+          <children>
+              <HBox alignment="CENTER_LEFT" spacing="10">
+                 <children>
+                     <Label maxHeight="Infinity" maxWidth="100" minHeight="-Infinity" minWidth="100" text="Желаемая группа:" />
+                     <ComboBox fx:id="group" minWidth="100" prefWidth="9999999999" />
+                 </children>
+              </HBox>
+              <HBox alignment="CENTER_LEFT" spacing="10">
+                 <children>
+                     <Label maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Наличие контактов:" />
+                     <Label fx:id="labelContacts" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" text="нет" />
+                 </children>
+              </HBox>
+              <HBox alignment="BOTTOM_RIGHT" spacing="10">
+                 <children>
+                     <Button fx:id="accept" minWidth="100" onAction="#send" text="Отправить" />
+                     <Button fx:id="reject" minWidth="100" onAction="#closeWindow" text="Отмена" />
+                 </children>
+              </HBox>
+          </children>
+       </VBox>
+   </children>
 </AnchorPane>
