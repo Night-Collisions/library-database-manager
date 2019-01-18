@@ -31,13 +31,12 @@ public class TechnicalDocChangeController extends TechnicalDocWinController {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            //TODO
+
             String[] args = {
                     main.getUser().getId(),
                     "changeDocs",
                     ID,
-                    name.getText(),
-                    organization.getValue().getId()};
+                    name.getText()};
 
             result = socket.makeRequest(buildQuery(args));
 

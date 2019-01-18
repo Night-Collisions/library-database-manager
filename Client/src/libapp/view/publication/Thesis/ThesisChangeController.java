@@ -32,8 +32,7 @@ public class ThesisChangeController extends ThesisWinController {
                     main.getUser().getId(),
                     "changeTheses",
                     ID,
-                    name.getText(),
-                    idDict.get(where.getValue())};
+                    name.getText()};
 
             result = socket.makeRequest(buildQuery(args));
 

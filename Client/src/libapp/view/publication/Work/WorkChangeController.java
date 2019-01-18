@@ -36,7 +36,6 @@ public class WorkChangeController extends WorkWinController {
                     "changeDigest",
                     ID,
                     name.getText(),
-                    ph.getValue().getId(),
                     date.getValue().format(DateTimeFormatter.ofPattern("yyyy"))};
 
             result = socket.makeRequest(buildQuery(args));

@@ -30,13 +30,12 @@ public class BookChangeController extends BookWinController {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            //TODO
+
             String[] args = {
                     main.getUser().getId(),
                     "changeBook",
                     ID,
                     name.getText(),
-                    ph.getValue().getId(),
                     date.getValue().format(DateTimeFormatter.ofPattern("yyyy"))};
 
             result = socket.makeRequest(buildQuery(args));
