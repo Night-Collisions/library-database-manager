@@ -29,7 +29,7 @@ public class NotificationController extends TableProperty<Notification> {
     @FXML
     private TableColumn<Notification, String> email;
     @FXML
-    private TableColumn<Notification, String> prefTyoe;
+    private TableColumn<Notification, String> prefType;
     @FXML
     private TableColumn<Notification, String> prefID;
 
@@ -37,22 +37,26 @@ public class NotificationController extends TableProperty<Notification> {
     private void initialize() {
         MenuItem commit = new MenuItem("Принять");
         MenuItem refuse = new MenuItem("Отклонить");
-//table.getSelectionModel().getSelectedItem()
+
         commit.setOnAction(t -> {
             try {
                 String result = "";
                 socket = ClientSocket.enableConnection(socket);
-                /*if (table.getSelectionModel().getSelectedItem().get)
-                String[] args = {
-                        main.getUser().getId(),
-<<<<<<< HEAD
-                        "addVerf"};
-=======
-                        "addVerf",
-                        table.getSelectionModel().getSelectedItem()};
->>>>>>> origin/dev_client
-
-                result = socket.makeRequest(buildQuery(args));*/
+                if (table.getSelectionModel().getSelectedItem().getType().equals("3")) {
+                    String[] args = {
+                            main.getUser().getId(),
+                            "addUserToAuthor",
+                            table.getSelectionModel().getSelectedItem().getUserId(),
+                            table.getSelectionModel().getSelectedItem().getPrefID()};
+                    result = socket.makeRequest(buildQuery(args));
+                } else {
+                    String[] args = {
+                            main.getUser().getId(),
+                            "addUserToPublHouse",
+                            table.getSelectionModel().getSelectedItem().getUserId(),
+                            table.getSelectionModel().getSelectedItem().getPrefID()};
+                    result = socket.makeRequest(buildQuery(args));
+                }
 
                 if (!result.equals("ok")) {
                     throw new Exception();
@@ -99,7 +103,7 @@ public class NotificationController extends TableProperty<Notification> {
         login.setCellValueFactory(new PropertyValueFactory<>("login"));
         phonenumber.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        prefTyoe.setCellValueFactory(new PropertyValueFactory<>("type"));
+        prefType.setCellValueFactory(new PropertyValueFactory<>("type"));
         prefID.setCellValueFactory(new PropertyValueFactory<>("prefID"));
 
         table.setItems(dataList);
