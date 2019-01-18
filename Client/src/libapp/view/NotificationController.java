@@ -62,6 +62,18 @@ public class NotificationController extends TableProperty<Notification> {
                     throw new Exception();
                 }
 
+                String[] args = {
+                        main.getUser().getId(),
+                        "deleteVerf",
+                        table.getSelectionModel().getSelectedItem().getId()};
+
+                result = socket.makeRequest(buildQuery(args));
+
+                if (!result.equals("ok")) {
+                    throw new Exception();
+                }
+
+
                 table.getItems().clear();
                 fillTable();
             } catch (Exception e) {
