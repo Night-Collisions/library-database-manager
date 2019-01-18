@@ -6,14 +6,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import libapp.ClientSocket;
+import libapp.ProgramUser;
 import libapp.model.User;
 import libapp.view.Main;
 import libapp.view.MessageController;
 import libapp.view.TableProperty;
+import libapp.view.UserProfileOverview;
 
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+
+import static libapp.Dictionary.userType;
+import static libapp.ProgramUser.StrToUserType;
 
 public class UserController extends TableProperty<User> {
 
@@ -63,7 +69,21 @@ public class UserController extends TableProperty<User> {
 
     public void onEditMenu() {
         if (table.getSelectionModel().getSelectedItem() != null) {
-            createWindow("UserProfileOverview.fxml", new UserChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+            //createWindow("UserProfileOverview.fxml", new UserChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+            HashSet<String> hs = new HashSet<>();
+            createWindow("UserProfileOverview.fxml", new UserProfileOverview(
+                    new ProgramUser(table.getSelectionModel().getSelectedItem().getId(),
+                            table.getSelectionModel().getSelectedItem().getLogin(),
+                            StrToUserType.get(table.getSelectionModel().getSelectedItem().getType()),
+                            table.getSelectionModel().getSelectedItem().getName(),
+                            table.getSelectionModel().getSelectedItem().getSurname(),
+                            table.getSelectionModel().getSelectedItem().getPatronymic(),
+                            hs,
+                            (table.getSelectionModel().getSelectedItem().getSex().equals("женский")),
+                            table.getSelectionModel().getSelectedItem().getPhonenumber(),
+                            table.getSelectionModel().getSelectedItem().getEmail()
+                            )
+                    , main, socket));
             table.getItems().clear();
             fillTable();
         }
@@ -92,10 +112,10 @@ public class UserController extends TableProperty<User> {
                         args[1],
                         args[2],
                         args[3],
-                        args[4],
+                        args[4].equals("1") ? "женский" : "мужской",
                         args[5],
                         args[6],
-                        args[7],
+                        userType.get(args[7]),
                         args[8],
                         args[9]));
             }

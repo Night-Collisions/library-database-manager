@@ -17,6 +17,16 @@ public class ProgramUser {
         UserTypeToStr.put(UserType.Reader, "Читатель");
     }
 
+    public static final Map<String, UserType> StrToUserType = new HashMap<String, UserType>();
+    static {
+        StrToUserType.put("Неопределёный", UserType.Undefined);
+        StrToUserType.put("Администратор", UserType.Admin);
+        StrToUserType.put("Библиотекарь", UserType.Librarian);
+        StrToUserType.put("Издательство", UserType.PublishingHouse);
+        StrToUserType.put("Автор", UserType.Author);
+        StrToUserType.put("Читатель", UserType.Reader);
+    }
+
     String id;
     String login;
     UserType type;
