@@ -547,5 +547,4 @@ public class Main extends Application {
     public ClientSocket getSocket() {
         return socket;
     }
-
 }
