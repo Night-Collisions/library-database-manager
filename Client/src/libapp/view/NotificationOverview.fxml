@@ -13,9 +13,10 @@
           <TableColumn fx:id="id" minWidth="30" maxWidth="100" text="ID" />
           <TableColumn fx:id="userId" minWidth="50" maxWidth="100"  text="User ID" />
             <TableColumn fx:id="login" minWidth="50" text="Логин" />
-            <TableColumn fx:id="potentialType" minWidth="50" text="Перевести в" />
             <TableColumn fx:id="phonenumber" minWidth="50" text="Телефон" />
             <TableColumn fx:id="email" minWidth="50" text="Email" />
+            <TableColumn fx:id="authorPrefID" minWidth="30" text="id автора" />
+            <TableColumn fx:id="phPrefID" minWidth="30" text="id издательства" />
         </columns>
           <columnResizePolicy>
               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

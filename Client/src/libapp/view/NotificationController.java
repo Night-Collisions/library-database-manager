@@ -24,11 +24,13 @@ public class NotificationController extends TableProperty<Notification> {
     @FXML
     private TableColumn<Notification, String> login;
     @FXML
-    private TableColumn<Notification, String> potentialType;
-    @FXML
     private TableColumn<Notification, String> phonenumber;
     @FXML
     private TableColumn<Notification, String> email;
+    @FXML
+    private TableColumn<Notification, String> authorPrefID;
+    @FXML
+    private TableColumn<Notification, String> phPrefID;
 
     @FXML
     private void initialize() {
@@ -41,8 +43,7 @@ public class NotificationController extends TableProperty<Notification> {
                 socket = ClientSocket.enableConnection(socket);
                 String[] args = {
                         main.getUser().getId(),
-                        "addVerf",
-                        potentialType.getText()};
+                        "addVerf"};
 
                 result = socket.makeRequest(buildQuery(args));
 
@@ -83,9 +84,10 @@ public class NotificationController extends TableProperty<Notification> {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         login.setCellValueFactory(new PropertyValueFactory<>("login"));
-        potentialType.setCellValueFactory(new PropertyValueFactory<>("potentialType"));
         phonenumber.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        authorPrefID.setCellValueFactory(new PropertyValueFactory<>("authorPrefID"));
+        phPrefID.setCellValueFactory(new PropertyValueFactory<>("phPrefID"));
 
         table.setItems(dataList);
     }
@@ -117,7 +119,8 @@ public class NotificationController extends TableProperty<Notification> {
                         args[2],
                         args[3],
                         args[4],
-                        args[5]));
+                        args[5],
+                        args[6]));
             }
         } catch (Exception e) {
             System.out.println(e);
