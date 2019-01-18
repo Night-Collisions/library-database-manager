@@ -800,6 +800,9 @@ class Database {
         if (!checkUserType(caller_id, new int[]{U_ADMIN})) {
             return "error: access";
         }
+        if (caller_id.equals(u_id)) {
+            return "error: deleting yourself";
+        }
         return deleteById("users", u_id);
     }
 
