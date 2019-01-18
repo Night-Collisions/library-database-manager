@@ -94,7 +94,7 @@ public class Main extends Application {
     MenuItem sendRequest;
     @FXML
     MenuItem about;
-
+//
     private ProgramUser user;
     private ConnectController connectController;
 
