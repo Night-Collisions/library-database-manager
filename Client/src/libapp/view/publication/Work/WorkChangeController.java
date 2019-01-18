@@ -19,6 +19,7 @@ public class WorkChangeController extends WorkWinController {
     protected void initialize() {
         super.initialize();
         name.setText("ch");
+        ph.setDisable(true);
     }
 
     public WorkChangeController(Main main) {

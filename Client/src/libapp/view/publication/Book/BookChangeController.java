@@ -17,6 +17,7 @@ public class BookChangeController extends BookWinController {
     }
 
     protected void initialize() {
+        ph.setDisable(true);
         super.initialize();
     }
 
