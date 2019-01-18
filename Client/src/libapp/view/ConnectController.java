@@ -67,6 +67,7 @@ public class ConnectController {
                 }
 
 
+
                 Type type = new TypeToken<ArrayList<String>>(){}.getType();
                 ArrayList<String> parsed = new Gson().fromJson(result, type);
                 if (parsed.get(0).equals("-1")) {
@@ -101,7 +102,13 @@ public class ConnectController {
                         userData[0],
                         userData[5],
                         userType,
-                        publicationsID);
+                        userData[1],
+                        userData[2],
+                        userData[3],
+                        publicationsID,
+                        userData[4].equals("0"),
+                        userData[8],
+                        userData[9]);
 
                 dialogStage.close();
             } catch (Exception e) {

@@ -3,11 +3,26 @@ package libapp.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import libapp.ClientSocket;
+import libapp.ProgramUser;
 import libapp.view.RegularForField;
 
 import java.util.Optional;
 
+import static com.sun.org.apache.xalan.internal.xslt.EnvironmentCheck.WARNING;
+import static libapp.Dictionary.sexToName;
+import static libapp.QueryParser.buildQuery;
+
 public class UserProfileOverview {
+    ProgramUser user;
+    Main main;
+    ClientSocket socket;
+
+    public UserProfileOverview(ProgramUser user, Main main, ClientSocket socket) {
+        this.user = user;
+        this.main = main;
+        this.socket = socket;
+    }
 
     @FXML
     private Label id;
@@ -36,13 +51,27 @@ public class UserProfileOverview {
     @FXML
     private Button reject;
 
+    String newPassword;
+
     @FXML
     private void initialize() throws InterruptedException {
         RegularForField.setPhoneField(phone);
+
+        newPassword = "";
+
+        id.setText(user.getId());
+        login.setText(user.getLogin());
+        type.setText(ProgramUser.UserTypeToStr.get(user.getType()));
+        surname.setText(user.getSurname());
+        name.setText(user.getName());
+        patronymic.setText(user.getPatromic());
+        sex.setValue(sexToName.get(user.isWoman()));
+        phone.setText(user.getPhone());
+        email.setText(user.getEmail());
     }
 
     @FXML
-    int changePassword(){
+    void changePassword(){
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Изменить пароль");
         dialog.setHeaderText(null);
@@ -53,21 +82,71 @@ public class UserProfileOverview {
         Optional<String> result = dialog.showAndWait();
 
         if (result.isPresent()){
-            System.out.println("Your name: " + result.get());
+            newPassword =  Integer.toString(result.get().hashCode());
         }
-        return 0;
     }
 
     @FXML
-    private int applyChange() {
+    private void applyChange() {
+        if (name.equals("")) {
+            new MessageController(MessageController.MessageType.WARNING, "Не заполнено обязательное поле!", "Поле имя является обязательным для заполнения.");
+            return;
+        }
+        if (!newPassword.equals("")) {
+            try {
+                socket = ClientSocket.enableConnection(socket);
+                String[] args = {
+                        main.getUser().getId(),
+                        "changeUserPassword",
+                        user.getId(),
+                        newPassword
+                };
+                String result = socket.makeRequest(buildQuery(args));
+                if (!result.equals("ok")) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                new MessageController(MessageController.titleErrorGetNewData,
+                        MessageController.contentTextErrorGetNewData, e);
+            }
+        }
+        user.setSurname(surname.getText());
+        user.setName(name.getText());
+        user.setPatronymic(patronymic.getText());
+        user.setIsWoman(sex.getValue().equals("женский"));
+        user.setPhone(phone.getText());
+        user.setEmail(email.getText());
+        try {
+            socket = ClientSocket.enableConnection(socket);
+            String[] args = {
+                    main.getUser().getId(),
+                    "changeUserInfo",
+                    user.getId(),
+                    user.getName(),
+                    user.getSurname().equals("") ? "NULL" : user.getSurname(),
+                    user.getPatromic().equals("") ? "NULL" : user.getPatromic(),
+                    (user.isWoman()) ? "1" : "0",
+                    "NULL",
+                    user.getPhone().equals("") ? "NULL" : user.getPhone(),
+                    user.getEmail().equals("") ? "NULL" : user.getEmail()
+            };
+            String result = socket.makeRequest(buildQuery(args));
+            if (!result.equals("ok")) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+        }
 
-        return 0;
+        closeWindow();
     }
 
     @FXML
-    private int closeWindow(){
+    private void closeWindow(){
         Stage stage = (Stage) reject.getScene().getWindow();
         stage.close();
-        return 0;
     }
 }

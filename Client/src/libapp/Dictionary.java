@@ -36,4 +36,10 @@ public class Dictionary {
         userType2Server.put("Автор", "3");
         userType2Server.put("Читатель", "4");
     }
+
+    public static final Map<Boolean,String> sexToName = new HashMap<Boolean, String>();
+    static {
+        sexToName.put(false, "мужской");
+        sexToName.put(true, "женский");
+    }
 }

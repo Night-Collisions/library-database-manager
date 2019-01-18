@@ -106,11 +106,13 @@ public class Main extends Application {
     private void setUndefineUser() {
         HashSet<String> a = new HashSet<String>();
         a.add("1");
-        ChangeUser("-1", "Ананимус", ProgramUser.UserType.Undefined, a);
+        ChangeUser("-1", "undefine", ProgramUser.UserType.Undefined, "Ананимус", "Ананимус",
+                "Ананимус", a, false, "", "");
     }
 
-    public void ChangeUser(String id, String name, ProgramUser.UserType type, HashSet<String> publicationsID) {
-        user = new ProgramUser(id, name, type, publicationsID);
+    public void ChangeUser(String id, String login, ProgramUser.UserType type, String name, String surname, String patronymic,
+                           HashSet<String> publicationsID, boolean isWomen, String phone_number, String email) {
+        user = new ProgramUser(id, login, type, name, surname, patronymic, publicationsID, isWomen, phone_number, email);
 
         disconnect.setDisable(user.getType() == ProgramUser.UserType.Undefined);
         tables.setDisable(user.getType() == ProgramUser.UserType.Undefined);
@@ -431,7 +433,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("UserProfileOverview.fxml"));
-            loader.setController(new UserProfileOverview());
+            loader.setController(new UserProfileOverview(user, this, socket));
             AnchorPane profileWindow = loader.load();
 
             Stage dialogStage = new Stage();
@@ -453,6 +455,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("GroupChangeRequestOverview.fxml"));
+            loader.setController(new GroupChangeRequestOverview(this));
             AnchorPane requestWindow = loader.load();
 
             Stage dialogStage = new Stage();
@@ -460,8 +463,6 @@ public class Main extends Application {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             dialogStage.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 5);
-            dialogStage.setMinWidth(250);
-            dialogStage.setHeight(150);
 
             Scene scene = new Scene(requestWindow);
             dialogStage.setScene(scene);
