@@ -30,7 +30,6 @@ import libapp.view.publication.Thesis.ThesisController;
 import libapp.view.publication.Work.WorkController;
 import libapp.view.user.UserController;
 
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
