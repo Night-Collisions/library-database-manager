@@ -1101,7 +1101,7 @@ class Database {
         }
         String query =
                 "UPDATE publishing_houses SET title = ?, legal_address = ?, phone_number = ?, email = ? " +
-                "WHERE organizations_id = ?";
+                "WHERE publishing_houses_id = ?";
         return changeOrgOrPublHouseCommonPart(query, title, address, phone, email, ph_id);
     }
 
