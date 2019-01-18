@@ -21,11 +21,11 @@
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Телефон:" />
-            <TextField fx:id="phone" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  text="79990584179"/>
+            <TextField fx:id="phone" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Почта:" />
-            <TextField fx:id="email" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="dndv279@gmail.com"/>
+            <TextField fx:id="email" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="BOTTOM_RIGHT" spacing="10">
             <Button fx:id="accept" minWidth="100" onAction="#applyChange" text="Применить" />

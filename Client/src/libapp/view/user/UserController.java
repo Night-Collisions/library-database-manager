@@ -166,6 +166,28 @@ public class UserController extends TableProperty<User> {
         }
     }
 
+    public void deleteRow(String id) {
+        try {
+            String result = "";
+            socket = ClientSocket.enableConnection(socket);
+            result = socket.makeRequest(
+                    main.getUser().getId() +
+                            ClientSocket.argSep +
+                            "deleteUser" +
+                            ClientSocket.argSep +
+                            id);
+
+            if (result.equals("ok")) {
+                table.getItems().remove(table.getSelectionModel().getSelectedItem());
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            new MessageController("Не удалоь удалить пользователя",
+                    "Вы не можете удалить этого пользователя.", e);
+        }
+    }
+
     public void setMain(Main main) {
         this.main = main;
         this.socket = main.getSocket();

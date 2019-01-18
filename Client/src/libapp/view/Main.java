@@ -1,5 +1,7 @@
 package libapp.view;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +35,8 @@ import libapp.view.user.UserController;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Main extends Application {
@@ -126,6 +130,18 @@ public class Main extends Application {
         sendRequest.setVisible(user.getType() == ProgramUser.UserType.Reader);
 
         notifications.setVisible(user.getType() == ProgramUser.UserType.Librarian);
+        if (user.getType() == ProgramUser.UserType.Reader)
+            try {
+                String result = "";
+                socket = ClientSocket.enableConnection(socket);
+                result = socket.makeRequest(getUser().getId() + ClientSocket.argSep + "hasVerfRequest");
+
+                boolean res = new Gson().fromJson(result, Boolean.class);
+                sendRequest.setDisable(res);
+            } catch (Exception e) {
+            new MessageController(MessageController.titleErrorGetNewData,
+                    MessageController.contentTextErrorGetNewData, e);
+            }
     }
 
     private void initRootLayout() {

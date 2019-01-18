@@ -13,11 +13,11 @@
     <VBox alignment="TOP_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Логин:" />
-            <TextField fx:id="login" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="User Login" />
+            <TextField fx:id="login" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Пароль:" />
-            <TextField fx:id="password" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="User password" />
+            <TextField fx:id="password" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Группа:" />
@@ -25,15 +25,15 @@
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Фамилия:" />
-            <TextField fx:id="surname" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="User surname"/>
+            <TextField fx:id="surname" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Имя:" />
-            <TextField fx:id="name" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="User name"/>
+            <TextField fx:id="name" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Отчество:" />
-            <TextField fx:id="patronymic" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  text="User patronymic"/>
+            <TextField fx:id="patronymic" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Пол:" />
@@ -52,11 +52,11 @@
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Телефон:" />
-            <TextField fx:id="phone" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"  text="79990584179"/>
+            <TextField fx:id="phone" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Почта:" />
-            <TextField fx:id="email" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" text="dndv279@gmail.com"/>
+            <TextField fx:id="email" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="BOTTOM_RIGHT" spacing="10">
             <Button fx:id="accept" minWidth="100" onAction="#applyChange" text="Применить" />
