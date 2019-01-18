@@ -11,6 +11,7 @@ public class ArticleChangeController extends ArticleWinController {
 
     public ArticleChangeController(Main main, String id) {
         super(main);
+        where.setDisable(true);
         ID = id;
     }
 

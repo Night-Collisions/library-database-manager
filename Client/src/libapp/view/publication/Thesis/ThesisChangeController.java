@@ -11,6 +11,7 @@ public class ThesisChangeController extends ThesisWinController {
     }
 
     protected void initialize() {
+        where.setDisable(true);
         super.initialize();
     }
 
