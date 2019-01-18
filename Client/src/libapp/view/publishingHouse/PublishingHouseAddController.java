@@ -30,8 +30,8 @@ public class PublishingHouseAddController extends PublishingHouseWinController {
                     "addPublHouse",
                     name.getText(),
                     address.getText(),
-                    phone.getText(),
-                    email.getText()};
+                    phone.getText().equals("") ? "NULL" : phone.getText(),
+                    email.getText().equals("") ? "NULL" : email.getText()};
 
             result = socket.makeRequest(buildQuery(args));
 

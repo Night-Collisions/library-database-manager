@@ -31,13 +31,13 @@ public class AuthorAddController extends AuthorWinController {
                     main.getUser().getId(),
                     "addAuthor",
                     name.getText(),
-                    surname.getText(),
-                    patronymic.getText(),
+                    surname.getText().equals("") ? "NULL" : surname.getText(),
+                    patronymic.getText().equals("") ? "NULL" : patronymic.getText(),
                     sexDict.get(sex.getValue()),
-                    bornDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                    deathDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                    phone.getText(),
-                    email.getText()
+                    (bornDate.getValue() == null) ? "NULL" : bornDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    (deathDate.getValue() == null) ? "NULL" : deathDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    phone.getText().equals("") ? "NULL" : phone.getText(),
+                    email.getText().equals("") ? "NULL" : email.getText()
                     };
 
             result = socket.makeRequest(buildQuery(args));

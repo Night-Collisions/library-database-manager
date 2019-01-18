@@ -23,6 +23,11 @@ public class EditorAddController extends EditorWinController {
     protected void applyChange() {
         super.applyChange();
 
+        if (name.getText().equals("")) {
+            new MessageController(MessageController.MessageType.WARNING, "Ошибка изменения", "Поля имя должно быть заполнено");
+            return;
+        }
+
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
@@ -31,13 +36,13 @@ public class EditorAddController extends EditorWinController {
                     main.getUser().getId(),
                     "addEditor",
                     name.getText(),
-                    surname.getText(),
-                    patronymic.getText(),
+                    surname.getText().equals("") ? "NULL" : surname.getText(),
+                    patronymic.getText().equals("") ? "NULL" : patronymic.getText(),
                     sexDict.get(sex.getValue()),
-                    bornDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                    deathDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                    phone.getText(),
-                    email.getText()
+                    (bornDate.getValue() == null) ? "NULL" : bornDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    (deathDate.getValue() == null) ? "NULL" : deathDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    phone.getText().equals("") ? "NULL" : phone.getText(),
+                    email.getText().equals("") ? "NULL" : email.getText()
             };
 
             result = socket.makeRequest(buildQuery(args));

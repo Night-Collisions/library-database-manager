@@ -58,7 +58,7 @@ public class MagazineController extends TableProperty<Magazine> {
                     "magazine" +
                             File.separator +
                             "MagazineAddOverview.fxml",
-                    new MagazineChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+                    new MagazineChangeController(main, table.getSelectionModel().getSelectedItem()));
         table.getItems().clear();
         fillTable();
     }
@@ -92,7 +92,7 @@ public class MagazineController extends TableProperty<Magazine> {
         }
     }
 
-    public void deleteRow() {
+    public void deleteWindow(String id) {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);

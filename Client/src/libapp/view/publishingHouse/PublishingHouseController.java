@@ -62,7 +62,7 @@ public class PublishingHouseController extends TableProperty<PublishingHouse> {
                     "organization" +
                             File.separator +
                             "OrganizationAddOverview.fxml",
-                    new PublishingHouseChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+                    new PublishingHouseChangeController(main, table.getSelectionModel().getSelectedItem()));
         table.getItems().clear();
         fillTable();
     }

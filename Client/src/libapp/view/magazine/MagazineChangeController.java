@@ -10,14 +10,19 @@ import static libapp.QueryParser.buildQuery;
 
 public class MagazineChangeController extends MagazineWinController {
     protected String ID;
+    libapp.model.Magazine item;
 
-    public MagazineChangeController(Main main, String id) {
+    public MagazineChangeController(Main main, libapp.model.Magazine item) {
         super(main);
-        ID = id;
+        ID = item.getId();
+        this.item = item;
     }
 
     protected void initialize() {
         super.initialize();
+        name.setText(item.getName());
+        subject.setDisable(true);
+        organization.setDisable(true);
     }
 
     public MagazineChangeController(Main main) {
@@ -25,7 +30,6 @@ public class MagazineChangeController extends MagazineWinController {
     }
 
     protected void applyChange() {
-        super.applyChange();
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
@@ -47,5 +51,6 @@ public class MagazineChangeController extends MagazineWinController {
             new MessageController("Ошибка",
                     "Не удалось вставить запись", e);
         }
+        super.applyChange();
     }
 }

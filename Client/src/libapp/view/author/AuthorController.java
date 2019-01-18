@@ -75,7 +75,7 @@ public class AuthorController extends TableProperty<Author> {
                     "author" +
                             File.separator +
                             "AuthorAddOverview.fxml",
-                    new AuthorChangeController(main, ((Author)table.getSelectionModel().getSelectedItem()).getId()));
+                    new AuthorChangeController(main, ((Author)table.getSelectionModel().getSelectedItem())));
         table.getItems().clear();
         fillTable();
     }
@@ -155,7 +155,7 @@ public class AuthorController extends TableProperty<Author> {
         }
     }
 
-    public void deleteRow() {
+    public void deleteRow(String id) {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);

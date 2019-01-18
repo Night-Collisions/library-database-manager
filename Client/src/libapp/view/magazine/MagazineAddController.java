@@ -16,11 +16,21 @@ public class MagazineAddController extends MagazineWinController {
     }
 
     protected void applyChange() {
-        super.applyChange();
-
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
+
+            if (subject.getValue() == null) {
+                new MessageController(MessageController.MessageType.WARNING, "Не удалось создать журнал.",
+                        "Не указанна тема журнала.");
+                return;
+            }
+
+            if (organization.getValue() == null) {
+                new MessageController(MessageController.MessageType.WARNING, "Не удалось создать журнал.",
+                        "Не указанна организация.");
+                return;
+            }
 
             String[] args = {
                         main.getUser().getId(),
@@ -38,5 +48,6 @@ public class MagazineAddController extends MagazineWinController {
             new MessageController("Ошибка",
                     "Не удалось вставить запись", e);
         }
+        super.applyChange();
     }
 }

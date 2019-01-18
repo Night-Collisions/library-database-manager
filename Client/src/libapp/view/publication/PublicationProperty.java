@@ -115,7 +115,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
         return editors;
     }
 
-    public void addMenu(javafx.scene.control.MenuItem moreTableProperty[]) {
+    public ContextMenu addMenu(javafx.scene.control.MenuItem moreTableProperty[]) {
         javafx.scene.control.Menu more[] = {new Menu("Подробнее")};
 
         more[0].getItems().add(CreateUDC());
@@ -159,7 +159,7 @@ public class PublicationProperty<T>  extends TableProperty<T> {
         });
 
         MenuItem items[] = {insert, edit, delete};
-        createMenu(more, items);
+        return createMenu(more, items);
     }
 
     public void deleteRow(String id) {

@@ -46,7 +46,7 @@ public class PublicationController extends PublicationProperty<Publication> {
     private void initialize() {
         initProperty();
         MenuItem[] menuPropertyTable = {};
-        addMenu(menuPropertyTable);
+        addMenu(menuPropertyTable).getItems().get(2).setVisible(false);
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
