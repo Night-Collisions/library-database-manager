@@ -28,8 +28,8 @@ public class OrganizationAddController extends OrganizationWinController {
                         "addOrganization",
                         name.getText(),
                         address.getText(),
-                        phone.getText(),
-                        email.getText()};
+                        phone.getText().equals("") ? "NULL" : phone.getText(),
+                        email.getText().equals("") ? "NULL" : email.getText()};
 
             result = socket.makeRequest(buildQuery(args));
             System.out.println(result);

@@ -8,14 +8,20 @@ import static libapp.QueryParser.buildQuery;
 
 public class OrganizationChangeController extends OrganizationWinController {
     protected String ID;
+    libapp.model.Organization items;
 
-    public OrganizationChangeController(Main main, String id) {
+    public OrganizationChangeController(Main main, libapp.model.Organization items) {
         super(main);
-        ID = id;
+        ID = items.getId();
+        this.items = items;
     }
 
     protected void initialize() {
         super.initialize();
+        name.setText(items.getName());
+        address.setText(items.getAddress());
+        phone.setText(items.getPhonenumber());
+        email.setText(items.getEmail());
     }
 
     public OrganizationChangeController(Main main) {
@@ -35,8 +41,8 @@ public class OrganizationChangeController extends OrganizationWinController {
                     ID,
                     name.getText(),
                     address.getText(),
-                    phone.getText(),
-                    email.getText()};
+                    phone.getText().equals("") ? "NULL" : phone.getText(),
+                    email.getText().equals("") ? "NULL" : email.getText()};
 
             result = socket.makeRequest(buildQuery(args));
 
