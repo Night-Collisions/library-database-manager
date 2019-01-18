@@ -54,6 +54,19 @@ class Database {
         }
     }
 
+    String hasVerfRequest(String u_id) {
+        try {
+            String query = "SELECT 1 FROM verifications WHERE users_id = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setLong(1, Long.parseLong(u_id));
+            ResultSet rs = ps.executeQuery();
+            return new Gson().toJson(rs.next());
+        }
+        catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
     String getPublsOfUser(String caller_id) {
         try {
             String query =

@@ -9,6 +9,15 @@ class MethodsWrapper {
         return Main.db.authorizeUser(args[2], args[3]);
     }
 
+    /* Check if user has verification request */
+
+    static String hasVerfRequest(String[] args) {
+        if (args.length != 2) {
+            return "wrong args";
+        }
+        return Main.db.hasVerfRequest(args[0]);
+    }
+
     /* Get user's publications ids on authorization */
 
     static String getPublsOfUser(String[] args) {
