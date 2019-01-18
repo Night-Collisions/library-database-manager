@@ -100,9 +100,6 @@ public class Main extends Application {
 
     @FXML
     private void initialize() {
-       /* users.setVisible(false);
-        notifications.setVisible(false);
-        sendRequest.setVisible(false);*/
         setUndefineUser();
     }
 
