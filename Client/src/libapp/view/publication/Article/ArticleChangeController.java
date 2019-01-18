@@ -4,8 +4,7 @@ import libapp.ClientSocket;
 import libapp.view.Main;
 import libapp.view.MessageController;
 
-import static libapp.QueryParser.buildQuery;
-import static libapp.view.publication.Article.ArticleWinController.type.Magazine;
+import static libapp.QueryParser.buildQuery;import static libapp.view.publication.Article.ArticleWinController.type.Magazine;
 
 public class ArticleChangeController extends ArticleWinController {
     protected String ID;
