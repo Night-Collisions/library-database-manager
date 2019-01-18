@@ -4,7 +4,7 @@ import libapp.ClientSocket;
 import libapp.view.Main;
 import libapp.view.MessageController;
 
-import static libapp.QueryParser.buildQuery;
+import static libapp.QueryParser.buildQuery;import static libapp.view.publication.Article.ArticleWinController.type.Magazine;
 
 public class ArticleChangeController extends ArticleWinController {
     protected String ID;
@@ -28,11 +28,27 @@ public class ArticleChangeController extends ArticleWinController {
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
-            String[] args;
-            //todo
-
-
-            //result = socket.makeRequest(buildQuery(args));
+            if (currentType == Magazine) {
+                String[] args = {
+                        main.getUser().getId(),
+                        "changeArticle",
+                        ID,
+                        name.getText(),
+                        issue.getText(),
+                        number.getText()
+                };
+                result = socket.makeRequest(buildQuery(args));
+            } else {
+                String[] args = {
+                        main.getUser().getId(),
+                        "changeArticle",
+                        ID,
+                        name.getText(),
+                        "-1",
+                        "-1"
+                };
+                result = socket.makeRequest(buildQuery(args));
+            }
 
             if (!result.equals("ok")) {
                 throw new Exception();

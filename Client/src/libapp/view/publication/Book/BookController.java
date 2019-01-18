@@ -50,13 +50,12 @@ public class BookController extends PublicationProperty<Book> {
                         File.separator +
                         "BookAddOverview.fxml",
                 new BookAddController(main));
-        //TODO: это не прикольно
         table.getItems().clear();
         fillTable();
     }
 
     public void onEditMenu() {
-        if (table.getSelectionModel().getSelectedItem() != null)
+        if (table.getSelectionModel().getSelectedItem() != null) {
             createWindow(
                     "publication" +
                             File.separator +
@@ -64,6 +63,10 @@ public class BookController extends PublicationProperty<Book> {
                             File.separator +
                             "BookAddOverview.fxml",
                     new BookChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+            table.getItems().clear();
+            fillTable();
+        }
+
     }
 
     public void fillTable() {

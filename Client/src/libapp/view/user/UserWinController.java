@@ -5,9 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import libapp.ClientSocket;
 import libapp.view.Main;
 import libapp.view.PropertyWin;
 import libapp.view.RegularForField;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserWinController extends PropertyWin {
     @FXML
@@ -27,4 +31,14 @@ public class UserWinController extends PropertyWin {
 
     protected String ID;
 
+    protected ClientSocket socket;
+    protected Main main;
+
+    public UserWinController(Main main) {
+        this.main = main;
+        this.socket = main.getSocket();
+    }
+
+    protected Map<String,String> sexDict = new HashMap<String,String>();
+    protected Map<String,String> typeDict = new HashMap<String,String>();
 }

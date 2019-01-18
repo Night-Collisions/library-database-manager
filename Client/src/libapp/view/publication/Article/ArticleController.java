@@ -77,7 +77,6 @@ public class ArticleController extends PublicationProperty<Article> {
             ArrayList<ArrayList<String>> parsed = new Gson().fromJson(result, type);
 
             for (ArrayList i : parsed) {
-                //TODO где то нульпоунтер
                 System.out.println(i);
                 if (i.get(2) == null) {
                     dataList.add(new Article(
