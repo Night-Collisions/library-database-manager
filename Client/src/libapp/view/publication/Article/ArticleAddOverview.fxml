@@ -15,16 +15,16 @@
             <TextField fx:id="name" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
-            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Тип:" />
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Тип:"/>
             <RadioButton fx:id="typeMagazine" text="Журнал"/>
             <RadioButton fx:id="typeCollection" text="Сборник"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
-            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Издательство:" />
+            <Label fx:id="labelType" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Журнал:" />
             <ComboBox fx:id="where" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">
-            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Название:" />
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Том:" />
             <TextField fx:id="issue" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999" />
         </HBox>
         <HBox alignment="CENTER_LEFT">

@@ -57,7 +57,7 @@ public class WorkController extends PublicationProperty<Work> {
                             "Book" +
                             File.separator +
                             "BookAddOverview.fxml",
-                    new WorkChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+                    new WorkChangeController(main, table.getSelectionModel().getSelectedItem()));
         table.getItems().clear();
         fillTable();
     }

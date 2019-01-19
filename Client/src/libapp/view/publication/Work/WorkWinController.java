@@ -9,6 +9,9 @@ import libapp.ClientSocket;
 import libapp.model.PublishingHouse;
 import libapp.view.Main;
 import libapp.view.PropertyWin;
+import libapp.view.RegularForField;
+
+import javax.xml.soap.Text;
 
 public class WorkWinController extends PropertyWin {
     @FXML
@@ -16,7 +19,7 @@ public class WorkWinController extends PropertyWin {
     @FXML
     protected ComboBox<PublishingHouse> ph;
     @FXML
-    protected DatePicker date;
+    protected TextField date;
     @FXML
     protected Button accept;
     @FXML
@@ -30,4 +33,9 @@ public class WorkWinController extends PropertyWin {
         this.socket = main.getSocket();
     }
 
+    @FXML
+    protected void initialize() {
+        super.initialize();
+        RegularForField.setYearField(date);
+    }
 }

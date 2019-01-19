@@ -64,6 +64,11 @@ public class BookAddController extends BookWinController{
     protected void applyChange() {
         super.applyChange();
 
+        if(date.getText().equals("")) {
+            new MessageController(MessageController.MessageType.WARNING, "Есть не заполненые поля", "Заполните поле год.");
+            return;
+        }
+
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
@@ -73,7 +78,7 @@ public class BookAddController extends BookWinController{
                     "addBook",
                     name.getText(),
                     ph.getValue().getId(),
-                    date.getValue().format(DateTimeFormatter.ofPattern("yyyy"))};
+                    date.getText()};
 
             result = socket.makeRequest(buildQuery(args));
 

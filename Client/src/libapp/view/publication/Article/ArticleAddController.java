@@ -4,9 +4,8 @@ import libapp.ClientSocket;
 import libapp.view.Main;
 import libapp.view.MessageController;
 
-import java.time.format.DateTimeFormatter;
-
 import static libapp.QueryParser.buildQuery;
+import static libapp.view.publication.Article.ArticleWinController.type.Magazine;
 
 public class ArticleAddController extends ArticleWinController{
     protected void initialize() {
@@ -21,6 +20,21 @@ public class ArticleAddController extends ArticleWinController{
     protected void applyChange() {
         super.applyChange();
 
+        if(name.getText().equals("")) {
+            new MessageController(MessageController.MessageType.WARNING, "Есть незаполненые поля.", "Заполните поле название.");
+            return;
+        }
+
+        if((currentType == Magazine) && (volume.getText().equals(""))) {
+            new MessageController(MessageController.MessageType.WARNING, "Есть незаполненые поля.", "Заполните поле том.");
+            return;
+        }
+
+        if((currentType == Magazine) && (number.getText().equals(""))) {
+            new MessageController(MessageController.MessageType.WARNING, "Есть незаполненые поля.", "Заполните поле номер.");
+            return;
+        }
+
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
@@ -32,7 +46,7 @@ public class ArticleAddController extends ArticleWinController{
                         "addMagazineArticle",
                         name.getText(),
                         idDict.get(where.getValue()),
-                        issue.getText(),
+                        volume.getText(),
                         number.getText()};
             } else {
                 args = new String[]{

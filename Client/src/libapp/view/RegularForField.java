@@ -41,4 +41,17 @@ public class RegularForField {
     public static void setIntField(TextField field) {
         createRegular(field, "[0-9]*");
     }
+
+    public static void setYearField(TextField field) {
+        field.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+
+                if ((!newValue.matches("[0-9]*")) || (newValue.length() > 4)) {
+                    field.setText(oldValue);
+                }
+            }
+        });
+    }
 }

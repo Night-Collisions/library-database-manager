@@ -71,13 +71,13 @@ public class PublicationController extends PublicationProperty<Publication> {
 
     public void onEditMenu() {
 
-        windows = FXCollections.observableArrayList(
-                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController(main, table.getSelectionModel().getSelectedItem().getId())),
-                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController(main, table.getSelectionModel().getSelectedItem().getId())),
-                new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController(main, table.getSelectionModel().getSelectedItem().getId())),
-                new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisChangeController(main, table.getSelectionModel().getSelectedItem().getId())),
-                new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocChangeController(main, table.getSelectionModel().getSelectedItem().getId()))
-        );
+//        windows = FXCollections.observableArrayList(
+//                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new BookChangeController(main, table.getSelectionModel().getSelectedItem().getId())),
+//                new Pair<>("publication" + File.separator + "Book" + File.separator + "BookAddOverview.fxml", new WorkChangeController(main, table.getSelectionModel().getSelectedItem())),
+//                new Pair<>("publication" + File.separator + "Article" + File.separator + "ArticleAddOverview.fxml", new ArticleChangeController(main, table.getSelectionModel().getSelectedItem().getId())),
+//                new Pair<>("publication" + File.separator + "Thesis" + File.separator + "ThesisAddOverview.fxml", new ThesisChangeController(main, table.getSelectionModel().getSelectedItem().getId())),
+//                new Pair<>("publication" + File.separator + "TechnicalDoc" + File.separator + "TechnicalDocAddOverview.fxml", new TechnicalDocChangeController(main, table.getSelectionModel().getSelectedItem().getId()))
+//        );
 
         if (table.getSelectionModel().getSelectedItem() != null) {
             int type = Integer.parseInt(publicationType2Server.get(table.getSelectionModel().getSelectedItem().getType()));

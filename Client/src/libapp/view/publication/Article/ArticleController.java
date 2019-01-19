@@ -61,7 +61,7 @@ public class ArticleController extends PublicationProperty<Article> {
                             "Article" +
                             File.separator +
                             "ArticleAddOverview.fxml",
-                    new ArticleChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+                    new ArticleChangeController(main, table.getSelectionModel().getSelectedItem()));
         table.getItems().clear();
         fillTable();
     }

@@ -64,6 +64,11 @@ public class WorkAddController extends WorkWinController {
     protected void applyChange() {
         super.applyChange();
 
+        if(date.getText().equals("")) {
+            new MessageController(MessageController.MessageType.WARNING, "Есть не заполненые поля", "Заполните поле год.");
+            return;
+        }
+
         try {
             String result = "";
             socket = ClientSocket.enableConnection(socket);
@@ -73,7 +78,7 @@ public class WorkAddController extends WorkWinController {
                     "addDigest",
                     name.getText(),
                     ph.getValue().getId(),
-                    date.getValue().format(DateTimeFormatter.ofPattern("yyyy"))};
+                    date.getText().equals("") ? "NULL" : date.getText()};
 
             result = socket.makeRequest(buildQuery(args));
 

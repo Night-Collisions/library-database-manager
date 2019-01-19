@@ -1,6 +1,7 @@
 package libapp.view.publication.Book;
 
 import libapp.ClientSocket;
+import libapp.model.PublishingHouse;
 import libapp.view.Main;
 import libapp.view.MessageController;
 
@@ -10,15 +11,21 @@ import static libapp.QueryParser.buildQuery;
 
 public class BookChangeController extends BookWinController {
     protected String ID;
+    libapp.model.Book item;
 
-    public BookChangeController(Main main, String id) {
+    public BookChangeController(Main main, libapp.model.Book item) {
         super(main);
-        ID = id;
+        this.ID = item.getId();
+        this.item = item;
     }
 
     protected void initialize() {
         ph.setDisable(true);
         super.initialize();
+        name.setText(item.getName());
+        ph.setValue( new PublishingHouse("-1", item.getPublishingHouse(), "", "", ""));
+        ph.setDisable(true);
+        date.setText(item.getYear());
     }
 
     public BookChangeController(Main main) {
@@ -26,7 +33,10 @@ public class BookChangeController extends BookWinController {
     }
 
     protected void applyChange() {
-        super.applyChange();
+        if(date.getText().equals("")) {
+            new MessageController(MessageController.MessageType.WARNING, "Есть не заполненые поля", "Заполните поле год.");
+            return;
+        }
 
         try {
             String result = "";
@@ -37,7 +47,7 @@ public class BookChangeController extends BookWinController {
                     "changeBook",
                     ID,
                     name.getText(),
-                    date.getValue().format(DateTimeFormatter.ofPattern("yyyy"))};
+                    date.getText()};
 
             result = socket.makeRequest(buildQuery(args));
 
@@ -49,6 +59,6 @@ public class BookChangeController extends BookWinController {
             new MessageController("Ошибка",
                     "Не удалось вставить запись", e);
         }
-
+        super.applyChange();
     }
 }

@@ -62,7 +62,7 @@ public class BookController extends PublicationProperty<Book> {
                             "Book" +
                             File.separator +
                             "BookAddOverview.fxml",
-                    new BookChangeController(main, table.getSelectionModel().getSelectedItem().getId()));
+                    new BookChangeController(main, table.getSelectionModel().getSelectedItem()));
             table.getItems().clear();
             fillTable();
         }

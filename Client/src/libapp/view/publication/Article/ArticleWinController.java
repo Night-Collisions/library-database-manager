@@ -27,9 +27,11 @@ public class ArticleWinController extends PropertyWin {
     @FXML
     protected RadioButton typeCollection;
     @FXML
+    protected Label labelType;
+    @FXML
     protected ComboBox<String> where;
     @FXML
-    protected TextField issue;
+    protected TextField volume;
     @FXML
     protected TextField number;
 
@@ -128,17 +130,19 @@ public class ArticleWinController extends PropertyWin {
                 if (group.getSelectedToggle() != null) {
                     if (group.getSelectedToggle() == typeMagazine) {
                         currentType = type.Magazine;
-                        issue.setDisable(false);
-                        issue.clear();
+                        volume.setDisable(false);
+                        volume.clear();
                         number.setDisable(false);
                         number.clear();
+                        labelType.setText("Журнал:");
                         fillMagazinesCombobox();
                     } else {
                         currentType = type.Collection;
-                        issue.setDisable(true);
-                        issue.clear();
+                        volume.setDisable(true);
+                        volume.clear();
                         number.setDisable(true);
                         number.clear();
+                        labelType.setText("Сборник:");
                         fillDigestsCombobox();
                     }
                 }

@@ -74,10 +74,11 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateUDC() {
         javafx.scene.control.MenuItem udc = new MenuItem("УДК");
         udc.setOnAction(t -> {
-            CreateTableProperty(new UDCOCTController(main,
-                            ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
-                    "УДК для id ",
-                    ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
+            if (table.getSelectionModel().getSelectedItem() != null)
+                CreateTableProperty(new UDCOCTController(main,
+                                ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
+                        "УДК для id ",
+                        ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return udc;
     }
@@ -85,10 +86,11 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateKeyWords() {
         MenuItem keywords = new MenuItem("Ключевые слова");
         keywords.setOnAction(t -> {
-            CreateTableProperty(new KeywordOCTController(main,
-                            ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
-                    "Ключевые слова для id ",
-                    ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
+            if (table.getSelectionModel().getSelectedItem() != null)
+                CreateTableProperty(new KeywordOCTController(main,
+                                ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
+                        "Ключевые слова для id ",
+                        ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return keywords;
     }
@@ -96,10 +98,11 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateAuthors() {
         MenuItem authors = new MenuItem("Авторы");
         authors.setOnAction(t -> {
-            CreateTableProperty(new AuthorsOCTController(main,
-                            ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
-                    "Авторы для id ",
-                    ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
+            if (table.getSelectionModel().getSelectedItem() != null)
+                CreateTableProperty(new AuthorsOCTController(main,
+                                ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
+                        "Авторы для id ",
+                        ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return authors;
     }
@@ -107,10 +110,11 @@ public class PublicationProperty<T>  extends TableProperty<T> {
     public javafx.scene.control.MenuItem CreateEditors() {
         MenuItem editors = new MenuItem("Редакторы");
         editors.setOnAction(t -> {
-            CreateTableProperty(new EditorsOCTController(main,
-                            ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
-                    "Редакторы для id ",
-                    ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
+            if (table.getSelectionModel() != null)
+                CreateTableProperty(new EditorsOCTController(main,
+                                ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId()),
+                        "Редакторы для id ",
+                        ((PublicationTable)table.getSelectionModel().getSelectedItem()).getId());
         });
         return editors;
     }
