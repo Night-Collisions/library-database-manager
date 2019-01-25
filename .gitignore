@@ -16,9 +16,6 @@
 /Server/lib/*
 !/Server/lib/*.jar
 
-!/Client
-/Client/*
-
 !/PostgreSQL
 /PostgreSQL/* 
 !/PostgreSQL/consts.txt
@@ -29,3 +26,16 @@
 /Documentation/*
 !/Documentation/Documentation.docx
 !/Documentation/Presentation.pptx
+
+!/Client
+/Client/*
+!/Client/src
+!/Client/src/*
+!/Client/src/libapp/*
+!/Client/src/libapp/model/*
+!/Client/src/libapp/view/*
+!/Client/src/libapp/view/*/*
+!/Client/src/libapp/view/*/*/*
+!*.fxml
+!*.java
+!/Client/Client.iml

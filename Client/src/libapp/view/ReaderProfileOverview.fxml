@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="309.0" prefWidth="316.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="8.0" layoutY="16.0" text="Имя:" />
+            <Label layoutX="7.0" layoutY="93.0" text="Фамилия:" />
+            <Label layoutX="6.0" layoutY="53.0" text="Отчество:" />
+            <Label layoutX="10.0" layoutY="257.0" text="Группа:" />
+            <Label layoutX="9.0" layoutY="219.0" text="Пол:" />
+            <Label layoutX="9.0" layoutY="133.0" text="Логин:" />
+            <Label layoutX="8.0" layoutY="176.0" text="Дата рождения:" />
+            <Label layoutX="128.0" layoutY="172.0" prefHeight="23.0" prefWidth="177.0" />
+            <Label layoutX="128.0" layoutY="129.0" prefHeight="23.0" prefWidth="177.0" />
+            <Label layoutX="128.0" layoutY="89.0" prefHeight="23.0" prefWidth="177.0" />
+            <Label layoutX="128.0" layoutY="49.0" prefHeight="23.0" prefWidth="177.0" />
+            <Label layoutX="128.0" layoutY="12.0" prefHeight="23.0" prefWidth="177.0" />
+            <Label layoutX="128.0" layoutY="215.0" prefHeight="23.0" prefWidth="177.0" />
+            <Label layoutX="128.0" layoutY="253.0" prefHeight="23.0" prefWidth="177.0" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

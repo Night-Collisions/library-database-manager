@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="150.0" prefWidth="300.0">
+    <VBox alignment="TOP_LEFT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Название:" />
+            <TextField fx:id="name" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Тема:" />
+            <ComboBox fx:id="subject" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <Label minHeight="-Infinity" maxHeight="Infinity" minWidth="100" maxWidth="100" text="Организация:" />
+            <ComboBox fx:id="organization" minHeight="-Infinity" maxHeight="Infinity" minWidth="100" prefWidth="999999999"/>
+        </HBox>
+        <HBox alignment="BOTTOM_RIGHT" spacing="10">
+            <Button fx:id="accept" minWidth="100" onAction="#applyChange" text="Применить" />
+            <Button fx:id="reject" minWidth="100"  onAction="#closeWindow" text="Отмена" />
+        </HBox>
+    </VBox>
+</AnchorPane>
